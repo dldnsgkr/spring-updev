@@ -1,0 +1,94 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+* {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif;}
+li {list-style: none;}
+a { text-decoration: none; }
+
+
+
+/*
+.box{
+	min-height: 100%;
+    position: relative;
+    margin-top: 100px;
+    padding-bottom: 300px;
+}
+*/
+
+.boxleft {
+  background-image: linear-gradient(-225deg, #9067c6 0%,#8d86c9 100%);
+  width: calc(100% / 4);
+  height: calc(100vh - 30vh);
+  float: left;
+}
+
+/*
+.boxleft a{
+  background-image: url(images/updev2.png);
+  width: 20px;
+  margin: 20px 20px;
+  background-repeat: no-repeat;
+}
+*/
+
+.boxright{
+	position: relative;
+    width: calc(100% / 6);
+    height: calc(100vh - 30vh);
+	float: left;
+}
+.boxright form{
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translate(90%, -60%);
+  width: 380px;
+}
+
+.boxright form .input{
+  display: block;
+  width: 70%;
+  height: 50px;
+}
+
+
+h1{
+  margin: 20px 10px;
+}
+
+.input {
+  padding: 0px 40px;
+  margin: 10px;
+}
+
+.input[type="checkbox"]{
+	margin: 10px;
+}
+
+.boxright a{
+	margin: 0px 10px;
+	color: #242038;
+}
+
+.button.button:first-child {
+	margin-top: 30px;
+}
+
+.button.button {
+  width: 90%;
+  background-color: #9067c6;
+  border: 0;
+  margin: 7px 0px 0px 13px;
+  font-size: 15px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+}
+
+.button.button:hover {
+  color: black;
+  background-color: #cac4ce;
+}

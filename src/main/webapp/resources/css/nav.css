@@ -1,0 +1,64 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+li{
+	
+	list-style: none;
+}
+
+nav {
+	float: left;
+	height: 1000px;
+	font-size: 18px;
+   font-family: 'Noto Sans KR', sans-serif;
+}
+nav .first{
+	width:300px;
+	height: 100vh;
+	float: left;
+	background-color: #242038;
+}
+nav .first li{
+    display: block;
+    line-height: 100px;
+    text-align: center;
+}
+
+nav .first li .on{
+    text-decoration: underline;
+}
+nav .first li span{
+	color: #ffffff;
+}
+
+nav .second {
+	    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+    float: left;
+    width: 200px;
+height: 100vh;
+text-align: center;
+}
+nav .third {
+	float: left;
+    padding: 0 100px;
+    height: 100vh;
+}
+nav .second .menu ul{
+	display: none;
+}
+nav .second .menu ul li{
+	line-height: 100px;
+}
+nav .second .menu .on{
+	display: block;
+}
+
+nav .third .menu ul{
+	display: none;
+}
+
+nav .third .menu .on{
+	display: block;
+}
+nav .second .menu ul li.on {
+	text-decoration: underline;
+}

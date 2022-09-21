@@ -1,0 +1,116 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Serif+KR&display=swap');
+*{
+ 	padding: 0;
+  	margin: 0;
+ }
+
+ body{
+	width: 100%;
+	height: 100vh;
+  	/*background-image: linear-gradient(90deg, #9067c6 25%, white 25%);*/
+}
+.gra{
+	width: calc(25%);
+	height: 1000px;
+	float: left;
+  	background-image: linear-gradient(-225deg, #9067c6 0%,#8d86c9 53%, #cac4ce 100%);
+}
+.nogra{
+	width: calc(75%);
+	height: 1000px;
+	float: left;
+}
+.title{
+	font-size: 10px;
+	text-align: center;
+	margin-top: 15px; 
+	margin: 5px;
+	color: #242038; 
+	font-family: 'Noto Serif KR', serif;
+}
+#id,#pw,#pwchk,#nick,#name,#mail,#tel,#field{
+	font-family: 'Gowun Dodum', sans-serif;
+	font-size: 12px;
+	width: 250px;
+	height: 30px;
+	margin: 5px;
+	border-radius: 10px / 10px;
+	border: 2px solid #9067c6;
+}
+#id,#nick{
+	position: relative;
+}
+#myagree{
+	font-family: 'Gowun Dodum', sans-serif;
+	font-size: 10px;
+	text-align:center;
+	margin: 5px;
+}
+#field{
+	margin-left: 5px;
+}
+form{
+	width: 400px;
+	margin: 0 auto;
+}
+.myterms{
+	margin: 5px;
+	border-radius: 10px / 10px;
+	font-family: 'Gowun Dodum', sans-serif;	
+	font-size: 14px;
+}
+.button {
+  font-family: 'Gowun Dodum', sans-serif;
+  background-color: #9067c6;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 0;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px / 5px;
+  width: 60px;
+  height: 30px;
+  
+}
+.button1 {
+  background-color: white; 
+  color: #242038; 
+  border: 2px solid #9067c6;
+}
+.button1:hover {
+  background-color: #9067c6;
+  color: white;
+}
+.button2 {
+  background-color: white; 
+  color: #242038; 
+  border: 2px solid #9067c6;
+}
+.button2:hover {
+  background-color: #9067c6;
+  color: white;
+}
+input:focus {
+    outline: 2px solid #2f097a;
+}
+select:focus {
+    outline: 2px solid #2f097a;
+}
+#myid{
+	position: relative;
+}
+.signup_btn{
+	margin-left: 150px; 
+}
+.error{
+    font-size: 12px;
+    height: 20px;
+    color:red;
+    font-weight: 700;
+}
