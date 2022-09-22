@@ -127,6 +127,12 @@ public class MemberController {
 		   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 		   	ss.profileupdate(m_nick,m_profile,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
 		   ss.profileboardupdate(m_nick,up_nick);
+		   ss.balupdate(m_nick,up_nick);
+		   ss.suupdate(m_nick,up_nick);
+		   ss.profilereportupdate(m_nick,up_nick);
+		   ss.albalupdate(m_nick,up_nick);
+		   ss.alsuupdate(m_nick,up_nick);
+		   
 		   	return "redirect:logout";
 		   
 	   }

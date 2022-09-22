@@ -48,4 +48,5 @@
 		delete from board where b_num = #{param1}
 	</delete>
 	
+	
 </mapper>

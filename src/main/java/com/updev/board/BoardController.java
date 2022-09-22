@@ -159,9 +159,49 @@ public class BoardController {
 		      public String ko11(HttpServletRequest request,Model mo)
 		      {
 		            int b_num = Integer.parseInt(request.getParameter("b_num"));
-		            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+		           ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		         ss.delete(b_num);
 		         return "index";
+		      }
+	         
+	         //공지사항 폼
+	         @RequestMapping(value = "/notice")
+		      public String ko12()
+		      {
+	        	 String notice = "공지";
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+		         ss.noticeboardtable(notice);
+		         return "noticepage";
+		      }
+	         
+	       // 폼
+	         @RequestMapping(value = "/share")
+		      public String ko13()
+		      {
+		         return "sharepage";
+		      }
+	         
+	       //공지사항 폼
+	         @RequestMapping(value = "/question")
+		      public String ko14()
+		      {
+		         return "questionpage";
+		      }
+	         
+	       //공지사항 폼
+	         @RequestMapping(value = "/worry")
+		      public String ko15()
+		      {
+		            
+		         return "worrypage";
+		      }
+	         
+	       //공지사항 폼
+	         @RequestMapping(value = "/qna")
+		      public String ko16()
+		      {
+		            
+		         return "qnapage";
 		      }
 	
 	

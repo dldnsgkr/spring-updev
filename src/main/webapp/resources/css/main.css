@@ -2,8 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 * {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif;}
 li {list-style: none;}
-a { text-decoration: none; }
+a { text-decoration: none;}
 
+h3{
+	color: #242038;
+}
 
 #main_body{
 	margin-top: 60px;
@@ -56,7 +59,7 @@ a { text-decoration: none; }
   border: 0;
   margin: 20px 0px 0px 15px;
   font-size: 15px;
-  color: black;
+  color: #242038;
   cursor: pointer;
   border-radius: 90px;
   transition-duration: 0.4s;
@@ -104,28 +107,68 @@ a { text-decoration: none; }
  
 .slick-prev {
     left: 20px;
+    background-image: url(../images/arrow_left.png);
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    top: 85px;
 }
  
-.slick-prev:after {
-    content: "\f104";
-    font: 40px/1 'FontAwesome';
+.slick-prev:hover {
+    background-image: url(../images/arrow_left.hover.png);
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    top: 85px;
 }
  
 .slick-next {
     right: 20px;
     text-align: right;
+    background-image: url(../images/arrow_right.png);
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    top: 85px;
 }
  
-.slick-next:after {
-     content: "\f105";
-     font: 40px/1 'FontAwesome';
-}
- 
-.slick-prev:hover:after,
-.slick-next:hover:after {
-    color: #7e7e7e;
+.slick-next:hover {
+    background-image: url(../images/arrow_right_hover.png);
+    right: 20px;
+    text-align: right;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    top: 85px;
 }
 
-.main_in1 .main_in2 .main_in3{
+
+.main_in1, .main_in2, .main_in3{
 	position: absolute;
+	color: #242038;
+}
+
+.main_in1{
+    top: 17px;
+    left: 1250px;
+    font-size: 25px;
+}
+
+.main_in2{
+    top: 36px;
+    left: 1765px;
+    font-size: 25px;
+}
+
+.main_in3{
+    top: 16px;
+    right: 79%;
+    font-size: 25px;
+}
+
+.text_box{
+	background-color: white;
+	opacity: 50%;
+	padding: 30px;
 }

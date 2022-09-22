@@ -31,6 +31,8 @@ public interface ServiceBoard {
 
 	public void delete(int b_num);
 
+	public void noticeboardtable(String notice);
+
 	
 
 	
