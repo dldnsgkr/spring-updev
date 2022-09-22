@@ -79,11 +79,13 @@
 					</div>
 				</div>
 						<div class="menu" id="bottom2">
-							<a href="" id="menu">공지</a>
-							<a href="" id="menu">정보공유</a>
-							<a href="" id="menu">지식인</a>
-							<a href="" id="menu">고민</a>
-							<a href="" id="menu">홈페이지 문의</a>
+							<div class="wrap">
+								<a href="" id="menu">공지</a>
+								<a href="" id="menu">정보공유</a>
+								<a href="" id="menu">지식인</a>
+								<a href="" id="menu">고민</a>
+								<a href="" id="menu">QnA</a>
+							</div>
 						</div>
 			</div>
 	</body>
