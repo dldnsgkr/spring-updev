@@ -77,15 +77,14 @@ a { text-decoration: none; }
 }
 
 #menu{
-	padding: 15.5px 40px;
-	line-height: 60px;
-	margin-left: 100px;
-	color: white;
-	transition-duration: 0.4s;
-}
-
-#menu:first-child{
-	margin-left: 400px;
+    width: calc(100% / 5);
+    line-height: 60px;
+    text-align: center;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    color: white;
+    transition-duration: 0.4s;
 }
 
 #bottom2{
@@ -98,8 +97,7 @@ a { text-decoration: none; }
 
 /*
 .top_logo{
-    width: 250px;
-    height: 100px;
+    width: 250prgb(255, 255, 255) height: 100px;
     background-image: url(../images/updev_2.png);
     background-repeat: no-repeat;
     background-size: cover;

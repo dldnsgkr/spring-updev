@@ -11,7 +11,7 @@ a { text-decoration: none; }
 }
 
 #footer{
-	color: black;
+	color: #242038;
 	font-size: 13px;
 	display: flex;
 	flex-direction: column;	

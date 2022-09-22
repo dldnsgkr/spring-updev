@@ -17,26 +17,32 @@
 				<div class="slider-wrap">
 	    			<div class="cont">
 	       				<img src="./resources/images/banner1.jpg">
-		       			<span class="main_in1">
-		       				개발자로 취업하자<br>
-							교육비 전액 무료<br>
-							자세히 보기
-		       			</span>
+		       			<div class="main_in1">
+		       				<div class="text_box">
+			       				개발자로 취업하자<br>
+								교육비 전액 무료<br>
+								<a href="">자세히 보기</a>
+							</div>
+		       			</div>
 	    			</div>
 	    			<div class="cont">
 	       				<img src="./resources/images/banner2.jpg">
-	       				<span class="main_in2">
-		       				UPDEV 개발자 채용<br>
-							자세히 보기
-						</span>
+	       				<div class="main_in2">
+		       				<div class="text_box">
+			       				UPDEV 개발자 채용<br>
+								<a href="">자세히 보기</a>
+		       				</div>
+						</div>
 	    			</div>
 	    			<div class="cont">
 	         			<img src="./resources/images/banner3.jpg">
-	         			<span class="main_in3">
-		         			경력보다 실력<br>
-							UPDEV 개발자를 만나다.<br>
-							자세히 보기
-						</span>
+	         			<div class="main_in3">
+	         				<div class="text_box">
+			         			경력보다 실력<br>
+								UPDEV 개발자를 만나다.<br>
+								<a href="">자세히 보기</a>
+	         				</div>
+						</div>
 	    			</div>
 				</div>
 				<div class="login">
