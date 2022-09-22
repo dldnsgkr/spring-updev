@@ -7,5 +7,9 @@
 	<select id="infoupdate" resultType="com.updev.member.Signup">
 		SELECT * FROM member where m_id = #{param1}
 	</select>
+	<update id="info_update">
+		update member set m_profile = #{param1}, m_pw = #{param2}, m_nick = #{param3}, m_name = #{param4}, 
+		m_mail = #{param5}, m_tel = #{param6}, m_field = #{param7} where m_id = #{param8}
+	</update>
 
 </mapper>
