@@ -76,6 +76,8 @@
 							</form>
 						</div>
 					<!-- <button class="top_logo" type="button" onclick="location.href = '/updev' "></button>  -->
+					</div>
+				</div>
 						<div class="menu" id="bottom2">
 							<a href="" id="menu">공지</a>
 							<a href="" id="menu">정보공유</a>
@@ -83,8 +85,6 @@
 							<a href="" id="menu">고민</a>
 							<a href="" id="menu">홈페이지 문의</a>
 						</div>
-					</div>
-				</div>
 			</div>
 	</body>
 </html>

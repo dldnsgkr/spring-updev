@@ -20,10 +20,13 @@ a { text-decoration: none; }
 .board{
 	width: 280px;
 	height: 300px;
-	border: 3px solid #9067c6;	
+	border: 3px solid #cac4ce;	
 	border-radius: 40px;
 	padding: 35px 30px 35px 50px;
 	margin-top: 70px;
+}
+.board:last-child{
+	margin-bottom: 70px;
 }
 
 .board a{
@@ -44,15 +47,6 @@ a { text-decoration: none; }
 
 .input:first-child {
     margin-top: 35px;
-}
-
-.login{
-	background-image: linear-gradient(-225deg, #9067c6 0%,#8d86c9 100%);
-	margin-top: 70px;
-	height: 200px;
-	width: 250px;
-	border-radius: 40px;
-	float: right;  	
 }
 
 .button.button {
@@ -78,7 +72,60 @@ a { text-decoration: none; }
 }
 
 .login{
+	background-image: linear-gradient(-225deg, #9067c6 0%,#8d86c9 100%);
+	height: 200px;
+	width: 250px;
+	border-radius: 40px;
+	float: right;  	
 	position: absolute;
-    right: 0px;
-    top: 0px;
+    right: 40px;
+    bottom: 15px;
+}
+
+.slider-wrap{
+	position: relative;
+	width: 825px;
+	top: -15px;
+    left: 40px;
+}
+
+.slick-prev,
+.slick-next {
+	font-size: 0;
+    position: absolute;
+    color: #fff;
+    border: 0;
+    background-color: none;
+    z-index: 1;
+    top: 75px;
+    cursor: pointer;
+    background-color: transparent;
+}
+ 
+.slick-prev {
+    left: 20px;
+}
+ 
+.slick-prev:after {
+    content: "\f104";
+    font: 40px/1 'FontAwesome';
+}
+ 
+.slick-next {
+    right: 20px;
+    text-align: right;
+}
+ 
+.slick-next:after {
+     content: "\f105";
+     font: 40px/1 'FontAwesome';
+}
+ 
+.slick-prev:hover:after,
+.slick-next:hover:after {
+    color: #7e7e7e;
+}
+
+.main_in1 .main_in2 .main_in3{
+	position: absolute;
 }
