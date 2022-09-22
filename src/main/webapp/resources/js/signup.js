@@ -1,4 +1,6 @@
-function  signupChk(){
+
+
+function signupChk(){
 
 	var form = document.signup1;
 	var idchk = /^[a-z0-9]{4,12}$/;
