@@ -13,6 +13,8 @@ public interface ServiceMember {
 	public Signup profileupdatecheck(String m_nick);
 
 	public int idCheck(String m_id);
+
+	public void profileboardupdate(String m_nick, String up_nick);
 	
 
 }

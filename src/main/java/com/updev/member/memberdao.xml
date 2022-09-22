@@ -19,6 +19,23 @@
 	<update id="profileupdate">
 		update member set m_profile = #{param2}, m_id = #{param3}, m_pw = #{param4}, m_name = #{param5}, m_mail = #{param6}, m_tel = #{param7}, m_field = #{param8}, m_nick = #{param9} where m_nick = #{param1}
 	</update>
+	
+	<update id="profileboardupdate">
+		update board set m_nick = #{param2} where m_nick = #{param1}
+	</update>
+	
+	<update id="baldupdate">
+		update chat set m_id = #{param2} where m_id = #{param1}
+	</update>
+	
+	<update id="suupdate">
+		update chat set m_nick = #{param2} where m_nick = #{param1}
+	</update>
+	
+	<update id="profilereportupdate">
+		update report set m_nick = #{param2} where m_nick = #{param1}
+	</update>
+	
 	<select id="idCheck" resultType="int">
   		select count(*) from member where m_id = #{m_id}
   	</select>

@@ -126,7 +126,7 @@ public class MemberController {
 		   String m_field = mul.getParameter("m_field");
 		   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 		   	ss.profileupdate(m_nick,m_profile,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
-		   
+		   ss.profileboardupdate(m_nick,up_nick);
 		   	return "redirect:logout";
 		   
 	   }
