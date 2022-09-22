@@ -67,7 +67,7 @@
 					</div>
 					<div class="bottom">
 						<div class="logo">
-							<a href="/updev"><img src="./resources/images/updev_2.png"></a>
+							<a href="index"><img src="./resources/images/updev_2.png"></a>
 						</div>
 						<div class="search">
 								<form action="" method="post" name="top_search_form">
@@ -85,6 +85,7 @@
 								<a href="question" id="menu">질문창고</a>
 								<a href="worry" id="menu">고민상담소</a>
 								<a href="qna" id="menu">Q&A</a>
+								<!--<a href="totboard" id="menu">글 목록</a>-->
 							</div>
 						</div>
 			</div>

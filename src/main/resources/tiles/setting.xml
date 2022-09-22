@@ -63,6 +63,10 @@
       <put-attribute name="body" value="/WEB-INF/views/noticeboard/qnapage.jsp" />
       </definition>
       
+       <definition name="detailboard" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/noticeboard/detailboard.jsp" />
+      </definition>
+      
     <!-- admin -->
 	<definition name="admin" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin.jsp" />

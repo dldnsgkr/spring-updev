@@ -12,13 +12,12 @@ public interface ServiceMember {
 
 	public Signup profileupdatecheck(String m_nick);
 
-
 	public int test(String id);
 
 	public int idCheck(String m_id);
 
 	public void profileboardupdate(String m_nick, String up_nick);
-
+ 
 	public void balupdate(String m_nick, String up_nick);
 
 	public void suupdate(String m_nick, String up_nick);
@@ -29,6 +28,5 @@ public interface ServiceMember {
 
 	public void alsuupdate(String m_nick, String up_nick);
 
-	
 
 }

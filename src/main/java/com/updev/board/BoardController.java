@@ -218,6 +218,19 @@ public class BoardController {
 	        	 mo.addAttribute("liste",list);
 		         return "qnapage";
 		      }
+	         
+	       //°Ô½Ã¹° detail
+	         @RequestMapping(value = "/detail")
+	         public String ko17(HttpServletRequest request,Model mo)
+	         {
+	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 Board member = ss.boarddetail(b_num);
+	        	 mo.addAttribute("list",member);
+	        	 return "detailboard";
+	         }
+	         
+	         
 	
 	
 }

@@ -40,6 +40,8 @@ public interface ServiceBoard {
 	public ArrayList<Board> worryboardtable(String worry);
 
 	public ArrayList<Board> qnaboardtable(String qna);
+	
+	public Board boarddetail(int b_num);
 
 	
 

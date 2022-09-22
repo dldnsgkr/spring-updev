@@ -14,15 +14,13 @@
 <table>
 <tr>
    <th>분류</th>
-   <td><input type="text" name="b_kind" value="${list.b_kind }"></td><!-- select 혹은 텍스트형식 두개 만들어놨습니당 -->
-   <!-- <select name="b_kind">
-   <option value="?">?</option>
-   <option value="?">?</option>
-   <option value="?">?</option>
-   <option value="?">?</option>
-   <option value="?">?</option>
-   <option value="?">?</option>
-   </select> -->
+   <td>
+   <select name="b_kind">
+   <option value="정보 공유">정보 공유</option>
+   <option value="질문창고">질문창고</option>
+   <option value="고민상담소">고민상담소</option>
+   <option value="Q&A">Q&A</option>
+   </select></td>
 </tr>
 <tr>
    <th>제목</th>

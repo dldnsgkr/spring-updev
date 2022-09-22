@@ -20,7 +20,7 @@
 	<c:forEach items="${listb }" var="a">
 	<tr>
 		<td>${a.b_num }</td>
-		<td>${a.b_title }</td>
+		<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a></td>
 		<td>${a.m_nick }</td>
 		<td>${a.b_wdate }</td>
 		<td>${a.b_readcnt }</td>
