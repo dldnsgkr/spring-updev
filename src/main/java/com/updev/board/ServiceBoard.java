@@ -31,6 +31,16 @@ public interface ServiceBoard {
 
 	public void delete(int b_num);
 
+	public ArrayList<Board> noticeboardtable(String notice);
+
+	public ArrayList<Board> shareboardtable(String share);
+
+	public ArrayList<Board> questionboardtable(String question);
+
+	public ArrayList<Board> worryboardtable(String worry);
+
+	public ArrayList<Board> qnaboardtable(String qna);
+
 	
 
 	

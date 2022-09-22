@@ -12,7 +12,23 @@ public interface ServiceMember {
 
 	public Signup profileupdatecheck(String m_nick);
 
+<<<<<<< HEAD
 	public int test(String id);
+=======
+	public int idCheck(String m_id);
+
+	public void profileboardupdate(String m_nick, String up_nick);
+
+	public void balupdate(String m_nick, String up_nick);
+
+	public void suupdate(String m_nick, String up_nick);
+
+	public void profilereportupdate(String m_nick, String up_nick);
+
+	public void albalupdate(String m_nick, String up_nick);
+
+	public void alsuupdate(String m_nick, String up_nick);
+>>>>>>> 96a067e3f4af5c77e75d27620587f9ac8cdd292b
 	
 
 }

@@ -39,11 +39,11 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		session.setAttribute("loginState", false);
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		String a1 = "고민상담소";
+		String a1 = "공지";
 		String b1 = "정보 공유";
 		String c1 = "질문창고";
-		String d1 = "Q&A";
-		String e1 = "공지";
+		String d1 = "고민상담소";
+		String e1 = "Q&A";
 		String f1 = "인기 조회수";
 		ArrayList<Board> a = ss.bo1(a1);
 		ArrayList<Board> b = ss.bo2(b1);
@@ -63,11 +63,11 @@ public class BoardController {
 	public String index(Model mo)
 	{
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		String a1 = "고민상담소";
+		String a1 = "공지";
 		String b1 = "정보 공유";
 		String c1 = "질문창고";
-		String d1 = "Q&A";
-		String e1 = "공지";
+		String d1 = "고민상담소";
+		String e1 = "Q&A";
 		String f1 = "인기 조회수";
 		ArrayList<Board> a = ss.bo1(a1);
 		ArrayList<Board> b = ss.bo2(b1);
@@ -159,9 +159,64 @@ public class BoardController {
 		      public String ko11(HttpServletRequest request,Model mo)
 		      {
 		            int b_num = Integer.parseInt(request.getParameter("b_num"));
-		            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+		           ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		         ss.delete(b_num);
 		         return "index";
+		      }
+	         
+	         //공지사항 폼
+	         @RequestMapping(value = "/notice")
+		      public String ko12(Model mo)
+		      {
+	        	 String notice = "공지";
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+		         ArrayList<Board> list = ss.noticeboardtable(notice);
+		         mo.addAttribute("lista",list);
+		         return "noticepage";
+		      }
+	         
+	       // 정보 공유 폼
+	         @RequestMapping(value = "/share")
+		      public String ko13(Model mo)
+		      {
+	        	 String share = "정보 공유";
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 ArrayList<Board> list = ss.shareboardtable(share);
+	        	 mo.addAttribute("listb",list);
+		         return "sharepage";
+		      }
+	         
+	       //질문창고 폼
+	         @RequestMapping(value = "/question")
+		      public String ko14(Model mo)
+		      {
+	        	 String question = "질문창고";
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 ArrayList<Board> list = ss.questionboardtable(question);
+	        	 mo.addAttribute("listc",list);
+		         return "questionpage";
+		      }
+	         
+	       //고민상담소 폼
+	         @RequestMapping(value = "/worry")
+		      public String ko15(Model mo)
+		      {
+	        	 String worry = "고민상담소";
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 ArrayList<Board> list = ss.worryboardtable(worry);
+	        	 mo.addAttribute("listd",list);
+		         return "worrypage";
+		      }
+	         
+	       //Q&A 폼
+	         @RequestMapping(value = "/qna")
+		      public String ko16(Model mo)
+		      {
+	        	 String qna = "Q&A";
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 ArrayList<Board> list = ss.qnaboardtable(qna);   
+	        	 mo.addAttribute("liste",list);
+		         return "qnapage";
 		      }
 	
 	

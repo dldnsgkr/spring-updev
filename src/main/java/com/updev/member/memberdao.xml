@@ -3,11 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.updev.member.ServiceMember">
-
+	
+	<!-- 회원정보 -->
 	<insert id="insert">
 		insert into member(m_num,m_profile,m_id,m_pw,m_nick,m_name,m_mail,m_tel,m_field,m_grade) values(m_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9})
 	</insert>
-
+	<!--  -->
 	<select id="loginselect" resultType="com.updev.member.Signup">
 		SELECT * FROM member WHERE m_id = #{param1} AND m_pw = #{param2}
 	</select>
@@ -19,7 +20,36 @@
 	<update id="profileupdate">
 		update member set m_profile = #{param2}, m_id = #{param3}, m_pw = #{param4}, m_name = #{param5}, m_mail = #{param6}, m_tel = #{param7}, m_field = #{param8}, m_nick = #{param9} where m_nick = #{param1}
 	</update>
+<<<<<<< HEAD
 	<select id="test" resultType="int">
+=======
+	
+	<update id="profileboardupdate">
+		update board set m_nick = #{param2} where m_nick = #{param1}
+	</update>
+	
+	<update id="balupdate">
+		update chat set m_id = #{param2} where m_id = #{param1}
+	</update>
+	
+	<update id="suupdate">
+		update chat set m_nick = #{param2} where m_nick = #{param1}
+	</update>
+	
+	<update id="profilereportupdate">
+		update report set m_nick = #{param2} where m_nick = #{param1}
+	</update>
+	
+	<update id="albalupdate">
+		update chat set m_id = #{param2} where m_id = #{param1}
+	</update>
+	
+	<update id="alsuupdate">
+		update chat set m_nick = #{param2} where m_nick = #{param1}
+	</update>
+	
+	<select id="idCheck" resultType="int">
+>>>>>>> 96a067e3f4af5c77e75d27620587f9ac8cdd292b
   		select count(*) from member where m_id = #{m_id}
   	</select>
   	

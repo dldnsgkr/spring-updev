@@ -20,11 +20,10 @@
    <th>분류</th>
    <td>
    <select name="b_kind">
-   <option value="고민상담소">고민상담소</option>
    <option value="정보 공유">정보 공유</option>
    <option value="질문창고">질문창고</option>
+   <option value="고민상담소">고민상담소</option>
    <option value="Q&A">Q&A</option>
-   <option value="공지">공지</option>
    </select></td>
 </tr>
 <tr>
