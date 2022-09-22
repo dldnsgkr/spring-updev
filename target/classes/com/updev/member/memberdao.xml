@@ -20,6 +20,9 @@
 	<update id="profileupdate">
 		update member set m_profile = #{param2}, m_id = #{param3}, m_pw = #{param4}, m_name = #{param5}, m_mail = #{param6}, m_tel = #{param7}, m_field = #{param8}, m_nick = #{param9} where m_nick = #{param1}
 	</update>
+<<<<<<< HEAD
+	<select id="test" resultType="int">
+=======
 	
 	<update id="profileboardupdate">
 		update board set m_nick = #{param2} where m_nick = #{param1}
@@ -46,7 +49,10 @@
 	</update>
 	
 	<select id="idCheck" resultType="int">
+>>>>>>> 96a067e3f4af5c77e75d27620587f9ac8cdd292b
   		select count(*) from member where m_id = #{m_id}
   	</select>
+  	
+  
 
 </mapper>

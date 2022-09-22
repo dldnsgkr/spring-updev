@@ -1,5 +1,6 @@
 package com.updev.member;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.updev.admin.ServiceAdmin;
 import com.updev.board.Board;
 import com.updev.board.ServiceBoard;
 
@@ -137,9 +142,37 @@ public class MemberController {
 		   
 	   }
 	   //아이디 중복검사
-	   @RequestMapping(value = "/memberIdChk", method = RequestMethod.POST)
+	   @RequestMapping(value = "/test", method = RequestMethod.GET, 
+			   produces = "application/text; charset=utf8")
 	   @ResponseBody
-		public void memberIdChkPOST(String memberId) throws Exception{
-		   
+		public String test(HttpServletRequest request, Model model) throws UnsupportedEncodingException{
+		   request.setCharacterEncoding("UTF-8");
+		   String jo=request.getParameter("jsoninfo");	
+		   JSONParser jsonparse = new JSONParser();
+		   String msg = null;
+		   try {
+				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+				String id=(String) jobj.get("id");
+				
+				ServiceMember sa = sqlsession.getMapper(ServiceMember.class);
+				
+				int s = sa.test(id);
+				
+				if (s!=0) {
+					msg = "사용할수없는 아이디입니다.";
+				}else {
+					msg = "사용가능한 아이디입니다.";
+					
+				}
+				
+				System.out.println(msg);
+				//model.addAttribute("test",s);
+				model.addAttribute("msg",msg);
+				
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		   return msg;
 	   }
 }
