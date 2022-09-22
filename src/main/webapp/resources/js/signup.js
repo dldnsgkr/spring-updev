@@ -1,7 +1,8 @@
 function  signupChk(){
 
 	var form = document.signup1;
-	var idpw = /^[A-Za-z0-9]{4,12}$/;
+	var idchk = /^[a-z0-9]{4,12}$/;
+	var pwchk = /^[A-Za-z0-9]{4,12}$/;
 	var mailchk = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 	var namechk = /^[가-힣]{2,10}$/;
 	var telchk = /^[0-9]{10,11}$/;
@@ -14,14 +15,14 @@ function  signupChk(){
 	const vmail = document.getElementById("mail");
 	const vtel = document.getElementById("tel");
 	const vfield = document.getElementById("field");
-	const agreechk = document.getElementById("agree1");
+	const agree1 = document.getElementById("agree1");
 		
 		//아이디 유효성
 		if(vid.value==""){			   
 			alert("아이디를 입력해주세요.");			      
 			return false;			      
 		}			       
-		if(!idpw.test(vid.value)){
+		if(!idchk.test(vid.value)){
 			alert("아이디는 4~12 글자 사이로 영문자, 숫자로 입력해주세요");
 			return false;
 		}
@@ -30,7 +31,7 @@ function  signupChk(){
 			alert("비밀번호를 입력해주세요.");
 			return false;
 		}
-		if(!idpw.test(vpw.value)){
+		if(!pwchk.test(vpw.value)){
 			alert("비밀번호는 4~20 글자 사이로 영문자, 숫자로 입력해주세요.");
 			return false;
 		}
@@ -85,11 +86,11 @@ function  signupChk(){
 		}  
 	    //분야 유효성
 		if(vfield.value==""){
-			alert("분야를 선택하셔야 합니다.");
+			alert("분야를 선택해주세요.");
 			return false;
 		} 
 	    //개인정보이용동의 유효성
-		if(agreechk.value==""){
+		if(agree1.checked == 0){
 			alert("개인정보이용동의 확인해주세요.");
 			return false;
 		} 
