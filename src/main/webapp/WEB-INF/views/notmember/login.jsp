@@ -13,8 +13,6 @@
 			</div>
 			<div class="boxright">
 				<form name="login1" action="loginact" method="post">
-
-					<a href=""><img src="../resources/images/updev2.png" width="150px"></a>
 					<h1>LOGIN</h1>
 					<input class="input" type="text" name="m_id" value="" placeholder="아이디">
 					<input class="input" type="password" name="m_pw" value="" placeholder="비밀번호">
