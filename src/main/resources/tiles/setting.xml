@@ -71,12 +71,15 @@
 	<definition name="infoupdate" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/infoupdate.jsp" />
 	</definition>
+	
 	<definition name="mylist" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/mylist.jsp" />
 	</definition>
+	
 	<definition name="myalarm" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/myalarm.jsp" />
 	</definition>
+	
 	<definition name="mymessage" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/mymessage.jsp" />
 	</definition>
