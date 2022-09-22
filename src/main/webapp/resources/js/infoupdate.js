@@ -6,13 +6,14 @@ function infoupdate() {
 	    var nik_name_validate = /^[가-힣]{2,10}$/;
 	    var mail_validate = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 	    var tel_validate = /^[0-9]{11}$/;
-	    
-		const m_profile = document.getElementById("m_profile");
+
+	    const m_profile = document.getElementById("m_profile");
 		const m_pw = document.getElementById("m_pw");
 		const m_nick = document.getElementById("m_nick");
 		const m_name = document.getElementById("m_name");
 		const m_mail = document.getElementById("m_mail");
 		const m_tel = document.getElementById("m_tel");
+		const m_field = document.getElementById("m_field");
 		
 		var profile =$("#m_profile").val();
 		var pw =$("#m_pw").val();
@@ -20,12 +21,17 @@ function infoupdate() {
 		var name =$("#m_name").val();
 		var mail =$("#m_mail").val();
 		var tel =$("#m_tel").val();
+		var field =$("#m_field").val();
 		
+		console.log(field);
 		if (!form.m_profile.value) {
 	        alert("프로필사진을 업로드해주세요");
 	        form.m_profile.focus();
 	        return;
 	    }
+		if(!form.m_prfile){
+			
+		}
 		if (!form.m_pw.value) {
 	        alert("비밀번호를 입력해 주십시오.");
 	        form.m_pw.focus();
@@ -80,31 +86,28 @@ function infoupdate() {
 			alert("전화번호는 11글자로 공백과 -없이 입력해주세요!");
 			return false;
 		}
-	    
+	    console.log(profile,pw,nick,name,mail,tel,field);
 	    var result = confirm("정말 수정하시겠습니까?");
-		
+		console.log(result);
 		if(result){
 			
-			var sam ={"profile":profile,"pw":pw,"nick":nick,"name":name,"mail":mail,"tel":tel};
+			var sam ={"profile":profile,"pw":pw,"nick":nick,"name":name,"mail":mail,"tel":tel,"field":field};
+			console.log(sam);
 			var sam =JSON.stringify(sam);	
-			
 			$.ajax({
 				type:"post",
+				enctype: 'multipart/form-data',
 				async:false,
 				url:"info_update",
 				data:{jsoninfo:sam},
 				success:function(data,textStatus){
-					alert("전송성공!!");	
+					alert("전송성공!!");
+					location.href="infoupdate";
 				},
 				error:function(data,textStatus){
 					alert("전송실패!!");
 				}
 			});
-		/*
-			form.action = "/updev/infoupdate";
-	    
-	    	form.submit();
-		*/
 		}else{
 			
 			return false;

@@ -21,10 +21,14 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean> -->
 	
-	<!-- 이미지 업로드 설정 -->
-   <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-   <beans:property name="maxUploadSize" value="100000000"></beans:property>
-</beans:bean>
+	<!-- 화일 업로드 시작  -->
+	<!--  멀티파트 리졸버  -->
+		<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="52428800"/>
+		<beans:property name="maxInMemorySize" value="1000000"/>
+		<beans:property name="defaultEncoding" value="utf-8"/>
+		</beans:bean>
+	<!-- 화일 업로드 종료  -->
 	
 	<!-- 타일즈 설정 -->
 	   <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
