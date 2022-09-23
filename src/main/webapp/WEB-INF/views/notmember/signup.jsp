@@ -7,11 +7,10 @@
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="resources/css/signup.css" type="text/css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script type="text/javascript" src="resources/js/signup.js"></script>
+		<script type="text/javascript" src="./resources/js/signup.js"></script>
+		<script type="text/javascript" src="./resources/js/ajax.js" charset="UTF-8"></script>
 	</head>
 	<body>
-	<div class="gra">
-	</div>
 	<div class="nogra">
 		<div class="wrapper">
 			<form action="insert" method="post" name="signup1">
@@ -20,11 +19,14 @@
 						<input type="hidden" name="m_profile" value="nmimg.png">
 					</div>
 					<div class="myid">
-						<label><input class="idcheck" id="id" type="text" name="m_id" placeholder="아이디" autofocus></label>
-						<button class="button button1" type="button" onclick="location.href='링크주소';">중복확인</button>
-						<div class="check_font" id="id_check"></div>
-						<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
-						<span class="id_input_re_2">이미 사용중인 아이디입니다.</span>
+						<label><input class="idcheck" id="m_id" type="text" name="m_id" placeholder="아이디" autofocus></label>
+						<!-- 
+						<button class="button button1" type="button" onclick="repeatchk()"></button>
+						 -->
+						<input type="button" name="repeatchk" id="repeatchk" onclick="test();" value="중복확인">
+						<div class="check_font" id="id_check">
+						${msg}
+						</div>
 					</div>
 					<div class="mypw">
 						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" autofocus></label>
@@ -79,20 +81,8 @@
 					<button class="button button2" type="button" onclick="location.href = 'main' ">취소</button>
 					</div>
 			</form>
-			<script type="text/javascript">
-			$('.id_input').on("propertychange change keyup paste input", function(){
-				var m_id = $('.idcheck').val();			// .id_input에 입력되는 값
-				var data = {m_id : m_id}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
-				
-				$.ajax({
-					type : "post",
-					url : "/member/memberIdChk",
-					data : data
-				});
-			
-			});
-			</script>
 		</div>
 	</div>
+	
 	</body>
 </html>

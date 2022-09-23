@@ -15,6 +15,7 @@
       <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
    </definition>
    
+   <!-- notmember -->
    <definition name="signup" extends="baseLayout">   
       <put-attribute name="body" value="/WEB-INF/views/notmember/signup.jsp" />
    </definition>
@@ -22,7 +23,8 @@
    <definition name="login" extends="baseLayout">   
       <put-attribute name="body" value="/WEB-INF/views/notmember/login.jsp" />
    </definition>
-
+   
+	<!-- member -->
    <definition name="boardwrite" extends="baseLayout">   
       <put-attribute name="body" value="/WEB-INF/views/member/boardwrite.jsp" />
    </definition>
@@ -39,6 +41,32 @@
       <put-attribute name="body" value="/WEB-INF/views/member/memberinfoupdate.jsp" />
       </definition>
       
+      <!-- noticeboard -->
+      
+      <definition name="noticepage" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/noticeboard/noticepage.jsp" />
+      </definition>
+      
+      <definition name="sharepage" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/noticeboard/sharepage.jsp" />
+      </definition>
+      
+      <definition name="questionpage" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/noticeboard/questionpage.jsp" />
+      </definition>
+      
+      <definition name="worrypage" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/noticeboard/worrypage.jsp" />
+      </definition>
+      
+      <definition name="qnapage" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/noticeboard/qnapage.jsp" />
+      </definition>
+      
+       <definition name="detailboard" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/noticeboard/detailboard.jsp" />
+      </definition>
+      
     <!-- admin -->
 	<definition name="admin" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin.jsp" />
@@ -47,12 +75,15 @@
 	<definition name="infoupdate" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/infoupdate.jsp" />
 	</definition>
+	
 	<definition name="mylist" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/mylist.jsp" />
 	</definition>
+	
 	<definition name="myalarm" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/myalarm.jsp" />
 	</definition>
+	
 	<definition name="mymessage" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/mymessage.jsp" />
 	</definition>

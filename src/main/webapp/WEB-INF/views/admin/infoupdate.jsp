@@ -39,9 +39,9 @@ input[type="button"]{
 			<p>정보수정</p>
 		</div>
 		<div class="content">
-			<form action="update" method="post" name="ufrm">
+			<form action="update" method="post" name="ufrm" enctype="multipart/form-data">
 				<div class="profile"><img alt="" src="./resources/images/${admin.m_profile}">
-					<input type="file" name="m_profile" value="">
+					<input type="file" id="m_profile" name="m_profile" value="">
 				</div>
 				<div class="info">
 						<label>아이디</label>
@@ -58,7 +58,7 @@ input[type="button"]{
 						<input type="text" name="m_tel" id="m_tel" value="${admin.m_tel}">
 						<label>분야</label>
 						
-						<select name="m_field">
+						<select name="m_field" id="m_field">
 							<c:choose>
 								<c:when test="${admin.m_field=='프론트엔드'}">
 									<option value="프론트엔드" selected="selected">프론트엔드</option>
