@@ -48,10 +48,12 @@
 				<div class="login">
 					<form name="login1" method="POST">
 						<input class="input" type="text" name="m_id" value="" placeholder="id">
+						<button class="main_login" type="button" onclick="loginChk()">로그인</button>
 						<input class="input" type="password" name="m_pw" value="" placeholder="pw">
 						<div class="button1">
 							<button class="button" type="button" name="sign" onclick="location.href = 'signup' ">회원가입</button>
-							<button class="button" type="button" name="login" onclick="loginChk()">로그인</button>
+							<button class="button" type="button" name="find_id" onclick="location.href = 'signup' ">아이디찾기</button>
+							<button class="button" type="button" name="find_pw" onclick="location.href = 'signup' ">비밀번호찾기</button>
 						</div>
 					</form>
 				</div>

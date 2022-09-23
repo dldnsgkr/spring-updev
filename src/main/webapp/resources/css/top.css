@@ -9,6 +9,11 @@ a { text-decoration: none; }
     margin: 0 auto;
 }
 
+#top_logo{
+	display: block;
+    height: 100%;
+}
+
 .top{
 	padding-top: 15px;
 	height: 25px;
@@ -17,56 +22,64 @@ a { text-decoration: none; }
 .top ul{
     height: 100%;
     float: right;
-    width: 150px;
 }
 .top ul li{
 	float: left;
 }
 
+.top ul li a{
+	color: #242038;
+}
+
 .logo{
 	display: inline-block;
+	height: 85px;
 }
 
 .logo img{
-	width: 250px;
-	height: 100px;
+    display: block;
+    height: 100%;
 }
 
 .search{
 	height: 45px;
 	display: block;
 	float: right;
-	margin-top: 27px;
+}
+
+#top_search_form{
+    position: relative;
+    height: 90px;
+    line-height: 90px;
 }
 
 .search-btn{
-    width: 27px;
+	width: 27px;
     height: 27px;
-    margin-right: 10px;
     background-image: url(../images/glass_icon.png);
     background-position: center;
     border: 0;
     position: absolute;
-    transform: translateY(8px);
-    right: 23%;
+    transform: translateY(-50%);
+    right: 30px;
     background-size: 100% 100%;
-    background-color: transparent;	
+    top: 50%;
+    background-color: transparent;
     cursor: pointer;
 }
 
 .main_search{
-	float: right;
 	box-sizing: border-box;
-	border-radius: 90px;
-	width: 850px;
+    border-radius: 90px;
+    width: 895px;
     height: 45px;
+    line-height: 45px;
     font-size: 18px;
-    padding: 0px 145px 0px 80px;
-  	outline: none;
-  	border: none;
+    padding: 0px 100px 0px 50px;
+    outline: none;
+    border: none;
     outline-style: solid;
     outline-color: #9067c6;
-    position: relative; 
 }
 
 #menu:hover {
