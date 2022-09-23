@@ -49,7 +49,7 @@
 								<c:choose>
 								<c:when test="${member.m_id=='admin'}">
 									<span>환영합니다!! 관리자님 :)</span>
-									<a href="admin">마이페이지</a>
+									<a href="infoupdate">마이페이지</a>
 								</c:when>
 								<c:otherwise>
 									<a href=""><span>환영합니다!!${member.m_nick}님</span></a>&emsp;<a href="myp?m_nick=${member.m_nick }">마이페이지</a>
@@ -60,7 +60,7 @@
 							<c:otherwise>
 								<ul>
 									<li><a href="signup">회원가입</a></li>
-									<li><a href="login">로그인</a></li>
+									<li><a href="login">&emsp;로그인</a></li>
 								</ul>
 							</c:otherwise>
 						</c:choose>
