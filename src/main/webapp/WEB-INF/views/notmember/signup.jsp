@@ -20,13 +20,10 @@
 					</div>
 					<div class="myid">
 						<label><input class="idcheck" id="m_id" type="text" name="m_id" placeholder="아이디" autofocus></label>
-						<!-- 
-						<button class="button button1" type="button" onclick="repeatchk()"></button>
-						 -->
-						<input type="button" name="repeatchk" id="repeatchk" onclick="test();" value="중복확인">
+						 <button class="button button1" type="button" onclick="test();">중복확인</button>
 						<div class="check_font" id="id_check">
 						${msg}
-						</div>
+						<input type="hidden" id="id_dup" value="0">
 					</div>
 					<div class="mypw">
 						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" autofocus></label>
@@ -83,6 +80,5 @@
 			</form>
 		</div>
 	</div>
-	
 	</body>
 </html>
