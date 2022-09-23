@@ -25,10 +25,8 @@
 						조장: 이운학,
 						조원: 이우주, 정하연, 유수정, 권샛별
 					</div>
-					<div class="">
-						Copyright © 2021 Korea Student Aid Foundation. All rights reserved.
-						© 2022 Google LLC, Sundar Pichai, 1600 Amphitheatre Parkway, Mountain View CA 94043, USA, 080-822-1450 (무료), yt-support-solutions-kr@google.com, 호스팅: Google LLC, 사업자정보, 불법촬영물 신고
-						
+					<div class="f4">
+						Copyright 2022. UPDEV All rights reserved.
 					</div>
 				</div>
 			</div>
