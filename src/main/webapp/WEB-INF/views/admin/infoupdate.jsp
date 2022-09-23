@@ -39,10 +39,7 @@ input[type="button"]{
 			<p>정보수정</p>
 		</div>
 		<div class="content">
-			<form action="update" method="post" name="ufrm" enctype="multipart/form-data">
-				<div class="profile"><img alt="" src="./resources/images/${admin.m_profile}">
-					<input type="file" id="m_profile" name="m_profile" value="">
-				</div>
+			<form name="ufrm" method="post">
 				<div class="info">
 						<label>아이디</label>
 						<input type="text" name="m_id" id="m_id" value="${admin.m_id}" readonly="readonly">

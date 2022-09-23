@@ -7,7 +7,6 @@ function infoupdate() {
 	    var mail_validate = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 	    var tel_validate = /^[0-9]{11}$/;
 
-	    const m_profile = document.getElementById("m_profile");
 		const m_pw = document.getElementById("m_pw");
 		const m_nick = document.getElementById("m_nick");
 		const m_name = document.getElementById("m_name");
@@ -15,7 +14,6 @@ function infoupdate() {
 		const m_tel = document.getElementById("m_tel");
 		const m_field = document.getElementById("m_field");
 		
-		var profile =$("#m_profile").val();
 		var pw =$("#m_pw").val();
 		var nick =$("#m_nick").val();
 		var name =$("#m_name").val();
@@ -24,14 +22,6 @@ function infoupdate() {
 		var field =$("#m_field").val();
 		
 		console.log(field);
-		if (!form.m_profile.value) {
-	        alert("프로필사진을 업로드해주세요");
-	        form.m_profile.focus();
-	        return;
-	    }
-		if(!form.m_prfile){
-			
-		}
 		if (!form.m_pw.value) {
 	        alert("비밀번호를 입력해 주십시오.");
 	        form.m_pw.focus();
@@ -86,17 +76,16 @@ function infoupdate() {
 			alert("전화번호는 11글자로 공백과 -없이 입력해주세요!");
 			return false;
 		}
-	    console.log(profile,pw,nick,name,mail,tel,field);
+	    console.log(pw,nick,name,mail,tel,field);
 	    var result = confirm("정말 수정하시겠습니까?");
 		console.log(result);
 		if(result){
 			
-			var sam ={"profile":profile,"pw":pw,"nick":nick,"name":name,"mail":mail,"tel":tel,"field":field};
+			var sam ={"pw":pw,"nick":nick,"name":name,"mail":mail,"tel":tel,"field":field};
 			console.log(sam);
 			var sam =JSON.stringify(sam);	
 			$.ajax({
 				type:"post",
-				enctype: 'multipart/form-data',
 				async:false,
 				url:"info_update",
 				data:{jsoninfo:sam},
