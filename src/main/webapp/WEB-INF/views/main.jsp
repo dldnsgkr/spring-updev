@@ -56,7 +56,7 @@
 					</form>
 				</div>
 			</div>
-
+		<div class="main_line"></div>
 		<div class="main_board">
 			<div class="board">
 				<h3>인기 게시글</h3>
