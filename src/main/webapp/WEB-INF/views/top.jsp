@@ -67,10 +67,10 @@
 					</div>
 					<div class="bottom">
 						<div class="logo">
-							<a href="index"><img src="./resources/images/updev_2.png"></a>
+							<a href="index"><img src="./resources/images/updev_2.png" id="top_logo"></a>
 						</div>
 						<div class="search">
-								<form action="" method="post" name="top_search_form">
+								<form action="" method="post" id="top_search_form">
 								<input class="main_search" type="text" name="search" placeholder="검색">
 								<button class="search-btn" type="button" onclick="SearchChk()"></button>
 							</form>
