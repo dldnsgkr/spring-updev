@@ -9,7 +9,7 @@ function signupChk(){
 	var namechk = /^[가-힣]{2,10}$/;
 	var telchk = /^[0-9]{10,11}$/;
 
-	const vid = document.getElementById("id");
+	const vid = document.getElementById("m_id");
 	const vpw = document.getElementById("pw");
 	const vpwchk = document.getElementById("pwchk");
 	const vnick = document.getElementById("nick");
@@ -23,11 +23,16 @@ function signupChk(){
 		if(vid.value==""){			   
 			alert("아이디를 입력해주세요.");			      
 			return false;			      
-		}			       
+		}	
+		if(id_check.value==""){			   
+			alert("아이디를 입력해주세요.");			      
+			return false;			      
+		}		       
 		if(!idchk.test(vid.value)){
 			alert("아이디는 4~12 글자 사이로 영문자, 숫자로 입력해주세요");
 			return false;
 		}
+		
 		//비밀번호 유효성
 		if(vpw.value==""){
 			alert("비밀번호를 입력해주세요.");

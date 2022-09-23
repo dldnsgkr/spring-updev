@@ -23,7 +23,7 @@
 	color: #242038; 
 	font-family: 'Noto Serif KR', serif;
 }
-#id,#pw,#pwchk,#nick,#name,#mail,#tel,#field{
+#m_id,#pw,#pwchk,#nick,#name,#mail,#tel,#field{
 	font-family: 'Gowun Dodum', sans-serif;
 	font-size: 12px;
 	width: 250px;
@@ -32,10 +32,10 @@
 	border-radius: 10px / 10px;
 	border: 2px solid #9067c6;
 }
-#id{
-	margin-top: 5px;
+#m_id{
+	margin-top: 15px;
 }
-#id,#nick{
+#m_id,#nick{
 	margin-left: 70px;
 }
 #myagree{
