@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import com.updev.member.Signup;
 
 
-
 public interface ServiceBoard {
 
-	public void save(String b_cate, String b_kind, String b_title, String m_nick, String b_content, String b_file1,
+	public void writesave(String b_cate, String b_kind, String b_title, String m_nick, String b_content, String b_file1,
 			String b_file2, String b_tag);
 
 	public ArrayList<Board> mewrite(String a);
@@ -42,9 +41,18 @@ public interface ServiceBoard {
 	public ArrayList<Board> qnaboardtable(String qna);
 	
 	public Board boarddetail(int b_num);
-
 	
-
 	
+	
+	
+	//∆‰¿Ã¬°
+	public int totalboard();
+	public ArrayList<Board> boardpage1(PageDTO dto);
 
 }
+
+
+
+
+
+
