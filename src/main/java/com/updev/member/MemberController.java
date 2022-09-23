@@ -159,14 +159,16 @@ public class MemberController {
 				int s = sa.test(id);
 				
 				if (s!=0) {
-					msg = "사용할수없는 아이디입니다.";
-				}else {
-					msg = "사용가능한 아이디입니다.";
+					msg = "사용 중인 아이디입니다. 다시 입력해주세요";
+					
+				}
+				else {
+					msg = "사용 가능한 아이디입니다.";
 					
 				}
 				
 				System.out.println(msg);
-				//model.addAttribute("test",s);
+//				model.addAttribute("test",s);
 				model.addAttribute("msg",msg);
 				
 				
