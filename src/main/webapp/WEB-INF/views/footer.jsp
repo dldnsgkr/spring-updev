@@ -8,35 +8,30 @@
 		<link rel="stylesheet" href="resources/css/footer.css" type="text/css">
 	</head>
 	<body>
-		<div class="footer">
-			<div class="footer_box">
-				<span class="line">
-					<h3>게시판</h3>
-					<a href="" id="footer">공지</a>
-					<a href="" id="footer">정보공유</a>
-					<a href="" id="footer">지식인</a>
-					<a href="" id="footer">고민</a>
-					<a href="" id="footer">홈페이지 문의</a>
-				</span>			
-				<span class="line">
-					<h3>사이트 이용</h3>
-					<a href="" id="footer">글작성</a>
-					<a href="" id="footer">글보기</a>
-					<a href="" id="footer">쪽지보내기</a>
-				</span>
-				<span class="line">
-					<h3>마이페이지 관리</h3>
-					<a href="" id="footer">마이알림</a>
-					<a href="" id="footer">마이글</a>
-					<a href="" id="footer">마이쪽지</a>
-					<a href="" id="footer">정보수정</a>
-				</span>
+		<div class="footer_box">
+			<div class="wrap">
+				<div class="f1">
+					<span class="line">
+						<a href="" id="footer">공지</a>
+						<a href="" id="footer">정보공유</a>
+						<a href="" id="footer">지식인</a>
+						<a href="" id="footer">고민</a>
+						<a href="" id="footer">QnA</a>
+					</span>			
+				</div>
+				<div class="f2">
+					<div class="f3">
+						UPDEV,
+						조장: 이운학,
+						조원: 이우주, 정하연, 유수정, 권샛별
+					</div>
+					<div class="">
+						Copyright © 2021 Korea Student Aid Foundation. All rights reserved.
+						© 2022 Google LLC, Sundar Pichai, 1600 Amphitheatre Parkway, Mountain View CA 94043, USA, 080-822-1450 (무료), yt-support-solutions-kr@google.com, 호스팅: Google LLC, 사업자정보, 불법촬영물 신고
+						
+					</div>
+				</div>
 			</div>
-			<footer>
-				UPDEV,
-				조장: 이운학,
-				조원: 이우주, 정하연, 유수정, 권샛별
-			</footer>
 		</div>
 	</body>
 </html>

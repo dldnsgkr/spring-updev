@@ -60,7 +60,7 @@
 							<c:otherwise>
 								<ul>
 									<li><a href="signup">회원가입</a></li>
-									<li><a href="login">로그인</a></li>
+									<li><a href="login">&emsp;로그인</a></li>
 								</ul>
 							</c:otherwise>
 						</c:choose>
