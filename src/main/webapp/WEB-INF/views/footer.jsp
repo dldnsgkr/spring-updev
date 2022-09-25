@@ -12,11 +12,11 @@
 			<div class="wrap">
 				<div class="f1">
 					<span class="line">
-						<a href="" id="footer">공지</a>
-						<a href="" id="footer">정보공유</a>
-						<a href="" id="footer">지식인</a>
-						<a href="" id="footer">고민</a>
-						<a href="" id="footer">QnA</a>
+						<a href="notipage" id="footer">공지</a>
+						<a href="share" id="footer">정보공유</a>
+						<a href="question" id="footer">지식인</a>
+						<a href="worry" id="footer">고민</a>
+						<a href="qna" id="footer">Q&A</a>
 					</span>			
 				</div>
 				<div class="f2">

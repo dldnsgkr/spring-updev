@@ -67,6 +67,10 @@
       <put-attribute name="body" value="/WEB-INF/views/noticeboard/detailboard.jsp" />
       </definition>
       
+      <definition name="boardreport" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/noticeboard/boardreport.jsp" />
+      </definition>
+      
     <!-- admin -->
 	<definition name="admin" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin.jsp" />

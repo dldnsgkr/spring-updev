@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/resources/tiles/setting.xml</config>
 		<config>src/main/java/com/updev/admin/admindao.xml</config>
+		<config>src/main/java/com/updev/report/reportdao.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

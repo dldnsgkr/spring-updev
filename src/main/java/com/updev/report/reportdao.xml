@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.updev.report.ServiceReport">
+	
+	<insert id="reportinsert">
+		insert into report(r_num,r_status,r_reason,r_file1,b_num) values(r_seq.nextval,#{param1},#{param2},#{param3},#{param4})
+	</insert>
+	
+</mapper>

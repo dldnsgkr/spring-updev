@@ -49,6 +49,8 @@ public interface ServiceBoard {
 	public int totalboard();
 	public ArrayList<Board> boardpage1(PageDTO dto);
 
+	public void readcnt(int num);
+
 }
 
 
