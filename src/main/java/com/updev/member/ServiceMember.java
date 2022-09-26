@@ -3,7 +3,7 @@ package com.updev.member;
 
 public interface ServiceMember {
 
-	public void insert(String m_profile, String m_id, String m_pw, String m_nick, String m_name, String m_mail, String m_tel,
+	public void insert(String m_id, String m_pw, String m_nick, String m_name, String m_mail, String m_tel,
 			String m_field, String m_jdate);
 
 	public Signup loginselect(String id, String pw);
@@ -28,5 +28,8 @@ public interface ServiceMember {
 
 	public void alsuupdate(String m_nick, String up_nick);
 
+	public int nicktest(String nick);
+
+	public int nickCheck(String m_nick);
 
 }

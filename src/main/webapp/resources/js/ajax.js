@@ -1,7 +1,8 @@
 function test(){
+	$("#this").addClass( 'on' );
 	
+	$("#this").css("display","block");
 	var id =$("#m_id").val();
-	var idJ = /^[a-z0-9]{4,12}$/;
 	
 	console.log(id);
 	var sam ={"id":id};
@@ -19,22 +20,30 @@ function test(){
 			if (data == 1) {
 						$("#id_check").text("사용 중인 아이디입니다.");
 						$("#id_check").css("color", "red");
-					} else {
-						if(idJ.test(id)){
+						alert("아이디 중복체크 해주세요.");
 						} else if(id == ""){
-							
 							$('#id_check').text('아이디를 입력해주세요.');
 							$('#id_check').css('color', 'red');
+						} else if  (data == 0){
+						$("#id_check").text("사용 가능한 아이디입니다.");
+						$("#id_check").css("color", "green");
+						$("#idcheck").attr("value","Y");
+						
 						}
-						else {
-							$("#id_check").text("사용 가능한 아이디입니다.");
-							$("#id_check").css("color", "green");
-						}
-					}
+						
+					
 			
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
 		}
 	}); 
+}
+
+function idselect(){
+	var dup =document.getElementById('idcheck');
+	dup = "N";
+	alert ("아이디를 입력하시고 꼭 중복 확인 버튼을 눌러주세요");
+	
+	
 }
