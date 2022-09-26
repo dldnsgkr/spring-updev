@@ -12,19 +12,19 @@
 <body>
 <nav>
 	<ul class="first">
-		<li><span class="on"><a href="infoupdate">마이페이지</a></span></li>
-		<li><span>게시판 관리</span></li>
-		<li><span>신고 관리</span></li>
-		<li><span>회원 관리</span></li>
+		<li><span><input type="button" class="on" onclick="test()" value="마이페이지"></span></li>
+		<li><span><input type="button" onclick="test1()" value="게시판 관리"></span></li>
+		<li><span><a>신고 관리</a></span></li>
+		<li><span><a>회원 관리</a></span></li>
 	</ul>
 	
 	<ul class="second">
 		<li class="menu">
 			<ul class="on">
-				<li class="on"><a href="infoupdate">정보수정</a></li>
-				<li><a href="mylist">마이 글</a></li>
-				<li><a href="myalarm">마이 알림</a></li>
-				<li><a href="mymessage">마이 쪽지</a></li>
+				<li class="on"><a>정보수정</a></li>
+				<li><a>마이 글</a></li>
+				<li><a>마이 알림</a></li>
+				<li><a>마이 쪽지</a></li>
 			</ul>
 		</li>
 		<li class="menu">
@@ -54,5 +54,6 @@
 		<li class="menu"><ul></ul></li>
 	</ul>
 </nav>
+<script type="text/javascript" src="./resources/js/admin/test.js"></script>
 </body>
 </html>

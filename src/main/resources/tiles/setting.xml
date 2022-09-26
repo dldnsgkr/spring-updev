@@ -80,6 +80,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/infoupdate.jsp" />
 	</definition>
 	
+	<definition name="boardmanage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/boardmanage.jsp" />
+	</definition>
+	
 	<definition name="mylist" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/mylist.jsp" />
 	</definition>

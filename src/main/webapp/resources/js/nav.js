@@ -1,8 +1,10 @@
+
 $(function(){
-	$("nav .first li span").click(function(e){
+	$("nav .first li span a").click(function(e){
+		e.preventDefault()
 		$("nav .third .menu ul").removeClass('on');
 		$("nav .second .menu ul").removeClass('on');
-		$("nav .first li span").removeClass('on');
+		$("nav .first li span a").removeClass('on');
 		$(this).addClass( 'on' );
 	
 		if($(this).text() == "마이페이지"){
@@ -17,7 +19,7 @@ $(function(){
  	});
 	
 	$("nav .second .menu ul li").click(function(e){
-		
+		 e.preventDefault()
 		$("nav .third .menu ul").removeClass('on');
 		$("nav .second .menu ul li").removeClass('on');
 		

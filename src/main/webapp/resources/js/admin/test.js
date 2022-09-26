@@ -1,0 +1,30 @@
+function test() {
+	$.ajax({
+				type:"post",
+				async:false,
+				url:"infoupdate",
+				//data:{jsoninfo:sam},
+				success:function(data,textStatus){
+					alert("전송성공!!");
+					location.replace("infoupdate");
+				},
+				error:function(data,textStatus){
+					alert("전송실패!!");
+				}
+			});
+}
+function test1() {
+	$.ajax({
+				type:"post",
+				async:false,
+				url:"boardmanage",
+				//data:{jsoninfo:sam},
+				success:function(data,textStatus){
+					alert("전송성공!!");
+					location.replace("boardmanage");
+				},
+				error:function(data,textStatus){
+					alert("전송실패!!");
+				}
+			});
+}

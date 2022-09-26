@@ -13,15 +13,10 @@
 display: block;
 }
 
-
-
 </style>
+<script type="text/javascript" src="./resources/js/admin/admin.js"></script>
 </head>
 <body>
-파일업로드테스트입니다.
 
-<form id="fileForm" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" multiple="true">
-</form>
 </body>
 </html>
