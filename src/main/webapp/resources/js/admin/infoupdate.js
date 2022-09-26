@@ -1,4 +1,4 @@
-function infoupdate() {
+function info_update() {
 	    
 	    var form = document.ufrm;
 	    
