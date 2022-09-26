@@ -56,7 +56,6 @@ public class MemberController {
 	@RequestMapping(value = "/insert")
 	   public String insert(HttpServletRequest request)//회원가입 저장
 	   {
-	      String m_profile = request.getParameter("m_profile");
 	      String m_id = request.getParameter("m_id");
 	      String m_pw = request.getParameter("m_pw");
 	      String m_nick = request.getParameter("m_nick");
@@ -66,7 +65,7 @@ public class MemberController {
 	      String m_field = request.getParameter("m_field");
 	      String m_grade = request.getParameter("m_grade");
 	      ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-	      ss.insert(m_profile,m_id,m_pw,m_nick,m_name,m_mail,m_tel,m_field,m_grade);
+	      ss.insert(m_id,m_pw,m_nick,m_name,m_mail,m_tel,m_field,m_grade);
 	      return "redirect:index";
 	   }
 	   
@@ -159,12 +158,7 @@ public class MemberController {
 				int s = sa.test(id);
 				
 				if (s!=0) {
-					msg = "사용 중인 아이디입니다. 다시 입력해주세요";
-					
-				}
-				else {
-					msg = "사용 가능한 아이디입니다.";
-					
+					msg="사용중인 아이디 입니다. 다시 입력 해주세요.";
 				}
 				
 				System.out.println(msg);
@@ -177,4 +171,38 @@ public class MemberController {
 			}
 		   return msg;
 	   }
+	   //닉네임 중복검사 
+	   @RequestMapping(value="/nicktest", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	   @ResponseBody
+	   public String nicktest(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
+		   request.setCharacterEncoding("utf-8");
+		   String jo=request.getParameter("jsoninfo");
+		   JSONParser jsonparse = new JSONParser();
+		   String nickmsg = null;
+		   try {
+				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+				String nick=(String) jobj.get("nick");
+				
+				ServiceMember sa = sqlsession.getMapper(ServiceMember.class);
+				
+				int s = sa.nicktest(nick);
+				
+				if (s!=0) {
+					nickmsg="사용중인 닉네임입니다. 다시 입력 해주세요.";
+				}
+				
+				System.out.println(nickmsg);
+				model.addAttribute("nickmsg",nickmsg);
+				
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		   return nickmsg;
+	   }
+	   
+	   
+	   	
 }
+	   
+

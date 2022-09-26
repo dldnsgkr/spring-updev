@@ -9,43 +9,45 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script type="text/javascript" src="./resources/js/signup.js"></script>
 		<script type="text/javascript" src="./resources/js/ajax.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="./resources/js/nickchk.js" charset="UTF-8"></script>
 	</head>
 	<body>
-	<div class="nogra">
+	<div class="signupwrap">
 		<div class="wrapper">
-			<form action="insert" method="post" name="signup1">
-				<div class="title"><h1>Sign Up</h1></div>
-					<div class="myprofile">
-						<input type="hidden" name="m_profile" value="nmimg.png">
+			<form action="insert" method="post" name="signup1" id="signupform">
+					<h1>Sign Up</h1>
+					<div class="input">
+						<div class="input">
+							<input class="m_id" id="m_id" type="text" name="m_id" placeholder="아이디" onblur="idselect()" autofocus>
+							 <button id="this" type="button" onclick="test();">중복확인</button>
+						</div>
+						 
+						<div class="check_font" id="id_check" class="id_check" >${msg}</div>
+						<input type="hidden" name="idcheck" id="idcheck" value="N">
 					</div>
-					<div class="myid">
-						<label><input class="idcheck" id="m_id" type="text" name="m_id" placeholder="아이디" autofocus></label>
-						 <button class="button button1" type="button" onclick="test();">중복확인</button>
-						<div class="check_font" id="id_check">
-						${msg}
-						<input type="hidden" id="id_dup" value="0">
+					<div class="input">
+						 <input id="pw" type="password" name="m_pw" placeholder="비밀번호" autofocus> 
 					</div>
-					<div class="mypw">
-						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" autofocus></label>
+					<div class="input">
+						 <input id="pwchk" type="password" name="m_pw" placeholder="비밀번호확인" autofocus> 
 					</div>
-					<div class="mypwchk">
-						<label><input id="pwchk" type="password" name="m_pw" placeholder="비밀번호확인" autofocus></label>
+					<div class="input">
+						 <input class="m_nick" id="m_nick" type="text" name="m_nick" placeholder="닉네임" onblur="nickselect()"> 
+						<button class="button button1" type="button" onclick="nicktest();">중복확인</button>
+						<div class="check_font" id="nick_check" class="nick_check" >${nickmsg}</div>
+						<input type="hidden" name="nickcheck" id="nickcheck" value="N">
 					</div>
-					<div class="mynick">
-						<label><input id="nick" type="text" name="m_nick" placeholder="닉네임"></label>
-						<button class="button button1" type="button" onclick="location.href='링크주소';" autofocus>중복확인</button>
+					<div class="input">
+						 <input id="name" type="text" name="m_name" placeholder="이름" autofocus> 
 					</div>
-					<div class="myname">
-						<label><input id="name" type="text" name="m_name" placeholder="이름" autofocus></label>
+					<div class="input">
+						 <input id="mail" type="text" name="m_mail" placeholder="이메일 ex)abc123@gmail.com" autofocus> 
 					</div>
-					<div class="mymail">
-						<label><input id="mail" type="text" name="m_mail" placeholder="이메일 ex)abc123@gmail.com" autofocus></label>
-					</div>
-					<div class="mytel">
-						<label><input id="tel" type="text" name="m_tel" placeholder="전화번호 ex)01012341234" autofocus></label>
+					<div class="input">
+						 <input id="tel" type="text" name="m_tel" placeholder="전화번호 ex)01012341234" autofocus> 
 					</div>	
-					<div class="myfield">
-						<label>
+					<div class="input">
+						 
 							<select id="field" name="m_field">
 								<option value="">분야</option>
 								<option value="frontend">프론트엔드</option>
@@ -53,9 +55,9 @@
 								<option value="dev_ops">데브옵스</option>
 								<option value="etc">기타</option>
 							</select>
-						</label>
+						 
 					</div>	
-					<div class="mygrade">
+					<div class="input">
 						<input type="hidden" name="m_grade" value="회원">
 					</div>
 					<div class="terms">	
@@ -71,13 +73,14 @@
 					</div>
 					</div>
 					<div id="myagree">
-						<label>개인 정보 수집 및 이용에 동의 합니다<input type="checkbox" id="agree1"  name="agree" autofocus></label>
+						 개인 정보 수집 및 이용에 동의 합니다 <input type="checkbox" id="agree1"  name="agree" autofocus> 
 					</div>
 					<div class="signup_btn">
-					<button class="button button2" type="button" onclick="signupChk()">회원가입</button>
-					<button class="button button2" type="button" onclick="location.href = 'main' ">취소</button>
+					<button id="signup_btn" class="button button2" type="button" onclick="signupChk()">회원가입</button>
+					<button id="signup_btn" class="button button2" type="button" onclick="location.href = 'main' ">취소</button>
 					</div>
 			</form>
+		<script type="text/javascript" src="./resources/js/nickchk.js" charset="UTF-8"></script>
 		</div>
 	</div>
 	</body>
