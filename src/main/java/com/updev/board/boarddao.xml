@@ -76,6 +76,10 @@
 		update board set b_readcnt=b_readcnt+1 where b_num=#{param1}
 	</update>
 	
+	<update id="reportboardupdate">
+		update board set b_report=b_report+1 where b_num=#{param1}
+	</update>
+	
 	<!-- 페이징 -->
 	<select id="totalboard" resultType="int">
 		select count(*) from board

@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.updev.board.ServiceBoard;
+
 @Controller
 public class ReportController {
 
@@ -58,6 +60,8 @@ public class ReportController {
  		int b_num = Integer.parseInt(request.getParameter("b_num"));
  		 ServiceReport ss = sqlsession.getMapper(ServiceReport.class);
     	 ss.reportinsert(r_status,r_reason,r_file1,b_num);
+    	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+    	 sb.reportboardupdate(b_num);
  		return "redirect:index";
  	}
 	

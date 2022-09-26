@@ -42,7 +42,7 @@ public interface ServiceBoard {
 	
 	public Board boarddetail(int b_num);
 	
-	
+	public void reportboardupdate(int b_num);
 	
 	
 	//ÆäÀÌÂ¡
@@ -50,6 +50,8 @@ public interface ServiceBoard {
 	public ArrayList<Board> boardpage1(PageDTO dto);
 
 	public void readcnt(int num);
+
+	
 
 }
 
