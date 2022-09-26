@@ -15,7 +15,7 @@ ${list.m_nick }&emsp;${list.b_wdate }
 		<td>${list.b_content }</td>
 	</tr>
 	<tr>
-	<td><input type="button" value="좋아요"></td>&emsp;<td><input type="button" value="신고" onclick="location.href=''"></td>
+	<td><input type="button" value="좋아요"></td>&emsp;<td><input type="button" value="신고" onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'"></td>
 	</tr>
 </table>
 </body>

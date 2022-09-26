@@ -3,6 +3,7 @@ package com.updev.board;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -151,8 +153,8 @@ public class BoardController {
 	            String b_file2 = f2.getOriginalFilename();
 	            String b_tag = mul.getParameter("b_tag");
 	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	            ss.save(b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
-	            return "redirect:index";
+	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
+	            return "redirect:notipage";
 	         }
 	      		//글 삭제
 	         @RequestMapping(value = "/writedelete")
@@ -219,17 +221,51 @@ public class BoardController {
 		         return "qnapage";
 		      }
 	         
+	         //조회수
+	         public void Readcnt(int num) {
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.readcnt(num);
+	     	}
+	         
 	       //게시물 detail
 	         @RequestMapping(value = "/detail")
 	         public String ko17(HttpServletRequest request,Model mo)
 	         {
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 Readcnt(b_num);
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	        	 Board member = ss.boarddetail(b_num);
 	        	 mo.addAttribute("list",member);
 	        	 return "detailboard";
 	         }
 	         
+	         
+	         //페이징
+	     	@RequestMapping(value="/notipage")
+	    	public String ko3(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	    		String nowPage=request.getParameter("nowPage");
+	    		String cntPerPage=request.getParameter("cntPerPage");
+	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	    		int total = sb.totalboard();
+	    		
+	    		if(nowPage == null && cntPerPage == null) {
+	    			nowPage="1";
+	    			cntPerPage="15";
+	    		} else if(nowPage==null) {
+	    			nowPage="1";
+	    		} else if(cntPerPage==null) {
+	    			cntPerPage="15";
+	    		}
+	    		
+
+	    		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+	    		mo.addAttribute("page1",dto);
+	    		mo.addAttribute("page2",cri);
+	    		mo.addAttribute("bpage1",sb.boardpage1(dto));
+	    		
+	    		
+	    		return "noticepage";
+	    	}
 	         
 	
 	

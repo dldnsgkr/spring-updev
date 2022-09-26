@@ -1,13 +1,9 @@
 package com.updev.admin;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -16,14 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import com.updev.member.Signup;
 
 @Controller
@@ -132,5 +120,17 @@ public class AdminController {
 		Signup s = sa.infoupdate(id);
 		model.addAttribute("signup", s);
 		return "mymessage";
+	}
+	
+	/**/
+	@RequestMapping(value = "/boardmanage")
+	public String boardmanage(HttpServletRequest request, Model model){
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		
+		//Signup s = sa.infoupdate(id);
+		return "boardmanage";
 	}
 }

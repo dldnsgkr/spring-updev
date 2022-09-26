@@ -30,7 +30,7 @@ input[type="button"]{
 	display: block;
 }
 </style>
-<script type="text/javascript" src="./resources/js/infoupdate.js"></script>
+
 </head>
 <body>
 	<div class="infoupdate">
@@ -93,10 +93,11 @@ input[type="button"]{
 						<label>등급</label>
 						<input type="text" name="m_grade" id="m_grade" value="${admin.m_grade}" readonly="readonly">
 						
-						<input type="button" name="button" value="정보수정" onclick="infoupdate();">
+						<input type="button" name="button" value="정보수정" onclick="info_update();">
 				</div>
 			</form>
 		</div>
 	</div>
+<script type="text/javascript" src="./resources/js/infoupdate.js"></script>
 </body>
 </html>
