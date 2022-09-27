@@ -221,11 +221,18 @@ public class BoardController {
 		         return "qnapage";
 		      }
 	         
+	         //조회수
+	         public void Readcnt(int num) {
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.readcnt(num);
+	     	}
+	         
 	       //게시물 detail
 	         @RequestMapping(value = "/detail")
 	         public String ko17(HttpServletRequest request,Model mo)
 	         {
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 Readcnt(b_num);
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	        	 Board member = ss.boarddetail(b_num);
 	        	 mo.addAttribute("list",member);

@@ -72,6 +72,9 @@
 		select * from board where b_num = #{param1}
 	</select>
 	
+	<update id="readcnt">
+		update board set b_readcnt=b_readcnt+1 where b_num=#{param1}
+	</update>
 	
 	<!-- 페이징 -->
 	<select id="totalboard" resultType="int">

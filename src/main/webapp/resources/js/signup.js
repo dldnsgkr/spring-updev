@@ -1,18 +1,19 @@
-
-
 function signupChk(){
 
 	var form = document.signup1;
+	
 	var idchk = /^[a-z0-9]{4,12}$/;
 	var pwchk = /^[A-Za-z0-9]{4,12}$/;
 	var mailchk = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 	var namechk = /^[가-힣]{2,10}$/;
 	var telchk = /^[0-9]{10,11}$/;
 
+	var dup = document.getElementById("idcheck");
+	var nickdup = document.getElementById("nickcheck");
 	const vid = document.getElementById("m_id");
 	const vpw = document.getElementById("pw");
 	const vpwchk = document.getElementById("pwchk");
-	const vnick = document.getElementById("nick");
+	const vnick = document.getElementById("m_nick");
 	const vname = document.getElementById("name");
 	const vmail = document.getElementById("mail");
 	const vtel = document.getElementById("tel");
@@ -23,16 +24,15 @@ function signupChk(){
 		if(vid.value==""){			   
 			alert("아이디를 입력해주세요.");			      
 			return false;			      
-		}	
-		if(id_check.value==""){			   
-			alert("아이디를 입력해주세요.");			      
-			return false;			      
 		}		       
 		if(!idchk.test(vid.value)){
 			alert("아이디는 4~12 글자 사이로 영문자, 숫자로 입력해주세요");
 			return false;
 		}
-		
+		if(dup.value == "N"){			   
+			alert("사용중인 아이디입니다. 다른 아이디를 입력해주세요. from 유효성");			      
+			return false;			      
+		}
 		//비밀번호 유효성
 		if(vpw.value==""){
 			alert("비밀번호를 입력해주세요.");
@@ -63,6 +63,10 @@ function signupChk(){
 			alert("닉네임은 한글로 2~10글자 사이어야 합니다.");
 			return false;
 		} 
+		if(nickdup.value == "N"){			   
+			alert("사용중인 아이디입니다. 다른 아이디를 입력해주세요. from 유효성");			      
+			return false;			      
+		}
 		//이름 유효성
 		if(vname.value==""){
 			alert("이름을 입력해주세요");
