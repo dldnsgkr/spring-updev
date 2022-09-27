@@ -40,10 +40,6 @@
         <definition name="memberinfoupdate" extends="baseLayout">   
       <put-attribute name="body" value="/WEB-INF/views/member/memberinfoupdate.jsp" />
       </definition>
-
-      <definition name="find_idpw" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/notmember/find_idpw.jsp" />
-      </definition>
       
       <!-- noticeboard -->
       

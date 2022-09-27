@@ -16,7 +16,7 @@
 					<input class="input" type="password" name="m_pw" value="" placeholder="비밀번호">
 					 &ensp;					
 					<input type="checkbox" name="auto_login"> 자동 로그인
-					<a href="findidpw">아이디/비밀번호 분실</a>
+					<a href="">아이디 찾기</a><a href="">비밀번호 찾기</a>
 						<div class="button1">
 							<button class="button" type="button" name="login" onclick="loginChk()">로그인</button>
 							<button class="button" type="button" name="sign" onclick="location.href = 'signup' ">아직 회원이 아니신가요? 회원가입</button>

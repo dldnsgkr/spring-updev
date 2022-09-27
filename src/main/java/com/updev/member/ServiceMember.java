@@ -28,10 +28,6 @@ public interface ServiceMember {
 
 	public void alsuupdate(String m_nick, String up_nick);
 
-	public String find_id(String name, String mail);
-
-	public String find_pw(String pw, String name, String mail);
-
 	public int nicktest(String nick);
 
 	public int nickCheck(String m_nick);

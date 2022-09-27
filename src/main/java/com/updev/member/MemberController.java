@@ -1,6 +1,10 @@
 package com.updev.member;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,14 +13,22 @@ import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.updev.admin.ServiceAdmin;
+import com.updev.board.Board;
+import com.updev.board.ServiceBoard;
 
 /**
  * Handles requests for the application home page.
@@ -40,15 +52,6 @@ public class MemberController {
 		{
 			return "login";
 		}
-
-		//아이디,비밀번호 찾기 폼으로 이동
-		@RequestMapping(value = "/findidpw")
-		public String find()
-		{
-			return "find_idpw";
-		}
-
-		
 	
 	@RequestMapping(value = "/insert")
 	   public String insert(HttpServletRequest request)//회원가입 저장
@@ -99,7 +102,7 @@ public class MemberController {
 	         session.setAttribute("loginState",false);
 	      return "redirect:index";
 	   }
-	   /*
+	   
 	   //프로필 수정 체크
 	   @RequestMapping(value = "/proupdatecheck")
 	   public String ko8(HttpServletRequest request,Model mo)
@@ -137,7 +140,6 @@ public class MemberController {
 		   	return "redirect:logout";
 		   
 	   }
-	   */
 	   //아이디 중복검사
 	   @RequestMapping(value = "/test", method = RequestMethod.GET, 
 			   produces = "application/text; charset=utf8")
@@ -169,34 +171,6 @@ public class MemberController {
 			}
 		   return msg;
 	   }
-	   @RequestMapping(value = "/find_id", method = RequestMethod.POST)
-	   @ResponseBody
-	   public String find_id(HttpServletRequest request)
-	   {
-
-			String jo = request.getParameter("jsoninfo");		
-			JSONParser jsonparse = new JSONParser();
-			
-		
-			String id =null;
-			try {
-				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
-				String name=(String) jobj.get("name");
-				String mail=(String) jobj.get("mail");
-				
-				System.out.println(name + mail);
-				
-				ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-				
-				id = sm.find_id(name, mail);
-				System.out.println(id+"나는 아이디");
-
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
-			return id;
-	   }
-				
 	   //닉네임 중복검사 
 	   @RequestMapping(value="/nicktest", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
 	   @ResponseBody
@@ -205,7 +179,6 @@ public class MemberController {
 		   String jo=request.getParameter("jsoninfo");
 		   JSONParser jsonparse = new JSONParser();
 		   String nickmsg = null;
-		   String id =null;
 		   try {
 				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
 				String nick=(String) jobj.get("nick");
@@ -225,38 +198,7 @@ public class MemberController {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			return nickmsg;
-	   }
-
-	   @RequestMapping(value = "/find_pw", method = RequestMethod.POST)
-	   @ResponseBody
-	   public String find_pw(HttpServletRequest request)
-	   {
-   
-		   String jo = request.getParameter("jsoninfo");		
-		   JSONParser jsonparse = new JSONParser();
-		   
-			String password =null;
-		   
-			try {
-			   JSONObject jobj = (JSONObject)jsonparse.parse(jo);
-			   String pw=(String) jobj.get("pw");
-			   String name=(String) jobj.get("name");
-			   String mail=(String) jobj.get("mail");
-			   
-			   System.out.println(name + mail);
-			   
-			   ServiceMember sp = sqlsession.getMapper(ServiceMember.class);
-			   
-			   password = sp.find_pw(pw, name, mail);
-			   System.out.println(pw+"나는 새 비밀번호");
-			   
-		   } catch (ParseException e) {
-			   e.printStackTrace();
-		   }
-		   return password;
-	   
-	   
+		   return nickmsg;
 	   }
 	   
 	   
