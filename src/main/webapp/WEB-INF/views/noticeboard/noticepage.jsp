@@ -43,7 +43,7 @@
 				<b>${p}</b>
 			</c:when>
 			<c:when test="${p!=page1.nowPage}">
-				<a href="notipage?pageNum=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+				<a href="notipage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
 			</c:when>
 		</c:choose>
 	</c:forEach>
@@ -54,6 +54,7 @@
 	</c:if>   
 	</td>
 </tr>
+
 
 </table>
 </body>
