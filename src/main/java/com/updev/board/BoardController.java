@@ -241,12 +241,12 @@ public class BoardController {
 	         
 	         
 	         //∆‰¿Ã¬°
-	     	@RequestMapping(value="/notipage")
-	    	public String ko3(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	     	@RequestMapping(value="/noticepage")
+	    	public String page1(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	    		String nowPage=request.getParameter("nowPage");
 	    		String cntPerPage=request.getParameter("cntPerPage");
 	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
-	    		int total = sb.totalboard();
+	    		int total = sb.noticetotal();
 	    		
 	    		if(nowPage == null && cntPerPage == null) {
 	    			nowPage="1";
@@ -261,10 +261,114 @@ public class BoardController {
 	    		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
 	    		mo.addAttribute("page1",dto);
 	    		mo.addAttribute("page2",cri);
-	    		mo.addAttribute("bpage1",sb.boardpage1(dto));
+	    		mo.addAttribute("bpage1",sb.noticepage(dto));
 	    		
 	    		
 	    		return "noticepage";
+	    	}
+	     	
+	     	@RequestMapping(value="/sharepage")
+	    	public String page2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	    		String nowPage=request.getParameter("nowPage");
+	    		String cntPerPage=request.getParameter("cntPerPage");
+	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	    		int total = sb.sharetotal();
+	    		
+	    		if(nowPage == null && cntPerPage == null) {
+	    			nowPage="1";
+	    			cntPerPage="15";
+	    		} else if(nowPage==null) {
+	    			nowPage="1";
+	    		} else if(cntPerPage==null) {
+	    			cntPerPage="15";
+	    		}
+	    		
+
+	    		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+	    		mo.addAttribute("page1",dto);
+	    		mo.addAttribute("page2",cri);
+	    		mo.addAttribute("bpage1",sb.sharepage(dto));
+	    		
+	    		
+	    		return "sharepage";
+	    	}
+	     	
+	     	@RequestMapping(value="/questionpage")
+	    	public String page3(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	    		String nowPage=request.getParameter("nowPage");
+	    		String cntPerPage=request.getParameter("cntPerPage");
+	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	    		int total = sb.questiontotal();
+	    			
+	    		if(nowPage == null && cntPerPage == null) {
+	    			nowPage="1";
+	    			cntPerPage="15";
+	    		} else if(nowPage==null) {
+	    			nowPage="1";
+	    		} else if(cntPerPage==null) {
+	    			cntPerPage="15";
+	    		}
+	    		
+
+	    		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+	    		mo.addAttribute("page1",dto);
+	    		mo.addAttribute("page2",cri);
+	    		mo.addAttribute("bpage1",sb.questionpage(dto));
+	    		
+	    		
+	    		return "questionpage";
+	    	}
+	     	
+	     	@RequestMapping(value="/worrypage")
+	    	public String page4(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	    		String nowPage=request.getParameter("nowPage");
+	    		String cntPerPage=request.getParameter("cntPerPage");
+	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	    		int total = sb.worrytotal();
+	    		
+	    		if(nowPage == null && cntPerPage == null) {
+	    			nowPage="1";
+	    			cntPerPage="15";
+	    		} else if(nowPage==null) {
+	    			nowPage="1";
+	    		} else if(cntPerPage==null) {
+	    			cntPerPage="15";
+	    		}
+	    		
+
+	    		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+	    		mo.addAttribute("page1",dto);
+	    		mo.addAttribute("page2",cri);
+	    		mo.addAttribute("bpage1",sb.worrypage(dto));
+	    		
+	    		
+	    		return "worrypage";
+	    	}
+	     	
+	     	@RequestMapping(value="/qnapage")
+	    	public String page5(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	    		String nowPage=request.getParameter("nowPage");
+	    		String cntPerPage=request.getParameter("cntPerPage");
+	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	    		int total = sb.qnatotal();
+	    		
+	    		if(nowPage == null && cntPerPage == null) {
+	    			nowPage="1";
+	    			cntPerPage="15";
+	    		} else if(nowPage==null) {
+	    			nowPage="1";
+	    		} else if(cntPerPage==null) {
+	    			cntPerPage="15";
+	    		}
+	    		
+
+	    		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+	    		mo.addAttribute("page1",dto);
+	    		mo.addAttribute("page2",cri);
+	    		mo.addAttribute("bpage1",sb.qnapage(dto));
+	    		
+	    		
+	    		return "qnapage";
 	    	}
 	         
 	

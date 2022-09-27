@@ -46,8 +46,22 @@ public interface ServiceBoard {
 	
 	
 	//∆‰¿Ã¬°
-	public int totalboard();
-	public ArrayList<Board> boardpage1(PageDTO dto);
+	public int sharetotal();
+	public ArrayList<Board> sharepage(PageDTO dto);
+	
+	public int questiontotal();
+	public ArrayList<Board> questionpage(PageDTO dto);
+	
+	public int worrytotal();
+	public ArrayList<Board> worrypage(PageDTO dto);
+	
+	public int qnatotal();
+	public ArrayList<Board> qnapage(PageDTO dto);
+	
+	public int noticetotal();
+	public ArrayList<Board> noticepage(PageDTO dto);
+	
+	
 
 	public void readcnt(int num);
 
