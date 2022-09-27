@@ -74,6 +74,11 @@
 		
 	</select>
 	
+	
+	
+	
+	
+	
 	<update id="readcnt">
 		update board set b_readcnt=b_readcnt+1 where b_num=#{param1}
 	</update>

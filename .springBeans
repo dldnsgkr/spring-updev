@@ -9,9 +9,10 @@
 	<configs>
 		<config>src/main/resources/tiles/setting.xml</config>
 		<config>src/main/java/com/updev/admin/admindao.xml</config>
-		<config>src/main/java/com/updev/report/reportdao.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/root-context.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

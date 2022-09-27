@@ -60,4 +60,9 @@
 	<update id="find_pw">
 		update member set m_pw=#{param1} where m_name=#{param2} and m_mail=#{param3}
   	</update>
+  	
+  	<insert id="reportinsert">
+		insert into report(r_num,r_status,r_reason,r_file1,b_num) values(r_seq.nextval,#{param1},#{param2},#{param3},#{param4})
+	</insert>
+  	
 </mapper>
