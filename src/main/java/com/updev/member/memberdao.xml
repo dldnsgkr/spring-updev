@@ -49,8 +49,15 @@
   		select count(*) from member where m_id = #{m_id}
   	</select>
   	
+	<select id="find_id" resultType="String">
+		select m_id from member where m_name=#{param1} and m_mail=#{param2}
+	</select>
+		
   	<select id="nicktest" resultType="int">
   		select count(*) from member where m_nick = #{m_nick}
   	</select>
 
+	<update id="find_pw">
+		update member set m_pw=#{param1} where m_name=#{param2} and m_mail=#{param3}
+  	</update>
 </mapper>
