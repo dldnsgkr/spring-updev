@@ -253,7 +253,6 @@ public class BoardController {
 
 	    		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
 	    		mo.addAttribute("page1",dto);
-	    		mo.addAttribute("page2",cri);
 	    		mo.addAttribute("bpage1",sb.boardpage1(dto));
 	    		
 	    		

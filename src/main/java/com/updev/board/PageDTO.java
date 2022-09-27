@@ -2,8 +2,8 @@ package com.updev.board;
 
 public class PageDTO {  
     // 현재페이지,시작페이지,끝페이지,게시글 총갯수,페이지당글갯수,마지막페이지, start, end
-	public int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
-	public int cntPage=15;  //한 화면에 표시하고자 하는 블럭의 수
+	public int nowPage, startPage, endPage, total, cntPerPage ,Page, lastPage, start, end;
+	public int cntPage=10;  //한 화면에 표시하고자 하는 블럭의 수
 	public boolean prev, next;	//이전 페이지, 다음 페이지
 	public Criteria cri;
 	

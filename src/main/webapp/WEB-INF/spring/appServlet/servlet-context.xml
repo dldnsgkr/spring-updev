@@ -34,7 +34,7 @@
 	   <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
       <beans:property name="definitions">
          <beans:list>
-            <beans:value>classpath:tiles/*.xml</beans:value>
+            <beans:value>classpath*:tiles/*.xml</beans:value>
          </beans:list>
       </beans:property>
       <beans:property name="preparerFactoryClass"
@@ -63,7 +63,7 @@
    </beans:bean>
    <!-- 마이바티스 설정 종료 -->
 	
-	<context:component-scan base-package="com.updev.member,com.updev.board,com.updev.admin" />
+	<context:component-scan base-package="com.updev.member,com.updev.board,com.updev.admin,com.updev.good" />
 	
 	
 	
