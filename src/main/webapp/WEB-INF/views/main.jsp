@@ -52,6 +52,7 @@
 						<input class="input" type="password" name="m_pw" value="" placeholder="pw">
 						<div class="button1">
 							<button class="button" type="button" name="sign" onclick="location.href = 'signup' ">회원가입</button>
+							<button class="button" type="button" name="find_idpw" onclick="location.href = 'findidpw' ">아이디/비밀번호분실</button>
 							<button class="button" type="button" name="find_id" onclick="location.href = '' ">아이디찾기</button>
 							<button class="button" type="button" name="find_pw" onclick="location.href = 'signup' ">비밀번호찾기</button>
 						</div>

@@ -6,6 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<script src="resources/js/search.js"></script>
 		<link rel="stylesheet" href="resources/css/top.css" type="text/css">
 	</head>
 	<body>
@@ -70,7 +71,7 @@
 							<a href="index"><img src="./resources/images/updev_2.png" id="top_logo"></a>
 						</div>
 						<div class="search">
-								<form action="" method="post" id="top_search_form">
+								<form action="" method="post" id="top_search_form" name="top_search_form">
 								<input class="main_search" type="text" name="search" placeholder="검색">
 								<button class="search-btn" type="button" onclick="SearchChk()"></button>
 							</form>
