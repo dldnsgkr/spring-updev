@@ -30,10 +30,15 @@ public interface ServiceMember {
 
 	public String find_id(String name, String mail);
 
-	public String find_pw(String pw, String name, String mail);
+	public int find_pw(String name, String mail);
+
+	public String find_mpw(String name, String mail);
+
+	public String update_pw(String pw, String npw);
 
 	public int nicktest(String nick);
 
 	public int nickCheck(String m_nick);
+
 
 }

@@ -12,9 +12,9 @@
 	 <div class="container">
         <div id="tab-1" class="tab-content current">
 			<div class="id_find">
-				<form name="id_find" method="post"> <!-- controller 셀렉트 기능 필요 -->
-					<input class="input" type="text" id="m_name" name="m_name" value="김자바" placeholder="이름">
-					<input class="input" type="text" id="m_mail" name="m_mail" value="abc@abc.com" placeholder="이메일">
+				<form name="id_find" method="post">
+					<input class="input" type="text" id="m_name" name="m_name" value="업데브" placeholder="이름">
+					<input class="input" type="text" id="m_mail" name="m_mail" value="admin@updev.com" placeholder="이메일">
 					<button class="button" type="button" name="id_find" onclick="IdChk()">아이디 찾기</button> <!-- ajax로 단계를 이동함 -->
 					<button class="button" type="button" name="pw_find" onclick="PwChk()">비밀번호 찾기</button> <!-- ajax로 단계를 이동함 -->
 						<div class="button1">
@@ -31,9 +31,13 @@
 				<button class="button" onclick="location.href = 'findidpw' ">비밀번호 찾기</button>
 			</div>
 			<div id="pw_find">
-				새로운 비밀번호를 설정해 주세요.
-				<span id="pw_ck"></span>
-				<button class="button" onclick="location.href = 'login' ">로그인 하기</button>
+				<form name="update_pw" method="POST">
+					새로운 비밀번호를 설정해 주세요.
+					<input class="input" type="text" id="m_pw" name="m_pw" value="" placeholder="기존 비밀번호">
+					<input class="input" type="text" id="m_npw" name="m_npw" value="" placeholder="새 비밀번호">
+					<input class="input" type="text" id="m_npwck" name="m_npwck" value="" placeholder="새 비밀번호 확인">
+					<button class="button" type="button" name="passwordupdate" onclick="PwUpD()">비밀번호 변경</button>
+				</form>
 			</div>
 		</div>
    	 </div>
