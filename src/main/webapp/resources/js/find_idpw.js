@@ -1,16 +1,3 @@
-$(document).ready(function(){
-            $('ul.tabs li').click(function(){
-                var tab_id = $(this).attr('data-tab');
-
-                $('ul.tabs li').removeClass('current');
-                $('.tab-content').removeClass('current');
-
-                $(this).addClass('current');
-                $("#"+tab_id).addClass('current');
-            });
-
-        });
-        
 function IdChk() {
     var form = document.id_find;
 
@@ -52,8 +39,7 @@ function IdChk() {
     }
 
 function PwChk() {
-     var form = document.pw_find;
-
+    var form = document.id_find;
 		const m_name = document.getElementById("m_name");
 		const m_mail = document.getElementById("m_mail");
 		
@@ -79,18 +65,90 @@ function PwChk() {
 				async:false,
 				url:"find_pw",
 				data:{jsoninfo:sam},
-				success:function(data){
-					
-					console.log(data+"나는 데이터")
-					alert("전송성공!!")
+				success:function(data, textStatus){
+					console.log(data+"나는 성공");
+					if(data =="없음"){
+						alert("존재하지 않는 정보입니다.");
+						return;
+					}
+					else{
 					$(".id_find").css("display", "none");
 					$("#pw_find").css("display", "block");
 					$("#pw_find #pw_ck").html(data);				
+					}
 				},
-				error:function(data){
+				error:function(data, textStatus){
+					console.log(data+"나는 실패");
+					var sam =JSON.stringify(data);
+					console.log(sam+"나는 sam");
 					alert("전송실패!!");
 				}
 			});
     }
 
+function PwUpD() {
+    var form = document.update_pw;
+
+	var pwchk = /^[A-Za-z0-9]{4,12}$/;
+		const m_pw = document.getElementById("m_pw");
+		const m_npw = document.getElementById("m_npw");
+		const m_npwck = document.getElementById("m_npwck");
+	
+	/*
+	var m_pw =$("#m_pw").val();
+	var m_npw =$("#m_npw").val();
+	var m_npwck =$("#m_npwck").val();
+*/
+
+    if (!form.m_pw.value) {
+        alert("기존 비밀번호를 입력해 주십시오.");
+        form.m_pw.focus();
+        return;
+    }
+
+    if (!form.m_npw.value) {
+        alert("새 비밀번호를 입력해 주십시오.");
+        form.m_npw.focus();
+        return;
+    }
+
+	if(!pwchk.test(m_npw.value)){
+		alert("비밀번호는 4~20 글자 사이로 영문자, 숫자로 입력해주십시오.");
+		return;
+	}
+
+    if (!form.m_npwck.value) {
+        alert("새 비밀번호를 다시 확인해 주십시오.");
+        form.m_npwck.focus();
+        return;
+    }
+
+	if(m_npwck.value!=m_npw.value){
+		alert("새 비밀번호가 일치하지 않습니다. 다시 확인해 주십시오.");
+		return;
+	}
+ 
+		console.log(pw, npw);
+	    var result = confirm("비밀번호를 변경하시겠습니까?");
+		console.log(result);
+		if(result){
+			var sam ={"pw":pw, "npw":npw};
+			var sam =JSON.stringify(sam);	
+			$.ajax({
+				type:"post",
+				async:false,
+				url:"update_pw",
+				data:{jsoninfo:sam},
+				success:function(data, textStatus){	
+					alert("비밀번호가 변경되었습니다.");				
+					location.href="login";			
+				},
+				error:function(data, textStatus){
+					alert("전송실패!!");
+				}
+			});
+	}else{
+			return false;
+		}  
+    }
         
