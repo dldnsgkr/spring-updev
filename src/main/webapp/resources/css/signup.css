@@ -1,120 +1,122 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-
-* {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif;}
+*{
+ 	padding: 0;
+  	margin: 0;
+ }
 
  body{
 	width: 100%;
 	height: 100vh;
   	/*background-image: linear-gradient(90deg, #9067c6 25%, white 25%);*/
 }
-.nogra{
+.signupwrap{
 	width: 100%;
-	height: 1000px;
+	height: 950px;
 }
-
-#this.on{
-	height: 50px;
-}
-.wrapper{
-	text-align: left;
-}
-.check_font{
-	display: none; 
-}
-h1{
-	color: #242038; 
-	margin: 20px 10px;
-}
-.input{
-	width: 100%;
-	height: 50px;
-	margin-bottom: 10px;
+.title{
+	padding-top: 50px;
+	font-size: medium;
+	color: #242038;
+	margin-right: 150px;
 }
 #m_id,#pw,#pwchk,#m_nick,#name,#mail,#tel,#field{
-	display: block;
-	width: 350px;
-	height: 100%;
+	font-size: 12px;
+	width: 310px;
+	height: 50px;
+	margin: 10px 5px 0px 100px;
 	border-radius: 10px / 10px;
-	border: 2px solid #9067c6;
-	/* margin: 10px; */
-	float: left;
-	padding: 0px 40px;
+	border: 1px solid #242038;
+	padding: 0px 30px;
 	box-sizing: border-box;
 }
-.m_id, .m_nick{
-	/* margin-top: 15px; */
-	position: relative;
+.m_id{
+	margin-left: 100px;
 }
-
-#myagree{
-	font-family: 'Gowun Dodum', sans-serif;
-	font-size: 10px;
-	margin-left: 5px;
-	margin-bottom: 5px;
+#pw,#pwchk,#name,#mail,#tel,#field{
+	margin-right: 70px;
 }
-.myfield{
-	width: 520px;
-	height: 54px;
+#id{
+	margin-top: 5px;
+}
+#id,#nick{
+	margin-left: 70px;
+}
+#field{
+	margin-left: 100px;
 }
 #signupform{
-	/* text-align: left; */
-	width: 500px;
+	text-align: center;
+	/* margin-top: 50%; */
+	margin-top: 700px;
+	/* margin-left: 100px; */
+	width: 600px;
 	margin: 0 auto;
+}
+.terms{
+	text-align: center;
+	margin-left: 155px;
+	margin-top: 5px;
 }
 .myterms{
 	margin: 5px;
 	border-radius: 10px / 10px;
-	font-family: 'Gowun Dodum', sans-serif;	
 	font-size: 14px;
+	width: 308px;
+	text-align: center;
+}
+.input2{
+	margin: 5px;
 }
 .button {
-  font-family: 'Gowun Dodum', sans-serif;
   background-color: #9067c6;
   border: none;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 8px;
+  font-size: 10px;
+  margin: 0;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 5px / 5px;
   width: 60px;
   height: 30px;
+  
 }
-.myterms{
-	width: 360px;
-	margin-left: 12px;
+.button1 {
+	
+background-color: #9067c6;
+	
+color: white; 
 }
-.button1 {background-color: #9067c6;border: 0;margin-right: 10px;margin-bottom: 100px;font-size: 7px;/* right: 0; */color: white;padding: 10px;cursor: pointer;border-radius: 10px;transition-duration: 0.4s;position: absolute;}
 .button1:hover {
   color: 242038;
   background-color: #cac4ce;
 }
 .button2 {
-  width: 90%;
+  width: 313px;
+  /* margin-right: 150px; */height:40px;
   background-color: #9067c6;
-  border: 0;
-  margin: 7px 0px 0px 13px;
-  font-size: 15px;
   color: white;
-  padding: 10px;
-  padding-bottom: 2px;
-  cursor: pointer;
-  border-radius: 10px;
-  transition-duration: 0.4s;
+  margin-left: 10px;
+  margin: 5px;
+  font-size: 15px;
+  border-radius: 10px 10px;
 }
 .button2:hover {
   color: 242038;
   background-color: #cac4ce;
 }
-input:focus {
-    outline: 2px solid #2f097a;
-}
-select:focus {
-    outline: 2px solid #2f097a;
-}
 #myid{
 	position: relative;
+}
+#myagree{
+	font-size: 13px;
+	float: left;
+	margin-left: 160px;
+}
+.signup_btn{
+	text-align: left;
+	margin-left: 155px;
 }
