@@ -17,9 +17,6 @@ display: none;
 			<div id="top">
 				<tiles:insertAttribute name="top"/> 
 			</div>
-			<div id="side">
-				<tiles:insertAttribute name="side"/> 
-			</div>
 			<div id="body">
 				<tiles:insertAttribute name="body"/> 
 			</div>
