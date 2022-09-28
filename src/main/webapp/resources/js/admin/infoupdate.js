@@ -90,7 +90,6 @@ function info_update() {
 				url:"info_update",
 				data:{jsoninfo:sam},
 				success:function(data,textStatus){
-					alert("전송성공!!");
 					location.href="infoupdate";
 				},
 				error:function(data,textStatus){

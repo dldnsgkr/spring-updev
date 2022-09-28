@@ -1,14 +1,42 @@
 
+function go_infoupdate(){
+	$.ajax({
+				type:"post",
+				async:false,
+				url:"infoupdate",
+				success:function(data,textStatus){
+					location.replace("infoupdate");
+				},
+				error:function(data,textStatus){
+					alert("전송실패!!");
+				}
+			});
+}
+function go_mylist(){
+	$.ajax({
+				type:"post",
+				async:false,
+				url:"mylist",
+				success:function(data,textStatus){
+					location.replace("mylist");
+				},
+				error:function(data,textStatus){
+					alert("전송실패!!");
+				}
+			});
+}
+
 $(function(){
-	$("nav .first li span a").click(function(e){
+	$("nav .first li span").click(function(e){
 		e.preventDefault()
 		$("nav .third .menu ul").removeClass('on');
 		$("nav .second .menu ul").removeClass('on');
-		$("nav .first li span a").removeClass('on');
+		$("nav .first li span").removeClass('on');
 		$(this).addClass( 'on' );
 	
 		if($(this).text() == "마이페이지"){
 			$("nav .second .menu ul").eq(0).addClass('on');
+			$("nav .third .menu ul").eq(0).addClass('on');
 		}else if($(this).text() == "게시판 관리"){
 			$("nav .second .menu ul").eq(1).addClass('on');
 		}else if($(this).text() == "신고 관리"){
@@ -17,7 +45,7 @@ $(function(){
 			$("nav .second .menu ul").eq(3).addClass('on');
 		}
  	});
-	
+	/*
 	$("nav .second .menu ul li").click(function(e){
 		 e.preventDefault()
 		$("nav .third .menu ul").removeClass('on');
@@ -35,28 +63,6 @@ $(function(){
 			$("nav .third .menu ul").eq(3).addClass('on');
 		}
  	});
-
-	$("#output").click(()=>{
-		$.ajax({
-			type: "POST",
-			async : false,
-			url: "infoupdate",
-			success: function(data, textStatus){
-				alert("성공2");
-				var jsoninfo = JSON.parse(data);
-				var out="";
-				for(var i in jsoninfo.infos){
-					
-					out+="이름" + jsoninfo.infos[i].name+"<br>";
-					out+="나이" + jsoninfo.infos[i].age+"<br>";
-					out+="전화번호" + jsoninfo.infos[i].phone+"<br>";
-					out+="<br>";
-				}
-				$("#out").html(out);
-			},
-			error : function(data, textStatus){
-				alert("에러2");
-			}
-		});
-	});
+*/
+	
 });

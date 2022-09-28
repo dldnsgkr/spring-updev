@@ -20,10 +20,10 @@
    <th>분류</th>
    <td>
    <select name="b_kind">
-   <option value="정보 공유">정보 공유</option>
-   <option value="질문창고">질문창고</option>
-   <option value="고민상담소">고민상담소</option>
-   <option value="Q&A">Q&A</option>
+   <option value="정보">정보공유</option>
+   <option value="질문">지식인</option>
+   <option value="고민">고민상담소</option>
+   <option value="QNA">Q&A</option>
    </select></td>
 </tr>
 <tr>

@@ -1,11 +1,11 @@
 function test() {
+	console.log(1);
 	$.ajax({
 				type:"post",
 				async:false,
 				url:"infoupdate",
 				//data:{jsoninfo:sam},
 				success:function(data,textStatus){
-					alert("전송성공!!");
 					location.replace("infoupdate");
 				},
 				error:function(data,textStatus){
@@ -20,7 +20,6 @@ function test1() {
 				url:"boardmanage",
 				//data:{jsoninfo:sam},
 				success:function(data,textStatus){
-					alert("전송성공!!");
 					location.replace("boardmanage");
 				},
 				error:function(data,textStatus){
