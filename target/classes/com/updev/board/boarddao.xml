@@ -77,14 +77,63 @@
 	</update>
 	
 	<!-- 페이징 -->
-	<select id="totalboard" resultType="int">
-		select count(*) from board
+	<select id="sharetotal" resultType="int">
+		select count(*) from board where b_kind='정보'
 	</select>
 	
-	<select id="boardpage1" resultType="com.updev.board.Board">
+	<select id="sharepage" resultType="com.updev.board.Board">
 		select * from (
 		select rownum rn,A.* from(
-		select * from board order by b_group DESC,b_step ASC)A)
+		select * from board where b_kind='정보' 
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<select id="questiontotal" resultType="int">
+		select count(*) from board where b_kind='질문'
+	</select>
+	
+	<select id="questionpage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select * from board where b_kind='질문' 
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<select id="worrytotal" resultType="int">
+		select count(*) from board where b_kind='고민'
+	</select>
+	
+	<select id="worrypage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select * from board where b_kind='고민' 
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<select id="qnatotal" resultType="int">
+		select count(*) from board where b_kind='QNA'
+	</select>
+	
+	<select id="qnapage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select * from board where b_kind='QNA' 
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<select id="noticetotal" resultType="int">
+		select count(*) from board where b_kind='공지'
+	</select>
+	
+	<select id="noticepage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select * from board where b_kind='공지' 
+		order by b_group DESC,b_step ASC)A)
 		where rn between #{start} and #{end}
 	</select>
 	

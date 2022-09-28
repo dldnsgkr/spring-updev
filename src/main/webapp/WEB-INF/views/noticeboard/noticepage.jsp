@@ -32,8 +32,8 @@
 	
 <tr>
 	<td colspan="7">
-	<c:if test="${page1.prev}">
-		<a href="notipage?nowPage${page1.startPage -1}">&#60;</a> 				
+	<c:if test="${page1.nowPage ne 1}">
+		<a href="noticepage?nowPage=${page1.startPage -1}">&#60;</a> 				
 	</c:if>
 	
 
@@ -43,14 +43,14 @@
 				<b>${p}</b>
 			</c:when>
 			<c:when test="${p!=page1.nowPage}">
-				<a href="notipage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+				<a href="noticepage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
 			</c:when>
 		</c:choose>
 	</c:forEach>
 				
 	
-	<c:if test="${page1.next}">
-		<a href="notipage?nowPage=${page1.endPage +1}">&#62;</a>
+	<c:if test="${page1.nowPage ne page1.realEnd && page1.endPage>0}">
+		<a href="noticepage?nowPage=${page1.endPage +1}">&#62;</a>
 	</c:if>   
 	</td>
 </tr>

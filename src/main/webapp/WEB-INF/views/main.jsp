@@ -68,28 +68,28 @@
 			
 			<div class="board">
 				<h3>정보공유</h3>
-				<a href="share">더보기</a>
+				<a href="sharepage">더보기</a>
 			</div>
 
 			
 			<div class="board">
 				<h3>질문창고</h3>
-				<a href="question">더보기</a>
+				<a href="questionpage">더보기</a>
 			</div>
 			
 			<div class="board">
 				<h3>고민상담소</h3>
-				<a href="worry">더보기</a>
+				<a href="worrypage">더보기</a>
 			</div>
 
 			<div class="board">
 				<h3>공지</h3>
-				<a href="notipage">더보기</a>
+				<a href="noticepage">더보기</a>
 			</div>
 	
 			<div class="board">
 				<h3>QnA</h3>
-				<a href="qna">더보기</a>
+				<a href="qnapage">더보기</a>
 			</div>
 			
 			</div>				

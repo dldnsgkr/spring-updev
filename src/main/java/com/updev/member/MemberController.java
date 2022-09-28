@@ -169,33 +169,6 @@ public class MemberController {
 			}
 		   return msg;
 	   }
-	   @RequestMapping(value = "/find_id", method = RequestMethod.POST)
-	   @ResponseBody
-	   public String find_id(HttpServletRequest request)
-	   {
-
-			String jo = request.getParameter("jsoninfo");		
-			JSONParser jsonparse = new JSONParser();
-			
-		
-			String id =null;
-			try {
-				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
-				String name=(String) jobj.get("name");
-				String mail=(String) jobj.get("mail");
-				
-				System.out.println(name + mail);
-				
-				ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-				
-				id = sm.find_id(name, mail);
-				System.out.println(id+"나는 아이디");
-
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
-			return id;
-	   }
 				
 	   //닉네임 중복검사 
 	   @RequestMapping(value="/nicktest", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
@@ -228,39 +201,95 @@ public class MemberController {
 			return nickmsg;
 	   }
 
-	   @RequestMapping(value = "/find_pw", method = RequestMethod.POST)
+	   @RequestMapping(value = "/find_id", method = RequestMethod.POST)
 	   @ResponseBody
-	   public String find_pw(HttpServletRequest request)
+	   public String find_id(HttpServletRequest request)
 	   {
-   
+		   
 		   String jo = request.getParameter("jsoninfo");		
 		   JSONParser jsonparse = new JSONParser();
 		   
-			String password =null;
 		   
-			try {
+		   String id =null;
+		   String jdate=null;
+		   try {
 			   JSONObject jobj = (JSONObject)jsonparse.parse(jo);
-			   String pw=(String) jobj.get("pw");
 			   String name=(String) jobj.get("name");
 			   String mail=(String) jobj.get("mail");
 			   
 			   System.out.println(name + mail);
 			   
-			   ServiceMember sp = sqlsession.getMapper(ServiceMember.class);
+			   ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			   
-			   password = sp.find_pw(pw, name, mail);
-			   System.out.println(pw+"나는 새 비밀번호");
+			   id = sm.find_id(name, mail);
+			   System.out.println(id+"나는 아이디");
+			   System.out.println(jdate+"나는 가입일자");
+			   
+		   }catch (Exception e) {
+			   // TODO: handle exception
+		   }
+		   return id;
+	   }
+	   
+	   @ResponseBody
+	   @RequestMapping(value="/find_pw", method = RequestMethod.POST,
+	         produces = "application/text; charset=UTF-8")
+	   public String find_pw(HttpServletRequest request, Model model) throws UnsupportedEncodingException
+	   {
+		   int c= 0;
+		   //String mpw =null;
+		   String jo = request.getParameter("jsoninfo");	
+		   request.setCharacterEncoding("utf-8");
+		   JSONParser jsonparse = new JSONParser();
+		   	try {
+		
+				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+				String name=(String) jobj.get("name");
+				String mail=(String) jobj.get("mail");
+				
+				ServiceMember sp = sqlsession.getMapper(ServiceMember.class);
+				
+				c = sp.find_pw(name, mail);
+				//mpw = sp.find_mpw(name, mail);
+				
+				
+		   	}catch (Exception e) {
+		   	}
+				if (c==1) {
+					return "있음";
+				}else {
+					return "없음";
+				}
+		
+	   }
+
+	   @RequestMapping(value = "/update_pw", method = RequestMethod.POST)
+	   public String update_pw(HttpServletRequest request)
+	   {
+   
+		   String jo = request.getParameter("jsoninfo");		
+		   JSONParser jsonparse = new JSONParser();
+		   
+		   System.out.println(jo+"jsoninfo");
+		   		   
+			try {
+			   JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+			   String pw=(String) jobj.get("pw");
+			   String npw=(String) jobj.get("npw");
+			   
+			   System.out.println(pw + "나는 기존 비밀번호1");
+			   System.out.println(npw + "나는 변경 비밀번호13342");
+			   			   
+			   ServiceMember snp = sqlsession.getMapper(ServiceMember.class);
+			   
+			   snp.update_pw(pw, npw);
 			   
 		   } catch (ParseException e) {
 			   e.printStackTrace();
 		   }
-		   return password;
-	   
-	   
+		   return "redirect:login";
 	   }
-	   
-	   
-	   	
+
 }
 	   
 

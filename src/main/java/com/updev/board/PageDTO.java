@@ -2,7 +2,7 @@ package com.updev.board;
 
 public class PageDTO {  
     // 현재페이지,시작페이지,끝페이지,게시글 총갯수,페이지당글갯수,마지막페이지, start, end
-	public int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
+	public int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end, realEnd;
 	public int cntPage=10;  //한 화면에 표시하고자 하는 블럭의 수
 	public boolean prev, next;	//이전 페이지, 다음 페이지
 	public Criteria cri;
@@ -17,15 +17,15 @@ public class PageDTO {
 		//화면에 보여질 시작 페이지
 		this.startPage = this.endPage -9;
 		//전체 마지막 페이지
-		int realEnd = (int) (Math.ceil(total * 1.0) / cri.getAmount());
+		this.realEnd = (int) (Math.ceil(total * 1.0) / cri.getAmount());
 		//화면에 보일 마지막 페이지가 유효한지 체크
-		if(realEnd < this.endPage) {
-			this.endPage = realEnd;
+		if(this.realEnd < this.endPage) {
+			this.endPage = this.realEnd;
 		}
 		
 		//이전, 다음 버튼 표출 여부 결정
 		this.prev = this.startPage > 1;
-		this.next = this.endPage < realEnd;
+		this.next = this.endPage < this.realEnd;
 		
 		
 		setNowPage(nowPage);
@@ -159,7 +159,15 @@ public class PageDTO {
 	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
-	  
+
+	public int getRealEnd() {
+		return realEnd;
+	}
+
+	public void setRealEnd(int realEnd) {
+		this.realEnd = realEnd;
+	}
+	
    
 }
 
