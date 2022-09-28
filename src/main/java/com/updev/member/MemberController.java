@@ -84,7 +84,7 @@ public class MemberController {
 	         session.setAttribute("member", d);
 	         session.setAttribute("id", m_id);
 	         session.setAttribute("loginState", true);
-	         session.setAttribute("id", m_id);
+	         session.setAttribute("member_nick", d.getM_nick());
 	         session.setMaxInactiveInterval(300);
 	         mav.setViewName("redirect:index");
 	      }
@@ -103,34 +103,33 @@ public class MemberController {
 	         session.setAttribute("loginState",false);
 	      return "redirect:index";
 	   }
-	   /*
+	   
 	   //프로필 수정 체크
 	   @RequestMapping(value = "/proupdatecheck")
 	   public String ko8(HttpServletRequest request,Model mo)
 	   {
-		   String m_nick = request.getParameter("m_nick");
+		   HttpSession session = request.getSession();
+		   String id = (String)session.getAttribute("id");
 		   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-			Signup dao = ss.profileupdatecheck(m_nick);
+			Signup dao = ss.profileupdatecheck(id);
 			mo.addAttribute("list",dao);
 		   return "memberinfoupdate";
 	   }
 	   
 	  //프로필 수정
 	   @RequestMapping(value = "/proupdate")
-	   public String ko9(HttpServletRequest request,MultipartHttpServletRequest mul)
+	   public String ko9(HttpServletRequest request)
 	   {
-		   String up_nick = mul.getParameter("up_nick");
-		   String m_nick = mul.getParameter("m_nick");
-		   MultipartFile a = mul.getFile("m_profile");
-		   String m_profile = a.getOriginalFilename();
-		   String m_id = mul.getParameter("m_id");
-		   String m_pw = mul.getParameter("m_pw");
-		   String m_name = mul.getParameter("m_name");
-		   String m_mail = mul.getParameter("m_mail");
-		   String m_tel = mul.getParameter("m_tel");
-		   String m_field = mul.getParameter("m_field");
-		   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-		   	ss.profileupdate(m_nick,m_profile,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
+		   String up_nick = request.getParameter("up_nick");
+		   String m_nick = request.getParameter("m_nick");
+		   String m_id = request.getParameter("m_id");
+		   String m_pw = request.getParameter("m_pw");
+		   String m_name = request.getParameter("m_name");
+		   String m_mail = request.getParameter("m_mail");
+		   String m_tel = request.getParameter("m_tel");
+		   String m_field = request.getParameter("m_field");
+		   ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+		   ss.profileupdate(m_nick,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
 		   ss.profileboardupdate(m_nick,up_nick);
 		   ss.balupdate(m_nick,up_nick);
 		   ss.suupdate(m_nick,up_nick);
@@ -141,7 +140,7 @@ public class MemberController {
 		   	return "redirect:logout";
 		   
 	   }
-	   */
+	   
 	   //아이디 중복검사
 	   @RequestMapping(value = "/test", method = RequestMethod.GET, 
 			   produces = "application/text; charset=utf8")

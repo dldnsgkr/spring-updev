@@ -91,12 +91,11 @@ public class BoardController {
 	   @RequestMapping(value = "/myp")
 	   public String ko8(Model mo,HttpServletRequest request)
 	   {
-		   String m_nick = request.getParameter("m_nick");
+		   HttpSession session = request.getSession();
+		   String nick = (String)session.getAttribute("member_nick");
 		   ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		   ArrayList<Board> dto = ss.mewrite(m_nick);
-		   Signup dt = ss.myinfo(m_nick);
+		   ArrayList<Board> dto = ss.mewrite(nick);
 		   mo.addAttribute("list",dto);
-		   mo.addAttribute("lista",dt);
 		  return "mypage"; 
 	   }
 	   
@@ -154,7 +153,7 @@ public class BoardController {
 	            String b_tag = mul.getParameter("b_tag");
 	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
-	            return "redirect:notipage";
+	            return "redirect:myp";
 	         }
 	      		//글 삭제
 	         @RequestMapping(value = "/writedelete")
@@ -163,7 +162,7 @@ public class BoardController {
 		            int b_num = Integer.parseInt(request.getParameter("b_num"));
 		           ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		         ss.delete(b_num);
-		         return "index";
+		         return "redirect:myp";
 		      }
 	         
 	         //공지사항 폼

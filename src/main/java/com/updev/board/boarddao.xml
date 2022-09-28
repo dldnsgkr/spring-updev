@@ -12,10 +12,6 @@
 		SELECT * FROM board where m_nick = #{param1}
 	</select>
 	
-	<select id="myinfo" resultType="com.updev.member.Signup">
-		SELECT * FROM member where m_nick = #{param1}
-	</select>
-	
 	<select id="updatecheck" resultType="com.updev.board.Board">
 		SELECT * FROM board where b_num = #{param1}
 	</select>

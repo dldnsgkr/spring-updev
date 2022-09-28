@@ -9,31 +9,10 @@
 </head>
 <body>
 <a href="write">글쓰기</a><!-- 글쓰기 가능한위치 원하시는곳에 프론트 두분이서 상의해서 변경해주세요 이대로 가도 상관없습니다-->
-<a href="myp?m_nick=${member.m_nick }">나의 글</a>
+<a href="myp">나의 글</a>
 <a href="#">마이알림</a>
 <a href="#">마이쪽지</a>
-<a href="proupdatecheck?m_nick=${member.m_nick }">프로필수정</a>
-<table>
-<tr>
-<td><img src="./resources/images/${member.m_profile }" width="300" height="400"></td>
-</tr>
-<tr>
-	<th>닉네임</th>
-	<td>${member.m_nick }</td>
-</tr>
-<tr>
-	<th>이메일</th>
-	<td>${member.m_mail }</td>
-</tr>
-<tr>
-	<th>분야</th>
-	<td>${member.m_field }</td>
-</tr>
-<tr>
-	<th>가입일자</th>
-	<td>${member.m_jdate }</td>
-</tr>
-</table>
+<a href="proupdatecheck">프로필수정</a>
 <table>
 <tr>
 	<th>번호</th>
