@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="./side.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,6 @@ input[type="button"]{
 	display: block;
 }
 </style>
-
 </head>
 <body>
 	<div class="infoupdate">
@@ -98,6 +98,6 @@ input[type="button"]{
 			</form>
 		</div>
 	</div>
-<script type="text/javascript" src="./resources/js/infoupdate.js"></script>
+<script type="text/javascript" src="./resources/js/admin/infoupdate.js"></script>
 </body>
 </html>
