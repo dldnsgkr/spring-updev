@@ -8,46 +8,44 @@
 		<link rel="stylesheet" href="resources/css/signup.css" type="text/css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script type="text/javascript" src="./resources/js/signup.js"></script>
-		<script type="text/javascript" src="./resources/js/ajax.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="./resources/js/idchk.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="./resources/js/nickchk.js" charset="UTF-8"></script>
 	</head>
 	<body>
 	<div class="signupwrap">
 		<div class="wrapper">
 			<form action="insert" method="post" name="signup1" id="signupform">
-					<h1>Sign Up</h1>
+					<div class="title"><h1>SIGH UP</h1></div>
 					<div class="input">
-						<div class="input">
-							<input class="m_id" id="m_id" type="text" name="m_id" placeholder="아이디" onblur="idselect()" autofocus>
-							 <button id="this" type="button" onclick="test();">중복확인</button>
-						</div>
-						 
-						<div class="check_font" id="id_check" class="id_check" >${msg}</div>
+						<label><input class="m_id" id="m_id" type="text" name="m_id" placeholder="아이디" autofocus></label>
+						 <button class="button button1" type="button" onclick="test();">중복확인</button>
+						<div class="check_font" id="id_check" class="id_check">${msg}</div>
+					</div>
+					<div class="input">
+						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" onclick="idselect()" autofocus></label>
 						<input type="hidden" name="idcheck" id="idcheck" value="N">
+						
 					</div>
 					<div class="input">
-						 <input id="pw" type="password" name="m_pw" placeholder="비밀번호" autofocus> 
+						<label><input id="pwchk" type="password" name="m_pw" placeholder="비밀번호확인" autofocus></label>
 					</div>
 					<div class="input">
-						 <input id="pwchk" type="password" name="m_pw" placeholder="비밀번호확인" autofocus> 
-					</div>
-					<div class="input">
-						 <input class="m_nick" id="m_nick" type="text" name="m_nick" placeholder="닉네임" onblur="nickselect()"> 
+						<label><input class="m_nick" id="m_nick" type="text" name="m_nick" placeholder="닉네임" autofocus></label>
 						<button class="button button1" type="button" onclick="nicktest();">중복확인</button>
 						<div class="check_font" id="nick_check" class="nick_check" >${nickmsg}</div>
+					</div>
+					<div class="input">
+						<label><input id="name" type="text" name="m_name" placeholder="이름" onclick="nickselect()" autofocus></label>
 						<input type="hidden" name="nickcheck" id="nickcheck" value="N">
 					</div>
 					<div class="input">
-						 <input id="name" type="text" name="m_name" placeholder="이름" autofocus> 
+						<label><input id="mail" type="text" name="m_mail" placeholder="이메일 ex)abc123@gmail.com" autofocus></label>
 					</div>
 					<div class="input">
-						 <input id="mail" type="text" name="m_mail" placeholder="이메일 ex)abc123@gmail.com" autofocus> 
-					</div>
-					<div class="input">
-						 <input id="tel" type="text" name="m_tel" placeholder="전화번호 ex)01012341234" autofocus> 
+						<label><input id="tel" type="text" name="m_tel" placeholder="전화번호 ex)01012341234" autofocus></label>
 					</div>	
 					<div class="input">
-						 
+						<label>
 							<select id="field" name="m_field">
 								<option value="">분야</option>
 								<option value="frontend">프론트엔드</option>
@@ -55,9 +53,9 @@
 								<option value="dev_ops">데브옵스</option>
 								<option value="etc">기타</option>
 							</select>
-						 
+						</label>
 					</div>	
-					<div class="input">
+					<div class="input2">
 						<input type="hidden" name="m_grade" value="회원">
 					</div>
 					<div class="terms">	
@@ -73,14 +71,13 @@
 					</div>
 					</div>
 					<div id="myagree">
-						 개인 정보 수집 및 이용에 동의 합니다 <input type="checkbox" id="agree1"  name="agree" autofocus> 
+						<label>개인 정보 수집 및 이용에 동의 합니다 <input type="checkbox" id="agree1"  name="agree" autofocus></label>
 					</div>
 					<div class="signup_btn">
 					<button id="signup_btn" class="button button2" type="button" onclick="signupChk()">회원가입</button>
-					<button id="signup_btn" class="button button2" type="button" onclick="location.href = 'main' ">취소</button>
+					<button id="signup_btn" class="button button2" type="button" onclick="location.href = '/updev' ">취소</button>
 					</div>
 			</form>
-		<script type="text/javascript" src="./resources/js/nickchk.js" charset="UTF-8"></script>
 		</div>
 	</div>
 	</body>

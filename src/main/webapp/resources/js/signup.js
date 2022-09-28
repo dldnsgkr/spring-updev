@@ -30,7 +30,7 @@ function signupChk(){
 			return false;
 		}
 		if(dup.value == "N"){			   
-			alert("사용중인 아이디입니다. 다른 아이디를 입력해주세요. from 유효성");			      
+			alert("아이디 중복체크 해주세요 from 유효성");			      
 			return false;			      
 		}
 		//비밀번호 유효성
