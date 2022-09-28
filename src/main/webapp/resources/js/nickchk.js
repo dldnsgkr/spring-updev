@@ -30,7 +30,7 @@ function nicktest(){
 	}); 
 }
 function nickselect(){
-	var nickdup =document.getElementById('nickcheck');
+	var nickdup =document.getElementById("nickcheck");
 	nickdup = "N";
 	alert ("닉네임을 입력하시고 꼭 중복 확인 버튼을 눌러주세요");
 }
