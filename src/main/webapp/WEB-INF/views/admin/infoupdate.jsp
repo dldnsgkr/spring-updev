@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="./side.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +8,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="./resources/css/info_update.css">
 <style type="text/css">
-#side{
-display: block;
-}
 .infoupdate{
 float: left;
 }
@@ -31,6 +27,8 @@ input[type="button"]{
 	display: block;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="./resources/js/admin/infoupdate.js"></script>
 </head>
 <body>
 	<div class="infoupdate">
@@ -98,6 +96,5 @@ input[type="button"]{
 			</form>
 		</div>
 	</div>
-<script type="text/javascript" src="./resources/js/admin/infoupdate.js"></script>
 </body>
 </html>

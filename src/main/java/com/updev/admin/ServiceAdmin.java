@@ -20,4 +20,8 @@ public interface ServiceAdmin {
 
 	public ArrayList<Board> myscrap(String m_nick);
 
+	public void mylist_delete(int b_num);
+
+	public ArrayList<Board> noticeboardmanage(String notice);
+
 }

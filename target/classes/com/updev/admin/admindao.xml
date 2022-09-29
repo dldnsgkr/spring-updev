@@ -29,5 +29,12 @@
 		from board b, scrap s
 		where b.b_num=s.b_num and s.m_nick = #{param1} and s.scrap_chk = 1
 	</select>
-
+	
+	<delete id="mylist_delete">
+		delete FROM board where b_num = #{param1}
+	</delete>
+	
+	<select id="noticeboardmanage" resultType="com.updev.board.Board">
+		select * from board where b_kind = #{param1}
+	</select>
 </mapper>
