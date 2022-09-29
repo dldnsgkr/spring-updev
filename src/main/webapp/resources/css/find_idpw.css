@@ -4,7 +4,6 @@ li {list-style: none;}
 a { text-decoration: none; }
 
 .container{
-	width: 500px;
 	margin: 0 auto;
 }
 
@@ -33,6 +32,8 @@ ul.tabs li.current{
 
 .tab-content.current{
 	display: inherit;
+	height: 300px;
+    position: relative;
 }
 
 .find{
@@ -55,12 +56,14 @@ ul.tabs li.current{
     margin: 10px 0;
     border: solid 1px #242038;
     display: block;
- 	width: 69%;
+    width: 100%;
+    box-sizing: border-box;
   	height: 50px;
+    border-radius: 10px;
 }
 
 .button.button {
-  width: 90%;
+  width: 100%;
   background-color: #9067c6;
   border: 0;
   font-size: 15px;
@@ -77,6 +80,43 @@ ul.tabs li.current{
   background-color: #cac4ce;
 }
 
+button.firstbutton{
+   width: 100%;
+  background-color: #9067c6;
+	 border: 0;
+	 font-size: 15px;
+	 color: white;
+	 padding: 10px;
+	 cursor: pointer;
+	 border-radius: 10px;
+	 transition-duration: 0.4s;
+	 margin-top: 7px;
+	margin-top: 20px;
+}
+
+button.firstbutton:hover{
+  color: 242038;
+  background-color: #cac4ce;
+	}
+	
 #id_find, #pw_find{
 	display: none;
+    position: absolute;
+    top: 50%;
+    width: 380px;
+    margin: auto;
+    position: absolute;
+    left: 52%;
+    transform: translate(-50%, -50%);
+}
+
+.find_header{
+	background-color: #cac4ce;
+	color: white;
+	width: 100%;
+	margin: 20px 0;
+}
+
+#sign_day{
+  margin-left: 148px;
 }
