@@ -78,13 +78,13 @@
 	
 	<!-- 페이징 -->
 	<select id="sharetotal" resultType="int">
-		select count(*) from board where b_kind='정보'
+		select count(*) from board where b_kind='정보공유'
 	</select>
 	
 	<select id="sharepage" resultType="com.updev.board.Board">
 		select * from (
 		select rownum rn,A.* from(
-		select * from board where b_kind='정보' 
+		select * from board where b_kind='정보공유' 
 		order by b_group DESC,b_step ASC)A)
 		where rn between #{start} and #{end}
 	</select>
