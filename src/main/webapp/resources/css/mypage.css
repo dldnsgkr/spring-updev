@@ -1,50 +1,91 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-.mypage_tabs {
-  position: relative;   
-  min-height: 360px; 
-  clear: both;
-  margin: 25px 0;
+/* reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button {margin:0;padding:0;}
+fieldset,img {border:0 none}
+dl,ul,ol,menu,li {list-style:none}
+blockquote, q {quotes:none}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+input,select,textarea,button {vertical-align:middle}
+button {border:0 none;background-color:transparent;cursor:pointer}
+/*
+html {height:100%}
+body {height:100%;padding:20px;background-color:#373a3f;font-size:12px;line-height:1.5;font-family:'Malgun Gothic','留묒 怨좊뵓',sans-serif;color:#333}
+a {color:#000;text-decoration:none}
+*/
+address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+table {border-collapse: collapse;border-spacing:0}
+img {vertical-align:top}
+.fc_p1 {color:#00e0d2}
+ 
+.comm_tab1 {
+    display: block;
+    clear: both;
+    width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    }
+.comm_tab1:after {display:block;height:0;content:".";font-size:0;visibility:hidden;clear:both}
+.comm_tab1>.tab_menu{
+	    width: 300px;
+    float: left;
+    box-sizing: border-box;
+    border-left: 1px solid #efefef;
+    display: block;
+    height: 100%;
+    box-shadow: 5px 1px 8px 0 rgb(0 0 0 / 6%);
+    border-left: 1px solid rgba(0,0,0,.08);
 }
-.mypage_tab {
-  float: left;  
-  clear: both;
-  width: 286px;
-}
-.mypage_tab label {
-    background: #eee;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-left: -1px;
-    font-size: 21px;
-    vertical-align: middle;
-    position: relative;
-    left: 1px;
-    width: 264px;
-    height: 68px;
-    display: table-cell;
-}
-.mypage_tab [type=radio] {
-  display: none;   
-}
-.mypage_content {
-  position: absolute;
-  top: 0;
-  left: 286px;
-  background: white;
-  right: 0;
-  bottom: 0;
-  padding: 20px;
-  border: 1px solid #ccc;
- }
-.mypage_content span {
-  animation: 0.5s ease-out 0s 1 slideInFromTop; 
-}
-[type=radio]:checked ~ label {
-  background: white;
-  border-bottom: 2px solid #8bc34a;
-  z-index: 2;
-}
-[type=radio]:checked ~ label ~ .mypage_content {
-  z-index: 1;
+.comm_tab1>.tab_menu>li {float: left;
+    display: block;
+    text-align: center;
+        line-height: 50px;
+        
+    font-size: 16px;
+    width: 100%;}
+.comm_tab1>.tab_menu .tit {
+	display: block;
+    
+        height: 100px;
+    padding: 0 30px 0;
+    line-height: 100px;
+    
+    
+    /* font-weight: bold; */
+    font-size: 18px;
+    color: #242038;
+    cursor: pointer;
+	}
+.comm_tab1>.tab_menu .on {    position: relative;line-height: 50px;text-decoration: underline;
+    height: 100px;}
+.comm_tab1>.tab_menu .on .tit {height:50px;/* border-bottom:2px solid #4c5057; */}
+.comm_tab1>.tab_cont {    float: left;width: 900px;
+    height: 100%;}
+.comm_tab1>.tab_cont>.cont {padding: 20px;}
+.comm_tab1>.tab_cont>.cont:first-child {}
+.comm_tab1 .comm_refer {margin:5px 0 18px 15px}
+ 
+.comm_tab2 {display:block;clear:both;*zoom:1}
+.comm_tab2:after {display:block;height:0;content:".";font-size:0;visibility:hidden;clear:both}
+.comm_tab2>.tab_menu {float:left; margin-left: 20px;}
+.comm_tab2>.tab_menu>li {float:left;text-align:center;font-size:13px;white-space:nowrap;margin-left:4px;}
+.comm_tab2>.tab_menu .tit {display:block;height:26px;padding:5px 20px;font-weight:bold;color: #9067c6;background-color: #cac4ce;cursor:pointer;}
+.comm_tab2>.tab_menu .on {position:relative}
+.comm_tab2>.tab_menu .on .tit {height:20px;background-color:#fff;}
+.comm_tab2>.tab_cont {float:left;width:100%;clear:both;margin-top:-7px}
+.comm_tab2>.tab_cont .cont {
+	padding: 25px;
+	margin: 40px;
+	/* font-size: 14px; */
+	border: 2px solid #9067c6;
+	/* color: #666; */
+	box-shadow: 2px 2px 14px 0 rgb(24 20 38 / 8%);
+	border-radius: 20px;
+	/* background-color: #fff; */
+	/* letter-spacing: -1px;
+	*/
+	}
+.comm_tab2>.tab_cont>.cont:last-child {
+	
+	
+	
 }
