@@ -1,7 +1,5 @@
 function test(){
-	$("#this").addClass( 'on' );
 	
-	$("#this").css("display","block");
 	var id =$("#m_id").val();
 	
 	console.log(id);
@@ -17,8 +15,8 @@ function test(){
 		data:{jsoninfo:sam},
 		success:function(data,textStatus){
 			$("#id_check").text(data);
-			if (data == 1) {
-						$("#id_check").text("사용 중인 아이디입니다.");
+			if (data >= 1) {
+						$("#id_check").text("사용 중인 아이디입니다. from js");
 						$("#id_check").css("color", "red");
 						alert("아이디 중복체크 해주세요.");
 						} else if(id == ""){
@@ -28,7 +26,6 @@ function test(){
 						$("#id_check").text("사용 가능한 아이디입니다.");
 						$("#id_check").css("color", "green");
 						$("#idcheck").attr("value","Y");
-						
 						}
 						
 					
@@ -41,9 +38,9 @@ function test(){
 }
 
 function idselect(){
-	var dup =document.getElementById('idcheck');
-	dup = "N";
+	var dup =document.getElementById("idcheck");
+	if (dup = "N"){
 	alert ("아이디를 입력하시고 꼭 중복 확인 버튼을 눌러주세요");
-	
+	}
 	
 }

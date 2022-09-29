@@ -6,7 +6,6 @@
    <definition name="baseLayout"  template="/WEB-INF/views/layout.jsp">
       <put-attribute name="title" value="" />
       <put-attribute name="top" value="/WEB-INF/views/top.jsp" />
-      <put-attribute name="side" value="/WEB-INF/views/side.jsp" />
       <put-attribute name="body" value="" />
       <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
    </definition>
@@ -80,6 +79,9 @@
       </definition>
       
     <!-- admin -->
+	<definition name="admin_mypage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_mypage.jsp" />
+	</definition>
 	<definition name="admin" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin.jsp" />
 	</definition>
@@ -106,6 +108,13 @@
 	
 	<definition name="slick_slide" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/slick_slide.jsp" />
+	</definition>
+	
+	<definition name="go_notice" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/go_notice.jsp" />
+	</definition>
+	<definition name="tab" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/tab.jsp" />
 	</definition>
 
 </tiles-definitions>

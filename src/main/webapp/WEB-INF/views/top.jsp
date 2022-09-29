@@ -50,7 +50,7 @@
 								<c:choose>
 								<c:when test="${member.m_id=='admin'}">
 									<span>환영합니다!! 관리자님 :)</span>
-									<a href="infoupdate">마이페이지</a>
+									<a href="admin_mypage">마이페이지</a>
 								</c:when>
 								<c:otherwise>
 									<a href=""><span>환영합니다!!${member.m_nick}님</span></a>&emsp;<a href="myp?m_nick=${member.m_nick }">마이페이지</a>
@@ -72,7 +72,7 @@
 						</div>
 						<div class="search">
 								<form action="search" method="post" id="top_search_form" name="top_search_form">
-								<input class="main_search" type="text" name="search" placeholder="검색">
+								<input class="main_search" type="text" name="keyword" placeholder="검색">
 								<button class="search-btn" type="button" onclick="SearchChk()"></button>
 							</form>
 						</div>
@@ -82,11 +82,13 @@
 
 						<div class="menu" id="bottom2">
 							<div class="wrap">
+
 								<a href="noticepage" id="menu">공지</a>
 								<a href="sharepage" id="menu">정보공유</a>
 								<a href="questionpage" id="menu">지식인</a>
 								<a href="worrypage" id="menu">고민상담소</a>
 								<a href="qnapage" id="menu">Q&A</a>
+                
 								<!--<a href="totboard" id="menu">글 목록</a>-->
 							</div>
 						</div>

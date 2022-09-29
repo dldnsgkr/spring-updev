@@ -30,7 +30,11 @@ public interface ServiceMember {
 
 	public String find_id(String name, String mail);
 
-	public String find_pw(String pw, String name, String mail);
+	public int find_pw(String name, String mail); //카운트(1) if else로 이름과 이메일로 계정 찾기
+
+	public int find_mpw(String id, String pw); //카운트(1) if else로 해당 계정의 비밀번호가 맞는지 확인하기
+
+	public void update_pw(String pw, String npw);
 
 	public int nicktest(String nick);
 

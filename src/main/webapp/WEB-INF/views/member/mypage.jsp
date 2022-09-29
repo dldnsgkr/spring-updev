@@ -1,63 +1,79 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+   <link rel="stylesheet" type="text/css" href="./resources/css/mypage.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script type="text/javascript" src="./resources/js/mypage.js">
+   </script>
 </head>
 <body>
-<a href="write">±Û¾²±â</a><!-- ±Û¾²±â °¡´ÉÇÑÀ§Ä¡ ¿øÇÏ½Ã´Â°÷¿¡ ÇÁ·ĞÆ® µÎºĞÀÌ¼­ »óÀÇÇØ¼­ º¯°æÇØÁÖ¼¼¿ä ÀÌ´ë·Î °¡µµ »ó°ü¾ø½À´Ï´Ù-->
-<a href="myp?m_nick=${member.m_nick }">³ªÀÇ ±Û</a>
-<a href="#">¸¶ÀÌ¾Ë¸²</a>
-<a href="#">¸¶ÀÌÂÊÁö</a>
-<a href="proupdatecheck?m_nick=${member.m_nick }">ÇÁ·ÎÇÊ¼öÁ¤</a>
-<table>
-<tr>
-<td><img src="./resources/images/${member.m_profile }" width="300" height="400"></td>
-</tr>
-<tr>
-	<th>´Ğ³×ÀÓ</th>
-	<td>${member.m_nick }</td>
-</tr>
-<tr>
-	<th>ÀÌ¸ŞÀÏ</th>
-	<td>${member.m_mail }</td>
-</tr>
-<tr>
-	<th>ºĞ¾ß</th>
-	<td>${member.m_field }</td>
-</tr>
-<tr>
-	<th>°¡ÀÔÀÏÀÚ</th>
-	<td>${member.m_jdate }</td>
-</tr>
-</table>
-<table>
-<tr>
-	<th>¹øÈ£</th>
-	<th>ºĞ·ù</th>
-	<th>Á¦¸ñ</th>
-	<th>ÀÛ¼ºÀÏ</th>
-	<th>ÁÁ¾Æ¿ä¼ö</th>
-	<th>Á¶È¸¼ö</th>
-	<th>¼öÁ¤ / »èÁ¦</th>
-</tr>
-<c:forEach items="${list }" var="a">
-<tr>
-	<td>${a.b_num }</td>
-	<td>${a.b_kind }</td>
-	<td>${a.b_title }</td>
-	<td>${a.b_wdate }</td>
-	<td>${a.b_likecnt }</td>
-	<td>${a.b_readcnt }</td>
-	<td>
-	<input type="button" value="¼öÁ¤" onclick="location.href='writeupdatecheck?b_num=${a.b_num}'">&emsp;
-	<input type="button" value="»èÁ¦" onclick="location.href='writedelete?b_num=${a.b_num}'"><!-- Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î À¯È¿¼º ¶ç¿ì°í È®ÀÎÇÏ¸é »èÁ¦ µÇ´Â ±â´ÉºÎÅ¹ÇÕ´Ï´Ù -->
-	</td>
-</tr>
-</c:forEach>
-</table>
+<section>
+<div class="jq_tabonoff comm_tab1">
+        <ul class="jq_tab tab_menu">
+            <li><a href="javascript:;" class="tit">í™œë™ë‚´ì—­</a></li>
+            <li><a href="javascript:;" class="tit">ì•Œë¦¼</a></li>
+            <li><a href="javascript:;" class="tit">ì±„íŒ…</a></li>
+            <li><a href="javascript:;" class="tit">í”„ë¡œí•„ê´€ë¦¬</a></li>
+        </ul>
+        <div class="jq_cont tab_cont">
+            <!-- // íƒ­1 -->
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                    <ul class="jq_tab tab_menu"></ul>
+                    <div class="jq_cont tab_cont">
+                        <div class="cont">
+                            <a href="memwrite">ë‚´ê°€ ì“´ ê¸€</a>
+                        </div>
+                        <div class="cont">
+                            <a href="memlike">ì¢‹ì•„ìš”</a>
+                        </div>
+                        <div class="cont">
+                            <a href="memscrap">ìŠ¤í¬ë©</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // íƒ­2 -->
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                
+                    <div class="jq_cont tab_cont">
+                        <div class="cont">
+                            ì•Œë¦¼ ë‚´ìš©
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- // íƒ­3 -->
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                    
+                    <div class="jq_cont tab_cont">
+                        <div class="cont">
+                            ì±„íŒ…
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- // íƒ­3 -->
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                    
+                    <div class="jq_cont tab_cont">
+                        <div class="cont">
+                            <a href="proupdatecheck?m_nick=${member.m_nick }">í”„ë¡œí•„ ìˆ˜ì •</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
