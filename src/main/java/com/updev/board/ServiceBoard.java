@@ -59,6 +59,9 @@ public interface ServiceBoard {
 	public int noticetotal();
 	public ArrayList<Board> noticepage(PageDTO dto);
 	
+	public int poptotal();
+	public ArrayList<Board> poppage(PageDTO dto);
+	
 	public int searchcnt(String keyword);
 	public ArrayList<Board> tsearchpage(PageDTO dto);
 

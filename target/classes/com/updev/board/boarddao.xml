@@ -78,13 +78,13 @@
 	
 	<!-- 페이징 -->
 	<select id="sharetotal" resultType="int">
-		select count(*) from board where b_kind='정보공유'
+		select count(*) from board where b_kind='정보'
 	</select>
 	
 	<select id="sharepage" resultType="com.updev.board.Board">
 		select * from (
 		select rownum rn,A.* from(
-		select * from board where b_kind='정보공유' 
+		select * from board where b_kind='정보' 
 		order by b_group DESC,b_step ASC)A)
 		where rn between #{start} and #{end}
 	</select>
@@ -134,6 +134,18 @@
 		select rownum rn,A.* from(
 		select * from board where b_kind='공지' 
 		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<select id="poptotal" resultType="int">
+		select count(*) from board where <![CDATA[b_readcnt > 9]]> and <![CDATA[b_wdate>=TO_CHAR(sysdate-7,'YYYYMMDD')]]>
+	</select>
+	
+	<select id="poppage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select * from board where <![CDATA[b_readcnt > 9]]> and <![CDATA[b_wdate>=TO_CHAR(sysdate-7,'YYYYMMDD')]]>
+		order by b_readcnt DESC)A)
 		where rn between #{start} and #{end}
 	</select>
 	
