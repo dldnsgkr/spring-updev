@@ -1,6 +1,7 @@
 package com.updev.board;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -230,11 +233,15 @@ public class BoardController {
 	         @RequestMapping(value = "/detail")
 	         public String ko17(HttpServletRequest request,Model mo)
 	         {
+	        	 HttpSession session = request.getSession();
+	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
 	        	 Readcnt(b_num);
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	        	 Board member = ss.boarddetail(b_num);
+	        	 //Good good = ss.howgood(b_num,nick);
 	        	 mo.addAttribute("list",member);
+	        	 //mo.addAttribute("like",good);
 	        	 return "detailboard";
 	         }
 	         
@@ -369,6 +376,26 @@ public class BoardController {
 	    		
 	    		return "qnapage";
 	    	}
+	     	
+	     	@RequestMapping(value = "/like",method = RequestMethod.POST)
+	     	public String ko20(HttpServletRequest request)
+	     	{
+	     		int chk = 1;
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				String b_num=(String) jobj.get("b_num");
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.blikeup(b_num,m_nick,chk);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:detail";
+	     	}
 	         
 	
 	

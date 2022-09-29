@@ -1,11 +1,14 @@
 package com.updev.member;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -20,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.updev.board.Board;
 import com.updev.board.ServiceBoard;
 
 /**
@@ -90,7 +94,7 @@ public class MemberController {
 	      }
 	      else {
 	         rattr.addAttribute("check", "nodata");
-	         mav.setViewName("redirect:signup");
+	         mav.setViewName("redirect:login");
 	      }
 	      return mav;
 	   }
@@ -104,17 +108,6 @@ public class MemberController {
 	      return "redirect:index";
 	   }
 	   
-	   //프로필 수정 체크
-	   @RequestMapping(value = "/proupdatecheck")
-	   public String ko8(HttpServletRequest request,Model mo)
-	   {
-		   HttpSession session = request.getSession();
-		   String id = (String)session.getAttribute("id");
-		   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-			Signup dao = ss.profileupdatecheck(id);
-			mo.addAttribute("list",dao);
-		   return "memberinfoupdate";
-	   }
 	   
 	  //프로필 수정
 	   @RequestMapping(value = "/proupdate")
@@ -292,7 +285,6 @@ public class MemberController {
 		   }
 		   return "redirect:login";
 	   }
-<<<<<<< HEAD
 	   
 	 //게시물 신고페이지
 	 	@RequestMapping(value = "/boardreportpage")
@@ -337,12 +329,89 @@ public class MemberController {
 	    	 sb.reportboardupdate(b_num);
 	 		return "redirect:index";
 	 	}
+	 	
+	 	//프로필 수정 체크
+		   @RequestMapping(value = "/proupdatecheck")
+		   public String ko8(HttpServletRequest request,Model mo)
+		   {
+			   HttpSession session = request.getSession();
+			   String id = (String)session.getAttribute("id");
+			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+				Signup dao = ss.profileupdatecheck(id);
+				mo.addAttribute("list",dao);
+			   return "memberinfoupdate";
+		   }
 	   
-	   
+	 	//프로피 수정 ajax
+	 	@ResponseBody
+		@RequestMapping( value = "/myinfoupdate", method = RequestMethod.POST)
+		public String jjoinsave(HttpServletRequest request, RedirectAttributes rattr) throws IOException
+		{
+			String jo=request.getParameter("jsoninfo");		
+			JSONParser jsonparse = new JSONParser();
+			JSONObject jobj;
+			try {
+				jobj = (JSONObject)jsonparse.parse(jo);
+				String up_nick=(String) jobj.get("up_nick");
+				String m_nick=(String) jobj.get("m_nick");
+				String m_id=(String) jobj.get("m_id");
+				String m_pw=(String) jobj.get("m_pw");
+				String m_name=(String) jobj.get("m_name");
+				String m_mail=(String) jobj.get("m_mail");
+				String m_tel=(String) jobj.get("m_tel");
+				String m_field=(String) jobj.get("m_field");
+				ServiceMember ss=sqlsession.getMapper(ServiceMember.class);
+				ss.profileupdate(m_nick,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
+				ss.profileboardupdate(m_nick,up_nick);
+				ss.balupdate(m_nick,up_nick);
+				ss.suupdate(m_nick,up_nick);
+				ss.profilereportupdate(m_nick,up_nick);
+				ss.albalupdate(m_nick,up_nick);
+				ss.alsuupdate(m_nick,up_nick);
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+					
+			return "redirect:mywrite";
+		}
 	   	
-=======
+	 	//내가 쓴글 ajax
+	 	@SuppressWarnings("unchecked")
+		@ResponseBody
+		@RequestMapping(value="/membermywrite", method = RequestMethod.POST,
+				produces = "application/text; charset=UTF-8")//불러오기
+		public String ko5(HttpServletRequest request, Model mo) throws IOException{
+	 		 	HttpSession session = request.getSession();
+	 		 	String nick = (String)session.getAttribute("member_nick");
+	 		 	
+				JSONArray array = new JSONArray();
+				JSONObject total = new JSONObject();
+				//PrintWriter ppw = response.getWriter();
+				ServiceMember ss= sqlsession.getMapper(ServiceMember.class);
+				ArrayList<Board> list=ss.ajaxmywrite(nick);
+				for(int i=0;i<list.size();i++) {
+					JSONObject member = new JSONObject();
+					int b_num =list.get(i).getB_num();
+					String b_kind =list.get(i).getB_kind();
+					String b_title =list.get(i).getB_title();
+					String b_wdate =list.get(i).getB_wdate();
+					int b_likecnt =list.get(i).getB_likecnt();
+					int b_readcnt =list.get(i).getB_readcnt();
+					member.put("b_num", b_num);
+					member.put("b_kind", b_kind);
+					member.put("b_title", b_title);
+					member.put("b_wdate", b_wdate);
+					member.put("b_likecnt", b_likecnt);
+					member.put("b_readcnt", b_readcnt);
+					array.add(member);				
+				}
+				total.put("members", array);
+				String jsoninfo = total.toJSONString();
+			return jsoninfo;
+		
+		}
 
->>>>>>> ccfb612006639ef442314573403ef3fbc29ed0ae
 }
 	   
 

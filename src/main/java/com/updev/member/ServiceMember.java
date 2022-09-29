@@ -1,5 +1,8 @@
 package com.updev.member;
 
+import java.util.ArrayList;
+
+import com.updev.board.Board;
 
 public interface ServiceMember {
 
@@ -41,6 +44,8 @@ public interface ServiceMember {
 	public int nickCheck(String m_nick);
 	
 	public void reportinsert(String r_status, String r_reason, String r_file1, int b_num);
+
+	public ArrayList<Board> ajaxmywrite(String nick);
 
 
 }

@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./resources/js/like.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -14,9 +16,16 @@ ${list.m_nick }&emsp;${list.b_wdate }
 	<tr>
 		<td>${list.b_content }</td>
 	</tr>
+	
 	<tr>
-	<td><input type="button" value="좋아요"></td>&emsp;<td><input type="button" value="신고" onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'"></td>
+	<form name="frm">
+	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
+	<input type="hidden" name="m_nick" id="m_nick" value="${list.m_nick }">
+	<td><button type="button" id="button">좋아요</button></td>
+	</form>&emsp;
+	<td><input type="button" value="신고" onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'"></td>
 	</tr>
 </table>
+
 </body>
 </html>

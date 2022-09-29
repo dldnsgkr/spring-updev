@@ -65,6 +65,10 @@ public interface ServiceBoard {
 
 	public void readcnt(int num);
 
+	public Good howgood(int b_num, String nick);
+
+	public void blikeup(String b_num, String m_nick, int chk);
+
 	
 
 }
