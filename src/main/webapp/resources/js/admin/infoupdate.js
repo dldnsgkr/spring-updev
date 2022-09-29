@@ -1,5 +1,4 @@
 function info_update() {
-	    
 	    var form = document.ufrm;
 	    
 	    var pw_validate = /^[A-Z0-9]{4,12}$/;
@@ -91,10 +90,11 @@ function info_update() {
 				
 				data:{jsoninfo:sam},
 				success:function(data,textStatus){
+					alert("정보수정이 완료되었습니다.");
 					location.href="infoupdate";
 				},
 				error:function(data,textStatus){
-					alert("전송실패!!");
+					alert("에러 : 홈페이지 관리자에게 문의");
 				}
 			});
 		}else{

@@ -110,7 +110,7 @@
 	<select id="questionpage" resultType="com.updev.board.Board">
 		select * from (
 		select rownum rn,A.* from(
-		select * from board where b_kind='질문' 
+		select * from board where b_kind='질문'
 		order by b_group DESC,b_step ASC)A)
 		where rn between #{start} and #{end}
 	</select>

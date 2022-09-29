@@ -50,7 +50,7 @@ $(function(){
 					url:"gooddown",
 					data:{jsoninfo:sam},
 					success:function(data,textStatus){
-						location.href="write";
+						location.href="detailajax";
 					},
 					error:function(data,textStatus){
 						alert("전송실패!!");
@@ -71,7 +71,7 @@ $(function(){
 				data:{jsoninfo:sam},
 				success:function(data,textStatus){
 					console.log(data);
-					location.href="index";
+					location.href="detailajax";
 				},
 				error:function(data,textStatus){
 					alert("전송실패!!");

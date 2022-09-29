@@ -236,6 +236,7 @@ public class BoardController {
 		     	 HttpSession session = request.getSession();
 	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 session.setAttribute("b_num", b_num);
 	        	 Readcnt(b_num);
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	        	 Board member = ss.boarddetail(b_num);
@@ -416,6 +417,21 @@ public class BoardController {
 				}
 				return "redirect:index";
 	     	}
+	     	
+	     	//°Ô½Ã¹° detail
+	         @RequestMapping(value = "/detailajax")
+	         public String ko21(HttpServletRequest request,Model mo)
+	         {
+		     	 HttpSession session = request.getSession();
+	        	 String nick = (String)session.getAttribute("member_nick");
+	        	 int b_num = (int)session.getAttribute("b_num");
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 Board member = ss.boarddetail(b_num);
+	        	 Good good = ss.howgood(b_num,nick);
+	        	 mo.addAttribute("list",member);
+	        	 mo.addAttribute("llist",good);
+	        	 return "detailboard";
+	         }
 	         
 	
 	
