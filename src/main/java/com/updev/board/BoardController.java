@@ -371,6 +371,53 @@ public class BoardController {
 	    		return "qnapage";
 	    	}
 	         
-	
+	     	@RequestMapping(value = "/hh")
+	     	public String hh() {
+	     		return "search";
+	     	}
+	     	
+	     	
+	     	
+	     	@RequestMapping(value = "/search")
+	     	public String search2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri)
+	     	{
+	     		ArrayList<Board> list = new ArrayList<Board>();
+	     		String sname = request.getParameter("sname");
+	     		String keyword = request.getParameter("keyword");
+	     		String nowPage=request.getParameter("nowPage");
+	     		String cntPerPage=request.getParameter("cntPerPage");
+	     		
+	     		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	     		/*
+	     		if(sname.equals("b_title"))
+	     		{
+	     			list = sb.titlesearch(keyword);
+	     		} else {
+	     			list = sb.contentsearch(keyword);
+	     		}
+	     		mo.addAttribute("list",list);
+	     		 */
+	     		
+	     		int total = sb.searchcnt(keyword);
+	     		
+	     		if(nowPage == null && cntPerPage == null) {
+	     			nowPage="1";
+	     			cntPerPage="15";
+	     		} else if(nowPage==null) {
+	     			nowPage="1";
+	     		} else if(cntPerPage==null) {
+	     			cntPerPage="15";
+	     		}
+	     		
+	     		
+	     		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),keyword);
+	     		mo.addAttribute("page",dto);
+	     		mo.addAttribute("page2",cri);
+	     		mo.addAttribute("keyword", keyword);
+	     		mo.addAttribute("paging",sb.tsearchpage(dto));
+	     		
+	     		return "search";
+	     	}
+	     	
 	
 }

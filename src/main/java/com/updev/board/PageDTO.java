@@ -6,6 +6,8 @@ public class PageDTO {
 	public int cntPage=10;  //한 화면에 표시하고자 하는 블럭의 수
 	public boolean prev, next;	//이전 페이지, 다음 페이지
 	public Criteria cri;
+	public String sname; // 검색타입 (글제목, 글쓴이 등등)
+	public String keyword; // 키워드
 	
 	
 	public PageDTO(Criteria cri, int total, int nowPage, int cntPerPage) {
@@ -27,7 +29,35 @@ public class PageDTO {
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < this.realEnd;
 		
+		setNowPage(nowPage);
+	    setCntPerPage(cntPerPage);
+	    setTotal(total);
+	    calcLastPage(getTotal(), getCntPerPage());
+	    calcStartEndPage(getNowPage(), cntPage);
+	    calcStartEnd(getNowPage(), getCntPerPage());   
+	    
+	}
+	
+	public PageDTO(Criteria cri, int total, int nowPage, int cntPerPage, String keyword) {
+		this.cri = cri;
+		this.total = total;
 		
+		//화면에 보여질 마지막 페이지
+		this.endPage = (int)(Math.ceil(cri.getPageNum() / 10.0)) * 10;
+		//화면에 보여질 시작 페이지
+		this.startPage = this.endPage -9;
+		//전체 마지막 페이지
+		this.realEnd = (int) (Math.ceil(total * 1.0) / cri.getAmount());
+		//화면에 보일 마지막 페이지가 유효한지 체크
+		if(this.realEnd < this.endPage) {
+			this.endPage = this.realEnd;
+		}
+		
+		//이전, 다음 버튼 표출 여부 결정
+		this.prev = this.startPage > 1;
+		this.next = this.endPage < this.realEnd;
+		
+		setKeyword(keyword);
 		setNowPage(nowPage);
 	    setCntPerPage(cntPerPage);
 	    setTotal(total);
@@ -49,8 +79,8 @@ public class PageDTO {
       super();
    }
    
-   
-   // 제일마지막페이지계산
+
+// 제일마지막페이지계산
    public void calcLastPage(int total, int cntPerPage) {
       setLastPage((int) Math.ceil((double)total / (double)cntPerPage));
          }   
@@ -166,6 +196,22 @@ public class PageDTO {
 
 	public void setRealEnd(int realEnd) {
 		this.realEnd = realEnd;
+	}
+
+	public String getSname() {
+		return sname;
+	}
+
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
    

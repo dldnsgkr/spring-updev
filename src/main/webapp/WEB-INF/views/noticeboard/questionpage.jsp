@@ -16,7 +16,6 @@
 		<th>작성일</th>
 		<th>조회수</th>
 		<th>추천수</th>
-		<th>스크랩</th>
 	</tr>
 	<c:forEach items="${bpage1 }" var="a">
 	<tr>
@@ -26,7 +25,6 @@
 		<td>${a.b_wdate }</td>
 		<td>${a.b_readcnt }</td>
 		<td>${a.b_likecnt }</td>
-		<td>스크랩 버튼</td>
 	</tr>
 	</c:forEach>
 	
