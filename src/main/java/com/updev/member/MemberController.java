@@ -205,9 +205,7 @@ public class MemberController {
 		   String jo = request.getParameter("jsoninfo");		
 		   JSONParser jsonparse = new JSONParser();
 		   
-		   
 		   String id =null;
-		   String jdate=null;
 		   try {
 			   JSONObject jobj = (JSONObject)jsonparse.parse(jo);
 			   String name=(String) jobj.get("name");
@@ -219,7 +217,6 @@ public class MemberController {
 			   
 			   id = sm.find_id(name, mail);
 			   System.out.println(id+"나는 아이디");
-			   System.out.println(jdate+"나는 가입일자");
 			   
 		   }catch (Exception e) {
 			   // TODO: handle exception
@@ -246,8 +243,6 @@ public class MemberController {
 				ServiceMember sp = sqlsession.getMapper(ServiceMember.class);
 				
 				c = sp.find_pw(name, mail);
-				//mpw = sp.find_mpw(name, mail);
-				
 				
 		   	}catch (Exception e) {
 		   	}
@@ -259,8 +254,39 @@ public class MemberController {
 		
 	   }
 
+	   @ResponseBody
+	   @RequestMapping(value="/find_mpw", method = RequestMethod.POST,
+	   produces = "application/text; charset=UTF-8")
+	   public String find_mpw(HttpServletRequest request, Model model) throws UnsupportedEncodingException
+	   {
+		   int p= 0;
+		   String jo = request.getParameter("jsoninfo");	
+		   request.setCharacterEncoding("utf-8");
+		   JSONParser jsonparse = new JSONParser();
+		   try {
+			   
+			   JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+			   String id=(String) jobj.get("id");
+			   String pw=(String) jobj.get("pw");
+			   
+			   ServiceMember snp = sqlsession.getMapper(ServiceMember.class);
+			   
+			   p = snp.find_mpw(id, pw);
+			   System.out.println(id+pw);
+			   
+		   }catch (Exception e) {
+		   }
+		   if (p==1) {
+			   return "있음";
+		   }else {
+			   return "없음";
+		   }
+		   
+	   }
+	   
+	   @ResponseBody
 	   @RequestMapping(value = "/update_pw", method = RequestMethod.POST)
-	   public String update_pw(HttpServletRequest request)
+	   public void update_pw(HttpServletRequest request)
 	   {
    
 		   String jo = request.getParameter("jsoninfo");		
@@ -272,18 +298,20 @@ public class MemberController {
 			   JSONObject jobj = (JSONObject)jsonparse.parse(jo);
 			   String pw=(String) jobj.get("pw");
 			   String npw=(String) jobj.get("npw");
+			   String nick=(String) jobj.get("nick");
 			   
 			   System.out.println(pw + "나는 기존 비밀번호1");
 			   System.out.println(npw + "나는 변경 비밀번호13342");
-			   			   
+
 			   ServiceMember snp = sqlsession.getMapper(ServiceMember.class);
+			   
 			   
 			   snp.update_pw(pw, npw);
 			   
 		   } catch (ParseException e) {
 			   e.printStackTrace();
 		   }
-		   return "redirect:login";
+			
 	   }
 	   
 	 //게시물 신고페이지

@@ -233,15 +233,15 @@ public class BoardController {
 	         @RequestMapping(value = "/detail")
 	         public String ko17(HttpServletRequest request,Model mo)
 	         {
-	        	 HttpSession session = request.getSession();
+		     	 HttpSession session = request.getSession();
 	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
 	        	 Readcnt(b_num);
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	        	 Board member = ss.boarddetail(b_num);
-	        	 //Good good = ss.howgood(b_num,nick);
+	        	 Good good = ss.howgood(b_num,nick);
 	        	 mo.addAttribute("list",member);
-	        	 //mo.addAttribute("like",good);
+	        	 mo.addAttribute("llist",good);
 	        	 return "detailboard";
 	         }
 	         
@@ -377,7 +377,7 @@ public class BoardController {
 	    		return "qnapage";
 	    	}
 	     	
-	     	@RequestMapping(value = "/like",method = RequestMethod.POST)
+	     	@RequestMapping(value = "/goodup",method = RequestMethod.POST)
 	     	public String ko20(HttpServletRequest request)
 	     	{
 	     		int chk = 1;
@@ -394,7 +394,27 @@ public class BoardController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				return "redirect:detail";
+				return "redirect:index";
+	     	}
+	     	
+	     	@RequestMapping(value = "/gooddown",method = RequestMethod.POST)
+	     	public String ko21(HttpServletRequest request)
+	     	{
+	     		int chk = 0;
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				String b_num=(String) jobj.get("b_num");
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.blikedown(b_num,m_nick);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
 	     	}
 	         
 	

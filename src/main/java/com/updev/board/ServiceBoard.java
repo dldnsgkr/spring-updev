@@ -69,6 +69,8 @@ public interface ServiceBoard {
 
 	public void blikeup(String b_num, String m_nick, int chk);
 
+	public void blikedown(String b_num, String m_nick);
+
 	
 
 }

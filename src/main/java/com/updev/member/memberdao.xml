@@ -54,15 +54,15 @@
   	</select>
   	
 	<select id="find_id" resultType="String">
-		select m_id, m_jdate from member where m_name=#{param1} and m_mail=#{param2}
+		select m_id from member where m_name=#{param1} and m_mail=#{param2}
 	</select>
-
+  	
 	<select id="find_pw" resultType="int">
 		select count(*) from member where m_name=#{param1} and m_mail=#{param2}
 	</select>
 
 	<select id="find_mpw" resultType="int">
-		select m_pw from member where m_name=#{param1} and m_mail=#{param2}
+		select count(*) from member where m_id=#{param1} and m_pw =#{param2}
 	</select>
 
 	<update id="update_pw">
