@@ -43,8 +43,6 @@ public interface ServiceBoard {
 	public Board boarddetail(int b_num);
 	
 	
-	
-	
 	//ÆäÀÌÂ¡
 	public int sharetotal();
 	public ArrayList<Board> sharepage(PageDTO dto);
@@ -61,9 +59,12 @@ public interface ServiceBoard {
 	public int noticetotal();
 	public ArrayList<Board> noticepage(PageDTO dto);
 	
-	
+	public int searchcnt(String keyword);
+	public ArrayList<Board> tsearchpage(PageDTO dto);
+
 
 	public void readcnt(int num);
+
 
 }
 
