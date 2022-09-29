@@ -71,14 +71,15 @@
 							<a href="index"><img src="./resources/images/updev_2.png" id="top_logo"></a>
 						</div>
 						<div class="search">
-								<form action="" method="post" id="top_search_form" name="top_search_form">
-								<input class="main_search" type="text" name="search" placeholder="검색">
+								<form action="search" method="post" id="top_search_form" name="top_search_form">
+								<input class="main_search" type="text" name="keyword" placeholder="검색">
 								<button class="search-btn" type="button" onclick="SearchChk()"></button>
 							</form>
 						</div>
 					<!-- <button class="top_logo" type="button" onclick="location.href = '/updev' "></button>  -->
 					</div>
 				</div>
+
 						<div class="menu" id="bottom2">
 							<div class="wrap">
 

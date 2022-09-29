@@ -151,4 +151,17 @@
 		where rn between #{start} and #{end}
 	</select>
 	
+	<select id="searchcnt" resultType="int">
+		select count(*) from board where b_title like '%'||#{keyword}||'%' or b_content like '%'||#{keyword}||'%'
+	</select>
+	
+	<select id="tsearchpage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select * from board where b_title like '%'||#{keyword}||'%' or b_content like '%'||#{keyword}||'%'
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
+  
 </mapper>

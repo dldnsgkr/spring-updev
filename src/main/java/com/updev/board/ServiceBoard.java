@@ -61,7 +61,9 @@ public interface ServiceBoard {
 	public int noticetotal();
 	public ArrayList<Board> noticepage(PageDTO dto);
 	
-	
+	public int searchcnt(String keyword);
+	public ArrayList<Board> tsearchpage(PageDTO dto);
+
 
 	public void readcnt(int num);
 
@@ -72,7 +74,6 @@ public interface ServiceBoard {
 	public void blikedown(String b_num, String m_nick);
 
 	
-
 }
 
 

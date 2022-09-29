@@ -101,10 +101,14 @@ public class MemberController {
 	   
 	   @RequestMapping(value="/logout")
 	   public String ko7(HttpServletRequest request) {
+		   String q = "unknown";
 	         HttpSession session=request.getSession();
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
+	         session.removeAttribute("id");
+	         session.removeAttribute("member_nick");
 	         session.setAttribute("loginState",false);
+	         session.setAttribute("member_nick", q);
 	      return "redirect:index";
 	   }
 	   
