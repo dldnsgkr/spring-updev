@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="./resources/css/info_update.css">
 <style type="text/css">
+#side{
+display: block;
+}
 .infoupdate{
 float: left;
 }
@@ -26,37 +29,18 @@ label{
 input[type="button"]{
 	display: block;
 }
-.content ul li{
-	float: left;
-	display: block;
-	border: 2px solid #242038;
-	border-right: 0;
-}
-.content ul li:last-child{
-	border-right: 2px solid #242038;
-}
-.content ul{
-	height: 50px;
-}
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="./resources/js/admin/mylist.js"></script>
 </head>
 <body>
 	<div class="infoupdate">
 		<div class="title">
 			<span></span>
-			<p>마이 글</p>
+			<p>공지게시판</p>
 		</div>
 		<div class="content">
-			<ul>
-				<li onclick="mywrite();">내가 쓴 글</li>
-				<li onclick="mylike();">내가 좋아요 한 글</li>
-				<li onclick="myscrap();">내가 스크랩 한 글</li>
-			</ul>
 			
-			<div id="out"></div>
 		</div>
 	</div>
+<script type="text/javascript" src="./resources/js/admin/board_manage.js"></script>
 </body>
 </html>

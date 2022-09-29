@@ -30,6 +30,18 @@ label{
 input[type="button"]{
 	display: block;
 }
+.content ul li{
+	float: left;
+	display: block;
+	border: 2px solid #242038;
+	border-right: 0;
+}
+.content ul li:last-child{
+	border-right: 2px solid #242038;
+}
+.content ul{
+	height: 50px;
+}
 </style>
 <script type="text/javascript" src="./resources/js/admin/boardmanage.js"></script>
 </head>
@@ -39,7 +51,7 @@ input[type="button"]{
 			<span></span>
 			<p>공지게시판</p>
 		</div>
-		<div class="content">
+		<div class="content" id="out">
 			
 		</div>
 	</div>
