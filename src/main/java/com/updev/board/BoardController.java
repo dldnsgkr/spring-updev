@@ -48,7 +48,7 @@ public class BoardController {
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		String a1 = "공지";
 		String b1 = "정보 공유";
-		String c1 = "질문창고";
+		String c1 = "지식인";
 		String d1 = "고민상담소";
 		String e1 = "Q&A";
 		String f1 = "인기 조회수";
@@ -72,7 +72,7 @@ public class BoardController {
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		String a1 = "공지";
 		String b1 = "정보 공유";
-		String c1 = "질문창고";
+		String c1 = "지식인";
 		String d1 = "고민상담소";
 		String e1 = "Q&A";
 		String f1 = "인기 조회수";
@@ -125,14 +125,13 @@ public class BoardController {
 	         String b_title = mul.getParameter("b_title");
 	         String m_nick = mul.getParameter("m_nick");
 	         String b_content = mul.getParameter("b_content");
-	         String b_tag = mul.getParameter("b_tag");
 	         MultipartFile f1 = mul.getFile("b_file1");
 	            MultipartFile f2 = mul.getFile("b_file2");
 	            String b_file1 = f1.getOriginalFilename();
 	            
 	            String b_file2 = f2.getOriginalFilename();
 	         ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	         ss.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
+	         ss.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
 	         return "redirect:index";
 	      }
 	      
@@ -155,9 +154,8 @@ public class BoardController {
 	            MultipartFile f2 = mul.getFile("b_file2");
 	            String b_file1 = f1.getOriginalFilename();
 	            String b_file2 = f2.getOriginalFilename();
-	            String b_tag = mul.getParameter("b_tag");
 	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
+	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
 	            return "redirect:myp";
 	         }
 	      		//글 삭제
@@ -479,6 +477,12 @@ public class BoardController {
 	        	 mo.addAttribute("slist",scrap);
 	        	 return "detailboard";
 	         }
+	         
+	         @RequestMapping(value = "/alarm")
+		     	public String alarm() {
+	        	 
+		     		return "";
+		     	}
 	         
 	     	@RequestMapping(value = "/hh")
 	     	public String hh() {

@@ -16,10 +16,10 @@
    <th>분류</th>
    <td>
    <select name="b_kind">
-   <option value="정보 공유">정보 공유</option>
-   <option value="질문창고">질문창고</option>
+   <option value="정보공유">정보공유</option>
+   <option value="지식인">지식인</option>
    <option value="고민상담소">고민상담소</option>
-   <option value="Q&A">Q&A</option>
+   <option value="QNA">Q&A</option>
    </select></td>
 </tr>
 <tr>
@@ -37,10 +37,6 @@
 <tr>
    <th>첨부파일2</th>
    <td><input type="file" name="b_file2"></td><!-- summernote 사용 예정 -->
-</tr>
-<tr>
-   <th>태그</th>
-   <td><input type="text" name="b_tag" value="${list.b_tag }"></td>
 </tr>
 <tr>
    <td><input type="submit" value="수정"></td>

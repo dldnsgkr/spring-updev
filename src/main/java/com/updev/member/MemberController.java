@@ -379,7 +379,7 @@ public class MemberController {
 		@RequestMapping( value = "/myinfoupdate", method = RequestMethod.POST)
 		public String jjoinsave(HttpServletRequest request, RedirectAttributes rattr) throws IOException
 		{
-			String jo=request.getParameter("jsoninfo");		
+			String jo=request.getParameter("jsoninfo");
 			JSONParser jsonparse = new JSONParser();
 			JSONObject jobj;
 			try {

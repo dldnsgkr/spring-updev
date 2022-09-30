@@ -88,7 +88,7 @@
 			</div>
 	
 			<div class="board">
-				<h3>QnA</h3>
+				<h3>Q&A</h3>
 				<a href="qnapage">더보기</a>
 			</div>
 			

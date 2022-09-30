@@ -43,10 +43,6 @@
    <td><input type="file" name="b_file2"></td><!-- summernote 사용 예정 -->
 </tr>
 <tr>
-   <th>태그</th>
-   <td><input type="text" name="b_tag"></td>
-</tr>
-<tr>
    <td><input type="submit" value="등록"></td>
 </tr>
 </table>
