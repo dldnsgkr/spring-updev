@@ -151,6 +151,18 @@
 		where rn between #{start} and #{end}
 	</select>
 	
+	<select id="poptotal" resultType="int">
+		select count(*) from board where <![CDATA[b_readcnt > 9]]> and <![CDATA[b_wdate>=TO_CHAR(sysdate-7,'YYYYMMDD')]]>
+	</select>
+	
+	<select id="poppage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select * from board where <![CDATA[b_readcnt > 9]]> and <![CDATA[b_wdate>=TO_CHAR(sysdate-7,'YYYYMMDD')]]>
+		order by b_readcnt DESC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
 	<select id="searchcnt" resultType="int">
 		select count(*) from board where b_title like '%'||#{keyword}||'%' or b_content like '%'||#{keyword}||'%'
 	</select>

@@ -170,61 +170,6 @@ public class BoardController {
 		         return "redirect:myp";
 		      }
 	         
-	         //공지사항 폼
-	         @RequestMapping(value = "/notice")
-		      public String ko12(Model mo)
-		      {
-	        	 String notice = "공지";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		         ArrayList<Board> list = ss.noticeboardtable(notice);
-		         mo.addAttribute("lista",list);
-		         return "noticepage";
-		      }
-	         
-	       // 정보 공유 폼
-	         @RequestMapping(value = "/share")
-		      public String ko13(Model mo)
-		      {
-	        	 String share = "정보 공유";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 ArrayList<Board> list = ss.shareboardtable(share);
-	        	 mo.addAttribute("listb",list);
-		         return "sharepage";
-		      }
-	         
-	       //질문창고 폼
-	         @RequestMapping(value = "/question")
-		      public String ko14(Model mo)
-		      {
-	        	 String question = "질문창고";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 ArrayList<Board> list = ss.questionboardtable(question);
-	        	 mo.addAttribute("listc",list);
-		         return "questionpage";
-		      }
-	         
-	       //고민상담소 폼
-	         @RequestMapping(value = "/worry")
-		      public String ko15(Model mo)
-		      {
-	        	 String worry = "고민상담소";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 ArrayList<Board> list = ss.worryboardtable(worry);
-	        	 mo.addAttribute("listd",list);
-		         return "worrypage";
-		      }
-	         
-	       //Q&A 폼
-	         @RequestMapping(value = "/qna")
-		      public String ko16(Model mo)
-		      {
-	        	 String qna = "Q&A";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 ArrayList<Board> list = ss.qnaboardtable(qna);   
-	        	 mo.addAttribute("liste",list);
-		         return "qnapage";
-		      }
-	         
 	         //조회수
 	         public void Readcnt(int num) {
 	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
@@ -379,6 +324,8 @@ public class BoardController {
 	    		
 	    		return "qnapage";
 	    	}
+<<<<<<< HEAD
+=======
 	     	
 	     	@RequestMapping(value = "/goodup",method = RequestMethod.POST)
 	     	public String ko20(HttpServletRequest request,RedirectAttributes rattr)
@@ -457,7 +404,33 @@ public class BoardController {
 	     	public String hh() {
 	     		return "search";
 	     	}
+>>>>>>> upstream/main
 	     	
+	     	@RequestMapping(value="/poppage")
+	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	     		String nowPage=request.getParameter("nowPage");
+	     		String cntPerPage=request.getParameter("cntPerPage");
+	     		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	     		int total = sb.poptotal();
+	     		
+	     		if(nowPage == null && cntPerPage == null) {
+	     			nowPage="1";
+	     			cntPerPage="15";
+	     		} else if(nowPage==null) {
+	     			nowPage="1";
+	     		} else if(cntPerPage==null) {
+	     			cntPerPage="15";
+	     		}
+	     		
+	     		
+	     		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+	     		mo.addAttribute("page1",dto);
+	     		mo.addAttribute("page2",cri);
+	     		mo.addAttribute("bpage1",sb.poppage(dto));
+	     		
+	     		
+	     		return "poppage";
+	     	}
 	     	
 	     	
 	     	@RequestMapping(value = "/search")
