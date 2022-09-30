@@ -82,43 +82,49 @@
       <put-attribute name="body" value="/WEB-INF/views/board/poppage.jsp" />
       </definition>
       
-    <!-- admin -->
+    <!-- **관리자** -->
+    <!-- 관리자 마이 페이지 -->
 	<definition name="admin_mypage" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin_mypage.jsp" />
 	</definition>
-	<definition name="admin" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/admin.jsp" />
+    <!-- 마이페이지 - 정보수정 페이지 -->
+	<definition name="admin_infoupdate" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_infoupdate.jsp" />
 	</definition>
-	
-	<definition name="infoupdate" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/infoupdate.jsp" />
+    <!-- 마이페이지 - 마이 글 페이지 -->
+	<definition name="admin_mylist" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_mylist.jsp" />
 	</definition>
-	
-	<definition name="boardmanage" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/boardmanage.jsp" />
+    <!-- 마이페이지 - 마이 알림 페이지 -->
+	<definition name="admin_myalarm" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_myalarm.jsp" />
 	</definition>
-	
-	<definition name="mylist" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/mylist.jsp" />
+	<!-- 게시판 관리 - 공지 게시판 관리 페이지 -->
+	<definition name="notice_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/notice_manage.jsp" />
 	</definition>
-	
-	<definition name="myalarm" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/myalarm.jsp" />
+	<!-- 게시판 관리 - 정보공유 게시판 관리 페이지 -->
+	<definition name="infoshare_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/infoshare_manage.jsp" />
 	</definition>
-	
-	<definition name="mymessage" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/mymessage.jsp" />
+	<!-- 게시판 관리 - 지식인 게시판 관리 페이지 -->
+	<definition name="intellectual_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/intellectual_manage.jsp" />
 	</definition>
-	
-	<definition name="slick_slide" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/slick_slide.jsp" />
+	<!-- 게시판 관리 - 고민상담소 게시판 관리 페이지 -->
+	<definition name="counseling_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/counseling_manage.jsp" />
 	</definition>
-	
-	<definition name="go_notice" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/go_notice.jsp" />
+	<!-- 게시판 관리 - Q&A 게시판 관리 페이지 -->
+	<definition name="qna_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/qna_manage.jsp" />
 	</definition>
-	<definition name="tab" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/tab.jsp" />
+	<!-- 신고 관리 - 신고 관리 페이지 -->
+	<definition name="report_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/report_manage.jsp" />
 	</definition>
-
+	<!-- 회원 관리 - 회원 관리 페이지 -->
+	<definition name="member_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/member_manage.jsp" />
+	</definition>
 </tiles-definitions>
