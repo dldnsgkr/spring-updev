@@ -9,7 +9,7 @@ h3{
 }
 
 #main_body{
-	margin-top: 60px;
+    margin-top: 50px;
 	margin-bottom: 30px;
 }
 
@@ -18,6 +18,7 @@ h3{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+
 }
 
 .board{
@@ -26,7 +27,7 @@ h3{
 	border: 3px solid #8d86c9;
 	border-radius: 40px;
 	padding: 35px 30px 35px 50px;
-	margin-top: 48px;
+	margin-top: 24px;
 }
 .board:last-child{
 	margin-bottom: 53px;
@@ -111,7 +112,7 @@ button.main_login:hover{
 
 .slider-wrap{
 	position: relative;
-	width: 782px;
+	width: 100%;
 	top: -15px;
 }
 
@@ -134,7 +135,7 @@ button.main_login:hover{
     width: 30px;
     height: 30px;
     background-size: 100% 100%;
-    top: 85px;
+    top: 130px;
 }
 
 .slick-next {
@@ -144,7 +145,7 @@ button.main_login:hover{
     width: 30px;
     height: 30px;
     background-size: 100% 100%;
-    top: 85px;
+    top: 130px;
 }
 
 .main_in1, .main_in2, .main_in3{
@@ -153,20 +154,20 @@ button.main_login:hover{
 }
 
 .main_in1{
-    top: 17px;
-    left: 1250px;
+	top: 44px;
+    left: 2016px;
     font-size: 25px;
 }
 
 .main_in2{
-    top: 36px;
-    left: 1765px;
+    top: 78px;
+    left: 17%;
     font-size: 25px;
 }
 
 .main_in3{
-    top: 16px;
-    right: 79%;
+    top: 59px;
+    right: 69%;
     font-size: 25px;
 }
 
@@ -176,7 +177,3 @@ button.main_login:hover{
 	padding: 30px;
 }
 
-.main_line{
-	border: 1px solid #cac4ce;
-    margin-top: 33px;
-}
