@@ -8,13 +8,9 @@
 </head>
 <body>
 <table>
-			<form action="proupdate" method="post" enctype="multipart/form-data">
+			<form action="proupdate" method="post">
 			<input type="hidden" name="m_nick" value="${list.m_nick }">
 				<table style="width: 400px">
-					<tr>
-						<td>프로필</td>
-						<td><input type="file" name="m_profile" value="${list.m_profile }"></td>
-					</tr>
 					<tr>
 						<td>아이디</td>
 						<td><input type="text" name="m_id" value="${list.m_id }" ></td>

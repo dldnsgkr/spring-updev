@@ -1,11 +1,14 @@
 package com.updev.member;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -15,8 +18,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.updev.board.Board;
+import com.updev.board.ServiceBoard;
 
 /**
  * Handles requests for the application home page.
@@ -80,53 +88,45 @@ public class MemberController {
 	         session.setAttribute("member", d);
 	         session.setAttribute("id", m_id);
 	         session.setAttribute("loginState", true);
-	         session.setAttribute("id", m_id);
+	         session.setAttribute("member_nick", d.getM_nick());
 	         session.setMaxInactiveInterval(300);
 	         mav.setViewName("redirect:index");
 	      }
 	      else {
 	         rattr.addAttribute("check", "nodata");
-	         mav.setViewName("redirect:signup");
+	         mav.setViewName("redirect:login");
 	      }
 	      return mav;
 	   }
 	   
 	   @RequestMapping(value="/logout")
 	   public String ko7(HttpServletRequest request) {
+		   String q = "unknown";
 	         HttpSession session=request.getSession();
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
+	         session.removeAttribute("id");
+	         session.removeAttribute("member_nick");
 	         session.setAttribute("loginState",false);
+	         session.setAttribute("member_nick", q);
 	      return "redirect:index";
 	   }
-	   /*
-	   //프로필 수정 체크
-	   @RequestMapping(value = "/proupdatecheck")
-	   public String ko8(HttpServletRequest request,Model mo)
-	   {
-		   String m_nick = request.getParameter("m_nick");
-		   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-			Signup dao = ss.profileupdatecheck(m_nick);
-			mo.addAttribute("list",dao);
-		   return "memberinfoupdate";
-	   }
+	   
 	   
 	  //프로필 수정
 	   @RequestMapping(value = "/proupdate")
-	   public String ko9(HttpServletRequest request,MultipartHttpServletRequest mul)
+	   public String ko9(HttpServletRequest request)
 	   {
-		   String up_nick = mul.getParameter("up_nick");
-		   String m_nick = mul.getParameter("m_nick");
-		   MultipartFile a = mul.getFile("m_profile");
-		   String m_profile = a.getOriginalFilename();
-		   String m_id = mul.getParameter("m_id");
-		   String m_pw = mul.getParameter("m_pw");
-		   String m_name = mul.getParameter("m_name");
-		   String m_mail = mul.getParameter("m_mail");
-		   String m_tel = mul.getParameter("m_tel");
-		   String m_field = mul.getParameter("m_field");
-		   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-		   	ss.profileupdate(m_nick,m_profile,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
+		   String up_nick = request.getParameter("up_nick");
+		   String m_nick = request.getParameter("m_nick");
+		   String m_id = request.getParameter("m_id");
+		   String m_pw = request.getParameter("m_pw");
+		   String m_name = request.getParameter("m_name");
+		   String m_mail = request.getParameter("m_mail");
+		   String m_tel = request.getParameter("m_tel");
+		   String m_field = request.getParameter("m_field");
+		   ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+		   ss.profileupdate(m_nick,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
 		   ss.profileboardupdate(m_nick,up_nick);
 		   ss.balupdate(m_nick,up_nick);
 		   ss.suupdate(m_nick,up_nick);
@@ -137,7 +137,7 @@ public class MemberController {
 		   	return "redirect:logout";
 		   
 	   }
-	   */
+	   
 	   //아이디 중복검사
 	   @RequestMapping(value = "/test", method = RequestMethod.GET, 
 			   produces = "application/text; charset=utf8")
@@ -317,6 +317,132 @@ public class MemberController {
 		   }
 			
 	   }
+	   
+	 //게시물 신고페이지
+	 	@RequestMapping(value = "/boardreportpage")
+	     public String ko1(HttpServletRequest request,Model mo,RedirectAttributes rattr)
+	     {
+	 		HttpSession session=request.getSession();
+			if((Boolean) session.getAttribute("loginState"))
+			{
+	    	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	    	 String b_title = request.getParameter("b_title");
+	    	 mo.addAttribute("b_num",b_num);
+	    	 mo.addAttribute("b_title",b_title);
+	    	 return "boardreport";
+			}
+			else
+			{
+				rattr.addAttribute("result", "loginfail");
+				return "redirect:login";
+			}
+	     }
+	 	
+	 	//게시물 신고
+	 	@RequestMapping(value = "/breport")
+	 	public String ko2(MultipartHttpServletRequest mul,HttpServletRequest request)
+	 	{
+	 		String r_status = "처리전";
+	 		String a = mul.getParameter("r_reason");
+	 		String b = mul.getParameter("otherreason");
+	 		String r_reason = "";
+	 		MultipartFile f = mul.getFile("r_file1");
+	        String r_file1 = f.getOriginalFilename();
+	        if(a.equals("etc"))
+	        {
+	        	r_reason = b;
+	        } else {
+	        	r_reason = a;
+	        }
+	 		int b_num = Integer.parseInt(request.getParameter("b_num"));
+	 		 ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+	    	 ss.reportinsert(r_status,r_reason,r_file1,b_num);
+	    	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	    	 sb.reportboardupdate(b_num);
+	 		return "redirect:index";
+	 	}
+	 	
+	 	//프로필 수정 체크
+		   @RequestMapping(value = "/proupdatecheck")
+		   public String ko8(HttpServletRequest request,Model mo)
+		   {
+			   HttpSession session = request.getSession();
+			   String id = (String)session.getAttribute("id");
+			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+				Signup dao = ss.profileupdatecheck(id);
+				mo.addAttribute("list",dao);
+			   return "memberinfoupdate";
+		   }
+	   
+	 	//프로피 수정 ajax
+	 	@ResponseBody
+		@RequestMapping( value = "/myinfoupdate", method = RequestMethod.POST)
+		public String jjoinsave(HttpServletRequest request, RedirectAttributes rattr) throws IOException
+		{
+			String jo=request.getParameter("jsoninfo");		
+			JSONParser jsonparse = new JSONParser();
+			JSONObject jobj;
+			try {
+				jobj = (JSONObject)jsonparse.parse(jo);
+				String up_nick=(String) jobj.get("up_nick");
+				String m_nick=(String) jobj.get("m_nick");
+				String m_id=(String) jobj.get("m_id");
+				String m_pw=(String) jobj.get("m_pw");
+				String m_name=(String) jobj.get("m_name");
+				String m_mail=(String) jobj.get("m_mail");
+				String m_tel=(String) jobj.get("m_tel");
+				String m_field=(String) jobj.get("m_field");
+				ServiceMember ss=sqlsession.getMapper(ServiceMember.class);
+				ss.profileupdate(m_nick,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
+				ss.profileboardupdate(m_nick,up_nick);
+				ss.balupdate(m_nick,up_nick);
+				ss.suupdate(m_nick,up_nick);
+				ss.profilereportupdate(m_nick,up_nick);
+				ss.albalupdate(m_nick,up_nick);
+				ss.alsuupdate(m_nick,up_nick);
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+					
+			return "redirect:mywrite";
+		}
+	   	
+	 	//내가 쓴글 ajax
+	 	@SuppressWarnings("unchecked")
+		@ResponseBody
+		@RequestMapping(value="/membermywrite", method = RequestMethod.POST,
+				produces = "application/text; charset=UTF-8")//불러오기
+		public String ko5(HttpServletRequest request, Model mo) throws IOException{
+	 		 	HttpSession session = request.getSession();
+	 		 	String nick = (String)session.getAttribute("member_nick");
+	 		 	
+				JSONArray array = new JSONArray();
+				JSONObject total = new JSONObject();
+				//PrintWriter ppw = response.getWriter();
+				ServiceMember ss= sqlsession.getMapper(ServiceMember.class);
+				ArrayList<Board> list=ss.ajaxmywrite(nick);
+				for(int i=0;i<list.size();i++) {
+					JSONObject member = new JSONObject();
+					int b_num =list.get(i).getB_num();
+					String b_kind =list.get(i).getB_kind();
+					String b_title =list.get(i).getB_title();
+					String b_wdate =list.get(i).getB_wdate();
+					int b_likecnt =list.get(i).getB_likecnt();
+					int b_readcnt =list.get(i).getB_readcnt();
+					member.put("b_num", b_num);
+					member.put("b_kind", b_kind);
+					member.put("b_title", b_title);
+					member.put("b_wdate", b_wdate);
+					member.put("b_likecnt", b_likecnt);
+					member.put("b_readcnt", b_readcnt);
+					array.add(member);				
+				}
+				total.put("members", array);
+				String jsoninfo = total.toJSONString();
+			return jsoninfo;
+		
+		}
 
 }
 	   

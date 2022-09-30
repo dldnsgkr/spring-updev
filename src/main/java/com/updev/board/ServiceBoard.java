@@ -42,6 +42,8 @@ public interface ServiceBoard {
 	
 	public Board boarddetail(int b_num);
 	
+	public void reportboardupdate(int b_num);
+	
 	
 	//ÆäÀÌÂ¡
 	public int sharetotal();
@@ -68,7 +70,13 @@ public interface ServiceBoard {
 
 	public void readcnt(int num);
 
+	public Good howgood(int b_num, String nick);
 
+	public void blikeup(String b_num, String m_nick, int chk);
+
+	public void blikedown(String b_num, String m_nick);
+
+	
 }
 
 

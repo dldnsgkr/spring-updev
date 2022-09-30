@@ -14,11 +14,11 @@
 	</select>
 	
 	<select id="profileupdatecheck" resultType="com.updev.member.Signup">
-		SELECT * FROM member WHERE m_nick = #{param1}
+		SELECT * FROM member WHERE m_id = #{param1}
 	</select>
 	
 	<update id="profileupdate">
-		update member set m_profile = #{param2}, m_id = #{param3}, m_pw = #{param4}, m_name = #{param5}, m_mail = #{param6}, m_tel = #{param7}, m_field = #{param8}, m_nick = #{param9} where m_nick = #{param1}
+		update member set m_id = #{param2}, m_pw = #{param3}, m_name = #{param4}, m_mail = #{param5}, m_tel = #{param6}, m_field = #{param7}, m_nick = #{param8} where m_nick = #{param1}
 	</update>
 	
 	<update id="profileboardupdate">
@@ -68,4 +68,9 @@
 	<update id="update_pw">
 		update member set m_pw=#{param2} where m_pw=#{param1}
   	</update>
+  	
+  	<insert id="reportinsert">
+		insert into report(r_num,r_status,r_reason,r_file1,b_num) values(r_seq.nextval,#{param1},#{param2},#{param3},#{param4})
+	</insert>
+  	
 </mapper>

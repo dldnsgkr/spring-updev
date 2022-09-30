@@ -1,6 +1,7 @@
 package com.updev.board;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +41,10 @@ public class BoardController {
 	@RequestMapping(value = "/")
 	public String ko1(HttpServletRequest request,Model mo)
 	{
+		String q = "unknown";
 		HttpSession session = request.getSession();
 		session.setAttribute("loginState", false);
+		session.setAttribute("member_nick", q);
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		String a1 = "공지";
 		String b1 = "정보 공유";
@@ -91,12 +96,11 @@ public class BoardController {
 	   @RequestMapping(value = "/myp")
 	   public String ko8(Model mo,HttpServletRequest request)
 	   {
-		   String m_nick = request.getParameter("m_nick");
+		   HttpSession session = request.getSession();
+		   String nick = (String)session.getAttribute("member_nick");
 		   ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		   ArrayList<Board> dto = ss.mewrite(m_nick);
-		   Signup dt = ss.myinfo(m_nick);
+		   ArrayList<Board> dto = ss.mewrite(nick);
 		   mo.addAttribute("list",dto);
-		   mo.addAttribute("lista",dt);
 		  return "mypage"; 
 	   }
 	   
@@ -154,7 +158,7 @@ public class BoardController {
 	            String b_tag = mul.getParameter("b_tag");
 	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
-	            return "redirect:notipage";
+	            return "redirect:myp";
 	         }
 	      		//글 삭제
 	         @RequestMapping(value = "/writedelete")
@@ -163,7 +167,7 @@ public class BoardController {
 		            int b_num = Integer.parseInt(request.getParameter("b_num"));
 		           ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		         ss.delete(b_num);
-		         return "index";
+		         return "redirect:myp";
 		      }
 	         
 	         //조회수
@@ -176,11 +180,16 @@ public class BoardController {
 	         @RequestMapping(value = "/detail")
 	         public String ko17(HttpServletRequest request,Model mo)
 	         {
+		     	 HttpSession session = request.getSession();
+	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 session.setAttribute("b_num", b_num);
 	        	 Readcnt(b_num);
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	        	 Board member = ss.boarddetail(b_num);
+	        	 Good good = ss.howgood(b_num,nick);
 	        	 mo.addAttribute("list",member);
+	        	 mo.addAttribute("llist",good);
 	        	 return "detailboard";
 	         }
 	         
@@ -315,6 +324,87 @@ public class BoardController {
 	    		
 	    		return "qnapage";
 	    	}
+<<<<<<< HEAD
+=======
+	     	
+	     	@RequestMapping(value = "/goodup",method = RequestMethod.POST)
+	     	public String ko20(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		int chk = 1;
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				String b_num=(String) jobj.get("b_num");
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.blikeup(b_num,m_nick,chk);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	@RequestMapping(value = "/gooddown",method = RequestMethod.POST)
+	     	public String ko21(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		int chk = 0;
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				String b_num=(String) jobj.get("b_num");
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.blikedown(b_num,m_nick);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	//게시물 detail
+	         @RequestMapping(value = "/detailajax")
+	         public String ko21(HttpServletRequest request,Model mo)
+	         {
+		     	 HttpSession session = request.getSession();
+	        	 String nick = (String)session.getAttribute("member_nick");
+	        	 int b_num = (int)session.getAttribute("b_num");
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 Board member = ss.boarddetail(b_num);
+	        	 Good good = ss.howgood(b_num,nick);
+	        	 mo.addAttribute("list",member);
+	        	 mo.addAttribute("llist",good);
+	        	 return "detailboard";
+	         }
+	         
+	     	@RequestMapping(value = "/hh")
+	     	public String hh() {
+	     		return "search";
+	     	}
+>>>>>>> upstream/main
 	     	
 	     	@RequestMapping(value="/poppage")
 	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {

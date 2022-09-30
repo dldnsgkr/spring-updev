@@ -87,6 +87,7 @@ function info_update() {
 				type:"post",
 				async:false,
 				url:"info_update",
+				
 				data:{jsoninfo:sam},
 				success:function(data,textStatus){
 					alert("정보수정이 완료되었습니다.");
