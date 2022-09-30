@@ -48,10 +48,10 @@
 						<div class="top_login">
 							<c:choose>
 								<c:when test="${loginState==true}">
-									<c:choose>
-									<c:when test="${member.m_id=='admin'}">
-										<span>환영합니다!! 관리자님 :)&emsp;</span>
-										<a href="infoupdate">마이페이지</a>
+								<c:choose>
+								<c:when test="${member.m_id=='admin'}">
+									<span>환영합니다!! 관리자님 :)</span>
+									<a href="admin_mypage">마이페이지</a>
 									</c:when>
 									<c:otherwise>
 									 <span>환영합니다!!${member.m_nick}님</span>&emsp;<a href="myp?m_nick=${member.m_nick }">마이페이지</a>

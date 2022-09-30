@@ -1,6 +1,7 @@
 package com.updev.board;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +41,10 @@ public class BoardController {
 	@RequestMapping(value = "/")
 	public String ko1(HttpServletRequest request,Model mo)
 	{
+		String q = "unknown";
 		HttpSession session = request.getSession();
 		session.setAttribute("loginState", false);
+		session.setAttribute("member_nick", q);
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		String a1 = "공지";
 		String b1 = "정보 공유";
@@ -91,12 +96,11 @@ public class BoardController {
 	   @RequestMapping(value = "/myp")
 	   public String ko8(Model mo,HttpServletRequest request)
 	   {
-		   String m_nick = request.getParameter("m_nick");
+		   HttpSession session = request.getSession();
+		   String nick = (String)session.getAttribute("member_nick");
 		   ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		   ArrayList<Board> dto = ss.mewrite(m_nick);
-		   Signup dt = ss.myinfo(m_nick);
+		   ArrayList<Board> dto = ss.mewrite(nick);
 		   mo.addAttribute("list",dto);
-		   mo.addAttribute("lista",dt);
 		  return "mypage"; 
 	   }
 	   
@@ -154,7 +158,7 @@ public class BoardController {
 	            String b_tag = mul.getParameter("b_tag");
 	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
-	            return "redirect:index";
+	            return "redirect:myp";
 	         }
 	      		//글 삭제
 	         @RequestMapping(value = "/writedelete")
@@ -163,62 +167,7 @@ public class BoardController {
 		            int b_num = Integer.parseInt(request.getParameter("b_num"));
 		           ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		         ss.delete(b_num);
-		         return "index";
-		      }
-	         
-	         //공지사항 폼
-	         @RequestMapping(value = "/notice")
-		      public String ko12(Model mo)
-		      {
-	        	 String notice = "공지";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		         ArrayList<Board> list = ss.noticeboardtable(notice);
-		         mo.addAttribute("lista",list);
-		         return "noticepage";
-		      }
-	         
-	       // 정보 공유 폼
-	         @RequestMapping(value = "/share")
-		      public String ko13(Model mo)
-		      {
-	        	 String share = "정보 공유";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 ArrayList<Board> list = ss.shareboardtable(share);
-	        	 mo.addAttribute("listb",list);
-		         return "sharepage";
-		      }
-	         
-	       //질문창고 폼
-	         @RequestMapping(value = "/question")
-		      public String ko14(Model mo)
-		      {
-	        	 String question = "질문창고";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 ArrayList<Board> list = ss.questionboardtable(question);
-	        	 mo.addAttribute("listc",list);
-		         return "questionpage";
-		      }
-	         
-	       //고민상담소 폼
-	         @RequestMapping(value = "/worry")
-		      public String ko15(Model mo)
-		      {
-	        	 String worry = "고민상담소";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 ArrayList<Board> list = ss.worryboardtable(worry);
-	        	 mo.addAttribute("listd",list);
-		         return "worrypage";
-		      }
-	         
-	       //Q&A 폼
-	         @RequestMapping(value = "/qna")
-		      public String ko16(Model mo)
-		      {
-	        	 String qna = "Q&A";
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 ArrayList<Board> list = ss.qnaboardtable(qna);   
-	        	 mo.addAttribute("liste",list);
-		         return "qnapage";
+		         return "redirect:myp";
 		      }
 	         
 	         //조회수
@@ -231,11 +180,18 @@ public class BoardController {
 	         @RequestMapping(value = "/detail")
 	         public String ko17(HttpServletRequest request,Model mo)
 	         {
+		     	 HttpSession session = request.getSession();
+	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 session.setAttribute("b_num", b_num);
 	        	 Readcnt(b_num);
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	        	 Board member = ss.boarddetail(b_num);
+	        	 Good good = ss.howgood(b_num,nick);
+	        	 Scrap scrap = ss.howscrap(b_num,nick);
 	        	 mo.addAttribute("list",member);
+	        	 mo.addAttribute("llist",good);
+	        	 mo.addAttribute("slist",scrap);
 	        	 return "detailboard";
 	         }
 	         
@@ -370,7 +326,233 @@ public class BoardController {
 	    		
 	    		return "qnapage";
 	    	}
+	     	
+	     	//좋아요 증가
+	     	public void likecntup(int num)
+	     	{
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.likecntup(num);
+	     	}
+	     	
+	     	//좋아요 
+	     	@RequestMapping(value = "/goodup",method = RequestMethod.POST)
+	     	public String ko20(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		int chk = 1;
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.blikeup(b_num,m_nick,chk);
+				likecntup(b_num);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	//좋아요 감소
+	     	public void likecntdown(int num)
+	     	{
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.likecntdown(num);
+	     	}
+	     	
+	     	//좋아요 취소
+	     	@RequestMapping(value = "/gooddown",method = RequestMethod.POST)
+	     	public String ko21(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.blikedown(b_num,m_nick);
+				likecntdown(b_num);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	//스크랩
+	     	@RequestMapping(value = "/scrap",method = RequestMethod.POST)
+	     	public String ko23(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		int chk = 1;
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.scrap(b_num,m_nick,chk);
+				likecntup(b_num);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	//스크랩 취소
+	     	@RequestMapping(value = "/scrapcancel",method = RequestMethod.POST)
+	     	public String ko22(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.scrapcancel(b_num,m_nick);
+				likecntup(b_num);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	//게시물 detail
+	         @RequestMapping(value = "/detailajax")
+	         public String ko21(HttpServletRequest request,Model mo)
+	         {
+		     	 HttpSession session = request.getSession();
+	        	 String nick = (String)session.getAttribute("member_nick");
+	        	 int b_num = (int)session.getAttribute("b_num");
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 Board member = ss.boarddetail(b_num);
+	        	 Good good = ss.howgood(b_num,nick);
+	        	 Scrap scrap = ss.howscrap(b_num, nick);
+	        	 mo.addAttribute("list",member);
+	        	 mo.addAttribute("llist",good);
+	        	 mo.addAttribute("slist",scrap);
+	        	 return "detailboard";
+	         }
 	         
-	
+	     	@RequestMapping(value = "/hh")
+	     	public String hh() {
+	     		return "search";
+	     	}
+
+	     	
+	     	@RequestMapping(value="/poppage")
+	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	     		String nowPage=request.getParameter("nowPage");
+	     		String cntPerPage=request.getParameter("cntPerPage");
+	     		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	     		int total = sb.poptotal();
+	     		
+	     		if(nowPage == null && cntPerPage == null) {
+	     			nowPage="1";
+	     			cntPerPage="15";
+	     		} else if(nowPage==null) {
+	     			nowPage="1";
+	     		} else if(cntPerPage==null) {
+	     			cntPerPage="15";
+	     		}
+	     		
+	     		
+	     		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+	     		mo.addAttribute("page1",dto);
+	     		mo.addAttribute("page2",cri);
+	     		mo.addAttribute("bpage1",sb.poppage(dto));
+	     		
+	     		
+	     		return "poppage";
+	     	}
+	     	
+	     	
+	     	@RequestMapping(value = "/search")
+	     	public String search2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri)
+	     	{
+	     		ArrayList<Board> list = new ArrayList<Board>();
+	     		String sname = request.getParameter("sname");
+	     		String keyword = request.getParameter("keyword");
+	     		String nowPage=request.getParameter("nowPage");
+	     		String cntPerPage=request.getParameter("cntPerPage");
+	     		
+	     		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	     		/*
+	     		if(sname.equals("b_title"))
+	     		{
+	     			list = sb.titlesearch(keyword);
+	     		} else {
+	     			list = sb.contentsearch(keyword);
+	     		}
+	     		mo.addAttribute("list",list);
+	     		 */
+	     		
+	     		int total = sb.searchcnt(keyword);
+	     		
+	     		if(nowPage == null && cntPerPage == null) {
+	     			nowPage="1";
+	     			cntPerPage="15";
+	     		} else if(nowPage==null) {
+	     			nowPage="1";
+	     		} else if(cntPerPage==null) {
+	     			cntPerPage="15";
+	     		}
+	     		
+	     		
+	     		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),keyword);
+	     		mo.addAttribute("page",dto);
+	     		mo.addAttribute("page2",cri);
+	     		mo.addAttribute("keyword", keyword);
+	     		mo.addAttribute("paging",sb.tsearchpage(dto));
+	     		
+	     		return "search";
+	     	}
+	     	
 	
 }

@@ -9,10 +9,11 @@
 		<link rel="stylesheet" href="resources/css/board.css" type="text/css">
 	</head>
 	<body>
-	<!-- QnA게시판 -->
+		<div class="shadow"></div>
+	<!-- 고민상담 게시판 -->
 		<div class="wrap">
 			<div class="board_notic">
-				여기는 UPDEV 홈페이지에 문의하는 곳입니다.
+				여기는 개발자들의 고민을 상담하는 곳입니다.
 			</div>
 			<table border="1">
 				<thead id="thead">
@@ -27,41 +28,39 @@
 					</tr>
 				</thead>
 				<tbody id="tbody">
-				<c:forEach items="${bpage1 }" var="a">
-				<tr>
-					<td>${a.b_num }</td>
-					<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a></td>
-					<td>${a.m_nick }</td>
-					<td>${a.b_wdate }</td>
-					<td>${a.b_readcnt }</td>
-					<td>${a.b_likecnt }</td>
-					<td>스크랩 버튼</td>
-				</tr>
-				</c:forEach>
-			</tbody>
+		<c:forEach items="${bpage1 }" var="a">
+		<tr>
+			<td>${a.b_num }</td>
+			<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a></td>
+			<td>${a.m_nick }</td>
+			<td>${a.b_wdate }</td>
+			<td>${a.b_readcnt }</td>
+			<td>${a.b_likecnt }</td>
+			<td>스크랩 버튼</td>
+		</tr>
+		</c:forEach>
+		</tbody>
 		</table>
-		<div id="tfoot">	
+		<div id="tfoot">		
 				<c:if test="${page1.nowPage > 10}">
-					<a href="qnapage?nowPage=${page1.startPage -1}">&#60;</a> 				
+					<a href="worrypage?nowPage=${page1.startPage -1}">&#60;</a> 				
 				</c:if>
-				
-			
+					
 				<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
 					<c:choose>
 						<c:when test="${p==page1.nowPage}">
 							<b>${p}</b>
 						</c:when>
 						<c:when test="${p!=page1.nowPage}">
-							<a href="qnapage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+							<a href="worrypage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
 						</c:when>
 					</c:choose>
 				</c:forEach>
 							
-				
-				<c:if test="${page1.nowPage ne page1.realEnd && page1.endPage>0 }">
-					<a href="qnapage?nowPage=${page1.endPage +1}">&#62;</a>
-				</c:if>   
-			</div>
-		</div>
+				<c:if test="${page1.nowPage ne page1.realEnd && page1.endPage>0}">
+					<a href="worrypage?nowPage=${page1.endPage +1}">&#62;</a>
+				</c:if>
+			</div>			
+		</div>		   
 	</body>
 </html>

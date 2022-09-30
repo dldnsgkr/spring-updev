@@ -28,6 +28,14 @@ public class AdminController {
 	@Autowired
 	SqlSession sqlsession;
 	
+	@RequestMapping(value = "/admin_mypage")
+	public String test(HttpServletRequest request){
+		return "admin_mypage";
+	}
+	@RequestMapping(value = "/tab")
+	public String tab(HttpServletRequest request){
+		return "tab";
+	}
 	@RequestMapping(value = "/slick_slide")
 	public String slick_slide(HttpServletRequest request){
 		return "slick_slide";
@@ -86,6 +94,33 @@ public class AdminController {
 		
 		return "redirect:infoupdate";
 	}
+	// 정보수정
+	@RequestMapping(value = "/mylist_delete", method = RequestMethod.POST)
+	public String mylist_delete(HttpServletRequest request, Model model) throws Exception{
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		String jo = request.getParameter("jsoninfo");		
+		JSONParser jsonparse = new JSONParser();
+		
+		try {
+			JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+			
+			System.out.println(jobj + "나는 jobj");
+			
+			int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+			
+			System.out.println(b_num + "나는 b_num");
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			
+			sa.mylist_delete(b_num);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:mylist";
+	}
 	/**/
 	// 마이 글 페이지 이동
 	@RequestMapping(value = "/mylist")
@@ -96,6 +131,27 @@ public class AdminController {
 	
 		return "mylist";
 	}
+	// 마이 글 페이지 이동
+	@RequestMapping(value = "/go_notice")
+	public String go_notice(HttpServletRequest request, Model model){
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		
+		return "go_notice";
+	}
+	
+/*
+	// 게시판관리 - 공지게시판 이동
+	@RequestMapping(value = "/noticeboardmanage")
+	public String noticeboardmanage(HttpServletRequest request, Model model){
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		
+		return "noticeboardmanage";
+	}
+	*/
 	/*
 	@RequestMapping(value = "/mywrite")
 	public String mylist_write(HttpServletRequest request, Model model){
@@ -303,6 +359,74 @@ public class AdminController {
 				System.out.println(jsoninfo);
 			return jsoninfo;
 		
+		}
+		// 공지게시판 조회
+		@SuppressWarnings("unchecked")
+		@ResponseBody
+		@RequestMapping(value="/noticeboardmanage", method = RequestMethod.POST,
+		produces = "application/text; charset=UTF-8")//불러오기
+		public String noticeboardmanage(HttpServletRequest request,HttpServletResponse response,Model mo) throws IOException{
+			
+			
+			request.setCharacterEncoding("UTF-8");
+			
+//			HttpSession session = request.getSession();
+//			
+//			String m_nick = (String)session.getAttribute("m_nick");
+//			
+//			System.out.println(m_nick);
+
+			String notice = "공지";
+			JSONArray array = new JSONArray();
+			JSONObject total = new JSONObject();
+			ServiceAdmin ss= sqlsession.getMapper(ServiceAdmin.class);
+			ArrayList<Board> list=ss.noticeboardmanage(notice);
+			
+//				int b_num, String b_cate, String b_kind, String b_title, String m_nick, String b_wdate,
+//		         String b_content, int b_likecnt, int b_readcnt, int b_group, int b_step, int b_indent, String b_tag,
+//		         String b_file1, String b_file2, int b_report) {
+			
+			for(int i=0;i<list.size();i++) {
+				JSONObject member = new JSONObject();
+				int b_num =list.get(i).getB_num();
+				String b_cate =list.get(i).getB_cate();
+				String b_kind =list.get(i).getB_kind();
+				String b_title =list.get(i).getB_title();
+				String nick =list.get(i).getM_nick();
+				String b_wdate =list.get(i).getB_wdate();
+				String b_content =list.get(i).getB_content();
+				int b_likecnt =list.get(i).getB_likecnt();
+				int b_readcnt =list.get(i).getB_readcnt();
+				int b_group =list.get(i).getB_group();
+				int b_step =list.get(i).getB_step();
+				int b_indent =list.get(i).getB_indent();
+				String b_tag =list.get(i).getB_tag();
+				String b_file1 =list.get(i).getB_file1();
+				String b_file2 =list.get(i).getB_file2();
+				int b_report =list.get(i).getB_report();
+				member.put("b_num", b_num);
+				member.put("b_cate", b_cate);
+				member.put("b_kind", b_kind);
+				member.put("b_title", b_title);
+				member.put("m_nick", nick);
+				member.put("b_wdate", b_wdate);
+				member.put("b_content", b_content);
+				member.put("b_likecnt", b_likecnt);
+				member.put("b_readcnt", b_readcnt);
+				member.put("b_group", b_group);
+				member.put("b_step", b_step);
+				member.put("b_indent", b_indent);
+				member.put("b_tag", b_tag);
+				member.put("b_file1", b_file1);
+				member.put("b_file2", b_file2);
+				member.put("b_report", b_report);
+				array.add(member);				
+			}
+			total.put("members", array);
+			String jsoninfo = total.toJSONString();
+			System.out.println(jsoninfo);
+			return jsoninfo;
+			
 		}
 	@RequestMapping(value = "/myalarm")
 	public String myalarm(HttpServletRequest request, Model model){

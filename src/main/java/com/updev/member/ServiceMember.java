@@ -1,5 +1,8 @@
 package com.updev.member;
 
+import java.util.ArrayList;
+
+import com.updev.board.Board;
 
 public interface ServiceMember {
 
@@ -8,7 +11,7 @@ public interface ServiceMember {
 
 	public Signup loginselect(String id, String pw);
 
-	public void profileupdate(String m_nick, String m_profile, String m_id, String m_pw, String m_name, String m_mail, String m_tel, String m_field, String up_nick);
+	public void profileupdate(String m_nick, String m_id, String m_pw, String m_name, String m_mail, String m_tel, String m_field, String up_nick);
 
 	public Signup profileupdatecheck(String m_nick);
 
@@ -39,5 +42,9 @@ public interface ServiceMember {
 	public int nicktest(String nick);
 
 	public int nickCheck(String m_nick);
+	
+	public void reportinsert(String r_status, String r_reason, String r_file1, int b_num);
+
+	public ArrayList<Board> ajaxmywrite(String nick);
 
 }

@@ -44,8 +44,6 @@
 				<c:if test="${page1.nowPage > 10}">
 					<a href="questionpage?nowPage=${page1.startPage -1}">&#60;</a> 				
 				</c:if>
-				
-			
 				<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
 					<c:choose>
 						<c:when test="${p==page1.nowPage}">

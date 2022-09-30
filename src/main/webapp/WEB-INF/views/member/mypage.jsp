@@ -1,18 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="resources/js/mypage.js"></script>
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/mypage.css" type="text/css" />
+   <link rel="stylesheet" type="text/css" href="./resources/css/mypage.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script type="text/javascript" src="./resources/js/mypage.js">
+   </script>
 </head>
 <body>
+<<<<<<< HEAD
+<table>
+<tr>
 <div class="mypage_tabs">
    <div class="mypage_tab">
        <input type="radio" id="tab-1" name="tab-group-1">
-       <label for="tab-1"><a href="proupdatecheck?m_nick=${member.m_nick }">마이 프로필</a></label>
+       <label for="tab-1"><a href="proupdatecheck">마이 프로필</a></label>
        <div class="mypage_content">
            <span>프로필 수정을 누르면 나오는 거</span>
        </div> 
@@ -20,7 +27,7 @@
     
    <div class="mypage_tab">
        <input type="radio" id="tab-2" name="tab-group-1">
-       <label for="tab-2"><a href="myp?m_nick=${member.m_nick }">마이 글</a></label>
+       <label for="tab-2"><a href="myp">마이 글</a></label>
        <!-- 마이 글 안에 들어 가야 할 것 : 내가 쓴 글, 내가 좋아요한 글, 내가 스크랩한 글  -->
        <div class="mypage_content">
            <span>나의 글을 누르면 나오는 거</<span>
@@ -41,16 +48,19 @@
        <div class="mypage_content">
            <span>마이쪽지를 누르면 나오는 거 </span>
        </div> 
+       <div class="mypage_tab">
+       <input type="radio" id="tab-5" name="tab-group-1">
+       <label for="tab-5"><button type="button" id="boardwrite">글 작성</button></label>
+     
+       <div class="mypage_content">
+           <span>마이쪽지를 누르면 나오는 거 </span>
+       </div> 
    </div>
    
     
 </div>
-<!--<a href="write">글쓰기</a> 글쓰기 가능한위치 원하시는곳에 프론트 두분이서 상의해서 변경해주세요 이대로 가도 상관없습니다-->
-
-<a href="#">마이알림</a>
-<a href="#">마이쪽지</a>
-<a href="proupdatecheck?m_nick=${member.m_nick }">프로필수정</a>
-
+</tr>
+</table>
 <table>
 <tr>
 	<th>번호</th>
@@ -76,5 +86,71 @@
 </tr>
 </c:forEach>
 </table>
+=======
+<section>
+<div class="jq_tabonoff comm_tab1">
+        <ul class="jq_tab tab_menu">
+            <li><a href="javascript:;" class="tit">활동내역</a></li>
+            <li><a href="javascript:;" class="tit">알림</a></li>
+            <li><a href="javascript:;" class="tit">채팅</a></li>
+            <li><a href="javascript:;" class="tit">프로필관리</a></li>
+        </ul>
+        <div class="jq_cont tab_cont">
+            <!-- // 탭1 -->
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                    <ul class="jq_tab tab_menu"></ul>
+                    <div class="jq_cont tab_cont">
+                        <div class="cont">
+                            <a href="memwrite">내가 쓴 글</a>
+                        </div>
+                        <div class="cont">
+                            <a href="memlike">좋아요</a>
+                        </div>
+                        <div class="cont">
+                            <a href="memscrap">스크랩</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // 탭2 -->
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                
+                    <div class="jq_cont tab_cont">
+                        <div class="cont">
+                            알림 내용
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- // 탭3 -->
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                    
+                    <div class="jq_cont tab_cont">
+                        <div class="cont">
+                            채팅
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- // 탭3 -->
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                    
+                    <div class="jq_cont tab_cont">
+                        <div class="cont">
+                            <a href="proupdatecheck?m_nick=${member.m_nick }">프로필 수정</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+>>>>>>> 4dbaa03edc00331476ed6bcb6d921256e373c163
 </body>
 </html>
