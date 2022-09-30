@@ -40,6 +40,7 @@
 		select * from board where b_kind = #{param1}
 	</select>
 	
+	<!--  
 	<select id="noticeboardtable" resultType="com.updev.board.Board">
 		select * from board where b_kind = #{param1}
 	</select>
@@ -59,7 +60,7 @@
 	<select id="qnaboardtable" resultType="com.updev.board.Board">
 		select * from board where b_kind = #{param1}
 	</select>
-	
+	-->
 	<delete id="delete">
 		delete from board where b_num = #{param1}
 	</delete>

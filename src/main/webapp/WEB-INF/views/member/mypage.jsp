@@ -13,7 +13,6 @@
    </script>
 </head>
 <body>
-<<<<<<< HEAD
 <table>
 <tr>
 <div class="mypage_tabs">
@@ -86,7 +85,6 @@
 </tr>
 </c:forEach>
 </table>
-=======
 <section>
 <div class="jq_tabonoff comm_tab1">
         <ul class="jq_tab tab_menu">
@@ -151,6 +149,5 @@
         </div>
     </div>
 </section>
->>>>>>> 4dbaa03edc00331476ed6bcb6d921256e373c163
 </body>
 </html>
