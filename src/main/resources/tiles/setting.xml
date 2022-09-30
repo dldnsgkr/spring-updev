@@ -47,35 +47,39 @@
       <!-- noticeboard -->
       
       <definition name="noticepage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/noticeboard/noticepage.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/board/noticepage.jsp" />
       </definition>
       
       <definition name="sharepage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/noticeboard/sharepage.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/board/sharepage.jsp" />
       </definition>
       
       <definition name="questionpage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/noticeboard/questionpage.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/board/questionpage.jsp" />
       </definition>
       
       <definition name="worrypage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/noticeboard/worrypage.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/board/worrypage.jsp" />
       </definition>
       
       <definition name="qnapage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/noticeboard/qnapage.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/board/qnapage.jsp" />
       </definition>
       
        <definition name="detailboard" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/noticeboard/detailboard.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/board/detailboard.jsp" />
       </definition>
       
       <definition name="boardreport" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/noticeboard/boardreport.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/board/boardreport.jsp" />
       </definition>
       
       <definition name="search" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/noticeboard/search.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/board/search.jsp" />
+      </definition>
+      
+      <definition name="poppage" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/board/poppage.jsp" />
       </definition>
       
     <!-- admin -->

@@ -61,6 +61,9 @@ public interface ServiceBoard {
 	public int noticetotal();
 	public ArrayList<Board> noticepage(PageDTO dto);
 	
+	public int poptotal();
+	public ArrayList<Board> poppage(PageDTO dto);
+	
 	public int searchcnt(String keyword);
 	public ArrayList<Board> tsearchpage(PageDTO dto);
 
@@ -69,9 +72,19 @@ public interface ServiceBoard {
 
 	public Good howgood(int b_num, String nick);
 
-	public void blikeup(String b_num, String m_nick, int chk);
+	public void blikeup(int b_num, String m_nick, int chk);
 
-	public void blikedown(String b_num, String m_nick);
+	public void blikedown(int b_num, String m_nick);
+
+	public void likecntup(int num);
+
+	public void likecntdown(int num);
+
+	public void scrap(int b_num, String m_nick, int chk);
+
+	public void scrapcancel(int b_num, String m_nick);
+
+	public Scrap howscrap(int b_num, String nick);
 
 	
 }
