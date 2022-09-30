@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,7 +17,7 @@
 			<div class="main_top">
 				<div class="slider-wrap">
 	    			<div class="cont">
-	       				<img src="./resources/images/banner1.jpg">
+	       				<img src="./resources/images/banner1.jpg" width="1200px">
 		       			<div class="main_in1">
 		       				<div class="text_box">
 			       				개발자로 취업하자<br>
@@ -26,7 +27,7 @@
 		       			</div>
 	    			</div>
 	    			<div class="cont">
-	       				<img src="./resources/images/banner2.jpg">
+	       				<img src="./resources/images/banner2.jpg" width="1200px">
 	       				<div class="main_in2">
 		       				<div class="text_box">
 			       				UPDEV 개발자 채용<br>
@@ -35,7 +36,7 @@
 						</div>
 	    			</div>
 	    			<div class="cont">
-	         			<img src="./resources/images/banner3.jpg">
+	         			<img src="./resources/images/banner3.jpg" width="1200px">
 	         			<div class="main_in3">
 	         				<div class="text_box">
 			         			경력보다 실력<br>
@@ -45,6 +46,7 @@
 						</div>
 	    			</div>
 				</div>
+				<!-- 
 				<div class="login">
 					<form name="login1" method="POST">
 						<input class="input" type="text" name="m_id" value="" placeholder="id">
@@ -56,12 +58,13 @@
 						</div>
 					</form>
 				</div>
+				 -->
 			</div>
-		<div class="main_line"></div>
 		<div class="main_board">
 			<div class="board">
-				<h3>인기 게시글</h3>
-				<a href="">더보기</a>
+				<h3>인기게시글</h3>
+				<a href="poppage">더보기</a>
+	
 			</div>
 			
 			<div class="board">
@@ -71,7 +74,7 @@
 
 			
 			<div class="board">
-				<h3>질문창고</h3>
+				<h3>지식인</h3>
 				<a href="questionpage">더보기</a>
 			</div>
 			
