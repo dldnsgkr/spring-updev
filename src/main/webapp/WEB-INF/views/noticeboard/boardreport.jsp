@@ -21,6 +21,7 @@ $("#r_reason").change(function() {
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 신고 게시판 -->
 <form action="breport" method="post" enctype="multipart/form-data">
 <input type="hidden" name="b_num" value="${b_num }">
 <table>

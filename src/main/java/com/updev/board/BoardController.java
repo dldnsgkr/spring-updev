@@ -154,7 +154,7 @@ public class BoardController {
 	            String b_tag = mul.getParameter("b_tag");
 	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
-	            return "redirect:notipage";
+	            return "redirect:index";
 	         }
 	      		//±€ ªË¡¶
 	         @RequestMapping(value = "/writedelete")

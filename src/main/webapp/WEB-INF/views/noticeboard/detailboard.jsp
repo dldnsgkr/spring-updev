@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 글보기 게시판 -->
 <h1>${list.b_kind }</h1>
 <h4>${list.b_title }</h4>
 ${list.m_nick }&emsp;${list.b_wdate }
