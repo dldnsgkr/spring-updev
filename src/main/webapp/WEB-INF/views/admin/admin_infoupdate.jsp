@@ -28,7 +28,7 @@ input[type="button"]{
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="./resources/js/admin/infoupdate.js"></script>
+<script type="text/javascript" src="./resources/js/admin/admin_infoupdate.js"></script>
 </head>
 <body>
 	<div class="infoupdate">
@@ -44,7 +44,7 @@ input[type="button"]{
 						<label>비밀번호</label>
 						<input type="text" name="m_pw" id="m_pw" value="${admin.m_pw}">
 						<label>닉네임</label>
-						<input type="text" name="m_nick" id="m_nick" value="${admin.m_nick}">
+						<input type="text" name="m_nick" id="m_nick" value="${admin.m_nick}" readonly="readonly">
 						<label>이름</label>
 						<input type="text" name="m_name" id="m_name" value="${admin.m_name}">
 						<label>이메일</label>
@@ -91,7 +91,7 @@ input[type="button"]{
 						<label>등급</label>
 						<input type="text" name="m_grade" id="m_grade" value="${admin.m_grade}" readonly="readonly">
 						
-						<input type="button" name="button" value="정보수정" onclick="info_update();">
+						<input type="button" name="button" value="정보수정" onclick="admin_infoupdate_update();">
 				</div>
 			</form>
 		</div>

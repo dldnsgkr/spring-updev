@@ -13,17 +13,17 @@
 		m_mail = #{param4}, m_tel = #{param5}, m_field = #{param6} where m_id = #{param7}
 	</update>
 
-	<select id="mywrite" resultType="com.updev.board.Board">
+	<select id="admin_mywrite_select" resultType="com.updev.board.Board">
 		select * from board where m_nick = #{param1}
 	</select>
 
-	<select id="mylike" resultType="com.updev.board.Board">
+	<select id="admin_mylike_select" resultType="com.updev.board.Board">
 		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
 		b.b_likecnt,b.b_readcnt,b.b_tag,b.b_file1,b.b_file2,b.b_report
 		from board b, good g
 		where b.b_num=g.b_num and g.m_nick = #{param1} and g.like_chk = 1
 	</select>
-	<select id="myscrap" resultType="com.updev.board.Board">
+	<select id="admin_myscrap_select" resultType="com.updev.board.Board">
 		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
 		b.b_likecnt,b.b_readcnt,b.b_tag,b.b_file1,b.b_file2,b.b_report
 		from board b, scrap s
