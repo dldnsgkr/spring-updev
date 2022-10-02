@@ -10,7 +10,6 @@ $(document).ready (function () {
         $(this).parent().next('.jq_cont').children().hide().eq(index).show();
     });
 });
-
 // 마이페이지 - 정보수정 페이지 이동
 function admin_infoupdate(){
 	$.ajax({
@@ -18,7 +17,7 @@ function admin_infoupdate(){
 		async:false,
 		url:"admin_infoupdate",
 		success:function(data,textStatus){
-			location.replace("admin_infoupdate");
+			location.href="admin_infoupdate";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
@@ -32,7 +31,7 @@ function admin_mylist(){
 		async:false,
 		url:"admin_mylist",
 		success:function(data,textStatus){
-			location.replace("admin_mylist");
+			location.href="admin_mylist";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
@@ -46,7 +45,7 @@ function admin_myalarm(){
 		async:false,
 		url:"admin_myalarm",
 		success:function(data,textStatus){
-			location.replace("admin_myalarm");
+			location.href="admin_myalarm";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
@@ -60,7 +59,7 @@ function notice_manage(){
 		async:false,
 		url:"notice_manage",
 		success:function(data,textStatus){
-			location.replace("notice_manage");
+			location.href="notice_manage";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
@@ -74,7 +73,7 @@ function infoshare_manage(){
 		async:false,
 		url:"infoshare_manage",
 		success:function(data,textStatus){
-			location.replace("infoshare_manage");
+			location.href="infoshare_manage";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
@@ -88,7 +87,7 @@ function intellectual_manage(){
 		async:false,
 		url:"intellectual_manage",
 		success:function(data,textStatus){
-			location.replace("intellectual_manage");
+			location.href="intellectual_manage";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
@@ -102,7 +101,7 @@ function counseling_manage(){
 		async:false,
 		url:"counseling_manage",
 		success:function(data,textStatus){
-			location.replace("counseling_manage");
+			location.href="counseling_manage";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
@@ -116,7 +115,7 @@ function qna_manage(){
 		async:false,
 		url:"qna_manage",
 		success:function(data,textStatus){
-			location.replace("qna_manage");
+			location.href="qna_manage";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
@@ -130,7 +129,7 @@ function report_manage(){
 		async:false,
 		url:"report_manage",
 		success:function(data,textStatus){
-			location.replace("report_manage");
+			location.href="report_manage";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");
@@ -144,7 +143,7 @@ function member_manage(){
 		async:false,
 		url:"member_manage",
 		success:function(data,textStatus){
-			location.replace("member_manage");
+			location.href="member_manage";
 		},
 		error:function(data,textStatus){
 			alert("전송실패!!");

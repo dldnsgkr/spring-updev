@@ -31,4 +31,12 @@ public interface ServiceAdmin {
 	public ArrayList<Board> admin_mylike_select(String admin_nick);
 	public ArrayList<Board> admin_myscrap_select(String admin_nick);
 
+	public Signup admin_infoupdate_select(String admin_id);
+
+	public ArrayList<Board> board_manage_select(String b_kind);
+
+	public ArrayList<Board> report_manage_select();
+
+	public ArrayList<Board> member_manage_select();
+
 }

@@ -127,4 +127,8 @@
 	<definition name="member_manage" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/member_manage.jsp" />
 	</definition>
+	<!-- test 페이지 -->
+	<definition name="test" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/test.jsp" />
+	</definition>
 </tiles-definitions>

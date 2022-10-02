@@ -56,7 +56,4 @@ public class Report {
 		this.m_nick = m_nick;
 	}
 	
-	
-	
-	
 }
