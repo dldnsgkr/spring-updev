@@ -50,7 +50,7 @@
 								<c:when test="${loginState==true}">
 								<c:choose>
 								<c:when test="${member.m_id=='admin'}">
-									<span>환영합니다!! 관리자님 :)</span>
+									<span>환영합니다! 관리자님</span>
 									<a href="admin_mypage">마이페이지</a>
 									</c:when>
 									<c:otherwise>
