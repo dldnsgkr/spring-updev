@@ -210,7 +210,7 @@ public class AdminController {
 	// 마이페이지 > 마이 글 > 내가 좋아요 한 글 > 조회
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/admin_mywrite_select", method = RequestMethod.POST,
+	@RequestMapping(value="/admin_mylike_select", method = RequestMethod.POST,
 	produces = "application/text; charset=UTF-8")
 	public String admin_mylike_select(HttpServletRequest request) throws IOException{
 		// 세션 생성
@@ -268,7 +268,7 @@ public class AdminController {
 	// 마이페이지 > 마이 글 > 내가 스크랩 한 글 > 조회
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="/admin_mywrite_select", method = RequestMethod.POST,
+	@RequestMapping(value="/admin_myscrap_select", method = RequestMethod.POST,
 	produces = "application/text; charset=UTF-8")
 	public String admin_myscrap_select(HttpServletRequest request) throws IOException{
 		// 세션 생성
