@@ -3,7 +3,6 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -55,7 +54,6 @@
 </tr>
 </table>
 </body>
-=======
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -119,5 +117,4 @@
 			</div>			
 		</div>		   
 	</body>
->>>>>>> upstream/main
 </html>

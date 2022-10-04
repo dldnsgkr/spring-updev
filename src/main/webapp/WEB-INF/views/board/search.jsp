@@ -12,6 +12,7 @@
  
 <form action="search">
     <tr>
+    	<th>
         <input type="text" name="keyword">
         <input type="submit" value="검색">
         </th>
