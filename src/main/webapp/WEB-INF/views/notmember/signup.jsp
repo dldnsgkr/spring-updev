@@ -15,11 +15,11 @@
 	<div class="signupwrap">
 		<div class="wrapper">
 			<form action="insert" method="post" name="signup1" id="signupform">
-					<div class="title"><h1>SIGH UP</h1></div>
+					<div class="title"><h1>SIGN UP</h1></div>
 					<div class="input">
 						<label><input class="m_id" id="m_id" type="text" name="m_id" placeholder="아이디" autofocus></label>
-						 <button class="button button1" type="button" onclick="test();">중복확인</button>
-						<div class="check_font" id="id_check" class="id_check">${msg}</div>
+						 <button class="button button1" type="button" onclick="idtest();">중복확인</button>
+						<div id="id_check" class="id_check">${msg}</div>
 					</div>
 					<div class="input">
 						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" onclick="idselect()" autofocus></label>
@@ -32,7 +32,7 @@
 					<div class="input">
 						<label><input class="m_nick" id="m_nick" type="text" name="m_nick" placeholder="닉네임" autofocus></label>
 						<button class="button button1" type="button" onclick="nicktest();">중복확인</button>
-						<div class="check_font" id="nick_check" class="nick_check" >${nickmsg}</div>
+						<div id="nick_check" class="nick_check" >${nickmsg}</div>
 					</div>
 					<div class="input">
 						<label><input id="name" type="text" name="m_name" placeholder="이름" onclick="nickselect()" autofocus></label>

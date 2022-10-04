@@ -1,5 +1,5 @@
-function test(){
-	
+function idtest(){
+	console.log(1);
 	var id =$("#m_id").val();
 	
 	console.log(id);
