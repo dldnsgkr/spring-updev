@@ -94,6 +94,10 @@ color: white;
   color: 242038;
   background-color: #cac4ce;
 }
+.id_check{
+	color: red;
+	margin-left: 50px;
+}
 .button2 {
   width: 313px;
   /* margin-right: 150px; */height:40px;
