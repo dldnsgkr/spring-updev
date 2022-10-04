@@ -55,6 +55,17 @@
 						</c:if>
 					
 				
+<<<<<<< HEAD
+	
+	<c:if test="${page1.next && page1.endPage>0}">
+		<a href="sharepage?nowPage=${page1.endPage +1}">&#62;</a>
+	</c:if>   
+	</td>
+</tr>
+	
+</table>
+</body>
+=======
 						<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
 							<c:choose>
 								<c:when test="${p==page1.nowPage}">
@@ -73,4 +84,5 @@
 				</div>			
 		</div>
 	</body>
+>>>>>>> upstream/main
 </html>
