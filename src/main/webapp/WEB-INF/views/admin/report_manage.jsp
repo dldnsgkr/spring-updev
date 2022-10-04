@@ -21,7 +21,7 @@
 					<td>처리완료</td></tr>
 					<c:forEach items="${board}" var="list">
 					<tr><td>${list.r_num}</td><td>${list.r_status}</td><td>${list.r_reason}</td><td>${list.r_file1}</td>
-					<td>${list.b_num}</td>
+					<td><a href="detail?b_num=${list.b_num}">${list.b_num}</a></td>
 					<td><a onclick="report_manage_update(${list.r_num});">처리완료</a></td>
 					</tr>
 					</c:forEach>

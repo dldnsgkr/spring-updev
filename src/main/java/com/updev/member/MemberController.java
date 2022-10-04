@@ -83,29 +83,32 @@ public class MemberController {
 	      String m_pw = request.getParameter("m_pw");
 	      ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 	      Signup d = ss.loginselect(m_id, m_pw);
-	      String grade = d.getM_grade();
-	      if(d!=null && grade.equals("회원") || grade.equals("관리자")) {
-	         HttpSession session = request.getSession();
-	         session.setAttribute("member", d);
-	         session.setAttribute("id", m_id);
-	         session.setAttribute("loginState", true);
-	         session.setAttribute("member_nick", d.getM_nick());
-	         session.setMaxInactiveInterval(300);
-	         mav.setViewName("redirect:index");
-	      } else if(grade.equals("강퇴") || grade.equals("이용정지")){
-	    		  rattr.addAttribute("gradecheck", "badgrade");
-		    	  mav.setViewName("redirect:index");
-	    	  } else {
+	      
+	      if(d==null) {
 	    	  rattr.addAttribute("check", "nodata");
 	    	  mav.setViewName("redirect:login");
+	      } else {
+	    	  String grade = d.getM_grade();
+	    	 
+	    	  if(grade.equals("회원") || grade.equals("관리자")) { // 2.
+	    		  HttpSession session = request.getSession();
+	 	         session.setAttribute("member", d);
+	 	         session.setAttribute("id", m_id);
+	 	         session.setAttribute("loginState", true);
+	 	         session.setAttribute("member_nick", d.getM_nick());
+	 	         session.setMaxInactiveInterval(300);
+	 	         mav.setViewName("redirect:index");
+	    	  }else {
+	    		  rattr.addAttribute("gradecheck", "badgrade");
+		    	  mav.setViewName("redirect:index");
+	    	  }
+	    	  
 	      }
-	     
 	      return mav;
 	   }
 	   
 	   @RequestMapping(value="/logout")
 	   public String ko7(HttpServletRequest request) {
-		  // System.out.println(111111+"나야나 로그아웃");
 		   String q = "unknown";
 	         HttpSession session=request.getSession();
 	         
@@ -122,7 +125,6 @@ public class MemberController {
 	         session.removeAttribute("member_nick");
 	         session.setAttribute("loginState",false);
 	         session.setAttribute("member_nick", q);
-	         
 	         
 	      return "redirect:index";
 	   }

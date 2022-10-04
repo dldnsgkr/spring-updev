@@ -113,3 +113,25 @@ function admin_myscrap_cancel(b_num){
 		return false;
 	}
 }
+function admin_mylist_update(b_num){
+	modal.style.display = "block";
+	/*var result = confirm("정말 취소하시겠습니까?");
+	if(result){
+		var sam ={"b_num":b_num};
+		var sam =JSON.stringify(sam);
+		$.ajax({
+			type:"post",
+			async:false,
+			url:"admin_mylist_update",
+			data:{jsoninfo:sam},
+			success:function(data,textStatus){
+				location.href="admin_mylist";
+			},
+			error:function(data,textStatus){
+				alert("전송실패!!");
+			}
+		});
+	}else{
+		return false;
+	}*/
+}
