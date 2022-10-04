@@ -189,6 +189,7 @@ public class BoardController {
 		    		
 	        	 session.setAttribute("b_num", b_num);
 	        	 Readcnt(b_num);
+<<<<<<< HEAD
 	        	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	        	 
 	        	 Board member = sb.boarddetail(b_num);
@@ -209,8 +210,15 @@ public class BoardController {
 	        	 mo.addAttribute("page2",cri);
 	        	 mo.addAttribute("repage",sb.replypage(dto));
 	        	
+=======
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 Board member = ss.boarddetail(b_num);
+	        	 Good good = ss.howgood(b_num,nick);
+	        	 Scrap scrap = ss.howscrap(b_num,nick);
+>>>>>>> upstream/main
 	        	 mo.addAttribute("list",member);
 	        	 mo.addAttribute("llist",good);
+	        	 mo.addAttribute("slist",scrap);
 	        	 return "detailboard";
 	         }
 	         
@@ -370,8 +378,19 @@ public class BoardController {
 	    		
 	    		return "qnapage";
 	    	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/main
 	     	
+	     	//좋아요 증가
+	     	public void likecntup(int num)
+	     	{
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.likecntup(num);
+	     	}
+	     	
+	     	//좋아요 
 	     	@RequestMapping(value = "/goodup",method = RequestMethod.POST)
 	     	public String ko20(HttpServletRequest request,RedirectAttributes rattr)
 	     	{
@@ -384,10 +403,11 @@ public class BoardController {
 	    		JSONObject jobj;
 	    		try {
 					jobj = (JSONObject)jsonparse.parse(jo);
-				String b_num=(String) jobj.get("b_num");
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
 				String m_nick=(String) jobj.get("m_nick");
 				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 				sb.blikeup(b_num,m_nick,chk);
+				likecntup(b_num);
 	    		} catch (org.json.simple.parser.ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -401,22 +421,91 @@ public class BoardController {
 				}
 	     	}
 	     	
+	     	//좋아요 감소
+	     	public void likecntdown(int num)
+	     	{
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.likecntdown(num);
+	     	}
+	     	
+	     	//좋아요 취소
 	     	@RequestMapping(value = "/gooddown",method = RequestMethod.POST)
 	     	public String ko21(HttpServletRequest request,RedirectAttributes rattr)
 	     	{
 	     		HttpSession session=request.getSession();
 				if((Boolean) session.getAttribute("loginState"))
 				{
-	     		int chk = 0;
 	     		String jo=request.getParameter("jsoninfo");		
 	    		JSONParser jsonparse = new JSONParser();
 	    		JSONObject jobj;
 	    		try {
 					jobj = (JSONObject)jsonparse.parse(jo);
-				String b_num=(String) jobj.get("b_num");
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
 				String m_nick=(String) jobj.get("m_nick");
 				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 				sb.blikedown(b_num,m_nick);
+				likecntdown(b_num);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	//스크랩
+	     	@RequestMapping(value = "/scrap",method = RequestMethod.POST)
+	     	public String ko23(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		int chk = 1;
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.scrap(b_num,m_nick,chk);
+				likecntup(b_num);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	//스크랩 취소
+	     	@RequestMapping(value = "/scrapcancel",method = RequestMethod.POST)
+	     	public String ko22(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.scrapcancel(b_num,m_nick);
+				likecntup(b_num);
 	    		} catch (org.json.simple.parser.ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -440,8 +529,10 @@ public class BoardController {
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	        	 Board member = ss.boarddetail(b_num);
 	        	 Good good = ss.howgood(b_num,nick);
+	        	 Scrap scrap = ss.howscrap(b_num, nick);
 	        	 mo.addAttribute("list",member);
 	        	 mo.addAttribute("llist",good);
+<<<<<<< HEAD
 	        	 
 	        	 ModelAndView mav = new ModelAndView();
 	        	 
@@ -453,12 +544,20 @@ public class BoardController {
 	             }
 	             
 	             return mav;
+=======
+	        	 mo.addAttribute("slist",scrap);
+	        	 return "detailboard";
+>>>>>>> upstream/main
 	         }
 	         
 	     	@RequestMapping(value = "/hh")
 	     	public String hh() {
 	     		return "search";
 	     	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/main
 	     	
 	     	@RequestMapping(value="/poppage")
 	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {

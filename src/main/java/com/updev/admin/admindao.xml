@@ -4,26 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.updev.admin.ServiceAdmin">
 
-	<select id="infoupdate" resultType="com.updev.member.Signup">
+	<select id="admin_infoupdate_select" resultType="com.updev.member.Signup">
 		SELECT * FROM member where m_id = #{param1}
 	</select>
 	
-	<update id="info_update">
+	<update id="admin_infoupdate_update">
 		update member set m_pw = #{param1}, m_nick = #{param2}, m_name = #{param3}, 
 		m_mail = #{param4}, m_tel = #{param5}, m_field = #{param6} where m_id = #{param7}
 	</update>
 
-	<select id="mywrite" resultType="com.updev.board.Board">
+	<select id="admin_mywrite_select" resultType="com.updev.board.Board">
 		select * from board where m_nick = #{param1}
 	</select>
 
-	<select id="mylike" resultType="com.updev.board.Board">
+	<select id="admin_mylike_select" resultType="com.updev.board.Board">
 		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
 		b.b_likecnt,b.b_readcnt,b.b_tag,b.b_file1,b.b_file2,b.b_report
 		from board b, good g
 		where b.b_num=g.b_num and g.m_nick = #{param1} and g.like_chk = 1
 	</select>
-	<select id="myscrap" resultType="com.updev.board.Board">
+	<select id="admin_myscrap_select" resultType="com.updev.board.Board">
 		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
 		b.b_likecnt,b.b_readcnt,b.b_tag,b.b_file1,b.b_file2,b.b_report
 		from board b, scrap s
@@ -33,8 +33,13 @@
 	<delete id="mylist_delete">
 		delete FROM board where b_num = #{param1}
 	</delete>
-	
-	<select id="noticeboardmanage" resultType="com.updev.board.Board">
+	<select id="board_manage_select" resultType="com.updev.board.Board">
 		select * from board where b_kind = #{param1}
+	</select>
+	<select id="report_manage_select" resultType="com.updev.admin.Report">
+		select * from report
+	</select>
+	<select id="member_manage_select" resultType="com.updev.member.Signup">
+		select * from member
 	</select>
 </mapper>

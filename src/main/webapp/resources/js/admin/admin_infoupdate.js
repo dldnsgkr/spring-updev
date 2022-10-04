@@ -1,4 +1,10 @@
-function info_update() {
+var referrer = document.referrer;
+
+window.onhashchange = function() {
+location.href=referrer;
+}
+
+function admin_infoupdate_update() {
 	    var form = document.ufrm;
 	    
 	    var pw_validate = /^[A-Z0-9]{4,12}$/;
@@ -20,7 +26,6 @@ function info_update() {
 		var tel =$("#m_tel").val();
 		var field =$("#m_field").val();
 		
-		console.log(field);
 		if (!form.m_pw.value) {
 	        alert("비밀번호를 입력해 주십시오.");
 	        form.m_pw.focus();
@@ -75,30 +80,25 @@ function info_update() {
 			alert("전화번호는 11글자로 공백과 -없이 입력해주세요!");
 			return false;
 		}
-	    console.log(pw,nick,name,mail,tel,field);
 	    var result = confirm("정말 수정하시겠습니까?");
-		console.log(result);
 		if(result){
-			
 			var sam ={"pw":pw,"nick":nick,"name":name,"mail":mail,"tel":tel,"field":field};
-			console.log(sam);
 			var sam =JSON.stringify(sam);	
 			$.ajax({
 				type:"post",
 				async:false,
-				url:"info_update",
+				url:"admin_infoupdate_update",
 				
 				data:{jsoninfo:sam},
 				success:function(data,textStatus){
 					alert("정보수정이 완료되었습니다.");
-					location.href="infoupdate";
+					location.href="admin_infoupdate";
 				},
 				error:function(data,textStatus){
 					alert("에러 : 홈페이지 관리자에게 문의");
 				}
 			});
 		}else{
-			
 			return false;
 		}    
 }

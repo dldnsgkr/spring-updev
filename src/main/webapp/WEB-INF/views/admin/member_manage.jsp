@@ -39,24 +39,36 @@ input[type="button"]{
 	height: 50px;
 }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="./resources/js/admin/mylist.js"></script>
 </head>
 <body>
 	<div class="infoupdate">
 		<div class="title">
 			<span></span>
-			<p>마이 글</p>
+			<p>회원관리</p>
 		</div>
 		<div class="content">
-			<ul>
-				<li onclick="mywrite();">내가 쓴 글</li>
-				<li onclick="mylike();">내가 좋아요 한 글</li>
-				<li onclick="myscrap();">내가 스크랩 한 글</li>
-			</ul>
+			<div id="out">
+				<table border="1">
+					<tr><td>번호</td><td>아이디</td><td>닉네임</td><td>이름</td>
+					<td>메일</td><td>전화번호</td><td>분야</td><td>가입일자</td><td>등급</td>
+					<td>삭제</td><td>수정</td>
+					</tr>
+					
+					<c:forEach items="${board}" var="list">
+					<tr><td>${list.m_num}</td><td>${list.m_id}</td><td>${list.m_nick}</td>
+					<td>${list.m_name}</td><td>${list.m_mail}</td><td>${list.m_tel}</td><td>${list.m_field}</td>
+					<td>${list.m_jdate}</td><td>${list.m_grade}</td><td>삭제</td><td>수정</td>
+					</tr>
+					</c:forEach>
+				
+				</table>
 			
-			<div id="out"></div>
+			</div>
 		</div>
 	</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 
+<script type="text/javascript" src="./resources/js/admin/admin_mylist.js"></script>
+ -->
 </body>
 </html>
