@@ -20,3 +20,21 @@
     width: 900px;
 }
 
+.infoupdate{
+float: left;
+}
+label{
+	display: block;
+}
+.profile{
+	width: 250px;
+    float: left;
+    height: 300px;
+    margin-right: 50px;
+}
+.info{
+    float: left;
+}
+input[type="button"]{
+	display: block;
+}
