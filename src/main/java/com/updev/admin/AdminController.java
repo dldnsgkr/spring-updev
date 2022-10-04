@@ -360,104 +360,93 @@ public class AdminController {
 		System.out.println(jsoninfo);
 		return jsoninfo;
 	}
-	
-	/*		
-	// 마이페이지 > 마이 글 > 삭제
-	@RequestMapping(value = "/mylist_delete", method = RequestMethod.POST)
-	public String mylist_delete(HttpServletRequest request, Model model) throws Exception{
-		
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		
+	// 마이페이지 > 마이 글 > 내가 쓴 글 > 삭제
+	@RequestMapping(value = "/admin_mylist_delete", method = RequestMethod.POST)
+	public String admin_mylist_delete(HttpServletRequest request, Model model) throws Exception{
 		String jo = request.getParameter("jsoninfo");		
 		JSONParser jsonparse = new JSONParser();
-		
 		try {
 			JSONObject jobj = (JSONObject)jsonparse.parse(jo);
-			
-			System.out.println(jobj + "나는 jobj");
-			
 			int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
-			
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			sa.admin_mylist_delete(b_num);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return "redirect:admin_mylist";
+	}
+	// 마이페이지 > 마이 글 > 내가 좋아요 한 글 > 좋아요 취소
+	@RequestMapping(value = "/admin_mylike_cancel", method = RequestMethod.POST)
+	public String admin_mylike_cancel(HttpServletRequest request, Model model) throws Exception{
+		HttpSession session = request.getSession();
+		String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
+		String jo = request.getParameter("jsoninfo");		
+		JSONParser jsonparse = new JSONParser();
+		try {
+			JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+			System.out.println(jobj + "나는 jobj");
+			int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
 			System.out.println(b_num + "나는 b_num");
 			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
-			
-			sa.mylist_delete(b_num);
+			sa.admin_mylike_cancel(b_num,admin_nick);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:mylist";
+		return "redirect:admin_mylist";
 	}
-	
-	
-	
-	
-		// 공지게시판 조회
-		@SuppressWarnings("unchecked")
-		@ResponseBody
-		@RequestMapping(value="/noticeboardmanage", method = RequestMethod.POST,
-		produces = "application/text; charset=UTF-8")//불러오기
-		public String noticeboardmanage(HttpServletRequest request,HttpServletResponse response,Model mo) throws IOException{
-			
-			
-			request.setCharacterEncoding("UTF-8");
-			
-//			HttpSession session = request.getSession();
-//			
-//			String m_nick = (String)session.getAttribute("m_nick");
-//			
-//			System.out.println(m_nick);
-
-			String notice = "공지";
-			JSONArray array = new JSONArray();
-			JSONObject total = new JSONObject();
-			ServiceAdmin ss= sqlsession.getMapper(ServiceAdmin.class);
-			ArrayList<Board> list=ss.noticeboardmanage(notice);
-			
-			for(int i=0;i<list.size();i++) {
-				JSONObject member = new JSONObject();
-				int b_num =list.get(i).getB_num();
-				String b_cate =list.get(i).getB_cate();
-				String b_kind =list.get(i).getB_kind();
-				String b_title =list.get(i).getB_title();
-				String nick =list.get(i).getM_nick();
-				String b_wdate =list.get(i).getB_wdate();
-				String b_content =list.get(i).getB_content();
-				int b_likecnt =list.get(i).getB_likecnt();
-				int b_readcnt =list.get(i).getB_readcnt();
-				int b_group =list.get(i).getB_group();
-				int b_step =list.get(i).getB_step();
-				int b_indent =list.get(i).getB_indent();
-				String b_tag =list.get(i).getB_tag();
-				String b_file1 =list.get(i).getB_file1();
-				String b_file2 =list.get(i).getB_file2();
-				int b_report =list.get(i).getB_report();
-				member.put("b_num", b_num);
-				member.put("b_cate", b_cate);
-				member.put("b_kind", b_kind);
-				member.put("b_title", b_title);
-				member.put("m_nick", nick);
-				member.put("b_wdate", b_wdate);
-				member.put("b_content", b_content);
-				member.put("b_likecnt", b_likecnt);
-				member.put("b_readcnt", b_readcnt);
-				member.put("b_group", b_group);
-				member.put("b_step", b_step);
-				member.put("b_indent", b_indent);
-				member.put("b_tag", b_tag);
-				member.put("b_file1", b_file1);
-				member.put("b_file2", b_file2);
-				member.put("b_report", b_report);
-				array.add(member);				
-			}
-			total.put("members", array);
-			String jsoninfo = total.toJSONString();
-			System.out.println(jsoninfo);
-			return jsoninfo;
-			
+	// 마이페이지 > 마이 글 > 내가 스크랩 한 글 > 스크랩 취소
+	@RequestMapping(value = "/admin_myscrap_cancel", method = RequestMethod.POST)
+	public String admin_myscrap_cancel(HttpServletRequest request, Model model) throws Exception{
+		HttpSession session = request.getSession();
+		String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
+		String jo = request.getParameter("jsoninfo");		
+		JSONParser jsonparse = new JSONParser();
+		try {
+			JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+			System.out.println(jobj + "나는 jobj");
+			int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+			System.out.println(b_num + "나는 b_num");
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			sa.admin_myscrap_cancel(b_num,admin_nick);
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-	 */
+		return "redirect:admin_mylist";
+	}
+	// 마이페이지 > 신고관리> 처리완료 변경
+	@RequestMapping(value = "/report_manage_update", method = RequestMethod.POST)
+	public String report_manage_update(HttpServletRequest request, Model model) throws Exception{
+		String r_status = "처리완료";
+		String jo = request.getParameter("jsoninfo");		
+		JSONParser jsonparse = new JSONParser();
+		try {
+			JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+			System.out.println(jobj + "나는 jobj");
+			int r_num=Integer.parseInt(String.valueOf(jobj.get("r_num")));
+			System.out.println(r_num + "나는 b_num");
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			sa.report_manage_update(r_status,r_num);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return "redirect:report_manage";
+	}
+	// 마이페이지 > 회원관리 > 삭제
+		@RequestMapping(value = "/member_manage_delete", method = RequestMethod.POST)
+		public String member_manage_delete(HttpServletRequest request, Model model) throws Exception{
+			String jo = request.getParameter("jsoninfo");		
+			JSONParser jsonparse = new JSONParser();
+			try {
+				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+				int m_num=Integer.parseInt(String.valueOf(jobj.get("m_num")));
+				ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+				sa.member_manage_delete(m_num);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			return "redirect:admin_mylist";
+		}
 	// test 페이지
 	@RequestMapping(value = "/test")
 	public String test(){

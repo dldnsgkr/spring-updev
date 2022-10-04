@@ -44,7 +44,7 @@ input[type="button"]{
 	<div class="infoupdate">
 		<div class="title">
 			<span></span>
-			<p>공지게시판</p>
+			<p>지식인게시판</p>
 		</div>
 		<div class="content">
 			<div id="out">
@@ -58,18 +58,16 @@ input[type="button"]{
 					<tr><td>${list.b_num}</td><td>${list.b_cate}</td><td>${list.b_kind}</td><td>${list.b_title}</td>
 					<td>${list.b_wdate}</td><td>${list.b_content}</td><td>${list.b_likecnt}</td><td>${list.b_readcnt}</td>
 					<td>${list.b_tag}</td><td>${list.b_file1}</td>
-					<td>${list.b_file2}</td><td>${list.b_report}</td><td>삭제</td><td>수정</td>
+					<td>${list.b_file2}</td><td>${list.b_report}</td>
+					<td><a onclick="admin_mylist_delete(${list.b_num});">삭제</a></td>
+					<td>수정</td>
 					</tr>
 					</c:forEach>
-				
 				</table>
-			
 			</div>
 		</div>
 	</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- 
 <script type="text/javascript" src="./resources/js/admin/admin_mylist.js"></script>
- -->
 </body>
 </html>
