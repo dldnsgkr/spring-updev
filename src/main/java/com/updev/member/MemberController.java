@@ -105,14 +105,25 @@ public class MemberController {
 	   
 	   @RequestMapping(value="/logout")
 	   public String ko7(HttpServletRequest request) {
+		  // System.out.println(111111+"나야나 로그아웃");
 		   String q = "unknown";
 	         HttpSession session=request.getSession();
+	         
+	         System.out.println(q);
+	         System.out.println(session.getAttribute("member"));
+	         System.out.println(session.getAttribute("loginState"));
+	         System.out.println(session.getAttribute("id"));
+	         System.out.println(session.getAttribute("member_nick"));
+	         System.out.println(session.getAttribute("member"));
+	         System.out.println(session.getAttribute("member"));
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
 	         session.removeAttribute("id");
 	         session.removeAttribute("member_nick");
 	         session.setAttribute("loginState",false);
 	         session.setAttribute("member_nick", q);
+	         
+	         
 	      return "redirect:index";
 	   }
 	   
@@ -182,7 +193,6 @@ public class MemberController {
 		   String jo=request.getParameter("jsoninfo");
 		   JSONParser jsonparse = new JSONParser();
 		   String nickmsg = null;
-		   String id =null;
 		   try {
 				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
 				String nick=(String) jobj.get("nick");
@@ -192,7 +202,38 @@ public class MemberController {
 				int s = sa.nicktest(nick);
 				
 				if (s!=0) {
-					nickmsg="사용중인 닉네임입니다. 다시 입력 해주세요.";
+					nickmsg=" *사용중인 닉네임입니다. 다시 입력 해주세요.";
+				}
+				
+				System.out.println(nickmsg);
+				model.addAttribute("nickmsg",nickmsg);
+				
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			return nickmsg;
+	   }
+	   
+	 //테스트
+	   @RequestMapping(value="/nicktest2", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	   @ResponseBody
+	   public String nicktest2(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
+		   System.out.println(11111);
+		   request.setCharacterEncoding("utf-8");
+		   String jo=request.getParameter("jsoninfo");
+		   JSONParser jsonparse = new JSONParser();
+		   String nickmsg = null;
+		   try {
+				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+				String nick=(String) jobj.get("up_nick");
+				
+				ServiceMember sa = sqlsession.getMapper(ServiceMember.class);
+				
+				int s = sa.nicktest2(nick);
+				
+				if (s!=0) {
+					nickmsg=" *사용중인 닉네임입니다. 다시 입력 해주세요.";
 				}
 				
 				System.out.println(nickmsg);
@@ -378,9 +419,9 @@ public class MemberController {
 			   return "memberinfoupdate";
 		   }
 	   
-	 	//프로피 수정 ajax
+	 	//프로필 수정 ajax
 	 	@ResponseBody
-		@RequestMapping( value = "/myinfoupdate", method = RequestMethod.POST)
+		@RequestMapping( value = "/myinfoupdate", method = RequestMethod.GET)
 		public String jjoinsave(HttpServletRequest request, RedirectAttributes rattr) throws IOException
 		{
 			String jo=request.getParameter("jsoninfo");
@@ -388,15 +429,19 @@ public class MemberController {
 			JSONObject jobj;
 			try {
 				jobj = (JSONObject)jsonparse.parse(jo);
-				String up_nick=(String) jobj.get("up_nick");
+				
+				System.out.println(jobj);
 				String m_nick=(String) jobj.get("m_nick");
 				String m_id=(String) jobj.get("m_id");
+				String up_nick=(String) jobj.get("up_nick");
 				String m_pw=(String) jobj.get("m_pw");
 				String m_name=(String) jobj.get("m_name");
 				String m_mail=(String) jobj.get("m_mail");
 				String m_tel=(String) jobj.get("m_tel");
 				String m_field=(String) jobj.get("m_field");
+				System.out.println(m_field);
 				ServiceMember ss=sqlsession.getMapper(ServiceMember.class);
+				
 				ss.profileupdate(m_nick,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
 				ss.profileboardupdate(m_nick,up_nick);
 				ss.balupdate(m_nick,up_nick);
@@ -409,7 +454,7 @@ public class MemberController {
 				e.printStackTrace();
 			}
 					
-			return "redirect:mywrite";
+			return "index";
 		}
 	   	
 	 	//내가 쓴글 ajax
