@@ -14,6 +14,9 @@
 			<div class="board_notic">
 				여기는 UPDEV 홈페이지에 문의하는 곳입니다.
 			</div>
+			<div class="board_write">
+				<button class="button" type="button" name="board_write" onclick="location.href = 'write' ">글쓰기</button>
+			</div>
 			<table border="1">
 				<thead id="thead">
 					<tr>

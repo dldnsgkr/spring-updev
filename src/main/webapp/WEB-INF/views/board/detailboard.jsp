@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<!-- <link rel="stylesheet" href="resources/css/detailboard.css" type="text/css"> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" charset="UTF-8">
 /*
@@ -142,20 +142,33 @@ $(function(){
 	}
 });
 </script>
+
+
 </head>
 <body>
-<h1>${list.b_kind }</h1>
-<h4>${list.b_title }</h4>
-${list.m_nick }&emsp;${list.b_wdate }
+<div class="wrap">
 <table>
-	<tr>
-		<td>${list.b_content }</td>
-	</tr>
+<thead id="thead">
+<tr>
+<th>${list.b_kind }</th>
+</tr>
+<tr>
+<th>${list.m_nick }</th><th>${list.b_wdate }</th>
+</tr>
+<tr>
+<th>${list.b_title }</th>
+</tr>
+<tr>
+<td>${list.b_content }</td>
+</tr>
 	
 	<tr>
 	<td><input type="button" value="신고" onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'"></td>
 	</tr>
+</thead>
 </table>
+
+
 <form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
@@ -163,6 +176,7 @@ ${list.m_nick }&emsp;${list.b_wdate }
 	<button type="button" id="ttt">좋아요</button>
 	<!--  <input type="button" onclick="ttt();" value="좋아요">-->
 	</form>&emsp;
+	
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
@@ -170,5 +184,7 @@ ${list.m_nick }&emsp;${list.b_wdate }
 	<button type="button" id="sss">스크랩</button>
 	<!--  <input type="button" onclick="ttt();" value="좋아요">-->
 	</form>&emsp;
+
+</div>
 </body>
 </html>
