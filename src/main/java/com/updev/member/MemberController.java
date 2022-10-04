@@ -83,7 +83,8 @@ public class MemberController {
 	      String m_pw = request.getParameter("m_pw");
 	      ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 	      Signup d = ss.loginselect(m_id, m_pw);
-	      if(d!=null) {
+	      String grade = d.getM_grade();
+	      if(d!=null && grade.equals("회원") || grade.equals("관리자")) {
 	         HttpSession session = request.getSession();
 	         session.setAttribute("member", d);
 	         session.setAttribute("id", m_id);
@@ -91,11 +92,14 @@ public class MemberController {
 	         session.setAttribute("member_nick", d.getM_nick());
 	         session.setMaxInactiveInterval(300);
 	         mav.setViewName("redirect:index");
+	      } else if(grade.equals("강퇴") || grade.equals("이용정지")){
+	    		  rattr.addAttribute("gradecheck", "badgrade");
+		    	  mav.setViewName("redirect:index");
+	    	  } else {
+	    	  rattr.addAttribute("check", "nodata");
+	    	  mav.setViewName("redirect:login");
 	      }
-	      else {
-	         rattr.addAttribute("check", "nodata");
-	         mav.setViewName("redirect:login");
-	      }
+	     
 	      return mav;
 	   }
 	   

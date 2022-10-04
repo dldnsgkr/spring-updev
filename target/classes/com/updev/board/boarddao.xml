@@ -77,6 +77,27 @@
 		update board set b_report=b_report+1 where b_num=#{param1}
 	</update>
 	
+	<!-- 댓글 -->
+	<insert id="replysave">
+		insert into reply(re_num,b_num,m_nick,re_content,re_group,re_step,re_indent) values(re_seq.nextval,#{param1},#{param2},#{param3},re_seq.currval,0,0)
+	</insert>
+	
+	<select id="replyview" resultType="com.updev.board.Reply">
+		select * from reply where b_num = #{b_num}
+	</select>
+	
+	<select id="replytotal" resultType="int">
+		select count(*) from reply where b_num = #{param1}
+	</select>
+	
+	<select id="replypage" resultType="com.updev.board.Reply">
+		select * from (
+		select rownum rn,A.* from(
+		select * from reply where b_num = ${b_num}
+		order by re_group DESC,re_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
 	<!-- 좋아요 -->
 	<insert id="blikeup">
 		insert into good(g_num,b_num,m_nick,like_chk) values(g_seq.nextval,#{param1},#{param2},#{param3})

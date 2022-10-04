@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.updev.member.ServiceMember;
@@ -174,27 +175,71 @@ public class BoardController {
 	     		ss.readcnt(num);
 	     	}
 	         
-	       //게시물 detail
+	         //게시물 detail
 	         @RequestMapping(value = "/detail")
-	         public String ko17(HttpServletRequest request,Model mo)
+	         public String ko17(HttpServletRequest request,Model mo, PageDTO dto, Criteria cri)
 	         {
 		     	 HttpSession session = request.getSession();
 	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 String nowPage=request.getParameter("nowPage");
+		    	 String cntPerPage=request.getParameter("cntPerPage");
+		    		
 	        	 session.setAttribute("b_num", b_num);
 	        	 Readcnt(b_num);
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 Board member = ss.boarddetail(b_num);
-	        	 Good good = ss.howgood(b_num,nick);
-	        	 Scrap scrap = ss.howscrap(b_num,nick);
+	        	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	        	 
+	        	 Board member = sb.boarddetail(b_num);
+	        	 Good good = sb.howgood(b_num,nick);
+	        	 int total = sb.replytotal(b_num);
+	        	 Scrap scrap = sb.howscrap(b_num,nick);
+		    		
+	        	 if(nowPage == null && cntPerPage == null) {
+		    		nowPage="1";
+		    		cntPerPage="10";
+	        	 } else if(nowPage==null) {
+		    		nowPage="1";
+	        	 } else if(cntPerPage==null) {
+		    		cntPerPage="10";
+	        	 }
+		    		
+	        	 dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),b_num);
+	        	 mo.addAttribute("page1",dto);
+	        	 mo.addAttribute("page2",cri);
+	        	 mo.addAttribute("repage",sb.replypage(dto));
 	        	 mo.addAttribute("list",member);
 	        	 mo.addAttribute("llist",good);
 	        	 mo.addAttribute("slist",scrap);
 	        	 return "detailboard";
 	         }
 	         
+	         //댓글
+	         @RequestMapping(value = "/replysave")
+	         public ModelAndView reply(HttpServletRequest request,Model mo) {
+	        	 
+	        	 int b_num=Integer.parseInt(request.getParameter("b_num"));
+	        	 String m_nick=request.getParameter("m_nick");
+	        	 String re_content=request.getParameter("re_content");
+	        	 
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 
+	        	 ss.replysave(b_num, m_nick, re_content);
+	        	 
+	             ModelAndView mav = new ModelAndView();
+	             
+	             if(b_num == 0) {
+	                 mav.setViewName("redirect:index");
+	             } else {
+	                 mav.addObject("b_num", b_num);
+	                 mav.setViewName("redirect:detail");
+	             }
+	             
+	             return mav;
+	        	 
+	         }
 	         
-	         //페이징
+	         
+	        //페이징
 	     	@RequestMapping(value="/noticepage")
 	    	public String page1(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	    		String nowPage=request.getParameter("nowPage");
@@ -463,7 +508,7 @@ public class BoardController {
 	     	
 	     	//게시물 detail
 	         @RequestMapping(value = "/detailajax")
-	         public String ko21(HttpServletRequest request,Model mo)
+	         public ModelAndView ko21(HttpServletRequest request,Model mo)
 	         {
 		     	 HttpSession session = request.getSession();
 	        	 String nick = (String)session.getAttribute("member_nick");
@@ -476,7 +521,17 @@ public class BoardController {
 	        	 mo.addAttribute("list",member);
 	        	 mo.addAttribute("llist",good);
 	        	 mo.addAttribute("slist",scrap);
-	        	 return "detailboard";
+	        	 ModelAndView mav = new ModelAndView();
+	        	 
+	        	 if(b_num == 0) {
+	                 mav.setViewName("redirect:index");
+	             } else {
+	                 mav.addObject("b_num", b_num);
+	                 mav.setViewName("redirect:detail");
+	             }
+	             
+	             return mav;
+	        	 
 	         }
 	         
 	         @RequestMapping(value = "/alarm")
@@ -489,8 +544,6 @@ public class BoardController {
 	     	public String hh() {
 	     		return "search";
 	     	}
-
-	     	
 	     	@RequestMapping(value="/poppage")
 	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	     		String nowPage=request.getParameter("nowPage");
@@ -558,6 +611,7 @@ public class BoardController {
 	     		
 	     		return "search";
 	     	}
+	     	
 	     	
 	
 }
