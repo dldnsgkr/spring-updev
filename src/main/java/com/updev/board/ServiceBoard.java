@@ -90,7 +90,16 @@ public interface ServiceBoard {
 	public void scrapcancel(int b_num, String m_nick);
 
 	public Scrap howscrap(int b_num, String nick);
-
-
 	
+	public ArrayList<Board> popmain();
+	
+	public ArrayList<Board> sharemain();
+	
+	public ArrayList<Board> questionmain();
+	
+	public ArrayList<Board> worrymain();
+	
+	public ArrayList<Board> noticemain();
+	
+	public ArrayList<Board> qnamain();
 }

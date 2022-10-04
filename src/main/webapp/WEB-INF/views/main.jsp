@@ -64,33 +64,86 @@
 			<div class="board">
 				<h3>인기게시글</h3>
 				<a href="poppage">더보기</a>
-	
+				<table>
+				<c:forEach items="${popmpage}" var="a" begin="0" end="7">
+				<tr>
+					<td><input type="hidden" value="${a.b_num}"></td>
+					<td>${a.b_kind}</td>
+					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+				</tr>
+				</c:forEach>
+				</table>
 			</div>
 			
 			<div class="board">
 				<h3>정보공유</h3>
+				<table>
 				<a href="sharepage">더보기</a>
+				<c:forEach items="${sharempage}" var="a" begin="0" end="7">
+				<tr>
+					<td><input type="hidden" value="${a.b_num}"></td>
+					<td>정보</td>
+					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+				</tr>
+				</c:forEach>
+				</table>
 			</div>
 
 			
 			<div class="board">
 				<h3>지식인</h3>
 				<a href="questionpage">더보기</a>
+				<table>
+				<c:forEach items="${questionmpage}" var="a" begin="0" end="7">
+				<tr>
+					<td><input type="hidden" value="${a.b_num}"></td>
+					<td>${a.b_kind}</td>
+					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+				</tr>
+				</c:forEach>
+				</table>
 			</div>
 			
 			<div class="board">
 				<h3>고민상담소</h3>
 				<a href="worrypage">더보기</a>
+				<table>
+				<c:forEach items="${worrympage}" var="a" begin="0" end="7">
+				<tr>
+					<td><input type="hidden" value="${a.b_num}"></td>
+					<td>${a.b_kind}</td>
+					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+				</tr>
+				</c:forEach>
+				</table>
 			</div>
 
 			<div class="board">
 				<h3>공지</h3>
 				<a href="noticepage">더보기</a>
+				<table>
+				<c:forEach items="${noticempage}" var="a" begin="0" end="7">
+				<tr>
+					<td><input type="hidden" value="${a.b_num}"></td>
+					<td>${a.b_kind}</td>
+					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+				</tr>
+				</c:forEach>
+				</table>
 			</div>
 	
 			<div class="board">
 				<h3>Q&A</h3>
 				<a href="qnapage">더보기</a>
+				<table>
+				<c:forEach items="${qnampage}" var="a" begin="0" end="7">
+				<tr>
+					<td><input type="hidden" value="${a.b_num}"></td>
+					<td>${a.b_kind}</td>
+					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+				</tr>
+				</c:forEach>
+				</table>			
 			</div>
 			
 			</div>				
