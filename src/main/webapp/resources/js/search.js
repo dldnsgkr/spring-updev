@@ -8,7 +8,7 @@ function SearchChk() {
         return;
     }
 
-    Sform.action = "search";
+    Sform.action = "keyword";
     Sform.submit();
     }
 

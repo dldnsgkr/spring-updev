@@ -51,4 +51,8 @@ public interface ServiceMember {
 
 	public ArrayList<Board> ajaxmywrite(String nick);
 
+	public ArrayList<Board> ajaxmygood(String nick);
+
+	public ArrayList<Board> ajaxmyscrap(String nick);
+
 }

@@ -35,7 +35,7 @@
 			<div id="pw_find">
 				<form name="update_pw" method="POST">
 					<h2>새로운 비밀번호를 설정해 주세요.</h2>
-					<input class="input" type="text" id="m_id" name="m_id" value="" placeholder="아이디">
+					<input class="input" type="text" id="m_id" name="m_id" value="" placeholder="기존 아이디">
 					<input class="input" type="text" id="m_pw" name="m_pw" value="" placeholder="기존 비밀번호">
 					<input class="input" type="text" id="m_npw" name="m_npw" value="" placeholder="새 비밀번호">
 					<input class="input" type="text" id="m_npwck" name="m_npwck" value="" placeholder="새 비밀번호 확인">

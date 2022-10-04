@@ -8,13 +8,13 @@ import com.updev.member.Signup;
 public interface ServiceBoard {
 
 	public void writesave(String b_cate, String b_kind, String b_title, String m_nick, String b_content, String b_file1,
-			String b_file2, String b_tag);
+			String b_file2);
 
 	public ArrayList<Board> mewrite(String a);
 
 	public Signup myinfo(String m_nick);
 
-	public void boardupdate(int b_num, String b_cate, String b_kind, String b_title, String m_nick, String b_content,  String b_tag, String b_file1, String b_file2);
+	public void boardupdate(int b_num, String b_cate, String b_kind, String b_title, String m_nick, String b_content, String b_file1, String b_file2);
 
 	public Board updatecheck(int b_num);
 
@@ -44,6 +44,9 @@ public interface ServiceBoard {
 	
 	public void reportboardupdate(int b_num);
 	
+	public void replysave(int b_num, String m_nick, String re_content);
+	
+	public Reply replyview(int b_num);
 	
 	//∆‰¿Ã¬°
 	public int sharetotal();
@@ -66,21 +69,28 @@ public interface ServiceBoard {
 	
 	public int searchcnt(String keyword);
 	public ArrayList<Board> tsearchpage(PageDTO dto);
-
+	
+	public int replytotal(int b_num);
+	public ArrayList<Reply> replypage(PageDTO dto);
 
 	public void readcnt(int num);
 
 	public Good howgood(int b_num, String nick);
 
-	public void blikeup(String b_num, String m_nick, int chk);
+	public void blikeup(int b_num, String m_nick, int chk);
 
-	public void blikedown(String b_num, String m_nick);
+	public void blikedown(int b_num, String m_nick);
+
+	public void likecntup(int num);
+
+	public void likecntdown(int num);
+
+	public void scrap(int b_num, String m_nick, int chk);
+
+	public void scrapcancel(int b_num, String m_nick);
+
+	public Scrap howscrap(int b_num, String nick);
+
 
 	
 }
-
-
-
-
-
-

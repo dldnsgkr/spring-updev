@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.updev.member.ServiceMember;
@@ -48,7 +49,7 @@ public class BoardController {
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		String a1 = "공지";
 		String b1 = "정보 공유";
-		String c1 = "질문창고";
+		String c1 = "지식인";
 		String d1 = "고민상담소";
 		String e1 = "Q&A";
 		String f1 = "인기 조회수";
@@ -72,7 +73,7 @@ public class BoardController {
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		String a1 = "공지";
 		String b1 = "정보 공유";
-		String c1 = "질문창고";
+		String c1 = "지식인";
 		String d1 = "고민상담소";
 		String e1 = "Q&A";
 		String f1 = "인기 조회수";
@@ -125,14 +126,13 @@ public class BoardController {
 	         String b_title = mul.getParameter("b_title");
 	         String m_nick = mul.getParameter("m_nick");
 	         String b_content = mul.getParameter("b_content");
-	         String b_tag = mul.getParameter("b_tag");
 	         MultipartFile f1 = mul.getFile("b_file1");
 	            MultipartFile f2 = mul.getFile("b_file2");
 	            String b_file1 = f1.getOriginalFilename();
 	            
 	            String b_file2 = f2.getOriginalFilename();
 	         ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	         ss.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
+	         ss.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
 	         return "redirect:index";
 	      }
 	      
@@ -155,9 +155,8 @@ public class BoardController {
 	            MultipartFile f2 = mul.getFile("b_file2");
 	            String b_file1 = f1.getOriginalFilename();
 	            String b_file2 = f2.getOriginalFilename();
-	            String b_tag = mul.getParameter("b_tag");
 	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_tag,b_file1,b_file2);
+	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
 	            return "redirect:myp";
 	         }
 	      		//글 삭제
@@ -176,25 +175,71 @@ public class BoardController {
 	     		ss.readcnt(num);
 	     	}
 	         
-	       //게시물 detail
+	         //게시물 detail
 	         @RequestMapping(value = "/detail")
-	         public String ko17(HttpServletRequest request,Model mo)
+	         public String ko17(HttpServletRequest request,Model mo, PageDTO dto, Criteria cri)
 	         {
 		     	 HttpSession session = request.getSession();
 	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 String nowPage=request.getParameter("nowPage");
+		    	 String cntPerPage=request.getParameter("cntPerPage");
+		    		
 	        	 session.setAttribute("b_num", b_num);
 	        	 Readcnt(b_num);
-	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	        	 Board member = ss.boarddetail(b_num);
-	        	 Good good = ss.howgood(b_num,nick);
+	        	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+	        	 
+	        	 Board member = sb.boarddetail(b_num);
+	        	 Good good = sb.howgood(b_num,nick);
+	        	 int total = sb.replytotal(b_num);
+	        	 Scrap scrap = sb.howscrap(b_num,nick);
+		    		
+	        	 if(nowPage == null && cntPerPage == null) {
+		    		nowPage="1";
+		    		cntPerPage="10";
+	        	 } else if(nowPage==null) {
+		    		nowPage="1";
+	        	 } else if(cntPerPage==null) {
+		    		cntPerPage="10";
+	        	 }
+		    		
+	        	 dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),b_num);
+	        	 mo.addAttribute("page1",dto);
+	        	 mo.addAttribute("page2",cri);
+	        	 mo.addAttribute("repage",sb.replypage(dto));
 	        	 mo.addAttribute("list",member);
 	        	 mo.addAttribute("llist",good);
+	        	 mo.addAttribute("slist",scrap);
 	        	 return "detailboard";
 	         }
 	         
+	         //댓글
+	         @RequestMapping(value = "/replysave")
+	         public ModelAndView reply(HttpServletRequest request,Model mo) {
+	        	 
+	        	 int b_num=Integer.parseInt(request.getParameter("b_num"));
+	        	 String m_nick=request.getParameter("m_nick");
+	        	 String re_content=request.getParameter("re_content");
+	        	 
+	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 
+	        	 ss.replysave(b_num, m_nick, re_content);
+	        	 
+	             ModelAndView mav = new ModelAndView();
+	             
+	             if(b_num == 0) {
+	                 mav.setViewName("redirect:index");
+	             } else {
+	                 mav.addObject("b_num", b_num);
+	                 mav.setViewName("redirect:detail");
+	             }
+	             
+	             return mav;
+	        	 
+	         }
 	         
-	         //페이징
+	         
+	        //페이징
 	     	@RequestMapping(value="/noticepage")
 	    	public String page1(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	    		String nowPage=request.getParameter("nowPage");
@@ -323,7 +368,20 @@ public class BoardController {
 	    		
 	    		
 	    		return "qnapage";
+
 	    	} 	
+
+	    	
+	     	
+	     	//좋아요 증가
+	     	public void likecntup(int num)
+	     	{
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.likecntup(num);
+	     	}
+	     	
+	     	//좋아요 
+
 	     	@RequestMapping(value = "/goodup",method = RequestMethod.POST)
 	     	public String ko20(HttpServletRequest request,RedirectAttributes rattr)
 	     	{
@@ -336,10 +394,11 @@ public class BoardController {
 	    		JSONObject jobj;
 	    		try {
 					jobj = (JSONObject)jsonparse.parse(jo);
-				String b_num=(String) jobj.get("b_num");
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
 				String m_nick=(String) jobj.get("m_nick");
 				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 				sb.blikeup(b_num,m_nick,chk);
+				likecntup(b_num);
 	    		} catch (org.json.simple.parser.ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -353,22 +412,91 @@ public class BoardController {
 				}
 	     	}
 	     	
+	     	//좋아요 감소
+	     	public void likecntdown(int num)
+	     	{
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.likecntdown(num);
+	     	}
+	     	
+	     	//좋아요 취소
 	     	@RequestMapping(value = "/gooddown",method = RequestMethod.POST)
 	     	public String ko21(HttpServletRequest request,RedirectAttributes rattr)
 	     	{
 	     		HttpSession session=request.getSession();
 				if((Boolean) session.getAttribute("loginState"))
 				{
-	     		int chk = 0;
 	     		String jo=request.getParameter("jsoninfo");		
 	    		JSONParser jsonparse = new JSONParser();
 	    		JSONObject jobj;
 	    		try {
 					jobj = (JSONObject)jsonparse.parse(jo);
-				String b_num=(String) jobj.get("b_num");
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
 				String m_nick=(String) jobj.get("m_nick");
 				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 				sb.blikedown(b_num,m_nick);
+				likecntdown(b_num);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	//스크랩
+	     	@RequestMapping(value = "/scrap",method = RequestMethod.POST)
+	     	public String ko23(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		int chk = 1;
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.scrap(b_num,m_nick,chk);
+				likecntup(b_num);
+	    		} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return "redirect:index";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+				}
+	     	}
+	     	
+	     	//스크랩 취소
+	     	@RequestMapping(value = "/scrapcancel",method = RequestMethod.POST)
+	     	public String ko22(HttpServletRequest request,RedirectAttributes rattr)
+	     	{
+	     		HttpSession session=request.getSession();
+				if((Boolean) session.getAttribute("loginState"))
+				{
+	     		String jo=request.getParameter("jsoninfo");		
+	    		JSONParser jsonparse = new JSONParser();
+	    		JSONObject jobj;
+	    		try {
+					jobj = (JSONObject)jsonparse.parse(jo);
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				String m_nick=(String) jobj.get("m_nick");
+				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				sb.scrapcancel(b_num,m_nick);
+				likecntup(b_num);
 	    		} catch (org.json.simple.parser.ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -384,25 +512,47 @@ public class BoardController {
 	     	
 	     	//게시물 detail
 	         @RequestMapping(value = "/detailajax")
-	         public String ko21(HttpServletRequest request,Model mo)
+	         public ModelAndView ko21(HttpServletRequest request,Model mo)
 	         {
 		     	 HttpSession session = request.getSession();
 	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = (int)session.getAttribute("b_num");
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 
 	        	 Board member = ss.boarddetail(b_num);
 	        	 Good good = ss.howgood(b_num,nick);
+	        	 Scrap scrap = ss.howscrap(b_num, nick);
 	        	 mo.addAttribute("list",member);
 	        	 mo.addAttribute("llist",good);
-	        	 return "detailboard";
+	        	 mo.addAttribute("slist",scrap);
+	        	 ModelAndView mav = new ModelAndView();
+	        	 
+	        	 if(b_num == 0) {
+	                 mav.setViewName("redirect:index");
+	             } else {
+	                 mav.addObject("b_num", b_num);
+	                 mav.setViewName("redirect:detail");
+	             }
+	             
+	             return mav;
+	        	 
 	         }
+	         
+	         @RequestMapping(value = "/alarm")
+		     	public String alarm() {
+	        	 
+		     		return "";
+		     	}
 	         
 	     	@RequestMapping(value = "/hh")
 	     	public String hh() {
 	     		return "search";
 	     	}
 
+
 	     	
+
+
 	     	@RequestMapping(value="/poppage")
 	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	     		String nowPage=request.getParameter("nowPage");
@@ -470,6 +620,7 @@ public class BoardController {
 	     		
 	     		return "search";
 	     	}
+	     	
 	     	
 	
 }

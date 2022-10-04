@@ -9,17 +9,19 @@
 	</head>
 	<body>
 		<div class="footer_box">
-			<div class="wrap">
-				<div class="f1">
-					<span class="line">
-						<a href="notipage" id="footer">공지</a>
-						<a href="share" id="footer">정보공유</a>
-						<a href="question" id="footer">지식인</a>
-						<a href="worry" id="footer">고민</a>
-						<a href="qna" id="footer">Q&A</a>
-					</span>			
+			<div class="f1">
+				<div class="wrap">
+						<span class="line">
+							<a href="notipage" id="footer">공지</a>
+							<a href="share" id="footer">정보공유</a>
+							<a href="question" id="footer">지식인</a>
+							<a href="worry" id="footer">고민</a>
+							<a href="qna" id="footer">Q&A</a>
+						</span>			
 				</div>
-				<div class="f2">
+			</div>
+			<div class="f2">
+				<div class="wrap">
 					<div class="f3">
 						UPDEV,
 						조장: 이운학,

@@ -4,23 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(function(){
-      //입력박스 숨어있다가
+    //입력박스 숨어있다가
 $("#otherreason").hide();
 $("#r_reason").change(function() {
-                //기타를 선택하면 등장
-        if($("#r_reason").val() == "etc") {
-            $("#otherreason").show();
-        }  else {
-            $("#otherreason").hide();
-        }
-    }) 
+              //기타를 선택하면 등장
+      if($("#r_reason").val() == "etc") {
+          $("#otherreason").show();
+          alert("기타사유를 작성해주세요.");
+      }  else {
+          $("#otherreason").hide();
+      }
+  }) 
 });
 </script>
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 신고 게시판 -->
 <form action="breport" method="post" enctype="multipart/form-data">
 <input type="hidden" name="b_num" value="${b_num }">
 <table>

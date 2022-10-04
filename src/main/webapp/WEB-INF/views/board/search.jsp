@@ -58,7 +58,7 @@
 	</c:forEach>
 				
 	
-	<c:if test="${page.nowPage ne page.realEnd && page.endPage>0}">
+	<c:if test="${page1.next && page1.endPage>0}">
 		<a href="search?nowPage=${page.endPage +1}&keyword=${keyword}">&#62;</a>
 	</c:if>   
 	</td>

@@ -40,6 +40,7 @@
 		select * from board where b_kind = #{param1}
 	</select>
 	
+	<!--  
 	<select id="noticeboardtable" resultType="com.updev.board.Board">
 		select * from board where b_kind = #{param1}
 	</select>
@@ -59,7 +60,7 @@
 	<select id="qnaboardtable" resultType="com.updev.board.Board">
 		select * from board where b_kind = #{param1}
 	</select>
-	
+	-->
 	<delete id="delete">
 		delete from board where b_num = #{param1}
 	</delete>
@@ -76,6 +77,27 @@
 		update board set b_report=b_report+1 where b_num=#{param1}
 	</update>
 	
+	<!-- 댓글 -->
+	<insert id="replysave">
+		insert into reply(re_num,b_num,m_nick,re_content,re_group,re_step,re_indent) values(re_seq.nextval,#{param1},#{param2},#{param3},re_seq.currval,0,0)
+	</insert>
+	
+	<select id="replyview" resultType="com.updev.board.Reply">
+		select * from reply where b_num = #{b_num}
+	</select>
+	
+	<select id="replytotal" resultType="int">
+		select count(*) from reply where b_num = #{param1}
+	</select>
+	
+	<select id="replypage" resultType="com.updev.board.Reply">
+		select * from (
+		select rownum rn,A.* from(
+		select * from reply where b_num = ${b_num}
+		order by re_group DESC,re_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
 	<!-- 좋아요 -->
 	<insert id="blikeup">
 		insert into good(g_num,b_num,m_nick,like_chk) values(g_seq.nextval,#{param1},#{param2},#{param3})
@@ -89,40 +111,61 @@
 		delete from good where b_num = #{param1} and m_nick = #{param2}
 	</delete>
 	
+	<update id="likecntup">
+		update board set b_likecnt=b_likecnt+1 where b_num=#{param1}
+	</update>
+	
+	<update id="likecntdown">
+		update board set b_likecnt=b_likecnt-1 where b_num=#{param1}
+	</update>
+	
+	<!-- 스크랩 -->
+	
+	<insert id="scrap">
+		insert into scrap(s_num,b_num,m_nick,scrap_chk) values(s_seq.nextval,#{param1},#{param2},#{param3})
+	</insert>
+	
+	<select id="howscrap" resultType="com.updev.board.Scrap">
+		select * from scrap where b_num = #{param1} and m_nick = #{param2}
+	</select>
+	
+	<delete id="scrapcancel">
+		delete from scrap where b_num = #{param1} and m_nick = #{param2}
+	</delete>
 	
 	<!-- 페이징 -->
 	<select id="sharetotal" resultType="int">
-		select count(*) from board where b_kind='정보'
+		select count(*) from board where b_kind='정보공유'
 	</select>
 	
 	<select id="sharepage" resultType="com.updev.board.Board">
 		select * from (
 		select rownum rn,A.* from(
-		select * from board where b_kind='정보' 
+		select * from board where b_kind='정보공유' 
 		order by b_group DESC,b_step ASC)A)
 		where rn between #{start} and #{end}
 	</select>
 	
 	<select id="questiontotal" resultType="int">
-		select count(*) from board where b_kind='질문'
+		select count(*) from board where b_kind='지식인'
 	</select>
 	
 	<select id="questionpage" resultType="com.updev.board.Board">
 		select * from (
 		select rownum rn,A.* from(
-		select * from board where b_kind='질문'
+		select * from board where b_kind='지식인'
 		order by b_group DESC,b_step ASC)A)
 		where rn between #{start} and #{end}
 	</select>
 	
 	<select id="worrytotal" resultType="int">
-		select count(*) from board where b_kind='고민'
+		select count(*) from board where b_kind='고민상담소'
 	</select>
 	
 	<select id="worrypage" resultType="com.updev.board.Board">
 		select * from (
 		select rownum rn,A.* from(
-		select * from board where b_kind='고민' 
+		select * from board where b_kind='고민상담소' 
 		order by b_group DESC,b_step ASC)A)
 		where rn between #{start} and #{end}
 	</select>
