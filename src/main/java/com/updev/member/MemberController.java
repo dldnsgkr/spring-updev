@@ -90,8 +90,7 @@ public class MemberController {
 	      String m_pw = request.getParameter("m_pw");
 	      ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 	      Signup d = ss.loginselect(m_id, m_pw);
-	      if(d==null)
-	      {
+	      if(d==null) {
 	    	  rattr.addAttribute("check", "nodata");
 	    	  mav.setViewName("redirect:login");
 	      } else {
@@ -117,21 +116,24 @@ public class MemberController {
 	 	         session.setAttribute("member_nick", d.getM_nick());
 	 	         session.setMaxInactiveInterval(300);
 	 	         mav.setViewName("redirect:index");
+
 	    	  } else {
 	    		  rattr.addAttribute("gradecheck", "badgrade");
 		    	  mav.setViewName("redirect:index");
 	    	  }
 	      }
-	     
+
 	      return mav;
 	   }
 	   
 	   @RequestMapping(value="/logout")
 	   public String ko7(HttpServletRequest request) {
+
 		   HttpSession session=request.getSession();
 		   ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 		   String id = (String)session.getAttribute("id");
 		   ss.outtimeupdate(id);
+
 		   String q = "unknown";
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
