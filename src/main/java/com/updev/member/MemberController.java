@@ -443,6 +443,78 @@ public class MemberController {
 			return jsoninfo;
 		
 		}
+	 	
+	 	//내가 좋아요한 글 ajax
+	 	@SuppressWarnings("unchecked")
+		@ResponseBody
+		@RequestMapping(value="/membermygood", method = RequestMethod.POST,
+				produces = "application/text; charset=UTF-8")//불러오기
+		public String ko6(HttpServletRequest request, Model mo) throws IOException{
+	 		 	HttpSession session = request.getSession();
+	 		 	String nick = (String)session.getAttribute("member_nick");
+	 		 	
+				JSONArray array = new JSONArray();
+				JSONObject total = new JSONObject();
+				//PrintWriter ppw = response.getWriter();
+				ServiceMember ss= sqlsession.getMapper(ServiceMember.class);
+				ArrayList<Board> list=ss.ajaxmygood(nick);
+				for(int i=0;i<list.size();i++) {
+					JSONObject member = new JSONObject();
+					int b_num =list.get(i).getB_num();
+					String b_kind =list.get(i).getB_kind();
+					String b_title =list.get(i).getB_title();
+					String b_wdate =list.get(i).getB_wdate();
+					int b_likecnt =list.get(i).getB_likecnt();
+					int b_readcnt =list.get(i).getB_readcnt();
+					member.put("b_num", b_num);
+					member.put("b_kind", b_kind);
+					member.put("b_title", b_title);
+					member.put("b_wdate", b_wdate);
+					member.put("b_likecnt", b_likecnt);
+					member.put("b_readcnt", b_readcnt);
+					array.add(member);				
+				}
+				total.put("members", array);
+				String jsoninfo = total.toJSONString();
+			return jsoninfo;
+		
+		}
+	 	
+	 	//내가 스크랩한 글 ajax
+	 	@SuppressWarnings("unchecked")
+		@ResponseBody
+		@RequestMapping(value="/membermyscrap", method = RequestMethod.POST,
+				produces = "application/text; charset=UTF-8")//불러오기
+		public String ko7(HttpServletRequest request, Model mo) throws IOException{
+	 		 	HttpSession session = request.getSession();
+	 		 	String nick = (String)session.getAttribute("member_nick");
+	 		 	
+				JSONArray array = new JSONArray();
+				JSONObject total = new JSONObject();
+				//PrintWriter ppw = response.getWriter();
+				ServiceMember ss= sqlsession.getMapper(ServiceMember.class);
+				ArrayList<Board> list=ss.ajaxmyscrap(nick);
+				for(int i=0;i<list.size();i++) {
+					JSONObject member = new JSONObject();
+					int b_num =list.get(i).getB_num();
+					String b_kind =list.get(i).getB_kind();
+					String b_title =list.get(i).getB_title();
+					String b_wdate =list.get(i).getB_wdate();
+					int b_likecnt =list.get(i).getB_likecnt();
+					int b_readcnt =list.get(i).getB_readcnt();
+					member.put("b_num", b_num);
+					member.put("b_kind", b_kind);
+					member.put("b_title", b_title);
+					member.put("b_wdate", b_wdate);
+					member.put("b_likecnt", b_likecnt);
+					member.put("b_readcnt", b_readcnt);
+					array.add(member);				
+				}
+				total.put("members", array);
+				String jsoninfo = total.toJSONString();
+			return jsoninfo;
+		
+		}
 
 }
 	   

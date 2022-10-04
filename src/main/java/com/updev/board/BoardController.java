@@ -469,6 +469,7 @@ public class BoardController {
 	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = (int)session.getAttribute("b_num");
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 
 	        	 Board member = ss.boarddetail(b_num);
 	        	 Good good = ss.howgood(b_num,nick);
 	        	 Scrap scrap = ss.howscrap(b_num, nick);

@@ -50,7 +50,18 @@ public class AdminController {
 	}
 	// 마이페이지 - 정보수정 페이지 이동
 	@RequestMapping(value = "/admin_infoupdate")
-	public String infoupdate(){
+	public String admin_infoupdate(HttpServletRequest request, Model model){
+		// 세션 생성
+		HttpSession session = request.getSession();
+		// 세션에서 관리자 id 들고오기
+		String admin_id = (String)session.getAttribute("admin_id"); // admin
+		
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		
+		Signup s = sa.admin_infoupdate_select(admin_id);
+		
+		model.addAttribute("admin", s);
+		
 		return "admin_infoupdate";
 	}
 	// 마이페이지 - 마이 글 페이지 이동
@@ -76,36 +87,62 @@ public class AdminController {
 	// 게시판관리 - 공지 게시판 관리 페이지 이동
 	@RequestMapping(value = "/notice_manage")
 	public String noticemanage(HttpServletRequest request, Model model){
+		String b_kind = "공지";
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		ArrayList<Board> list = sa.board_manage_select(b_kind);
+		model.addAttribute("board", list);
 		return "notice_manage";
 	}
 	// 게시판관리 - 정보공유 게시판 관리 페이지 이동
 	@RequestMapping(value = "/infoshare_manage")
 	public String infosharemanage(HttpServletRequest request, Model model){
+		String b_kind = "정보공유";
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		ArrayList<Board> list = sa.board_manage_select(b_kind);
+		model.addAttribute("board", list);
 		return "infoshare_manage";
 	}
 	// 게시판관리 - 지식인 게시판 관리 페이지 이동
 	@RequestMapping(value = "/intellectual_manage")
 	public String intellectualmanage(HttpServletRequest request, Model model){
+		String b_kind = "지식인";
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		ArrayList<Board> list = sa.board_manage_select(b_kind);
+		model.addAttribute("board", list);
 		return "intellectual_manage";
 	}
 	// 게시판관리 - 고민상담소 게시판 관리 페이지 이동
 	@RequestMapping(value = "/counseling_manage")
 	public String counselingmanage(HttpServletRequest request, Model model){
+		String b_kind = "고민상담소";
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		ArrayList<Board> list = sa.board_manage_select(b_kind);
+		model.addAttribute("board", list);
 		return "counseling_manage";
 	}
 	// 게시판관리 - Q&A 게시판 관리 페이지 이동
 	@RequestMapping(value = "/qna_manage")
 	public String qnamanage(HttpServletRequest request, Model model){
+		String b_kind = "Q&A";
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		ArrayList<Board> list = sa.board_manage_select(b_kind);
+		model.addAttribute("board", list);
 		return "qna_manage";
 	}
 	// 신고 관리 - 신고 관리 페이지 이동
 	@RequestMapping(value = "/report_manage")
 	public String reportmanage(HttpServletRequest request, Model model){
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		ArrayList<Board> list = sa.report_manage_select();
+		model.addAttribute("board", list);
 		return "report_manage";
 	}
 	// 회원 관리 - 회원 관리 페이지 이동
 	@RequestMapping(value = "/member_manage")
 	public String membermanage(HttpServletRequest request, Model model){
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		ArrayList<Board> list = sa.member_manage_select();
+		model.addAttribute("board", list);
 		return "member_manage";
 	}
 	
@@ -421,4 +458,9 @@ public class AdminController {
 			
 		}
 	 */
+	// test 페이지
+	@RequestMapping(value = "/test")
+	public String test(){
+		return "test";
+	}
 }

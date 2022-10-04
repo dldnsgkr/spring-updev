@@ -35,12 +35,9 @@
 						<td>${a.m_nick }</td>
 						<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 						<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
-						<!-- 
-						<td>${a.b_wdate }</td>
-						 -->
 						<td>${a.b_readcnt }</td>
 						<td>${a.b_likecnt }</td>
-						<td>스크랩 버튼</td>
+						<td>이곳에 스크랩버튼 뻅니다</td>
 					</tr>
 					</c:forEach>
 				</tbody>

@@ -4,10 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="./resources/css/admin_mypage.css">
-
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="./resources/css/admin_mypage.css">
 	<c:choose>
 		<c:when test="${member.m_id!='admin'}">
 			<script type="text/javascript">
@@ -20,16 +19,16 @@
 <body>
 <section>
 <div class="jq_tabonoff comm_tab1">
-		<div class="logo"><a href="index"><img alt="" src="resources/images/updev_1.png"></a></div>
-		<div class="menu">
-			<c:choose>
-				<c:when test="${member.m_id=='admin'}">
-					<p>환영합니다! 관리자님</p>
-					<a href="admin_mypage">마이페이지</a>
-					<a href="logout">로그아웃</a>
-				</c:when>
-			</c:choose>
-		</div>
+			<div class="logo"><a href="index"><img alt="" src="resources/images/updev_1.png"></a></div>
+			<div class="menu">
+				<c:choose>
+					<c:when test="${member.m_id=='admin'}">
+						<p>환영합니다! 관리자님</p>
+						<a href="admin_mypage">마이페이지</a>
+						<a href="logout">로그아웃</a>
+					</c:when>
+				</c:choose>
+			</div>
         <ul class="jq_tab tab_menu">
             <li><a href="javascript:;" class="tit">마이페이지</a></li>
             <li><a href="javascript:;" class="tit">게시판 관리</a></li>

@@ -1,3 +1,9 @@
+var referrer = document.referrer;
+
+window.onhashchange = function() {
+location.href=referrer;
+}
+
 function admin_infoupdate_update() {
 	    var form = document.ufrm;
 	    

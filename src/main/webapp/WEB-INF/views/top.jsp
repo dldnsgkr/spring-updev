@@ -50,7 +50,7 @@
 								<c:when test="${loginState==true}">
 								<c:choose>
 								<c:when test="${member.m_id=='admin'}">
-									<span>환영합니다!! 관리자님 :)</span>
+									<span>환영합니다! 관리자님</span>
 									<a href="admin_mypage">마이페이지</a>
 									</c:when>
 									<c:otherwise>
@@ -80,8 +80,8 @@
 								<a href="worrypage" id="menu">고민상담소</a>
 								<a href="qnapage" id="menu">Q&A</a>
 								<div class="search">
-									<form action="" method="post" id="top_search_form" name="top_search_form">
-										<input class="main_search" type="text" name="search" placeholder="검색">
+									<form action="search" method="post" id="top_search_form" name="top_search_form">
+										<input class="main_search" type="text" name="keyword" placeholder="검색">
 										<button class="search-btn" type="button" onclick="SearchChk()"></button>
 									</form>
 								</div>
