@@ -4,7 +4,6 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -58,7 +57,6 @@
 
 </table>
 </body>
-=======
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -121,5 +119,4 @@
 			  </div>			
 		</div>
 	</body>
->>>>>>> upstream/main
 </html>

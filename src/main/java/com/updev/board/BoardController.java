@@ -46,49 +46,44 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		session.setAttribute("loginState", false);
 		session.setAttribute("member_nick", q);
-		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		String a1 = "공지";
-		String b1 = "정보 공유";
-		String c1 = "지식인";
-		String d1 = "고민상담소";
-		String e1 = "Q&A";
-		String f1 = "인기 조회수";
-		ArrayList<Board> a = ss.bo1(a1);
-		ArrayList<Board> b = ss.bo2(b1);
-		ArrayList<Board> c = ss.bo3(c1);
-		ArrayList<Board> d = ss.bo4(d1);
-		ArrayList<Board> e = ss.bo5(e1);
+		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 		
-		mo.addAttribute("aa",a);
-		mo.addAttribute("bb",b);
-		mo.addAttribute("cc",c);
-		mo.addAttribute("dd",d);
-		mo.addAttribute("ee",e);
+ 		ArrayList<Board> pmpage=sb.popmain();
+ 		ArrayList<Board> smpage=sb.sharemain();
+ 		ArrayList<Board> qmpage=sb.questionmain();
+ 		ArrayList<Board> wmpage=sb.worrymain();
+ 		ArrayList<Board> nmpage=sb.noticemain();
+ 		ArrayList<Board> ampage=sb.qnamain();
+ 		
+ 		mo.addAttribute("popmpage",pmpage);
+ 		mo.addAttribute("popmpage",smpage);
+ 		mo.addAttribute("popmpage",qmpage);
+ 		mo.addAttribute("popmpage",wmpage);
+ 		mo.addAttribute("popmpage",nmpage);
+ 		mo.addAttribute("popmpage",ampage);
+
 		return "main";
 	}
 	
 	@RequestMapping(value = "/index")
 	public String index(Model mo)
-	{
-		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		String a1 = "공지";
-		String b1 = "정보 공유";
-		String c1 = "지식인";
-		String d1 = "고민상담소";
-		String e1 = "Q&A";
-		String f1 = "인기 조회수";
-		ArrayList<Board> a = ss.bo1(a1);
-		ArrayList<Board> b = ss.bo2(b1);
-		ArrayList<Board> c = ss.bo3(c1);
-		ArrayList<Board> d = ss.bo4(d1);
-		ArrayList<Board> e = ss.bo5(e1);
-		
-		
-		mo.addAttribute("aa",a);
-		mo.addAttribute("bb",b);
-		mo.addAttribute("cc",c);
-		mo.addAttribute("dd",d);
-		mo.addAttribute("ee",e);
+	{	
+ 		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+ 		
+ 		ArrayList<Board> pmpage=sb.popmain();
+ 		ArrayList<Board> smpage=sb.sharemain();
+ 		ArrayList<Board> qmpage=sb.questionmain();
+ 		ArrayList<Board> wmpage=sb.worrymain();
+ 		ArrayList<Board> nmpage=sb.noticemain();
+ 		ArrayList<Board> ampage=sb.qnamain();
+ 		
+ 		mo.addAttribute("popmpage",pmpage);
+ 		mo.addAttribute("sharempage",smpage);
+ 		mo.addAttribute("questionmpage",qmpage);
+ 		mo.addAttribute("worrympage",wmpage);
+ 		mo.addAttribute("noticempage",nmpage);
+ 		mo.addAttribute("qnampage",ampage);
+ 		
 		return "main";
 	}
 	
@@ -235,7 +230,6 @@ public class BoardController {
 	             }
 	             
 	             return mav;
-	        	 
 	         }
 	         
 	         
@@ -560,12 +554,10 @@ public class BoardController {
 	     			cntPerPage="15";
 	     		}
 	     		
-	     		
 	     		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
 	     		mo.addAttribute("page1",dto);
 	     		mo.addAttribute("page2",cri);
 	     		mo.addAttribute("bpage1",sb.poppage(dto));
-	     		
 	     		
 	     		return "poppage";
 	     	}
@@ -611,7 +603,5 @@ public class BoardController {
 	     		
 	     		return "search";
 	     	}
-	     	
-	     	
-	
+
 }

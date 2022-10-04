@@ -43,7 +43,7 @@
 	</c:forEach>
   
 	</td>
-</tr>
+	</tr>
 </table>
 </body>
 </html>

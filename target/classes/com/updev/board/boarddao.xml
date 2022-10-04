@@ -5,7 +5,7 @@
 <mapper namespace="com.updev.board.ServiceBoard">
 
    <insert id="writesave">
-   insert into board(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_likecnt,b_readcnt,b_group,b_step,b_indent,b_tag,b_file1,b_file2,b_report) values(b_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},0,0,b_seq.currval,0,0,#{param6},#{param7},#{param8},0)
+   insert into board(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_likecnt,b_readcnt,b_group,b_step,b_indent,b_file1,b_file2,b_report) values(b_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},0,0,b_seq.currval,0,0,#{param6},#{param7},0)
    </insert>
 
 	<select id="mewrite" resultType="com.updev.board.Board">
@@ -218,5 +218,40 @@
 		where rn between #{start} and #{end}
 	</select>
 	
-  
+	<!-- 메인페이지 -->
+	<select id="popmain" resultType="com.updev.board.Board">
+		select * from board 
+		where <![CDATA[b_readcnt > 9]]> and <![CDATA[b_wdate>=TO_CHAR(sysdate-7,'YYYYMMDD')]]>
+		order by b_readcnt DESC
+	</select>
+	
+	<select id="sharemain" resultType="com.updev.board.Board">
+		select * from board 
+		where b_kind='정보공유'
+		order by b_group DESC,b_step ASC
+	</select>
+	
+	<select id="questionmain" resultType="com.updev.board.Board">
+		select * from board 
+		where b_kind='지식인'
+		order by b_group DESC,b_step ASC
+	</select>
+	
+	<select id="worrymain" resultType="com.updev.board.Board">
+		select * from board 
+		where b_kind='고민상담소'
+		order by b_group DESC,b_step ASC
+	</select>
+	
+	<select id="noticemain" resultType="com.updev.board.Board">
+		select * from board 
+		where b_kind='공지'
+		order by b_group DESC,b_step ASC
+	</select>
+	
+	<select id="qnamain" resultType="com.updev.board.Board">
+		select * from board 
+		where b_kind='Q&A'
+		order by b_group DESC,b_step ASC
+	</select>
 </mapper>
