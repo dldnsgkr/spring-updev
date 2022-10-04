@@ -51,4 +51,10 @@ public interface ServiceMember {
 
 	public ArrayList<Board> ajaxmyscrap(String nick);
 
+	public String gradeselect(String m_id, String m_pw);
+
+	public String dateselect(String m_id, String m_pw);
+
+	public void outtimeupdate(String id);
+
 }
