@@ -43,6 +43,10 @@ public interface ServiceMember {
 
 	public int nickCheck(String m_nick);
 	
+	public int nicktest2(String nick);
+	
+	public int nickCheck2(String up_nick);
+
 	public void reportinsert(String r_status, String r_reason, String r_file1, int b_num);
 
 	public ArrayList<Board> ajaxmywrite(String nick);
@@ -50,5 +54,11 @@ public interface ServiceMember {
 	public ArrayList<Board> ajaxmygood(String nick);
 
 	public ArrayList<Board> ajaxmyscrap(String nick);
+
+	public String gradeselect(String m_id, String m_pw);
+
+	public String dateselect(String m_id, String m_pw);
+
+	public void outtimeupdate(String id);
 
 }

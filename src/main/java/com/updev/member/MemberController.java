@@ -2,7 +2,10 @@ package com.updev.member;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -74,45 +77,71 @@ public class MemberController {
 	      return "redirect:index";
 	   }
 	   
-	   @RequestMapping(value="/loginact", method = RequestMethod.POST)
+	
+	@RequestMapping(value="/loginact", method = RequestMethod.POST)
 	   public ModelAndView ko6(HttpServletRequest request , RedirectAttributes rattr) 
 	   {//db에 회원가입한 아이디 비밀번호가 맞는지 확인하는곳(로그인중)
 	      //정보가 맞지 않다면 로그인창으로 보냄
+		   Date now = new Date();
+		   SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		   String formatedNow = formatter.format(now);
 	      ModelAndView mav=new ModelAndView();   
 	      String m_id = request.getParameter("m_id");
 	      String m_pw = request.getParameter("m_pw");
 	      ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 	      Signup d = ss.loginselect(m_id, m_pw);
-	      String grade = d.getM_grade();
-	      if(d!=null && grade.equals("회원") || grade.equals("관리자")) {
-	         HttpSession session = request.getSession();
-	         session.setAttribute("member", d);
-	         session.setAttribute("id", m_id);
-	         session.setAttribute("loginState", true);
-	         session.setAttribute("member_nick", d.getM_nick());
-	         session.setMaxInactiveInterval(300);
-	         mav.setViewName("redirect:index");
-	      } else if(grade.equals("강퇴") || grade.equals("이용정지")){
-	    		  rattr.addAttribute("gradecheck", "badgrade");
-		    	  mav.setViewName("redirect:index");
-	    	  } else {
+	      if(d==null) {
 	    	  rattr.addAttribute("check", "nodata");
 	    	  mav.setViewName("redirect:login");
+	      } else {
+	    	  String grade = d.getM_grade();
+	    	  String outtime = d.getM_outtime();
+	    	  String date1 = outtime;
+		      String date2 = formatedNow;
+	    	  int result = date1.compareTo(date2);
+	    	  /*
+		      if(result == 0)
+		          System.out.println("동일한 날짜");
+		      else if (result < 0)
+		          System.out.println("date1은 date2 이전 날짜");
+		      else
+		          System.out.println("date1은 date2 이후 날짜");
+		          */
+	    	  if((grade.equals("회원") || grade.equals("관리자")) && result < 0)
+	    	  {
+	    		 HttpSession session = request.getSession();
+	 	         session.setAttribute("member", d);
+	 	         session.setAttribute("id", m_id);
+	 	         session.setAttribute("loginState", true);
+	 	         session.setAttribute("member_nick", d.getM_nick());
+	 	         session.setMaxInactiveInterval(300);
+	 	         mav.setViewName("redirect:index");
+
+	    	  } else {
+	    		  rattr.addAttribute("gradecheck", "badgrade");
+		    	  mav.setViewName("redirect:index");
+	    	  }
 	      }
-	     
+
 	      return mav;
 	   }
 	   
 	   @RequestMapping(value="/logout")
 	   public String ko7(HttpServletRequest request) {
+
+		   HttpSession session=request.getSession();
+		   ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+		   String id = (String)session.getAttribute("id");
+		   ss.outtimeupdate(id);
+
 		   String q = "unknown";
-	         HttpSession session=request.getSession();
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
 	         session.removeAttribute("id");
 	         session.removeAttribute("member_nick");
 	         session.setAttribute("loginState",false);
 	         session.setAttribute("member_nick", q);
+	         
 	      return "redirect:index";
 	   }
 	   
@@ -182,7 +211,6 @@ public class MemberController {
 		   String jo=request.getParameter("jsoninfo");
 		   JSONParser jsonparse = new JSONParser();
 		   String nickmsg = null;
-		   String id =null;
 		   try {
 				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
 				String nick=(String) jobj.get("nick");
@@ -192,7 +220,38 @@ public class MemberController {
 				int s = sa.nicktest(nick);
 				
 				if (s!=0) {
-					nickmsg="사용중인 닉네임입니다. 다시 입력 해주세요.";
+					nickmsg=" *사용중인 닉네임입니다. 다시 입력 해주세요.";
+				}
+				
+				System.out.println(nickmsg);
+				model.addAttribute("nickmsg",nickmsg);
+				
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			return nickmsg;
+	   }
+	   
+	 //테스트
+	   @RequestMapping(value="/nicktest2", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	   @ResponseBody
+	   public String nicktest2(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
+		   System.out.println(11111);
+		   request.setCharacterEncoding("utf-8");
+		   String jo=request.getParameter("jsoninfo");
+		   JSONParser jsonparse = new JSONParser();
+		   String nickmsg = null;
+		   try {
+				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+				String nick=(String) jobj.get("up_nick");
+				
+				ServiceMember sa = sqlsession.getMapper(ServiceMember.class);
+				
+				int s = sa.nicktest2(nick);
+				
+				if (s!=0) {
+					nickmsg=" *사용중인 닉네임입니다. 다시 입력 해주세요.";
 				}
 				
 				System.out.println(nickmsg);
@@ -378,9 +437,9 @@ public class MemberController {
 			   return "memberinfoupdate";
 		   }
 	   
-	 	//프로피 수정 ajax
+	 	//프로필 수정 ajax
 	 	@ResponseBody
-		@RequestMapping( value = "/myinfoupdate", method = RequestMethod.POST)
+		@RequestMapping( value = "/myinfoupdate", method = RequestMethod.GET)
 		public String jjoinsave(HttpServletRequest request, RedirectAttributes rattr) throws IOException
 		{
 			String jo=request.getParameter("jsoninfo");
@@ -388,15 +447,19 @@ public class MemberController {
 			JSONObject jobj;
 			try {
 				jobj = (JSONObject)jsonparse.parse(jo);
-				String up_nick=(String) jobj.get("up_nick");
+				
+				System.out.println(jobj);
 				String m_nick=(String) jobj.get("m_nick");
 				String m_id=(String) jobj.get("m_id");
+				String up_nick=(String) jobj.get("up_nick");
 				String m_pw=(String) jobj.get("m_pw");
 				String m_name=(String) jobj.get("m_name");
 				String m_mail=(String) jobj.get("m_mail");
 				String m_tel=(String) jobj.get("m_tel");
 				String m_field=(String) jobj.get("m_field");
+				System.out.println(m_field);
 				ServiceMember ss=sqlsession.getMapper(ServiceMember.class);
+				
 				ss.profileupdate(m_nick,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
 				ss.profileboardupdate(m_nick,up_nick);
 				ss.balupdate(m_nick,up_nick);
@@ -409,7 +472,7 @@ public class MemberController {
 				e.printStackTrace();
 			}
 					
-			return "redirect:mywrite";
+			return "index";
 		}
 	   	
 	 	//내가 쓴글 ajax

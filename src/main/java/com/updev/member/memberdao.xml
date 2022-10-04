@@ -13,6 +13,10 @@
 		SELECT * FROM member WHERE m_id = #{param1} AND m_pw = #{param2}
 	</select>
 	
+	<update id="outtimeupdate">
+		update member set m_outtime = sysdate where m_id = #{param1}
+	</update>
+	
 	<select id="profileupdatecheck" resultType="com.updev.member.Signup">
 		SELECT * FROM member WHERE m_id = #{param1}
 	</select>
@@ -51,6 +55,10 @@
 		
   	<select id="nicktest" resultType="int">
   		select count(*) from member where m_nick = #{m_nick}
+  	</select>
+  	
+  	<select id="nicktest2" resultType="int">
+  		select count(*) from member where m_nick = #{param1}
   	</select>
   	
 	<select id="find_id" resultType="String">

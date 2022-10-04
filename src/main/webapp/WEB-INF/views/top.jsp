@@ -26,7 +26,7 @@
 			<c:when test="${check=='nodata'}">
 				<script type="text/javascript">
 					window.onload=function(){
-						alert("회원가입이 필요합니다!!");
+						alert("아이디나 비밀번호가 올바르지 않습니다.");
 					}
 				</script>
 			</c:when>
@@ -63,7 +63,7 @@
 								<c:when test="${member.m_id=='admin'}">
 									<span>환영합니다! 관리자님</span>
 									<a href="admin_mypage">마이페이지</a>
-									</c:when>
+								</c:when>
 									<c:otherwise>
 									 <span>환영합니다!!${member.m_nick}님</span>&emsp;<a href="myp?m_nick=${member.m_nick }">마이페이지</a>
 									</c:otherwise>
