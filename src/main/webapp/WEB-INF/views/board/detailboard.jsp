@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -174,15 +176,64 @@ $(function(){
 	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
 	<input type="hidden" name="like_chk" id="like_chk" value="${llist.like_chk }">
 	<button type="button" id="ttt">좋아요</button>
-	<!--  <input type="button" onclick="ttt();" value="좋아요">-->
 	</form>&emsp;
 	
+	
+<!-- 댓글 -->
+<table>
+<form action="replysave" metod="post">
+<tr>
+	<td><input type="hidden" name="b_num" value="${list.b_num}"></td>
+	<td><input type="text" name="m_nick" value="${member_nick}" readonly></td>
+</tr>
+<tr>
+	<td colspan="2"><textarea name="re_content" rows="6" cols="60"></textarea></td>
+	<td><input type="submit" value="등록"></td>
+</tr>
+</form>
+
+<c:forEach items="${repage}" var="a">
+<tr>
+	<td>${a.m_nick}</td>
+	<td>${a.re_content}</td>
+	<td>
+		<fmt:parseDate value="${a.re_wdate}" var="reply_date"  pattern="yyyy-MM-dd"/>
+		<fmt:formatDate value="${reply_date}" pattern="yyyy-MM-dd"/>
+	</td>
+</tr>
+</c:forEach>
+
+<tr>
+	<td colspan="3">
+	<c:if test="${page1.nowPage > 10}">
+		<a href="detail?b_num=${b_num}&nowPage=${page1.startPage -1}">&#60;</a> 				
+	</c:if>
+	
+
+	<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
+		<c:choose>
+			<c:when test="${p==page1.nowPage}">
+				<b>${p}</b>
+			</c:when>
+			<c:when test="${p!=page1.nowPage}">
+				<a href="detail?b_num=${b_num}&nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+			</c:when>
+		</c:choose>
+	</c:forEach>
+				
+	
+	<c:if test="${page1.next && page1.endPage>0}">
+		<a href="detail?b_num=${b_num}&nowPage=${page1.endPage +1}">&#62;</a>
+	</c:if>   
+	</td>
+</tr>
+
+</table>
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
 	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
 	<button type="button" id="sss">스크랩</button>
-	<!--  <input type="button" onclick="ttt();" value="좋아요">-->
 	</form>&emsp;
 
 </div>

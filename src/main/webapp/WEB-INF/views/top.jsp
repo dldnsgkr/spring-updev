@@ -42,6 +42,17 @@
 				</script>
 			</c:when>
 			</c:choose>
+			
+			<c:set var="gradecheck" value="${param.gradecheck}"/>
+		<c:choose>
+			<c:when test="${gradecheck=='badgrade'}">
+				<script type="text/javascript">
+					window.onload=function(){
+						alert("관리자에 의해 차단되었습니다");
+					}
+				</script>
+			</c:when>
+			</c:choose>
 			<div class="header">
 				<div class="wrap">
 					<div class="top">

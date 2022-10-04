@@ -59,10 +59,22 @@
 				</c:forEach>
 							
 				
+<<<<<<< HEAD
+	
+	<c:if test="${page1.next && page1.endPage>0}">
+		<a href="questionpage?nowPage=${page1.endPage +1}">&#62;</a>
+	</c:if>   
+	</td>
+</tr>
+	
+</table>
+</body>
+=======
 				<c:if test="${page1.nowPage ne page1.endPage && page1.endPage>0}">
 					<a href="questionpage?nowPage=${page1.endPage +1}">&#62;</a>
 				</c:if>   
 			</div>
 		</div>
 	</body>
+>>>>>>> upstream/main
 </html>

@@ -39,4 +39,14 @@ public interface ServiceAdmin {
 
 	public ArrayList<Board> member_manage_select();
 
+	public void admin_mylist_delete(int b_num);
+
+	public void admin_mylike_cancel(int b_num, String admin_nick);
+
+	public void admin_myscrap_cancel(int b_num, String admin_nick);
+
+	public void member_manage_delete(int m_num);
+
+	public void report_manage_update(String r_status, int r_num);
+
 }
