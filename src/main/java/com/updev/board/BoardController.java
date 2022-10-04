@@ -323,10 +323,7 @@ public class BoardController {
 	    		
 	    		
 	    		return "qnapage";
-	    	}
-<<<<<<< HEAD
-=======
-	     	
+	    	} 	
 	     	@RequestMapping(value = "/goodup",method = RequestMethod.POST)
 	     	public String ko20(HttpServletRequest request,RedirectAttributes rattr)
 	     	{
@@ -404,7 +401,7 @@ public class BoardController {
 	     	public String hh() {
 	     		return "search";
 	     	}
->>>>>>> upstream/main
+
 	     	
 	     	@RequestMapping(value="/poppage")
 	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {

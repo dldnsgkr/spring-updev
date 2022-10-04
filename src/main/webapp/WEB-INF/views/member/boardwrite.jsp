@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="write">글쓰기</a><!-- 글쓰기 가능한위치 원하시는곳에 프론트 두분이서 상의해서 변경해주세요 이대로 가도 상관없습니다-->
-<a href="myp?m_nick=${member.m_nick }">나의 글</a>
-<a href="#">마이알림</a>
-<a href="#">마이쪽지</a>
-<a href="proupdate?m_nick=${member.m_nick }">프로필수정</a>
+
 <form action="writesave" method="post" enctype="multipart/form-data">
 <input type="hidden" name="b_cate" value="일반">
 <input type="hidden" name="m_nick" value="${member.m_nick }">
