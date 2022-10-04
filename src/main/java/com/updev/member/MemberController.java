@@ -215,7 +215,7 @@ public class MemberController {
 			return nickmsg;
 	   }
 	   
-	 //테스트
+	 //프로필 수정 닉네임 중복체크
 	   @RequestMapping(value="/nicktest2", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
 	   @ResponseBody
 	   public String nicktest2(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
@@ -460,7 +460,7 @@ public class MemberController {
 	 	//내가 쓴글 ajax
 	 	@SuppressWarnings("unchecked")
 		@ResponseBody
-		@RequestMapping(value="/membermywrite", method = RequestMethod.POST,
+		@RequestMapping(value="/membermywrite", method = RequestMethod.GET,
 				produces = "application/text; charset=UTF-8")//불러오기
 		public String ko5(HttpServletRequest request, Model mo) throws IOException{
 	 		 	HttpSession session = request.getSession();

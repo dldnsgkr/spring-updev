@@ -447,9 +447,5 @@ public class AdminController {
 			}
 			return "redirect:admin_mylist";
 		}
-	// test ÆäÀÌÁö
-	@RequestMapping(value = "/test")
-	public String test(){
-		return "test";
-	}
+	
 }
