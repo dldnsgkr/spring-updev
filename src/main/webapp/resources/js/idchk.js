@@ -15,6 +15,7 @@ function test(){
 		data:{jsoninfo:sam},
 		success:function(data,textStatus){
 			$("#id_check").text(data);
+			$("#idcheck").text(data);
 			if (data >= 1) {
 						$("#id_check").text("사용 중인 아이디입니다. from js");
 						$("#id_check").css("color", "red");

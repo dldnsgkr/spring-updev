@@ -53,6 +53,10 @@
   		select count(*) from member where m_nick = #{m_nick}
   	</select>
   	
+  	<select id="nicktest2" resultType="int">
+  		select count(*) from member where m_nick = #{param1}
+  	</select>
+  	
 	<select id="find_id" resultType="String">
 		select m_id from member where m_name=#{param1} and m_mail=#{param2}
 	</select>
