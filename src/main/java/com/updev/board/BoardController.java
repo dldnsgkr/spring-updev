@@ -368,7 +368,10 @@ public class BoardController {
 	    		
 	    		
 	    		return "qnapage";
-	    	}
+
+	    	} 	
+
+	    	
 	     	
 	     	//좋아요 증가
 	     	public void likecntup(int num)
@@ -378,6 +381,7 @@ public class BoardController {
 	     	}
 	     	
 	     	//좋아요 
+
 	     	@RequestMapping(value = "/goodup",method = RequestMethod.POST)
 	     	public String ko20(HttpServletRequest request,RedirectAttributes rattr)
 	     	{
@@ -544,6 +548,11 @@ public class BoardController {
 	     	public String hh() {
 	     		return "search";
 	     	}
+
+
+	     	
+
+
 	     	@RequestMapping(value="/poppage")
 	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	     		String nowPage=request.getParameter("nowPage");

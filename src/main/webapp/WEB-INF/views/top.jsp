@@ -26,7 +26,7 @@
 			<c:when test="${check=='nodata'}">
 				<script type="text/javascript">
 					window.onload=function(){
-						alert("회원가입이 필요합니다!!");
+						alert("아이디나 비밀번호가 올바르지 않습니다.");
 					}
 				</script>
 			</c:when>
