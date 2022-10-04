@@ -6,39 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="./resources/css/info_update.css">
-<style type="text/css">
-.infoupdate{
-float: left;
-}
-label{
-	display: block;
-}
-.profile{
-	width: 250px;
-    float: left;
-    height: 300px;
-    margin-right: 50px;
-}
-.info{
-    float: left;
-}
-input[type="button"]{
-	display: block;
-}
-.content ul li{
-	float: left;
-	display: block;
-	border: 2px solid #242038;
-	border-right: 0;
-}
-.content ul li:last-child{
-	border-right: 2px solid #242038;
-}
-.content ul{
-	height: 50px;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="./resources/css/admin/admin_mylist.css">
 </head>
 <body>
 	<div class="infoupdate">
@@ -48,28 +16,25 @@ input[type="button"]{
 		</div>
 		<div class="content">
 			<ul>
-				<li onclick="admin_list('admin_mywrite_select');">내가 쓴 글</li>
-				<li onclick="admin_list('admin_mylike_select');">내가 좋아요 한 글</li>
-				<li onclick="admin_list('admin_myscrap_select');">내가 스크랩 한 글</li>
+				<li onclick="admin_mylist_select('admin_mywrite_select');">내가 쓴 글</li>
+				<li onclick="admin_mylist_select('admin_mylike_select');">내가 좋아요 한 글</li>
+				<li onclick="admin_mylist_select('admin_myscrap_select');">내가 스크랩 한 글</li>
 			</ul>
-			
 			<div id="out">
 				<table border="1">
 					<tr><td>번호</td><td>종류</td><td>분류</td><td>제목</td><td>작성일</td>
 					<td>내용</td><td>추천수</td><td>조회수</td><td>태그</td><td>첨부파일1</td>
-					<td>첨부파일2</td><td>신고회수</td><td>삭제</td><td>수정</td>
+					<td>첨부파일2</td><td>신고횟수</td><td>삭제</td><td>수정</td>
 					</tr>
-					
 					<c:forEach items="${list}" var="list">
 					<tr><td>${list.b_num}</td><td>${list.b_cate}</td><td>${list.b_kind}</td><td>${list.b_title}</td>
 					<td>${list.b_wdate}</td><td>${list.b_content}</td><td>${list.b_likecnt}</td><td>${list.b_readcnt}</td>
-					<td>${list.b_tag}</td><td>${list.b_file1}</td>
-					<td>${list.b_file2}</td><td>${list.b_report}</td><td>삭제</td><td>수정</td>
+					<td>${list.b_tag}</td><td>${list.b_file1}</td><td>${list.b_file2}</td><td>${list.b_report}</td>
+					<td><a onclick="admin_mylist_delete(${list.b_num});">삭제</a></td>
+					<td><a onclick="admin_mylist_update(${list.b_num});">수정</a></td>
 					</tr>
 					</c:forEach>
-				
 				</table>
-			
 			</div>
 		</div>
 	</div>
