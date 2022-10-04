@@ -44,6 +44,9 @@ public interface ServiceBoard {
 	
 	public void reportboardupdate(int b_num);
 	
+	public void replysave(int b_num, String m_nick, String re_content);
+	
+	public Reply replyview(int b_num);
 	
 	//ÆäÀÌÂ¡
 	public int sharetotal();
@@ -66,7 +69,9 @@ public interface ServiceBoard {
 	
 	public int searchcnt(String keyword);
 	public ArrayList<Board> tsearchpage(PageDTO dto);
-
+	
+	public int replytotal(int b_num);
+	public ArrayList<Reply> replypage(PageDTO dto);
 
 	public void readcnt(int num);
 
@@ -75,6 +80,7 @@ public interface ServiceBoard {
 	public void blikeup(String b_num, String m_nick, int chk);
 
 	public void blikedown(String b_num, String m_nick);
+
 
 	
 }
