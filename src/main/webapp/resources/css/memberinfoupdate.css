@@ -1,0 +1,95 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+*{
+ 	padding: 0;
+  	margin: 0;
+ }
+ #nick_check2{
+	color: red;
+	font-size: 12px;
+	margin-left: 15px;
+	margin-bottom: 5px;
+ }
+ .title{
+ 	margin-bottom: 20px;
+ }
+body{
+	width: 100%;
+	height: 100vh;
+}
+.wrapper{
+	width: 100%;
+	height: auto;
+}
+.warning{
+	font-size: 12px;
+	margin-bottom:5px;
+	margin-right: 53px;
+	color: red;
+}
+.sub_title{
+	text-align: left;	
+	margin-left: 195px;
+	font-size: 15px;
+}
+#changeform{
+	text-align: center;
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+#m_id,#m_pw,#m_pwchk,#up_nick,#m_name,#m_mail,#m_tel,#m_field{
+	font-size: 12px;
+	width: 310px;
+	height: 50px;
+	margin: 5px 5px 10px 100px;
+	border-radius: 10px / 10px;
+	border: 1px solid #242038;
+	padding: 0px 20px;
+	box-sizing: border-box;
+}
+#up_nick{
+	margin-left: 163px;
+}
+.button {
+  background-color: #9067c6;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 0;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px / 5px;
+  width: 60px;
+  height: 30px;
+  
+}
+.button1 {
+background-color: #9067c6;
+color: white; 
+}
+.button1:hover {
+  color: 242038;
+  background-color: #cac4ce;
+}
+.button2 {
+  width: 313px;
+  /* margin-right: 150px; */height:40px;
+  background-color: #9067c6;
+  color: white;
+  margin-left: 10px;
+  margin: 5px;
+  font-size: 15px;
+  border-radius: 10px 10px;
+}
+.button2:hover {
+  color: 242038;
+  background-color: #cac4ce;
+}
+.update_btn{
+	text-align: left;
+	margin-left: 187px;
+}

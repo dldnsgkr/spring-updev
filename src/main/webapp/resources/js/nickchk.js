@@ -12,6 +12,7 @@ function nicktest(){
 		data:{jsoninfo:sam},
 		success:function(data,textStatus){
 			$("#nick_check").text(data);
+			$("#nickcheck").text(data);
 			if (data >= 1) {
 						$("#nick_check").text("사용 중인 닉네임입니다. 다른 닉네임을 입력해주세요");
 						$("#nick_check").css("color", "red");
