@@ -2,13 +2,13 @@ function SearchChk() {
         
     var Sform = document.top_search_form;
 
-    if (!Sform.search.value) {
+    if (!Sform.keyword.value) {
         alert("내용을 입력해 주십시오.");
         Sform.search.focus();
         return;
     }
 
-    Sform.action = "keyword";
+    Sform.action = "/updev/search";
     Sform.submit();
     }
 

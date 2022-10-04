@@ -14,6 +14,9 @@
 			<div class="board_notic">
 				여기는 UPDEV 홈페이지에 문의하는 곳입니다.
 			</div>
+			<div class="board_write">
+				<button class="button" type="button" name="board_write" onclick="location.href = 'write' ">글쓰기</button>
+			</div>
 			<table border="1">
 				<thead id="thead">
 					<tr>
@@ -57,7 +60,7 @@
 				</c:forEach>
 							
 				
-<<<<<<< HEAD
+
 	
 	<c:if test="${page1.next && page1.endPage>0}">
 		<a href="qnapage?nowPage=${page1.endPage +1}">&#62;</a>
@@ -66,12 +69,11 @@
 </tr>
 </table>
 </body>
-=======
+
 				<c:if test="${page1.nowPage ne page1.realEnd && page1.endPage>0 }">
 					<a href="qnapage?nowPage=${page1.endPage +1}">&#62;</a>
 				</c:if>   
 		</div>
 	</div>
 	</body>
->>>>>>> upstream/main
 </html>

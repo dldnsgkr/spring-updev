@@ -2,7 +2,10 @@ package com.updev.member;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -74,55 +77,70 @@ public class MemberController {
 	      return "redirect:index";
 	   }
 	   
-	   @RequestMapping(value="/loginact", method = RequestMethod.POST)
+	
+	@RequestMapping(value="/loginact", method = RequestMethod.POST)
 	   public ModelAndView ko6(HttpServletRequest request , RedirectAttributes rattr) 
 	   {//db에 회원가입한 아이디 비밀번호가 맞는지 확인하는곳(로그인중)
 	      //정보가 맞지 않다면 로그인창으로 보냄
+		   Date now = new Date();
+		   SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		   String formatedNow = formatter.format(now);
 	      ModelAndView mav=new ModelAndView();   
 	      String m_id = request.getParameter("m_id");
 	      String m_pw = request.getParameter("m_pw");
 	      ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 	      Signup d = ss.loginselect(m_id, m_pw);
-	      String grade = d.getM_grade();
-	      if(d!=null && grade.equals("회원") || grade.equals("관리자")) {
-	         HttpSession session = request.getSession();
-	         session.setAttribute("member", d);
-	         session.setAttribute("id", m_id);
-	         session.setAttribute("loginState", true);
-	         session.setAttribute("member_nick", d.getM_nick());
-	         session.setMaxInactiveInterval(300);
-	         mav.setViewName("redirect:index");
-	      } else if(grade.equals("강퇴") || grade.equals("이용정지")){
-	    		  rattr.addAttribute("gradecheck", "badgrade");
-		    	  mav.setViewName("redirect:index");
-	    	  } else {
+	      if(d==null) {
 	    	  rattr.addAttribute("check", "nodata");
 	    	  mav.setViewName("redirect:login");
+	      } else {
+	    	  String grade = d.getM_grade();
+	    	  String outtime = d.getM_outtime();
+	    	  String date1 = outtime;
+		      String date2 = formatedNow;
+	    	  int result = date1.compareTo(date2);
+	    	  /*
+		      if(result == 0)
+		          System.out.println("동일한 날짜");
+		      else if (result < 0)
+		          System.out.println("date1은 date2 이전 날짜");
+		      else
+		          System.out.println("date1은 date2 이후 날짜");
+		          */
+	    	  if((grade.equals("회원") || grade.equals("관리자")) && result < 0)
+	    	  {
+	    		 HttpSession session = request.getSession();
+	 	         session.setAttribute("member", d);
+	 	         session.setAttribute("id", m_id);
+	 	         session.setAttribute("loginState", true);
+	 	         session.setAttribute("member_nick", d.getM_nick());
+	 	         session.setMaxInactiveInterval(300);
+	 	         mav.setViewName("redirect:index");
+
+	    	  } else {
+	    		  rattr.addAttribute("gradecheck", "badgrade");
+		    	  mav.setViewName("redirect:index");
+	    	  }
 	      }
-	     
+
 	      return mav;
 	   }
 	   
 	   @RequestMapping(value="/logout")
 	   public String ko7(HttpServletRequest request) {
-		  // System.out.println(111111+"나야나 로그아웃");
+
+		   HttpSession session=request.getSession();
+		   ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+		   String id = (String)session.getAttribute("id");
+		   ss.outtimeupdate(id);
+
 		   String q = "unknown";
-	         HttpSession session=request.getSession();
-	         
-	         System.out.println(q);
-	         System.out.println(session.getAttribute("member"));
-	         System.out.println(session.getAttribute("loginState"));
-	         System.out.println(session.getAttribute("id"));
-	         System.out.println(session.getAttribute("member_nick"));
-	         System.out.println(session.getAttribute("member"));
-	         System.out.println(session.getAttribute("member"));
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
 	         session.removeAttribute("id");
 	         session.removeAttribute("member_nick");
 	         session.setAttribute("loginState",false);
 	         session.setAttribute("member_nick", q);
-	         
 	         
 	      return "redirect:index";
 	   }

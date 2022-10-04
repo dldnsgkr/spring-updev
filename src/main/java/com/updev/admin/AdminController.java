@@ -18,8 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.updev.board.Board;
+import com.updev.board.ServiceBoard;
 import com.updev.member.Signup;
 
 @Controller
@@ -359,6 +362,24 @@ public class AdminController {
 		String jsoninfo = total.toJSONString();
 		System.out.println(jsoninfo);
 		return jsoninfo;
+	}
+	// 마이페이지 > 마이 글 > 내가 쓴 글 > 수정
+	@RequestMapping(value = "/admin_mylist_update", method = RequestMethod.POST)
+	public String admin_mylist_update(MultipartHttpServletRequest mul,HttpServletRequest request) throws Exception{
+		int b_num = Integer.parseInt(mul.getParameter("b_num"));
+		String b_cate = mul.getParameter("b_cate");
+		String b_kind = mul.getParameter("b_kind");
+		String b_title = mul.getParameter("b_title");
+		String m_nick = mul.getParameter("m_nick");
+		String b_content = mul.getParameter("b_content");
+		MultipartFile f1 = mul.getFile("b_file1");
+        MultipartFile f2 = mul.getFile("b_file2");
+        String b_file1 = f1.getOriginalFilename();
+        
+        String b_file2 = f2.getOriginalFilename();
+        ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+        ss.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
+        return "redirect:admin_mylist";
 	}
 	// 마이페이지 > 마이 글 > 내가 쓴 글 > 삭제
 	@RequestMapping(value = "/admin_mylist_delete", method = RequestMethod.POST)

@@ -54,7 +54,10 @@
 </tr>
 </table>
 </body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e454245896effe2e35295609425b6ac91f137903
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -66,6 +69,9 @@
 		<div class="wrap">
 			<div class="board_notic">
 				여기는 개발자들의 고민을 상담하는 곳입니다.
+			</div>
+			<div class="board_write">
+				<button class="button" type="button" name="board_write" onclick="location.href = 'write' ">글쓰기</button>
 			</div>
 			<table border="1">
 				<thead id="thead">
@@ -115,5 +121,8 @@
 			</div>			
 		</div>		   
 	</body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e454245896effe2e35295609425b6ac91f137903
 </html>

@@ -3,10 +3,10 @@ package com.updev.member;
 public class Signup {
 
 	int m_num;
-	String m_profile,m_id,m_pw,m_nick,m_name,m_mail,m_tel,m_field,m_jdate,m_grade;
+	String m_profile,m_id,m_pw,m_nick,m_name,m_mail,m_tel,m_field,m_jdate,m_grade,m_outtime;
 	public Signup() {}
 	public Signup(int m_num, String m_profile, String m_id, String m_pw, String m_nick, String m_name, String m_mail,
-			String m_tel, String m_field, String m_jdate, String m_grade) {
+			String m_tel, String m_field, String m_jdate, String m_grade, String m_outtime) {
 		super();
 		this.m_num = m_num;
 		this.m_profile = m_profile;
@@ -19,6 +19,7 @@ public class Signup {
 		this.m_field = m_field;
 		this.m_jdate = m_jdate;
 		this.m_grade = m_grade;
+		this.m_outtime = m_outtime;
 	}
 	public int getM_num() {
 		return m_num;
@@ -85,6 +86,12 @@ public class Signup {
 	}
 	public void setM_grade(String m_grade) {
 		this.m_grade = m_grade;
+	}
+	public String getM_outtime() {
+		return m_outtime;
+	}
+	public void setM_outtime(String m_outtime) {
+		this.m_outtime = m_outtime;
 	}
 	
 	

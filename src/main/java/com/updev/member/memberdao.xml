@@ -13,6 +13,10 @@
 		SELECT * FROM member WHERE m_id = #{param1} AND m_pw = #{param2}
 	</select>
 	
+	<update id="outtimeupdate">
+		update member set m_outtime = sysdate where m_id = #{param1}
+	</update>
+	
 	<select id="profileupdatecheck" resultType="com.updev.member.Signup">
 		SELECT * FROM member WHERE m_id = #{param1}
 	</select>
