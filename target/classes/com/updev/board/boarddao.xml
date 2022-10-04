@@ -251,7 +251,7 @@
 	
 	<select id="qnamain" resultType="com.updev.board.Board">
 		select * from board 
-		where b_kind='Q&A'
+		where b_kind='QNA'
 		order by b_group DESC,b_step ASC
 	</select>
 </mapper>
