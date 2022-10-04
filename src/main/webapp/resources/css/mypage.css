@@ -22,18 +22,18 @@ img {vertical-align:top}
     clear: both;
     width: 1200px;
     margin: 0 auto;
-    height: 100%;
+    height: auto;
     }
 .comm_tab1:after {display:block;height:0;content:".";font-size:0;visibility:hidden;clear:both}
 .comm_tab1>.tab_menu{
 	    width: 300px;
-    float: left;
-    box-sizing: border-box;
-    border-left: 1px solid #efefef;
-    display: block;
-    height: 100%;
-    box-shadow: 5px 1px 8px 0 rgb(0 0 0 / 6%);
-    border-left: 1px solid rgba(0,0,0,.08);
+	    float: left;
+	    box-sizing: border-box;
+	    border-left: 1px solid #efefef;
+	    display: block;
+	    height: auto;
+	    box-shadow: 5px 1px 8px 0 rgb(0 0 0 / 6%);
+	    border-left: 1px solid rgba(0,0,0,.08);
 }
 .comm_tab1>.tab_menu>li {float: left;
     display: block;
