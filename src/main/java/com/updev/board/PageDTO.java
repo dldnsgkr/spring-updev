@@ -8,6 +8,8 @@ public class PageDTO {
 	public Criteria cri;
 	public String sname; // 검색타입 (글제목, 글쓴이 등등)
 	public String keyword; // 키워드
+	public int b_num;
+	
 	
 	
 	public PageDTO(Criteria cri, int total, int nowPage, int cntPerPage) {
@@ -65,6 +67,36 @@ public class PageDTO {
 	    calcStartEndPage(getNowPage(), cntPage);
 	    calcStartEnd(getNowPage(), getCntPerPage());   
 	    
+	}
+	
+	public PageDTO(Criteria cri, int total, int nowPage, int cntPerPage, int b_num) {
+		this.cri = cri;
+		this.total = total;
+		this.b_num = b_num;
+		
+		//화면에 보여질 마지막 페이지
+		this.endPage = (int)(Math.ceil(cri.getPageNum() / 10.0)) * 10;
+		//화면에 보여질 시작 페이지
+		this.startPage = this.endPage -9;
+		//전체 마지막 페이지
+		this.realEnd = (int) (Math.ceil(total * 1.0) / cri.getAmount());
+		//화면에 보일 마지막 페이지가 유효한지 체크
+		if(this.realEnd < this.endPage) {
+			this.endPage = this.realEnd;
+		}
+		
+		//이전, 다음 버튼 표출 여부 결정
+		this.prev = this.startPage > 1;
+		this.next = this.endPage < this.realEnd;
+		
+		setB_num(b_num);
+		setNowPage(nowPage);
+		setCntPerPage(cntPerPage);
+		setTotal(total);
+		calcLastPage(getTotal(), getCntPerPage());
+		calcStartEndPage(getNowPage(), cntPage);
+		calcStartEnd(getNowPage(), getCntPerPage());   
+		
 	}
 	
    public int getCntPage() {
@@ -213,7 +245,14 @@ public class PageDTO {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	
+
+	public int getB_num() {
+		return b_num;
+	}
+
+	public void setB_num(int b_num) {
+		this.b_num = b_num;
+	}
    
 }
 

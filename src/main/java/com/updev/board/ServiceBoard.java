@@ -44,6 +44,9 @@ public interface ServiceBoard {
 	
 	public void reportboardupdate(int b_num);
 	
+	public void replysave(int b_num, String m_nick, String re_content);
+	
+	public Reply replyview(int b_num);
 	
 	//∆‰¿Ã¬°
 	public int sharetotal();
@@ -66,7 +69,9 @@ public interface ServiceBoard {
 	
 	public int searchcnt(String keyword);
 	public ArrayList<Board> tsearchpage(PageDTO dto);
-
+	
+	public int replytotal(int b_num);
+	public ArrayList<Reply> replypage(PageDTO dto);
 
 	public void readcnt(int num);
 
@@ -85,6 +90,7 @@ public interface ServiceBoard {
 	public void scrapcancel(int b_num, String m_nick);
 
 	public Scrap howscrap(int b_num, String nick);
+
 
 	
 }
