@@ -39,7 +39,7 @@ public class BoardController {
 	@Autowired
 	SqlSession sqlsession;
 	
-	
+	//시작페이지
 	@RequestMapping(value = "/")
 	public String ko1(HttpServletRequest request,Model mo)
 	{
@@ -66,6 +66,7 @@ public class BoardController {
 		return "main";
 	}
 	
+	//로고 클릭시 이동할 페이지
 	@RequestMapping(value = "/index")
 	public String index(Model mo)
 	{	
@@ -123,10 +124,9 @@ public class BoardController {
 	         String m_nick = mul.getParameter("m_nick");
 	         String b_content = mul.getParameter("b_content");
 	         MultipartFile f1 = mul.getFile("b_file1");
-	            MultipartFile f2 = mul.getFile("b_file2");
-	            String b_file1 = f1.getOriginalFilename();
-	            
-	            String b_file2 = f2.getOriginalFilename();
+	         MultipartFile f2 = mul.getFile("b_file2");
+	         String b_file1 = f1.getOriginalFilename();
+	         String b_file2 = f2.getOriginalFilename();
 	         ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	         ss.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
 	         return "redirect:index";
@@ -138,6 +138,7 @@ public class BoardController {
 	      {
 	         return "boardwrite";
 	      }
+	      
 	      //글 작성
 	      @RequestMapping(method = RequestMethod.POST,value = "/writesave")
 	         public String ko2(MultipartHttpServletRequest mul,HttpServletRequest request)
@@ -192,7 +193,6 @@ public class BoardController {
 	        	 int total = sb.replytotal(b_num);
 	        	 Scrap scrap = sb.howscrap(b_num,nick);
 	        	 
-	        	 //Alarm alram = sb.howalramexistence(b_num,nick,su_nick);
 		    		
 	        	 if(nowPage == null && cntPerPage == null) {
 		    		nowPage="1";
@@ -210,9 +210,13 @@ public class BoardController {
 	        	 mo.addAttribute("list",member);
 	        	 mo.addAttribute("llist",good);
 	        	 mo.addAttribute("slist",scrap);
-	        	 //mo.addAttribute("alist",alram);
 	        	 return "detailboard";
 	         }
+	         
+	         public void Replycnt(int num) {
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.replycnt(num);
+	     	}
 	         
 	         //댓글
 	         @RequestMapping(value = "/replysave")
@@ -232,7 +236,9 @@ public class BoardController {
 	        	 ss.replysave(b_num, m_nick, re_content);
 	        	 createalarm(b_num,m_nick,su_nick,a_content,alarm_chk,a_existence);
 	        	 
-	             ModelAndView mav = new ModelAndView();
+	        	 Replycnt(b_num);
+	        	 
+	        	 ModelAndView mav = new ModelAndView();
 	             
 	             if(b_num == 0) {
 	                 mav.setViewName("redirect:index");
@@ -245,7 +251,7 @@ public class BoardController {
 	         }
 	         
 	         
-	        //페이징
+	        //공지페이징
 	     	@RequestMapping(value="/noticepage")
 	    	public String page1(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	    		String nowPage=request.getParameter("nowPage");
@@ -272,12 +278,16 @@ public class BoardController {
 	    		return "noticepage";
 	    	}
 	     	
+	     	//정보공유 페이징
 	     	@RequestMapping(value="/sharepage")
-	    	public String page2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	    	public String page2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri, Board bdto) {
 	    		String nowPage=request.getParameter("nowPage");
 	    		String cntPerPage=request.getParameter("cntPerPage");
+	    		
+	    		
 	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	    		int total = sb.sharetotal();
+	    		
 	    		
 	    		if(nowPage == null && cntPerPage == null) {
 	    			nowPage="1";
@@ -288,23 +298,24 @@ public class BoardController {
 	    			cntPerPage="15";
 	    		}
 	    		
-
 	    		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
 	    		mo.addAttribute("page1",dto);
 	    		mo.addAttribute("page2",cri);
 	    		mo.addAttribute("bpage1",sb.sharepage(dto));
 	    		
-	    		
 	    		return "sharepage";
 	    	}
 	     	
+	     	
+	     	//지식인 페이징
 	     	@RequestMapping(value="/questionpage")
 	    	public String page3(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	    		String nowPage=request.getParameter("nowPage");
 	    		String cntPerPage=request.getParameter("cntPerPage");
 	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	    		int total = sb.questiontotal();
-	    			
+	    		
+	    		
 	    		if(nowPage == null && cntPerPage == null) {
 	    			nowPage="1";
 	    			cntPerPage="15";
@@ -324,6 +335,7 @@ public class BoardController {
 	    		return "questionpage";
 	    	}
 	     	
+	     	//고민상담소 페이징
 	     	@RequestMapping(value="/worrypage")
 	    	public String page4(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	    		String nowPage=request.getParameter("nowPage");
@@ -350,6 +362,7 @@ public class BoardController {
 	    		return "worrypage";
 	    	}
 	     	
+	     	//Q&A 페이징
 	     	@RequestMapping(value="/qnapage")
 	    	public String page5(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	    		String nowPage=request.getParameter("nowPage");
@@ -394,7 +407,6 @@ public class BoardController {
 	     	}
 	     	
 	     	//좋아요 
-
 	     	@RequestMapping(value = "/goodup",method = RequestMethod.POST)
 	     	public String ko20(HttpServletRequest request,RedirectAttributes rattr)
 	     	{
@@ -514,13 +526,16 @@ public class BoardController {
 						e.printStackTrace();
 	    			}
 					return "redirect:index";
-					}
-					else
-					{
+					
+					
+				}
+				else
+				{
 					rattr.addAttribute("result", "loginfail");
 					return "redirect:login";
-					}
+					
 	     		}
+	     	}
 	     	
 	     	//스크랩 취소
 	     	@RequestMapping(value = "/scrapcancel",method = RequestMethod.POST)
@@ -588,16 +603,10 @@ public class BoardController {
 	        	 
 		     		return "";
 		     	}
+	        
 	         
-	     	@RequestMapping(value = "/hh")
-	     	public String hh() {
-	     		return "search";
-	     	}
 
-
-	     	
-
-
+	     	//인기글 페이징
 	     	@RequestMapping(value="/poppage")
 	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	     		String nowPage=request.getParameter("nowPage");
@@ -622,7 +631,7 @@ public class BoardController {
 	     		return "poppage";
 	     	}
 	     	
-	     	
+	     	//검색
 	     	@RequestMapping(value = "/search")
 	     	public String search2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri)
 	     	{

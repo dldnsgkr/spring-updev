@@ -20,7 +20,11 @@
 	<c:forEach items="${bpage1 }" var="a">
 	<tr>
 		<td>${a.b_num }</td>
-		<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a></td>
+		<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a>
+		<c:if test="${a.b_replycnt ne 0}">
+			[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+		</c:if>
+		</td>
 		<td>${a.m_nick }</td>
 		<td>${a.b_wdate }</td>
 		<td>${a.b_readcnt }</td>
@@ -54,10 +58,6 @@
 </tr>
 </table>
 </body>
-<<<<<<< HEAD
-
-=======
->>>>>>> e454245896effe2e35295609425b6ac91f137903
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -89,7 +89,11 @@
 		<c:forEach items="${bpage1 }" var="a">
 		<tr>
 			<td>${a.b_num }</td>
-			<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a></td>
+			<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a>
+			<c:if test="${a.b_replycnt ne 0}">
+				[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+			</c:if>
+			</td>
 			<td>${a.m_nick }</td>
 			<td>${a.b_wdate }</td>
 			<td>${a.b_readcnt }</td>
@@ -121,8 +125,4 @@
 			</div>			
 		</div>		   
 	</body>
-<<<<<<< HEAD
-
-=======
->>>>>>> e454245896effe2e35295609425b6ac91f137903
 </html>

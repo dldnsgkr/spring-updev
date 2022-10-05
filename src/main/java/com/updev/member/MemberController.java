@@ -60,7 +60,7 @@ public class MemberController {
 		}
 
 		
-	
+	//회원가입
 	@RequestMapping(value = "/insert")
 	   public String insert(HttpServletRequest request)//회원가입 저장
 	   {
@@ -77,7 +77,7 @@ public class MemberController {
 	      return "redirect:index";
 	   }
 	   
-	
+	//로그인 저장기능
 	@RequestMapping(value="/loginact", method = RequestMethod.POST)
 	   public ModelAndView ko6(HttpServletRequest request , RedirectAttributes rattr) 
 	   {//db에 회원가입한 아이디 비밀번호가 맞는지 확인하는곳(로그인중)

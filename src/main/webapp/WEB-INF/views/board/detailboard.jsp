@@ -177,8 +177,7 @@ $(function(){
 </thead>
 </table>
 
-
-<form name="frm" method="post">
+	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
 	<input type="hidden" name="like_chk" id="like_chk" value="${llist.like_chk }">
@@ -253,6 +252,7 @@ $(function(){
 </tr>
 
 </table>
-	
+
+</div>
 </body>
 </html>

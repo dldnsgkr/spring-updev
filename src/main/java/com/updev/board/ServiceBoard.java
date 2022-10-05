@@ -48,6 +48,8 @@ public interface ServiceBoard {
 	
 	public Reply replyview(int b_num);
 	
+	public void replycnt(int b_num);
+	
 	//ÆäÀÌÂ¡
 	public int sharetotal();
 	public ArrayList<Board> sharepage(PageDTO dto);
