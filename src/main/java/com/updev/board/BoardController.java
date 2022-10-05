@@ -105,6 +105,7 @@ public class BoardController {
 	      public String ko10(HttpServletRequest request,Model mo)
 	      {
 	            int b_num = Integer.parseInt(request.getParameter("b_num"));
+	            System.out.println(b_num);
 	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	         Board dao = ss.updatecheck(b_num);
 	         mo.addAttribute("list",dao);
@@ -128,7 +129,9 @@ public class BoardController {
 	            String b_file2 = f2.getOriginalFilename();
 	         ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	         ss.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
+	         
 	         return "redirect:index";
+	         
 	      }
 	      
 	      //±Û ÀÛ¼º Æû

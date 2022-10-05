@@ -85,7 +85,7 @@ function admin_mylike_cancel(b_num){
 				location.href="admin_mylist";
 			},
 			error:function(data,textStatus){
-				alert("전송실패!!");
+				alert("admin_mylike_cancel error");
 			}
 		});
 	}else{
@@ -114,15 +114,12 @@ function admin_myscrap_cancel(b_num){
 	}
 }
 function admin_mylist_update(b_num){
-	modal.style.display = "block";
-	/*var result = confirm("정말 취소하시겠습니까?");
-	if(result){
 		var sam ={"b_num":b_num};
 		var sam =JSON.stringify(sam);
 		$.ajax({
 			type:"post",
 			async:false,
-			url:"admin_mylist_update",
+			url:"writeupdatecheck",
 			data:{jsoninfo:sam},
 			success:function(data,textStatus){
 				location.href="admin_mylist";
@@ -131,7 +128,16 @@ function admin_mylist_update(b_num){
 				alert("전송실패!!");
 			}
 		});
-	}else{
-		return false;
+	/*
+	var modal = document.getElementById("myModal");
+	var span = document.getElementsByClassName("close")[0];
+	modal.style.display = "block";
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "block";
+		}
 	}*/
 }
