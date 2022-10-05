@@ -69,7 +69,10 @@
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
 					<td>${a.b_kind}</td>
-					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a>
+					<c:if test="${a.b_replycnt ne 0}">
+						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+					</c:if></td>
 				</tr>
 				</c:forEach>
 				</table>
@@ -82,8 +85,11 @@
 				<c:forEach items="${sharempage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td>정보</td>
-					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a>
+					<c:if test="${a.b_replycnt ne 0}">
+						<span>[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]</span>
+					</c:if>
+					</td>
 				</tr>
 				</c:forEach>
 				</table>
@@ -97,8 +103,10 @@
 				<c:forEach items="${questionmpage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td>${a.b_kind}</td>
 					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<c:if test="${a.b_replycnt ne 0}">
+						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+					</c:if>
 				</tr>
 				</c:forEach>
 				</table>
@@ -111,8 +119,10 @@
 				<c:forEach items="${worrympage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td>${a.b_kind}</td>
 					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<c:if test="${a.b_replycnt ne 0}">
+						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+					</c:if>
 				</tr>
 				</c:forEach>
 				</table>
@@ -125,8 +135,10 @@
 				<c:forEach items="${noticempage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td>${a.b_kind}</td>
 					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<c:if test="${a.b_replycnt ne 0}">
+						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+					</c:if>
 				</tr>
 				</c:forEach>
 				</table>
@@ -139,8 +151,10 @@
 				<c:forEach items="${qnampage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td>${a.b_kind}</td>
 					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<c:if test="${a.b_replycnt ne 0}">
+						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+					</c:if>
 				</tr>
 				</c:forEach>
 				</table>			

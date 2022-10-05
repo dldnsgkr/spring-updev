@@ -3,18 +3,20 @@ package com.updev.board;
 public class Reply {
 	public int re_num,b_num;
 	public String m_nick,re_content,re_wdate;
+	public int b_replycnt;
 	
 	public Reply() {
 		super();
 	}
 	
-	public Reply(int re_num, int b_num, String m_nick, String re_content, String re_wdate) {
+	public Reply(int re_num, int b_num, String m_nick, String re_content, String re_wdate, int b_replycnt) {
 		super();
 		this.re_num = re_num;
 		this.b_num = b_num;
 		this.m_nick = m_nick;
 		this.re_content = re_content;
 		this.re_wdate = re_wdate;
+		this.b_replycnt = b_replycnt;
 	}
 
 
@@ -58,5 +60,12 @@ public class Reply {
 		this.re_wdate = re_wdate;
 	}
 
-	
+	public int getB_replycnt() {
+		return b_replycnt;
+	}
+
+	public void setB_replycnt(int b_replycnt) {
+		this.b_replycnt = b_replycnt;
+	}
+
 }
