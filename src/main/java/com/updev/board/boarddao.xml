@@ -40,27 +40,6 @@
 		select * from board where b_kind = #{param1}
 	</select>
 	
-	<!--  
-	<select id="noticeboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="shareboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="questionboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="worryboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="qnaboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	-->
 	<delete id="delete">
 		delete from board where b_num = #{param1}
 	</delete>
@@ -107,9 +86,9 @@
 		select * from good where b_num = #{param1} and m_nick = #{param2}
 	</select>
 	
-	<delete id="blikedown">
-		delete from good where b_num = #{param1} and m_nick = #{param2}
-	</delete>
+	<update id="blikedown">
+		update good set like_chk = #{param3} where b_num = #{param1} and m_nick = #{param2}
+	</update>
 	
 	<update id="likecntup">
 		update board set b_likecnt=b_likecnt+1 where b_num=#{param1}
@@ -117,6 +96,22 @@
 	
 	<update id="likecntdown">
 		update board set b_likecnt=b_likecnt-1 where b_num=#{param1}
+	</update>
+	
+	<select id="howalramexistence" resultType="com.updev.board.Alarm">
+		select * from alarm where b_num = #{param1} and m_nick = #{param2} and m_id = #{param3}
+	</select>
+	
+	<insert id="goodalarm">
+		insert into alarm values(a_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+	</insert>
+	
+	<select id="howgo" resultType="int">
+		select count(*) from good where b_num = #{param1} and m_nick = #{param2}
+	</select>
+	
+	<update id="regood">
+		update good set like_chk = 1 where b_num = #{param1} and m_nick = #{param2}
 	</update>
 	
 	<!-- 스크랩 -->
@@ -129,9 +124,17 @@
 		select * from scrap where b_num = #{param1} and m_nick = #{param2}
 	</select>
 	
+	<select id="howsc" resultType="int">
+		select count(*) from scrap where b_num = #{param1} and m_nick = #{param2}
+	</select>
+	
 	<delete id="scrapcancel">
-		delete from scrap where b_num = #{param1} and m_nick = #{param2}
+		update scrap set scrap_chk = #{param3} where b_num = #{param1} and m_nick = #{param2}
 	</delete>
+	
+	<update id="rescrap">
+		update scrap set scrap_chk = 1 where b_num = #{param1} and m_nick = #{param2}
+	</update>
 	
 	<!-- 페이징 -->
 	<select id="sharetotal" resultType="int">
@@ -248,7 +251,6 @@
 		where b_kind='공지'
 		order by b_group DESC,b_step ASC
 	</select>
-	
 	<select id="qnamain" resultType="com.updev.board.Board">
 		select * from board 
 		where b_kind='QNA'

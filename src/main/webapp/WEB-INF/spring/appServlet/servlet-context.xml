@@ -48,7 +48,7 @@
    <!-- 마이바티스 설정 -->
    <beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
          <beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-         <beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+         <beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/><!--  192.168.0.55-->
          <beans:property name="username" value="updev"/>
          <beans:property name="password" value="27678"/>
    </beans:bean>
@@ -64,7 +64,5 @@
    <!-- 마이바티스 설정 종료 -->
 	
 	<context:component-scan base-package="com.updev.member,com.updev.board,com.updev.admin,com.updev.report" />
-	
-	
-	
+
 </beans:beans>

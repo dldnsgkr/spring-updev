@@ -28,7 +28,7 @@
 	<delete id="admin_mylist_delete">
 		delete FROM board where b_num = #{param1}
 	</delete>
-	<update id="admin_mylike_cancle">
+	<update id="admin_mylike_cancel">
 		update good set like_chk = 0 where b_num = #{param1} and m_nick = #{param2}
 	</update>
 	<update id="admin_myscrap_cancel">

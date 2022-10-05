@@ -35,7 +35,7 @@
 					<c:forEach items="${bpage1 }" var="a">
 					<tr>
 						<td>${a.b_num }</td>
-						<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a></td>
+						<td><a href="detail?b_num=${a.b_num }&su_nick=${a.m_nick}">${a.b_title }</a></td>
 						<td>${a.m_nick }</td>
 						<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 						<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>

@@ -39,6 +39,7 @@ function ttt(){
 
 $(function(){
 	var like_chk =$("#like_chk").val();
+	var a_existence =$("#a_existence").val();
 	if(like_chk == 1) {
 			$("#ttt").html("좋아요취소");
 			$("#ttt").click(function(){
@@ -64,7 +65,10 @@ $(function(){
 		$("#ttt").click(function(){
 			var b_num =$("#b_num").val();
 			var m_nick =$("#m_nick").val();
-			var sam ={"b_num":b_num,"m_nick":m_nick};
+			var b_title =$("#b_title").val();
+			var m_id =$("#m_id").val();
+			var b_kind =$("#b_kind").val();
+			var sam ={"b_num":b_num,"m_nick":m_nick,"b_kind":b_kind,"m_id":m_id,"b_title":b_title};
 			var sam =JSON.stringify(sam);
 			$.ajax({
 				type:"post",
@@ -118,7 +122,10 @@ $(function(){
 		$("#sss").click(function(){
 			var b_num =$("#b_num").val();
 			var m_nick =$("#m_nick").val();
-			var sam ={"b_num":b_num,"m_nick":m_nick};
+			var b_title =$("#b_title").val();
+			var m_id =$("#m_id").val();
+			var b_kind =$("#b_kind").val();
+			var sam ={"b_num":b_num,"m_nick":m_nick,"b_kind":b_kind,"m_id":m_id,"b_title":b_title};
 			var sam =JSON.stringify(sam);
 			$.ajax({
 				type:"post",
@@ -175,8 +182,23 @@ $(function(){
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
 	<input type="hidden" name="like_chk" id="like_chk" value="${llist.like_chk }">
+	<input type="hidden" name="b_kind" id="b_kind" value="${list.b_kind }">
+	<input type="hidden" name="b_title" id="b_title" value="${list.b_title }">
+	<input type="hidden" name="a_existence" id="a_existence" value="1">
+	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
 	<button type="button" id="ttt">좋아요</button>
 	</form>&emsp;
+	
+	<form name="frm" method="post">
+	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
+	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
+	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
+	<input type="hidden" name="b_kind" id="b_kind" value="${list.b_kind }">
+	<input type="hidden" name="b_title" id="b_title" value="${list.b_title }">
+	<input type="hidden" name="a_existence" id="a_existence" value="2">
+	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
+	<button type="button" id="sss">스크랩</button>
+	</form>
 	
 <!-- 댓글 -->
 <table>
@@ -185,6 +207,8 @@ $(function(){
 	<td><input type="hidden" name="b_num" value="${list.b_num}"></td>
 	<td><input type="text" name="m_nick" value="${member_nick}" readonly></td>
 	<td><input type="hidden" name="m_id" value="${list.m_nick}"></td>
+	<td><input type="hidden" name="b_kind" id="b_kind" value="${list.b_kind }"></td>
+	<td><input type="hidden" name="b_title" id="b_title" value="${list.b_title }"></td>
 </tr>
 <tr>
 	<td colspan="2"><textarea name="re_content" rows="6" cols="60"></textarea></td>
@@ -229,12 +253,6 @@ $(function(){
 </tr>
 
 </table>
-	<form name="frm" method="post">
-	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
-	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
-	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
-	<button type="button" id="sss">스크랩</button>
-	</form>&emsp;
-
+	
 </body>
 </html>

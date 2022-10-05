@@ -79,7 +79,7 @@ public interface ServiceBoard {
 
 	public void blikeup(int b_num, String m_nick, int chk);
 
-	public void blikedown(int b_num, String m_nick);
+	public void blikedown(int b_num, String m_nick, int like_chk);
 
 	public void likecntup(int num);
 
@@ -87,7 +87,7 @@ public interface ServiceBoard {
 
 	public void scrap(int b_num, String m_nick, int chk);
 
-	public void scrapcancel(int b_num, String m_nick);
+	public void scrapcancel(int b_num, String m_nick, int scrap_chk);
 
 	public Scrap howscrap(int b_num, String nick);
 	
@@ -102,4 +102,16 @@ public interface ServiceBoard {
 	public ArrayList<Board> noticemain();
 	
 	public ArrayList<Board> qnamain();
+
+	public void goodalarm(int num, String m_nick, String su_nick, String a_content, int alarm_chk, int a_existence);
+
+	public Alarm howalramexistence(int b_num, String nick, String su_nick);
+	
+	public int howgo(int b_num, String m_nick, String su_nick);
+
+	public void regood(int b_num, String m_nick);
+
+	public void rescrap(int b_num, String m_nick);
+
+	public int howsc(int b_num, String m_nick, String su_nick);
 }
