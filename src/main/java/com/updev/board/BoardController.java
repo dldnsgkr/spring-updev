@@ -56,11 +56,11 @@ public class BoardController {
  		ArrayList<Board> ampage=sb.qnamain();
  		
  		mo.addAttribute("popmpage",pmpage);
- 		mo.addAttribute("popmpage",smpage);
- 		mo.addAttribute("popmpage",qmpage);
- 		mo.addAttribute("popmpage",wmpage);
- 		mo.addAttribute("popmpage",nmpage);
- 		mo.addAttribute("popmpage",ampage);
+ 		mo.addAttribute("sharempage",smpage);
+ 		mo.addAttribute("questionmpage",qmpage);
+ 		mo.addAttribute("worrympage",wmpage);
+ 		mo.addAttribute("noticempage",nmpage);
+ 		mo.addAttribute("qnampage",ampage);
 
 		return "main";
 	}
@@ -369,6 +369,13 @@ public class BoardController {
 	     	
 	     	//좋아요 증가
 	     	public void likecntup(int num)
+	     	{
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.likecntup(num);
+	     	}
+	     	
+	     	//좋아요 증가
+	     	public void createalarm(int num)
 	     	{
 	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	     		ss.likecntup(num);

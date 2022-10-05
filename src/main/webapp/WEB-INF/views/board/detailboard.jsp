@@ -177,10 +177,6 @@ $(function(){
 	<input type="hidden" name="like_chk" id="like_chk" value="${llist.like_chk }">
 	<button type="button" id="ttt">좋아요</button>
 	</form>&emsp;
-<<<<<<< HEAD
-=======
-	
->>>>>>> upstream/main
 	
 <!-- 댓글 -->
 <table>
@@ -188,6 +184,7 @@ $(function(){
 <tr>
 	<td><input type="hidden" name="b_num" value="${list.b_num}"></td>
 	<td><input type="text" name="m_nick" value="${member_nick}" readonly></td>
+	<td><input type="hidden" name="m_id" value="${list.m_nick}"></td>
 </tr>
 <tr>
 	<td colspan="2"><textarea name="re_content" rows="6" cols="60"></textarea></td>
@@ -238,10 +235,6 @@ $(function(){
 	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
 	<button type="button" id="sss">스크랩</button>
 	</form>&emsp;
-<<<<<<< HEAD
-=======
 
-</div>
->>>>>>> upstream/main
 </body>
 </html>
