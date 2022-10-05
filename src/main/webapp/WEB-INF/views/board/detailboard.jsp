@@ -170,12 +170,22 @@ $(function(){
 </thead>
 </table>
 
-
-<form name="frm" method="post">
+	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
 	<input type="hidden" name="like_chk" id="like_chk" value="${llist.like_chk }">
 	<button type="button" id="ttt">좋아요</button>
+
+	</form>&emsp;
+
+
+	</form>
+	
+	<form name="frm" method="post">
+	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
+	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
+	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
+	<button type="button" id="sss">스크랩</button>
 	</form>&emsp;
 
 	
@@ -229,12 +239,15 @@ $(function(){
 </tr>
 
 </table>
+
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
 	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
 	<button type="button" id="sss">스크랩</button>
 	</form>&emsp;
+
+
 
 </div>
 </body>
