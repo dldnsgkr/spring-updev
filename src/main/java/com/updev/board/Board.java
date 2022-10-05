@@ -6,13 +6,13 @@ public class Board {
    String b_cate,b_kind,b_title,m_nick,b_wdate,b_content;
    int b_likecnt,b_readcnt,b_group,b_step,b_indent;
    String b_tag,b_file1,b_file2;
-   int b_report;
+   int b_report,b_replycnt;
    
    public Board() {}
 
    public Board(int b_num, String b_cate, String b_kind, String b_title, String m_nick, String b_wdate,
          String b_content, int b_likecnt, int b_readcnt, int b_group, int b_step, int b_indent, String b_tag,
-         String b_file1, String b_file2, int b_report) {
+         String b_file1, String b_file2, int b_report, int b_replycnt) {
       super();
       this.b_num = b_num;
       this.b_cate = b_cate;
@@ -30,6 +30,7 @@ public class Board {
       this.b_file1 = b_file1;
       this.b_file2 = b_file2;
       this.b_report = b_report;
+      this.b_replycnt = b_replycnt;
    }
 
    public int getB_num() {
@@ -159,6 +160,13 @@ public class Board {
    public void setB_report(int b_report) {
       this.b_report = b_report;
    }
-   
+
+	public int getB_replycnt() {
+		return b_replycnt;
+	}
+	
+	public void setB_replycnt(int b_replycnt) {
+		this.b_replycnt = b_replycnt;
+	}
    
 }

@@ -56,11 +56,11 @@ public class BoardController {
  		ArrayList<Board> ampage=sb.qnamain();
  		
  		mo.addAttribute("popmpage",pmpage);
- 		mo.addAttribute("popmpage",smpage);
- 		mo.addAttribute("popmpage",qmpage);
- 		mo.addAttribute("popmpage",wmpage);
- 		mo.addAttribute("popmpage",nmpage);
- 		mo.addAttribute("popmpage",ampage);
+ 		mo.addAttribute("sharempage",smpage);
+ 		mo.addAttribute("questionmpage",qmpage);
+ 		mo.addAttribute("worrympage",wmpage);
+ 		mo.addAttribute("noticempage",nmpage);
+ 		mo.addAttribute("qnampage",ampage);
 
 		return "main";
 	}
@@ -211,6 +211,11 @@ public class BoardController {
 	        	 return "detailboard";
 	         }
 	         
+	         public void Replycnt(int num) {
+	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	     		ss.replycnt(num);
+	     	}
+	         
 	         //´ñ±Û
 	         @RequestMapping(value = "/replysave")
 	         public ModelAndView reply(HttpServletRequest request,Model mo) {
@@ -223,7 +228,9 @@ public class BoardController {
 	        	 
 	        	 ss.replysave(b_num, m_nick, re_content);
 	        	 
-	             ModelAndView mav = new ModelAndView();
+	        	 Replycnt(b_num);
+	        	 
+	        	 ModelAndView mav = new ModelAndView();
 	             
 	             if(b_num == 0) {
 	                 mav.setViewName("redirect:index");
@@ -264,11 +271,14 @@ public class BoardController {
 	    	}
 	     	
 	     	@RequestMapping(value="/sharepage")
-	    	public String page2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	    	public String page2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri, Board bdto) {
 	    		String nowPage=request.getParameter("nowPage");
 	    		String cntPerPage=request.getParameter("cntPerPage");
+	    		
+	    		
 	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	    		int total = sb.sharetotal();
+	    		
 	    		
 	    		if(nowPage == null && cntPerPage == null) {
 	    			nowPage="1";
@@ -279,15 +289,15 @@ public class BoardController {
 	    			cntPerPage="15";
 	    		}
 	    		
-
 	    		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
 	    		mo.addAttribute("page1",dto);
 	    		mo.addAttribute("page2",cri);
 	    		mo.addAttribute("bpage1",sb.sharepage(dto));
 	    		
-	    		
 	    		return "sharepage";
 	    	}
+	     	
+	     	
 	     	
 	     	@RequestMapping(value="/questionpage")
 	    	public String page3(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
@@ -295,7 +305,8 @@ public class BoardController {
 	    		String cntPerPage=request.getParameter("cntPerPage");
 	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	    		int total = sb.questiontotal();
-	    			
+	    		
+	    		
 	    		if(nowPage == null && cntPerPage == null) {
 	    			nowPage="1";
 	    			cntPerPage="15";
@@ -463,7 +474,6 @@ public class BoardController {
 				String m_nick=(String) jobj.get("m_nick");
 				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 				sb.scrap(b_num,m_nick,chk);
-				likecntup(b_num);
 	    		} catch (org.json.simple.parser.ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -493,7 +503,6 @@ public class BoardController {
 				String m_nick=(String) jobj.get("m_nick");
 				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 				sb.scrapcancel(b_num,m_nick);
-				likecntup(b_num);
 	    		} catch (org.json.simple.parser.ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
