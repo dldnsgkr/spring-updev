@@ -43,10 +43,10 @@ public class BoardController {
 	@RequestMapping(value = "/")
 	public String ko1(HttpServletRequest request,Model mo)
 	{
-		String q = "unknown";
+		String loginbefore = "unknown";
 		HttpSession session = request.getSession();
 		session.setAttribute("loginState", false);
-		session.setAttribute("member_nick", q);
+		session.setAttribute("member_nick", loginbefore);
 		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 		
  		ArrayList<Board> pmpage=sb.popmain();

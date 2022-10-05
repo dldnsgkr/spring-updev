@@ -11,7 +11,7 @@ function idtest(){
 	$.ajax({
 		type:"get",
 		async:false,
-		url:"test",
+		url:"idtest",
 		data:{jsoninfo:sam},
 		success:function(data,textStatus){
 			$("#id_check").text(data);

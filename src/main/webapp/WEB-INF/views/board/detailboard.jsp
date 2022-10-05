@@ -186,7 +186,15 @@ $(function(){
 	<input type="hidden" name="a_existence" id="a_existence" value="1">
 	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
 	<button type="button" id="ttt">좋아요</button>
+<<<<<<< HEAD
 	</form>&emsp;
+=======
+
+	</form>&emsp;
+
+
+	</form>
+>>>>>>> e5056c00552fab4b309350513e0e3abe775d06df
 	
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
@@ -197,7 +205,12 @@ $(function(){
 	<input type="hidden" name="a_existence" id="a_existence" value="2">
 	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
 	<button type="button" id="sss">스크랩</button>
+<<<<<<< HEAD
 	</form>
+=======
+	</form>&emsp;
+
+>>>>>>> e5056c00552fab4b309350513e0e3abe775d06df
 	
 <!-- 댓글 -->
 <table>
@@ -252,6 +265,15 @@ $(function(){
 </tr>
 
 </table>
+
+	<form name="frm" method="post">
+	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
+	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
+	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
+	<button type="button" id="sss">스크랩</button>
+	</form>&emsp;
+
+
 
 </div>
 </body>

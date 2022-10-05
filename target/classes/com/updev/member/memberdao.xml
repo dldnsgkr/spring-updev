@@ -49,7 +49,7 @@
 		update chat set m_nick = #{param2} where m_nick = #{param1}
 	</update>
 	
-	<select id="test" resultType="int">
+	<select id="idtest" resultType="int">
   		select count(*) from member where m_id = #{m_id}
   	</select>
 		
