@@ -64,7 +64,5 @@
    <!-- 마이바티스 설정 종료 -->
 	
 	<context:component-scan base-package="com.updev.member,com.updev.board,com.updev.admin,com.updev.report" />
-	
-	
-	
+
 </beans:beans>

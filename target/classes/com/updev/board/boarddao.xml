@@ -40,27 +40,6 @@
 		select * from board where b_kind = #{param1}
 	</select>
 	
-	<!--  
-	<select id="noticeboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="shareboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="questionboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="worryboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="qnaboardtable" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	-->
 	<delete id="delete">
 		delete from board where b_num = #{param1}
 	</delete>
@@ -248,10 +227,9 @@
 		where b_kind='공지'
 		order by b_group DESC,b_step ASC
 	</select>
-	
 	<select id="qnamain" resultType="com.updev.board.Board">
 		select * from board 
-		where b_kind='Q&A'
+		where b_kind='QNA'
 		order by b_group DESC,b_step ASC
 	</select>
 </mapper>
