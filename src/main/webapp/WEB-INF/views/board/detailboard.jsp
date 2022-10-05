@@ -177,10 +177,7 @@ $(function(){
 	<input type="hidden" name="like_chk" id="like_chk" value="${llist.like_chk }">
 	<button type="button" id="ttt">좋아요</button>
 	</form>&emsp;
-<<<<<<< HEAD
-=======
-	
->>>>>>> upstream/main
+
 	
 <!-- 댓글 -->
 <table>
@@ -238,10 +235,7 @@ $(function(){
 	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
 	<button type="button" id="sss">스크랩</button>
 	</form>&emsp;
-<<<<<<< HEAD
-=======
 
 </div>
->>>>>>> upstream/main
 </body>
 </html>

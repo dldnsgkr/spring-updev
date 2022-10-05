@@ -60,10 +60,6 @@
 				</c:forEach>
 							
 				
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/main
 	
 	<c:if test="${page1.next && page1.endPage>0}">
 		<a href="qnapage?nowPage=${page1.endPage +1}">&#62;</a>
@@ -72,10 +68,6 @@
 </tr>
 </table>
 </body>
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/main
 				<c:if test="${page1.nowPage ne page1.realEnd && page1.endPage>0 }">
 					<a href="qnapage?nowPage=${page1.endPage +1}">&#62;</a>
 				</c:if>   

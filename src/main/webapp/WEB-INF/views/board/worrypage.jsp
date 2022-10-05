@@ -54,10 +54,6 @@
 </tr>
 </table>
 </body>
-<<<<<<< HEAD
-
-=======
->>>>>>> e454245896effe2e35295609425b6ac91f137903
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -121,8 +117,4 @@
 			</div>			
 		</div>		   
 	</body>
-<<<<<<< HEAD
-
-=======
->>>>>>> e454245896effe2e35295609425b6ac91f137903
 </html>

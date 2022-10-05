@@ -15,7 +15,7 @@ public interface ServiceMember {
 
 	public Signup profileupdatecheck(String m_nick);
 
-	public int test(String id);
+	public int idtest(String id);
 
 	public int idCheck(String m_id);
 
