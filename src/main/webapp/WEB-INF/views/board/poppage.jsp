@@ -12,8 +12,10 @@
 	<body>
 	<!-- 인기 게시글 -->
 		<div class="wrap">
+				<div class="boardpage_top">
 			<div class="board_notic">
 				UPDEV의 인기 게시글 목록입니다.
+			</div>
 			</div>
 			<table border="1">
 				<thead id="thead">
@@ -60,10 +62,6 @@
 		</c:choose>
 	</c:forEach>
   
-	</td>
-	</tr>
-</table>
-
   </div>			
 </div>
 </body>

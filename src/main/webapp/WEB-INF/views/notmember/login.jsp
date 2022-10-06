@@ -4,13 +4,14 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<link rel="stylesheet" href="resources/css/login.css" type="text/css">
 	<script src="resources/js/login.js"></script>
 	</head>
 	<body>
 		<div class="box">
 			<div class="boxright">
-				<form name="login1" action="loginact" method="post">
+				<form name="login1" id="login_form" action="loginact" method="post">
 					<h1>LOGIN</h1>
 					<input class="input" type="text" name="m_id" value="" placeholder="아이디">
 					<input class="input" type="password" name="m_pw" value="" placeholder="비밀번호">
@@ -24,5 +25,6 @@
 				</form>
 			</div>
 		</div>
+		<script type="text/javascript" src="resources/js/login.js"></script>
 	</body>
 </html>

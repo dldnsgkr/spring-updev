@@ -170,59 +170,7 @@ $(function(){
 		<div class="detail_button">
 			<input type="button" class="button" value="신고"
 				onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'">
-<div class="wrap">
-<table>
-<thead id="thead">
-<tr>
-<th>${list.b_kind }</th>
-</tr>
-<tr>
-<th>${list.m_nick }</th><th>${list.b_wdate }</th>
-</tr>
-<tr>
-<th>${list.b_title }</th>
-</tr>
-<tr>
-<td>${list.b_content }</td>
-</tr>
-	
-	<tr>
-	<td><input type="button" value="신고" onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'"></td>
-	</tr>
-</thead>
-</table>
 
-	<form name="frm" method="post">
-	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
-	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
-	<input type="hidden" name="like_chk" id="like_chk" value="${llist.like_chk }">
-	<button type="button" id="ttt">좋아요</button>
-
-	</form>&emsp;
-
-
-	</form>
-	
-	<form name="frm" method="post">
-	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
-	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
-	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
-	<button type="button" id="sss">스크랩</button>
-	</form>&emsp;
-
-	
-<!-- 댓글 -->
-<table>
-<form action="replysave" metod="post">
-<tr>
-	<td><input type="hidden" name="b_num" value="${list.b_num}"></td>
-	<td><input type="text" name="m_nick" value="${member_nick}" readonly></td>
-</tr>
-<tr>
-	<td colspan="2"><textarea name="re_content" rows="6" cols="60"></textarea></td>
-	<td><input type="submit" value="등록"></td>
-</tr>
-</form>
 			<form name="frm" method="post">
 				<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 				<input type="hidden" name="m_nick" id="m_nick"
@@ -250,12 +198,10 @@ $(function(){
 						<td><input type="text" id="e" name="m_nick"
 							value="${member_nick}" readonly></td>
 					</tr>
-				<tr>
-					<td colspan="2"><textarea id="f" name="re_content" rows="6"
-							cols="50" placeholder="댓글을 입력해 주세요."></textarea></td>
-					<td><input class="button" id="reply_su" type="submit"
-						value="등록"></td>
-				</tr>
+					<tr>
+					<td colspan="2"><textarea id="f" name="re_content" rows="6" cols="50" placeholder="댓글을 입력해 주세요."></textarea></td>
+					<td><input class="button" id="reply_su" type="submit" value="등록"></td>
+					</tr>
 				</form>
 
 				<c:forEach items="${repage}" var="a">
@@ -289,19 +235,6 @@ $(function(){
 
 			</table>
 		</div>
-	</div>
-
-</table>
-
-	<form name="frm" method="post">
-	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
-	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
-	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
-	<button type="button" id="sss">스크랩</button>
-	</form>&emsp;
-
-
-
 </div>
 
 </body>

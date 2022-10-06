@@ -21,7 +21,7 @@
 					<td>메일</td><td>전화번호</td><td>분야</td><td>가입일자</td><td>등급</td>
 					<td>삭제</td><td>수정</td>
 					</tr>
-					<c:forEach items="${board}" var="list">
+					<c:forEach items="${bpage1}" var="list">
 					<tr><td>${list.m_num}</td><td>${list.m_id}</td><td>${list.m_nick}</td>
 					<td>${list.m_name}</td><td>${list.m_mail}</td><td>${list.m_tel}</td><td>${list.m_field}</td>
 					<td>${list.m_jdate}</td><td>${list.m_grade}</td>
@@ -30,6 +30,27 @@
 					</tr>
 					</c:forEach>
 				</table>
+				
+				<c:if test="${page1.nowPage > 10}">
+					<a href="member_manage?nowPage=${page1.startPage -1}">&#60;</a> 				
+				</c:if>
+					
+				<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
+					<c:choose>
+						<c:when test="${p==page1.nowPage}">
+							<b>${p}</b>
+						</c:when>
+						<c:when test="${p!=page1.nowPage}">
+							<a href="member_manage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				<!-- 
+				<c:if test="${page1.nowPage ne page1.realEnd && page1.endPage>0}"></c:if>
+				 -->			
+				<c:if test="${page1.next && page1.endPage>0}">
+					<a href="member_manage?nowPage=${page1.endPage +1}">&#62;</a>
+				</c:if>
 			</div>
 		</div>
 	</div>

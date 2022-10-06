@@ -54,7 +54,26 @@ public interface ServiceAdmin {
 
 	public void board_manage_delete(int b_num);
 	
-	//∆‰¿Ã¬°
 	public int mylisttotal();
 	public ArrayList<Board> mylistpage(PageDTO dto);
+	public int notice_manage_total();
+	public ArrayList<Board> notice_manage_page(PageDTO dto);
+	
+	public int share_manage_total();
+	public ArrayList<Board> share_manage_page(PageDTO dto);
+	
+	public int question_manage_total();
+	public ArrayList<Board> question_manage_page(PageDTO dto);
+	
+	public int worry_manage_total();
+	public ArrayList<Board> worry_manage_page(PageDTO dto);
+	
+	public int qna_manage_total();
+	public ArrayList<Board> qna_manage_page(PageDTO dto);
+	
+	public int report_manage_total();
+	public ArrayList<Board> report_manage_page(PageDTO dto);
+	
+	public int member_manage_total();
+	public ArrayList<Signup> member_manage_page(PageDTO dto);
 }

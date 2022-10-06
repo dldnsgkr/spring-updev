@@ -298,7 +298,6 @@ public class BoardController {
 	    	}
 	     	
 	     	
-	     	
 	     	@RequestMapping(value="/questionpage")
 	    	public String page3(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	    		String nowPage=request.getParameter("nowPage");
