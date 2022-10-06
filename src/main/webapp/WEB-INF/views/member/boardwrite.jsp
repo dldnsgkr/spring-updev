@@ -1,34 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<link rel="stylesheet" href="resources/css/boardwrite.css" type="text/css">
-		<script src="resources/js/boardwrite.js"></script>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="./resources/js/boardwrite.js"></script>
+<link rel="stylesheet" href="resources/css/boardwrite.css" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
-		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-		<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-		<script src="resources/summernote/summernote-lite.js"></script>
-  		<script src="resources/summernote/summernote-ko-KR.js"></script>
-  		<link rel="stylesheet" href="resources/summernote/summernote-lite.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+</head>
+<body>
 
-	</head>
-	<body>
-		<div class="wrap">
 <div class="container">
-  <textarea class="summernote" name="editordata"></textarea>    
-</div>
-<script>
-$('.summernote').summernote({
-	  height: 150,
-	  lang: "ko-KR"
-	});
-</script>
-			<form action="writesave" method="post" enctype="multipart/form-data" name="write">
+		<form action="writesave" method="post" enctype="multipart/form-data" name="write">
 				<table border="1">
 				<tr>
 				   <th>분류</th>
@@ -47,11 +39,9 @@ $('.summernote').summernote({
 				<tr>
 				   <th>내용</th>
 				   <td>
-					
-				   <textarea cols="50" rows="10" name="b_content" id="input_c"></textarea></td>
-				   <!-- summernote -->
-				</tr>
-				<tr>
+ 				<textarea class="summernote" name="b_content"></textarea>
+ 				</tr>
+ 			 	<tr>
 				   <th>첨부파일1</th>
 				   <td><input type="file" name="b_file1" id="file"></td><!-- summernote 사용 예정 -->
 				</tr>
@@ -60,9 +50,31 @@ $('.summernote').summernote({
 				   <td><input type="file" name="b_file2" id="file"></td><!-- summernote 사용 예정 -->
 				</tr>
 				</table>
+
 			
 			<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>
+
 			</form>
-		</div>
-	</body>
+</div>
+
+<script>
+$('.summernote').summernote({
+	width: 995,
+     height: 230,                 // 에디터 높이
+      minHeight: null,             // 최소 높이
+      maxHeight: null,             // 최대 높이
+      focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+      lang: "ko-KR",                    // 한글 설정
+      placeholder: '내용을 입력하세요.'    //placeholder 설정
+   });
+$('.note-statusbar').hide()
+
+	$("#login_form").keypress(function(e) {
+		if (e.keyCode === 13) {
+			loginChk();
+		}
+	});
+
+</script>
+</body>
 </html>
