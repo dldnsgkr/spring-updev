@@ -108,6 +108,21 @@
 	<definition name="board_manage" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/board_manage.jsp" />
 	</definition>
+	<definition name="notice_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/board_manage.jsp" />
+	</definition>
+	<definition name="infoshare_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/board_manage.jsp" />
+	</definition>
+	<definition name="intellectual_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/board_manage.jsp" />
+	</definition>
+	<definition name="counseling_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/board_manage.jsp" />
+	</definition>
+	<definition name="qna_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/board_manage.jsp" />
+	</definition>
 	<!-- 신고 관리 - 신고 관리 페이지 -->
 	<definition name="report_manage" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/report_manage.jsp" />

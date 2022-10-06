@@ -475,22 +475,32 @@ public class AdminController {
 			}
 			return "redirect:admin_mylist";
 		}
-		/*
+		
 		// 게시판관리 > 삭제
-		@RequestMapping(value = "/member_manage_delete", method = RequestMethod.POST)
+		@RequestMapping(value = "/board_manage_delete", method = RequestMethod.POST)
 		public String board_manage_delete(HttpServletRequest request, Model model) throws Exception{
 			String jo = request.getParameter("jsoninfo");		
 			JSONParser jsonparse = new JSONParser();
+			String url=null;
 			try {
 				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
 				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				url =(String)jobj.get("url");
+				url = url.substring(1,url.length());
+				System.out.println(url);
+				url="redirect:"+url;
 				ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 				sa.board_manage_delete(b_num);
+				
+				
+				
+				
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			return "redirect:board_manage";
+			// 없어도된다.
+			return url;
 		}
-		*/
+		
 	
 }

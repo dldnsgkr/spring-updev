@@ -9,10 +9,11 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/admin/admin_infoupdate.css">
 </head>
 <body>
+	<c:set var="URL3" value="${requestScope['javax.servlet.forward.servlet_path']}" />
 	<div class="infoupdate">
 		<div class="title">
 			<span></span>
-			<p>??게시판</p>
+			<p>게시판</p>
 		</div>
 		<div class="content">
 			<div id="out">
@@ -21,23 +22,29 @@
 					<td>내용</td><td>추천수</td><td>조회수</td><td>태그</td><td>첨부파일1</td>
 					<td>첨부파일2</td><td>신고회수</td><td>삭제</td><td>수정</td>
 					</tr>
-					
 					<c:forEach items="${board}" var="list">
+					
 					<tr><td>${list.b_num}</td><td>${list.b_cate}</td><td>${list.b_kind}</td><td>${list.b_title}</td>
 					<td>${list.b_wdate}</td><td>${list.b_content}</td><td>${list.b_likecnt}</td><td>${list.b_readcnt}</td>
 					<td>${list.b_tag}</td><td>${list.b_file1}</td>
 					<td>${list.b_file2}</td><td>${list.b_report}</td>
-					<!-- 
-					<td><a onclick="board_manage_delete(${list.b_num});">삭제</a></td>
-					 -->
+					<td><a onclick="board_manage_delete(${list.b_num},'${URL3}');">삭제</a></td>
 					<td>수정</td>
 					</tr>
-					</c:forEach>
 				
+					</c:forEach>
 				</table>
 			
 			</div>
 		</div>
+		<!-- 
+		<c:set var="URL1" value="${pageContext.request.scheme}" />
+
+JSP에서 현재 URL 가져오기 : ${URL1}<br>
+		<c:set var="URL2" value="${pageContext.request.serverPort}" />
+
+JSP에서 현재 URL 가져오기 : ${URL2}<br>
+		 -->
 	</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="./resources/js/admin/board_manage.js"></script>
