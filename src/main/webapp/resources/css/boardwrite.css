@@ -23,33 +23,33 @@ th{
   color: white;
   background-color: #9067c6;
   font-size: 15px;
-  text-align: left;
-  padding: 16px 37px;
-  vertical-align: middle;
-  font-family: 'Nanum Gothic', sans-serif;
+  text-align: left !important; 
+  padding: 16px 37px !important;
+  vertical-align: middle !important;
+  font-family: 'Nanum Gothic', sans-serif !important;
 }
 
  td {
-  font-size: 18px;
-  padding: 5px 0px 5px 8px;	
-  vertical-align: middle;
-  font-family: 'Nanum Gothic', sans-serif;
-  color:#242038;
-  border-bottom: 1px solid #242038;
+  font-size: 15px !important;
+  padding: 5px 0px 5px 8px !important;	
+  vertical-align: middle !important;
+  font-family: 'Nanum Gothic', sans-serif !important;
+  color:#242038 !important;
+  border-bottom: 1px solid #242038 !important;
 }
 
 select{
-	outline: none;
-    border: none;
-    box-sizing: border-box;
-    padding-left: 40px;	
+	outline: none !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    padding-left: 40px !important;	
 }
 
 #file{
 	padding-left: 40px;	
 }
 
-#input, #input_c{
+#input{
 	outline: none;
     border: none;
     width: 1000px;
@@ -57,10 +57,6 @@ select{
     padding-left: 40px;	
     padding-right: 40px;	
     resize: none;
-}
-
-#input_c{
-	padding: 14.5px 40px;
 }
 
 a {

@@ -6,6 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="resources/js/search.js"></script>
 		<link rel="stylesheet" href="resources/css/top.css" type="text/css">
 	</head>
@@ -101,6 +102,12 @@
 					</div>
 				</div>
 							</div>
-					<!-- <button class="top_logo" type="button" onclick="location.href = '/updev' "></button>  -->
+		<script type="text/javascript">
+		$("#top_search_form").keypress(function(e) {
+			if (e.keyCode === 13) {
+				SearchChk();
+			}
+		});		
+		</script>
 	</body>
 </html>

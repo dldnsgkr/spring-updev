@@ -28,12 +28,13 @@
 	<!-- 신고 게시판 -->
 	<div class="report">
 		<form action="breport" method="post" enctype="multipart/form-data">
+			<h1>REPORT</h1>
 			<input type="hidden" name="b_num" value="${b_num }">
-			<table border="1">
+			<table>
 			<thead id="thead">
 				<tr>
 					<th>게시글 제목</th>
-					<th>신고사유</th>
+					<th id="reportid">신고사유</th>
 					<th>첨부파일</th>
 				</tr>
 			</thead>
@@ -47,9 +48,9 @@
 							<option value="희롱 또는 괴롭힘">희롱 또는 괴롭힘</option>
 							<option value="잘못된 정보">잘못된 정보</option>
 							<option value="개인정보 노출">개인정보 노출</option>
-							<option value="etc">기타</option>
+							<option value="etc" id="etc">기타</option>
 					</select>
-					<input type="text" id="otherreason" name="otherreason" /></td>
+					<input type="text" id="otherreason" name="otherreason" placeholder="기타 사유를 작성해주세요."/></td>
 					<td><input type="file" name="r_file1"></td>	
 				</tr>
 			</tbody>
