@@ -28,7 +28,6 @@
 						<th width="80px">작성일</th>
 						<th width="50px">조회수</th>
 						<th width="50px">추천수</th>
-						<th width="50px">스크랩</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -44,7 +43,6 @@
 						 -->
 						<td>${a.b_readcnt }</td>
 						<td>${a.b_likecnt }</td>
-						<td>스크랩 버튼</td>
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -53,25 +51,9 @@
 						<c:if test="${page1.nowPage > 10}">
 							<a href="sharepage?nowPage=${page1.startPage -1}">&#60;</a> 				
 						</c:if>
-					
-				
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/main
-	
 	<c:if test="${page1.next && page1.endPage>0}">
 		<a href="sharepage?nowPage=${page1.endPage +1}">&#62;</a>
 	</c:if>   
-	</td>
-</tr>
-	
-</table>
-</body>
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/main
 						<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
 							<c:choose>
 								<c:when test="${p==page1.nowPage}">
@@ -90,8 +72,4 @@
 				</div>			
 		</div>
 	</body>
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/main
 </html>

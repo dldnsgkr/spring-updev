@@ -55,14 +55,7 @@
 			</c:when>
 		</c:choose>
 	</c:forEach>
-  
-<<<<<<< HEAD
-	</td>
-	</tr>
-</table>
-=======
   </div>			
 </div>
->>>>>>> upstream/main
 </body>
 </html>
