@@ -2,52 +2,60 @@
 
 
 table {
-	 border: 1px #cac4ce solid;
-	 width: 1200px;
-	 box-shadow: 0 2px 5px #cac4ce;
-	 border-collapse: collapse;
-	 border-radius: 5px;
-     overflow: hidden;
-     margin-left:auto; 
-    margin-right:auto;
-}
-
-#thead {
-  color: white;
-  background-image: linear-gradient(-225deg, #9067c6 0%,#8d86c9 100%);
-  font-size: 15px;
-  text-align: left;
-}
-
-th{
-	  padding: 16px 8px;
-  vertical-align: middle;
-font-family: 'Nanum Gothic', sans-serif;
-}
-
- td {
-  font-size: 14px;
-padding: 5px 0px 5px 8px;	
-  vertical-align: middle;
-  font-family: 'Nanum Gothic', sans-serif;
-  color:#242038;
-  border-bottom: 1px solid #242038;
-}
-
-a {
-  color:#242038;
-	font-weight: 400;
-}
-
-#tfoot{
-	text-align: center;
-	margin: 40px 0;
-}
-
-.board_notic{
-    line-height: 100px;
-    text-align: center;
+    width: 1200px;	
+    overflow: hidden;
     font-family: 'Nanum Gothic', sans-serif;
+    border-bottom: 1px solid #cac4ce;
+    text-align: left;
+    margin-top: 30px;	
+}
+
+th#a{
+	font-size: 13px;
+	color: #9067c6;
+}
+
+th#b{
+	font-size: 30px;
+	padding-bottom: 15px;
+}
+
+th#c{
+	font-size: 14px;
+	color: #cac4ce;
+	font-weight: 400;
+	text-align: left;
+	padding-bottom: 5px;
+}
+
+#d{
+ 	padding: 50px 0;
+}
+
+#e{
+    outline: none;
+    border: 1px solid #cac4ce;
+    font-size: 15px;
+    padding: 7px 20px;
+    width: 150px;
+    margin-bottom: 5px;
+}
+
+#f{
+	resize: none;
+    outline: none;
+    border: 1px solid #cac4ce;
+    width: 900px;
+    height: 100px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+td{
+	 font-size: 14px;
+ 	 color:#242038;
 }
 
 .button.button {
@@ -60,9 +68,7 @@ a {
   cursor: pointer;
   border-radius: 10px;
   transition-duration: 0.4s;
-    position: absolute;
-    bottom: 25px;
-    right: 0px;
+  margin: 30px 15px;
 }
 
 .button.button:hover {
@@ -70,7 +76,11 @@ a {
   background-color: #cac4ce;
 }
 
-.board_write{
-	float: right;
-	    position: relative;
+.detail_button{
+	display: flex;
+	justify-content: center;
+}
+
+.reply{
+	border-top: 1px solid #cac4ce; 
 }

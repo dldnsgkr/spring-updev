@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+table {
+	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	overflow-x: auto;
+	overflow-y: hidden;
+	border: none;
+	box-shadow: 0 2px 5px #cac4ce;
+	border-collapse: collapse;
+	border-radius: 5px;
+	overflow: hidden;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#thead {
+	color: white;
+	background-image: linear-gradient(-225deg, #9067c6 0%, #8d86c9 100%);
+	font-size: 15px;
+	text-align: left;
+}
+
+tbody {
+	display: flex;
+	align-items: center;
+}
+
+th, td {
+	display: block
+}
+
+.report {
+	height: calc(100vh - 365px);
+	width: 100%;
+	position: relative;
+}
+
+.report form {
+	top: 50%;
+	width: 380px;
+	margin: auto;
+	position: absolute;
+	left: 51%;
+	transform: translate(-50%, -50%);
+}
+
+#r_reason {
+	border: 1px solid black;
+}
+
+.wrap form .input {
+	display: block;
+	width: 69%;
+	height: 50px;
+}
+
+h1 {
+	margin-bottom: 15px;
+}
+
+.input {
+	padding: 0px 40px;
+	margin: 10px 0;
+	border: solid 1px #242038;
+	border-radius: 10px;
+}
+
+.boxright a {
+	margin: 0px 13px;
+	color: #242038;
+}
+
+input#submit {
+	width: 90%;
+	background-color: #9067c6;
+	border: 0;
+	font-size: 15px;
+	color: white;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 10px;
+	transition-duration: 0.4s;
+	margin-top: 7px;
+}
+
+input#submit:hover {
+	color: 242038;
+	background-color: #cac4ce;
+}
+
+th {
+	padding: 16px 8px;
+	vertical-align: middle;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+td {
+	font-size: 14px;
+	padding: 5px 0px 5px 8px;
+	vertical-align: middle;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #242038;
+}
