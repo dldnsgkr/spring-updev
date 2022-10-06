@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -63,7 +64,7 @@
 		<div class="main_board">
 			<div class="board">
 				<h3>인기게시글</h3>
-				<a href="poppage">더보기</a>
+				<a href="poppage" id="alink">더보기</a>
 				<table>
 				<c:forEach items="${popmpage}" var="a" begin="0" end="7">
 				<tr>
@@ -73,6 +74,8 @@
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if></td>
+					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
@@ -81,7 +84,7 @@
 			<div class="board">
 				<h3>정보공유</h3>
 				<table>
-				<a href="sharepage">더보기</a>
+				<a href="sharepage" id="alink">더보기</a>
 				<c:forEach items="${sharempage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
@@ -90,6 +93,8 @@
 						<span>[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]</span>
 					</c:if>
 					</td>
+					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
@@ -98,7 +103,7 @@
 			
 			<div class="board">
 				<h3>지식인</h3>
-				<a href="questionpage">더보기</a>
+				<a href="questionpage" id="alink">더보기</a>
 				<table>
 				<c:forEach items="${questionmpage}" var="a" begin="0" end="7">
 				<tr>
@@ -107,6 +112,8 @@
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if>
+					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
@@ -114,7 +121,7 @@
 			
 			<div class="board">
 				<h3>고민상담소</h3>
-				<a href="worrypage">더보기</a>
+				<a href="worrypage" id="alink">더보기</a>
 				<table>
 				<c:forEach items="${worrympage}" var="a" begin="0" end="7">
 				<tr>
@@ -123,6 +130,8 @@
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if>
+					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
@@ -130,7 +139,7 @@
 
 			<div class="board">
 				<h3>공지</h3>
-				<a href="noticepage">더보기</a>
+				<a href="noticepage" id="alink">더보기</a>
 				<table>
 				<c:forEach items="${noticempage}" var="a" begin="0" end="7">
 				<tr>
@@ -139,6 +148,8 @@
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if>
+					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
@@ -146,7 +157,7 @@
 	
 			<div class="board">
 				<h3>Q&A</h3>
-				<a href="qnapage">더보기</a>
+				<a href="qnapage" id="alink">더보기</a>
 				<table>
 				<c:forEach items="${qnampage}" var="a" begin="0" end="7">
 				<tr>
@@ -155,6 +166,8 @@
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if>
+					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>			

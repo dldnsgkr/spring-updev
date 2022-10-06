@@ -13,8 +13,10 @@
 	<body>
 	<!-- 정보공유 게시판 -->
 		<div class="wrap">
+				<div class="boardpage_top">
 			<div class="board_notic">
 				여기는 개발자들의 지식을 공유하는 곳입니다.
+			</div>
 			</div>
 			<div class="board_write">
 				<button class="button" type="button" name="board_write" onclick="location.href = 'write' ">글쓰기</button>
@@ -55,6 +57,7 @@
 			</table>
 
 			<div id="tfoot">				
+
 			
 				<c:if test="${page1.nowPage > 10}">
 					<a href="sharepage?nowPage=${page1.startPage -1}">&#60;</a> 				
@@ -77,5 +80,43 @@
 					<a href="sharepage?nowPage=${page1.endPage +1}">&#62;</a>
 				</c:if> 
 			</div>
+
+
+						<c:if test="${page1.nowPage > 10}">
+							<a href="sharepage?nowPage=${page1.startPage -1}">&#60;</a> 				
+						</c:if>
+	<c:if test="${page1.next && page1.endPage>0}">
+		<a href="sharepage?nowPage=${page1.endPage +1}">&#60;</a>
+	</c:if>   
+
+
+						<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
+							<c:choose>
+								<c:when test="${p==page1.nowPage}">
+									<b>${p}</b>
+								</c:when>
+								<c:when test="${p!=page1.nowPage}">
+									<a href="sharepage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+	<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
+		<c:choose>
+			<c:when test="${p==page1.nowPage}">
+				<b>${p}</b>
+			</c:when>
+			<c:when test="${p!=page1.nowPage}">
+				<a href="sharepage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+			</c:when>
+		</c:choose>
+	</c:forEach>
+
+									
+	<c:if test="${page1.next && page1.endPage>0 }">
+		<a href="sharepage?nowPage=${page1.endPage +1}">&#62;</a>
+	</c:if>   
+</div>
+
+
 	</body>
 </html>

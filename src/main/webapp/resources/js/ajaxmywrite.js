@@ -26,5 +26,15 @@ function ajaxmywrite(url){
 			alert("실패");
 		}
    });
+
+function confirmdelete(){
+	{
+      var result = confirm("정말 삭제하시겠습니까?");
+      if (result == true)
+          return true;
+      else
+        return false;
+    }
+}
 }
 

@@ -12,8 +12,7 @@ table {
 }
 
 #thead {
-	color: white;
-	background-image: linear-gradient(-225deg, #9067c6 0%, #8d86c9 100%);
+	color: #242038;
 	font-size: 15px;
 	text-align: left;
 }
@@ -22,7 +21,6 @@ th {
 	padding: 16px 8px;
 	vertical-align: middle;
 	font-family: 'Nanum Gothic', sans-serif;
-	background-color: #9067c6;
 }
 
 td {
@@ -73,4 +71,21 @@ a {
 .board_write {
 	float: right;
 	position: relative;
+}
+
+.boardpage_top{
+	width: 100%;
+	height: 73px;
+}
+
+.board_notic{
+	width: 800px;
+	height: 50px;
+	background-color: #8d86c9;
+	color: white;
+	text-align: center;
+	line-height: 50px;
+    margin-top: 30px;
+    margin-left: 185px;
+    border-radius: 10px;
 }

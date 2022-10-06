@@ -9,14 +9,13 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="./resources/js/ajaxmywrite.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="./resources/css/memwrite.css">
+<script type="text/javascript" src="./resources/js/.js"></script> <!-- js 주소 확인 -->
+<link rel="stylesheet" type="text/css" href="./resources/css/memwrite.css">
 </head>
 <body>
 	<div class="wrapper">
 		<form id="mywriteform">
-		<div class="title"><h3>내가 쓴 게시물</h3></div>
+		<div class="title"><h3>내가 스크랩한 게시물</h3></div>
 			<table>
 				<tr>
  					<th>번호</th>

@@ -21,7 +21,7 @@
             <li><a href="javascript:;" class="tit">활동내역</a></li>
             <li><a href="javascript:;" class="tit">알림</a></li>
             <li><a href="javascript:;" class="tit">글쓰기</a></li>
-            <li><a href="javascript:;" class="tit">프로필관리</a></li>
+            <li><a href="javascript:;" class="tit">내 정보</a></li>
         </ul>
         <div class="jq_cont tab_cont">
             <!-- // 탭1 -->
@@ -33,10 +33,10 @@
                             <a href="ajaxmywrite">내가 쓴 글</a>
                         </div>
                         <div class="cont">
-                            <li onclick="ajaxmywrite('member_like');">좋아요</a>
+                            <a href="ajaxmygood">좋아요</a>
                         </div>
                         <div class="cont">
-                            <li onclick="ajaxmywrite('member_scrap');">스크랩</a>
+                            <a href="ajaxmyscrap">스크랩</a>
                         </div>
                     </div>
                 </div>
@@ -44,10 +44,9 @@
             <!-- // 탭2 -->
             <div class="cont">
                 <div class="jq_tabonoff comm_tab2">
-                
                     <div class="jq_cont tab_cont">
                         <div class="cont">
-                            알림
+                            <a href="alarm">알림</a>
                         </div>
                     </div>
                 </div>
@@ -68,33 +67,8 @@
                 <div class="jq_tabonoff comm_tab2">
                     <div class="jq_cont tab_cont">
                         <div class="cont">
-                            <a href="proupdatecheck?m_nick=${member.m_nick }">프로필 수정</a>
+                            <a href="proupdatecheck?m_nick=${member.m_nick }">정보수정</a>
                         </div>
-<table>
-<tr>
-	<th>번호</th>
-	<th>제목</th>
-	<th>분류</th>
-	<th>작성일</th>
-	<th>좋아요수</th>
-	<th>조회수</th>
-	<th>수정 / 삭제</th>
-</tr>
-<c:forEach items="${list}" var="a">
-<tr>
-	<td>${a.b_num}</td>
-	<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
-	<td>${a.b_kind }</td>
-	<td>${a.b_wdate }</td>
-	<td>${a.b_likecnt }</td>
-	<td>${a.b_readcnt }</td>
-	<td>
-	<input type="button" value="수정" onclick="location.href='writeupdatecheck?b_num=${a.b_num}'">&emsp;
-	<input type="button" value="삭제" onclick="location.href='writedelete?b_num=${a.b_num}'"> <!--정말 삭제하시겠습니까 유효성 띄우고 확인하면 삭제 되는 기능부탁합니다 -->
-	</td>
-</tr>
-</c:forEach>
-</table>
                     </div>
                 </div>
             </div>

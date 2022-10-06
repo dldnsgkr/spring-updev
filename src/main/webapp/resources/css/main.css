@@ -6,6 +6,7 @@ a { text-decoration: none;}
 
 h3{
 	color: #242038;
+	margin: 9px 0px 9px 4px;
 }
 
 #main_body{
@@ -34,6 +35,10 @@ h3{
 }
 
 .board a{
+	color: #242038;
+}
+
+a#alink{
 	float: right;
 	color:  #cac4ce;
 }
@@ -177,3 +182,6 @@ button.main_login:hover{
 	padding: 30px;
 }
 
+table{
+	    margin-top: 31px;
+}

@@ -20,7 +20,7 @@ img {vertical-align:top}
 .comm_tab1 {
     display: block;
     clear: both;
-    width: 1200px;
+    max-width: 1290px;
     margin: 0 auto;
     height: auto;
     }
