@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
     <%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -49,6 +50,27 @@ $('.summernote').summernote({
 	});
 </script>-->
 			<form action="writesave" method="post" enctype="multipart/form-data" name="write">
+=======
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="./resources/js/boardwrite.js"></script>
+<link rel="stylesheet" href="resources/css/boardwrite.css" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+		<form action="writesave" method="post" enctype="multipart/form-data" name="write">
+>>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
 				<table border="1">
 				<tr id="b_cate">
 					<th>종류</th>
@@ -110,11 +132,9 @@ $('.summernote').summernote({
 				<tr>
 				   <th>내용</th>
 				   <td>
-					
-				   <textarea cols="50" rows="10" name="b_content" id="input_c"></textarea></td>
-				   <!-- summernote -->
-				</tr>
-				<tr>
+ 				<textarea class="summernote" name="b_content"></textarea>
+ 				</tr>
+ 			 	<tr>
 				   <th>첨부파일1</th>
 				   <td><input type="file" name="b_file1" id="file"></td><!-- summernote 사용 예정 -->
 				</tr>
@@ -123,10 +143,34 @@ $('.summernote').summernote({
 				   <td><input type="file" name="b_file2" id="file"></td><!-- summernote 사용 예정 -->
 				</tr>
 				</table>
+<<<<<<< HEAD
 			<input type="hidden" name="m_nick" id="m_nick" value="${member_nick }">
 			<input type="submit" value="등록">
 			<!--  <button class="button" type="button" name="boardwrite" onclick="boardwrite()">등록</button>-->
+=======
+				<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>
+>>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
 			</form>
-		</div>
-	</body>
+</div>
+
+<script>
+$('.summernote').summernote({
+	width: 995,
+     height: 230,                 // 에디터 높이
+      minHeight: null,             // 최소 높이
+      maxHeight: null,             // 최대 높이
+      focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+      lang: "ko-KR",                    // 한글 설정
+      placeholder: '내용을 입력하세요.'    //placeholder 설정
+   });
+$('.note-statusbar').hide()
+
+	$("#login_form").keypress(function(e) {
+		if (e.keyCode === 13) {
+			loginChk();
+		}
+	});
+
+</script>
+</body>
 </html>

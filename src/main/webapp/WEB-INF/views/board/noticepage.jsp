@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/board.css" type="text/css">
@@ -64,6 +65,8 @@
 </table>
 </body>
 	<head>
+=======
+>>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="resources/css/board.css" type="text/css">
@@ -72,7 +75,9 @@
 
 	<!-- 공지 게시판 -->
 	<div class="wrap">
-		<div class="board_notic">여기는 UPDEV의 공지를 올리는 곳입니다.</div>
+		<div class="boardpage_top">
+			<div class="board_notic">여기는 UPDEV의 공지를 올리는 곳입니다.</div>
+		</div>
 		<table border="1">
 			<thead id="thead">
 				<tr>

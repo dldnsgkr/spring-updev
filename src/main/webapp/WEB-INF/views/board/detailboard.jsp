@@ -184,6 +184,7 @@ function del()
 		<div class="detail_button">
 			<input type="button" class="button" value="신고"
 				onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'">
+<<<<<<< HEAD
 <div class="wrap">
 <table>
 <thead id="thead">
@@ -254,6 +255,9 @@ function del()
 	<td><input type="submit" value="등록"></td>
 </tr>
 </form>
+=======
+
+>>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
 			<form name="frm" method="post">
 				<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 				<input type="hidden" name="m_nick" id="m_nick"
@@ -281,12 +285,10 @@ function del()
 						<td><input type="text" id="e" name="m_nick"
 							value="${member_nick}" readonly></td>
 					</tr>
-				<tr>
-					<td colspan="2"><textarea id="f" name="re_content" rows="6"
-							cols="50" placeholder="댓글을 입력해 주세요."></textarea></td>
-					<td><input class="button" id="reply_su" type="submit"
-						value="등록"></td>
-				</tr>
+					<tr>
+					<td colspan="2"><textarea id="f" name="re_content" rows="6" cols="50" placeholder="댓글을 입력해 주세요."></textarea></td>
+					<td><input class="button" id="reply_su" type="submit" value="등록"></td>
+					</tr>
 				</form>
 
 				<c:forEach items="${repage}" var="a">
@@ -320,19 +322,6 @@ function del()
 
 			</table>
 		</div>
-	</div>
-
-</table>
-
-	<form name="frm" method="post">
-	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
-	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
-	<input type="hidden" name="scrap_chk" id="scrap_chk" value="${slist.scrap_chk }">
-	<button type="button" id="sss">스크랩</button>
-	</form>&emsp;
-
-
-
 </div>
 
 </body>
