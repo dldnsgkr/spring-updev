@@ -32,60 +32,71 @@
       <put-attribute name="body" value="/WEB-INF/views/member/mypage.jsp" />
       </definition>
       
-      <definition name="boardupdate" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/member/boardupdate.jsp" />
-      </definition>
-      
-        <definition name="memberinfoupdate" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/member/memberinfoupdate.jsp" />
-      </definition>
+    <definition name="boardupdate" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/member/boardupdate.jsp" />
+    </definition>
+    
+      <definition name="memberinfoupdate" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/member/memberinfoupdate.jsp" />
+    </definition>
 
-      <definition name="find_idpw" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/notmember/find_idpw.jsp" />
-      </definition>
+    <definition name="find_idpw" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/notmember/find_idpw.jsp" />
+    </definition>
+    
+    <definition name="memwrite" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/member/memwrite.jsp" />
+    </definition>
+    
+    <definition name="memgood" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/member/memgood.jsp" />
+    </definition>
+    
+    <definition name="memscrap" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/member/memscrap.jsp" />
+    </definition>
+    
+    <definition name="alarm" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/member/alarm.jsp" />
+    </definition>
+    
+    <!-- noticeboard -->
+    
+    <definition name="noticepage" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/board/noticepage.jsp" />
+    </definition>
+    
+    <definition name="sharepage" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/board/sharepage.jsp" />
+    </definition>
+    
+    <definition name="questionpage" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/board/questionpage.jsp" />
+    </definition>
+    
+    <definition name="worrypage" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/board/worrypage.jsp" />
+    </definition>
+    
+    <definition name="qnapage" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/board/qnapage.jsp" />
+    </definition>
+    
+    <definition name="detailboard" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/board/detailboard.jsp" />
+    </definition>
       
-      <!-- noticeboard -->
+    <definition name="boardreport" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/board/boardreport.jsp" />
+    </definition>
       
-      <definition name="noticepage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/board/noticepage.jsp" />
-      </definition>
+    <definition name="search" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/board/search.jsp" />
+    </definition>
       
-      <definition name="sharepage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/board/sharepage.jsp" />
-      </definition>
-      
-      <definition name="questionpage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/board/questionpage.jsp" />
-      </definition>
-      
-      <definition name="worrypage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/board/worrypage.jsp" />
-      </definition>
-      
-      <definition name="qnapage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/board/qnapage.jsp" />
-      </definition>
-      
-       <definition name="detailboard" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/board/detailboard.jsp" />
-      </definition>
-      
-      <definition name="boardreport" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/board/boardreport.jsp" />
-      </definition>
-      
-      <definition name="search" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/board/search.jsp" />
-      </definition>
-      
-      <definition name="poppage" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/board/poppage.jsp" />
-      </definition>
-      
-      <definition name="memwrite" extends="baseLayout">   
-      <put-attribute name="body" value="/WEB-INF/views/member/memwrite.jsp" />
-      </definition>
-      
+    <definition name="poppage" extends="baseLayout">   
+    <put-attribute name="body" value="/WEB-INF/views/board/poppage.jsp" />
+    </definition>
       
     <!-- **관리자** -->
     <!-- 관리자 마이 페이지 -->

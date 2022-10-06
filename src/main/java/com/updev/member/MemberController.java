@@ -492,24 +492,31 @@ public class MemberController {
 		}
 	 	//내가 쓴 글 
 		   @RequestMapping(value = "/ajaxmywrite")
-		   public String ko10(HttpServletRequest request,Model mo)
+		   public String ko5(HttpServletRequest request,Model mo)
 		   {
 			   HttpSession session = request.getSession();
 			   String nick = (String)session.getAttribute("member_nick");
 			 
-			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-				ArrayList<Board> dao = ss.ajaxmywrite(nick);
-				mo.addAttribute("list",dao);
+			   ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+			   ArrayList<Board> dao = ss.ajaxmywrite(nick);
+			   mo.addAttribute("list",dao);
 			   return "memwrite";
 		   }
 		   
+<<<<<<< HEAD
 		   //내가 좋아요 한 글 
 		   @RequestMapping(value = "/ajaxmygood")
 		   public String ko11(HttpServletRequest request,Model mo)
+=======
+		 //내가 좋아요한 글
+		   @RequestMapping(value = "/ajaxmygood")
+		   public String ko6(HttpServletRequest request,Model mo)
+>>>>>>> 3c12818bbe60adfc2e7e36202e7628859350d2fd
 		   {
 			   HttpSession session = request.getSession();
 			   String nick = (String)session.getAttribute("member_nick");
 			 
+<<<<<<< HEAD
 			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 				ArrayList<Board> dao = ss.ajaxmygood(nick);
 				mo.addAttribute("list",dao);
@@ -519,16 +526,35 @@ public class MemberController {
 		   //내가 스크랩 한 글 
 		   @RequestMapping(value = "/ajaxmyscrap")
 		   public String ko12(HttpServletRequest request,Model mo)
+=======
+			   ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+			   ArrayList<Board> dao = ss.ajaxmygood(nick);
+			   mo.addAttribute("list",dao);
+			   return "memgood";
+		   }
+		   
+		 //내가 스크랩 글 
+		   @RequestMapping(value = "/ajaxmyscrap")
+		   public String ko7(HttpServletRequest request,Model mo)
+>>>>>>> 3c12818bbe60adfc2e7e36202e7628859350d2fd
 		   {
 			   HttpSession session = request.getSession();
 			   String nick = (String)session.getAttribute("member_nick");
 			 
+<<<<<<< HEAD
 			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 				ArrayList<Board> dao = ss.ajaxmyscrap(nick);
 				mo.addAttribute("list",dao);
 			   return "memscrap";
 		   }
 
+=======
+			   ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+			   ArrayList<Board> dao = ss.ajaxmyscrap(nick);
+			   mo.addAttribute("list",dao);
+			   return "memscrap";
+		   }
+>>>>>>> 3c12818bbe60adfc2e7e36202e7628859350d2fd
 }
 	   
 

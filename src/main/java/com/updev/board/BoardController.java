@@ -322,7 +322,10 @@ public class BoardController {
 	    	}
 	     	
 	     	
+<<<<<<< HEAD
 	     	//지식인 페이징
+=======
+>>>>>>> 3c12818bbe60adfc2e7e36202e7628859350d2fd
 	     	@RequestMapping(value="/questionpage")
 	    	public String page3(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
 	    		String nowPage=request.getParameter("nowPage");

@@ -7,7 +7,7 @@ function boardwrite() {
         
 =======
 function Board_write() {
-
+        
 console.log(1);        
 
 >>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b

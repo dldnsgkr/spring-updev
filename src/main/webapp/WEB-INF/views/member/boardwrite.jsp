@@ -144,12 +144,19 @@ $('.summernote').summernote({
 				</tr>
 				</table>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<input type="hidden" name="m_nick" id="m_nick" value="${member_nick }">
 			<input type="submit" value="등록">
 			<!--  <button class="button" type="button" name="boardwrite" onclick="boardwrite()">등록</button>-->
 =======
 				<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>
 >>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
+=======
+
+			
+			<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>
+
+>>>>>>> 3c12818bbe60adfc2e7e36202e7628859350d2fd
 			</form>
 </div>
 
