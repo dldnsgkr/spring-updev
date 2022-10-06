@@ -1,4 +1,4 @@
-function admin_mylist_select(url){
+/*function admin_mylist_select(url){
 	$.ajax({
 		type:"post",
 		dataType:"json",
@@ -41,8 +41,13 @@ function admin_mylist_select(url){
 					htm += "<td><a onclick='admin_mylist_update("+data.members[i].b_num+");'>수정</a></td>";
 				}
 				htm += "</tr>"
+				
+				
             }
             htm += "</table>"
+
+
+
             $("#out").html(htm);
      	},     
 		error:function(data){
@@ -128,7 +133,7 @@ function admin_mylist_update(b_num){
 				alert("전송실패!!");
 			}
 		});
-	/*
+	
 	var modal = document.getElementById("myModal");
 	var span = document.getElementsByClassName("close")[0];
 	modal.style.display = "block";
@@ -139,5 +144,6 @@ function admin_mylist_update(b_num){
 		if (event.target == modal) {
 			modal.style.display = "block";
 		}
-	}*/
+	}
 }
+*/
