@@ -3,7 +3,6 @@
     <%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -18,6 +17,15 @@
 		<script src="resources/summernote/summernote-lite.js"></script>
   		<script src="resources/summernote/summernote-ko-KR.js"></script>
   		<link rel="stylesheet" href="resources/summernote/summernote-lite.css">
+  		
+  		
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
  -->
 <script type="text/javascript">
 $(function(){
@@ -49,28 +57,8 @@ $('.summernote').summernote({
 	  lang: "ko-KR"
 	});
 </script>-->
-			<form action="writesave" method="post" enctype="multipart/form-data" name="write">
-=======
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="./resources/js/boardwrite.js"></script>
-<link rel="stylesheet" href="resources/css/boardwrite.css" type="text/css">
-	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-  <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
-</head>
-<body>
-
 <div class="container">
 		<form action="writesave" method="post" enctype="multipart/form-data" name="write">
->>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
 				<table border="1">
 				<tr id="b_cate">
 					<th>종류</th>
@@ -143,21 +131,14 @@ $('.summernote').summernote({
 				   <td><input type="file" name="b_file2" id="file"></td><!-- summernote 사용 예정 -->
 				</tr>
 				</table>
-<<<<<<< HEAD
-<<<<<<< HEAD
 			<input type="hidden" name="m_nick" id="m_nick" value="${member_nick }">
 			<input type="submit" value="등록">
 			<!--  <button class="button" type="button" name="boardwrite" onclick="boardwrite()">등록</button>-->
-=======
+
 				<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>
->>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
-=======
 
-			
-			<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>
-
->>>>>>> 3c12818bbe60adfc2e7e36202e7628859350d2fd
 			</form>
+		</div>
 </div>
 
 <script>

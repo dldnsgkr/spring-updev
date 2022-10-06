@@ -1,16 +1,13 @@
-<<<<<<< HEAD
-
 var referrer = document.referrer;
 	
 console.log("이전 페이지 URL: "+referrer);
 function boardwrite() {
         
-=======
+
 function Board_write() {
         
 console.log(1);        
 
->>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
     var form = document.write;
 
     if (!form.b_title.value) {
@@ -29,6 +26,7 @@ console.log(1);
     form.submit();
     }
 
+}
 /*
 $(document).ready(function() {
 	//여기 아래 부분
