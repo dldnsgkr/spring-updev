@@ -49,4 +49,8 @@ public interface ServiceAdmin {
 
 	public void report_manage_update(String r_status, int r_num);
 
+	public ArrayList<Alarm> admin_myalarm_select(String admin_nick);
+
+	public void board_manage_delete(int b_num);
+
 }

@@ -32,6 +32,8 @@ import com.updev.member.Signup;
 
 /**
  * Handles requests for the application home page.
+ * 
+ * 
  */
 @Controller
 public class BoardController {
@@ -47,6 +49,8 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		session.setAttribute("loginState", false);
 		session.setAttribute("member_nick", loginbefore);
+		
+		
 		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 		
  		ArrayList<Board> pmpage=sb.popmain();

@@ -104,25 +104,9 @@
 	<definition name="admin_myalarm" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin_myalarm.jsp" />
 	</definition>
-	<!-- 게시판 관리 - 공지 게시판 관리 페이지 -->
-	<definition name="notice_manage" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/notice_manage.jsp" />
-	</definition>
-	<!-- 게시판 관리 - 정보공유 게시판 관리 페이지 -->
-	<definition name="infoshare_manage" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/infoshare_manage.jsp" />
-	</definition>
-	<!-- 게시판 관리 - 지식인 게시판 관리 페이지 -->
-	<definition name="intellectual_manage" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/intellectual_manage.jsp" />
-	</definition>
-	<!-- 게시판 관리 - 고민상담소 게시판 관리 페이지 -->
-	<definition name="counseling_manage" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/counseling_manage.jsp" />
-	</definition>
-	<!-- 게시판 관리 - Q&A 게시판 관리 페이지 -->
-	<definition name="qna_manage" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/qna_manage.jsp" />
+	<!-- 게시판 관리 - 모든 게시판 관리 페이지 -->
+	<definition name="board_manage" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/board_manage.jsp" />
 	</definition>
 	<!-- 신고 관리 - 신고 관리 페이지 -->
 	<definition name="report_manage" extends="baseLayout">   
@@ -132,8 +116,5 @@
 	<definition name="member_manage" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/member_manage.jsp" />
 	</definition>
-	<!-- test 페이지 -->
-	<definition name="test" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/test.jsp" />
-	</definition>
+	
 </tiles-definitions>
