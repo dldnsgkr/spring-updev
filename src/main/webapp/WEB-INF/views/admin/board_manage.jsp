@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/admin/admin_infoupdate.css">
 </head>
 <body>
+
 	<c:set var="URL3" value="${requestScope['javax.servlet.forward.servlet_path']}" />
 	<div class="infoupdate">
 		<div class="title">
@@ -19,14 +20,14 @@
 			<div id="out">
 				<table border="1">
 					<tr><td>번호</td><td>종류</td><td>분류</td><td>제목</td><td>작성일</td>
-					<td>내용</td><td>추천수</td><td>조회수</td><td>태그</td><td>첨부파일1</td>
+					<td>내용</td><td>추천수</td><td>조회수</td><td>첨부파일1</td>
 					<td>첨부파일2</td><td>신고회수</td><td>삭제</td><td>수정</td>
 					</tr>
-					<c:forEach items="${board}" var="list">
+					<c:forEach items="${bpage1}" var="list">
 					
 					<tr><td>${list.b_num}</td><td>${list.b_cate}</td><td>${list.b_kind}</td><td>${list.b_title}</td>
 					<td>${list.b_wdate}</td><td>${list.b_content}</td><td>${list.b_likecnt}</td><td>${list.b_readcnt}</td>
-					<td>${list.b_tag}</td><td>${list.b_file1}</td>
+					<td>${list.b_file1}</td>
 					<td>${list.b_file2}</td><td>${list.b_report}</td>
 					<td><a onclick="board_manage_delete(${list.b_num},'${URL3}');">삭제</a></td>
 					<td>수정</td>
@@ -37,6 +38,27 @@
 			
 			</div>
 		</div>
+		
+				<c:if test="${page1.nowPage > 10}">
+					<a href="/updev/${URL3}?nowPage=${page1.startPage -1}">&#60;</a> 				
+				</c:if>
+					
+				<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
+					<c:choose>
+						<c:when test="${p==page1.nowPage}">
+							<b>${p}</b>
+						</c:when>
+						<c:when test="${p!=page1.nowPage}">
+							<a href="/updev/${URL3}?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				
+				<c:if test="${page1.next && page1.endPage>0}">
+					<a href="/updev/${URL3}?nowPage=${page1.endPage +1}">&#62;</a>
+				</c:if>
+		
+		
 		<!-- 
 		<c:set var="URL1" value="${pageContext.request.scheme}" />
 
