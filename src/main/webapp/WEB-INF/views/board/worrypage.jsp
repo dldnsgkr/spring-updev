@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,7 +83,6 @@
 						<th width="80px">작성일</th>
 						<th width="50px">조회수</th>
 						<th width="50px">추천수</th>
-						<th width="50px">스크랩</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -95,10 +95,10 @@
 			</c:if>
 			</td>
 			<td>${a.m_nick }</td>
-			<td>${a.b_wdate }</td>
+			<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+			<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>
 			<td>${a.b_readcnt }</td>
 			<td>${a.b_likecnt }</td>
-			<td>스크랩 버튼</td>
 		</tr>
 		</c:forEach>
 		</tbody>
