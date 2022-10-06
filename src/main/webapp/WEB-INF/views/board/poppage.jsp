@@ -30,7 +30,11 @@
 	<c:forEach items="${bpage1 }" var="a">
 	<tr>
 		<td>${a.b_num }</td>
-		<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a></td>
+		<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a>
+		<c:if test="${a.b_replycnt ne 0}">
+			[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+		</c:if>
+		</td>
 		<td>${a.m_nick }</td>
 		<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 		<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
@@ -41,8 +45,8 @@
 		<td>${a.b_likecnt }</td>
 	</tr>
 	</c:forEach>
-	</tbody>
 	</table>
+	
 	<div id="tfoot">	
 	
 	<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
@@ -55,6 +59,11 @@
 			</c:when>
 		</c:choose>
 	</c:forEach>
+  
+	</td>
+	</tr>
+</table>
+
   </div>			
 </div>
 </body>

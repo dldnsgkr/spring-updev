@@ -8,7 +8,7 @@ public class PageDTO {
 	public Criteria cri;
 	public String sname; // 검색타입 (글제목, 글쓴이 등등)
 	public String keyword; // 키워드
-	public int b_num;
+	public int b_num, b_replycnt;
 	
 	
 	
@@ -99,6 +99,7 @@ public class PageDTO {
 		
 	}
 	
+	
    public int getCntPage() {
       return cntPage;
    }
@@ -111,6 +112,8 @@ public class PageDTO {
       super();
    }
    
+
+
 
 // 제일마지막페이지계산
    public void calcLastPage(int total, int cntPerPage) {
@@ -252,6 +255,14 @@ public class PageDTO {
 
 	public void setB_num(int b_num) {
 		this.b_num = b_num;
+	}
+
+	public int getB_replycnt() {
+		return b_replycnt;
+	}
+
+	public void setB_replycnt(int b_replycnt) {
+		this.b_replycnt = b_replycnt;
 	}
    
 }

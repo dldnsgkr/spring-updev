@@ -49,4 +49,10 @@
 	<delete id="member_manage_delete">
 		delete FROM member where m_num = #{param1}
 	</delete>
+	<select id="admin_myalarm_select" resultType="com.updev.admin.Alarm">
+		select * from alarm where m_nick = #{param1}
+	</select>
+	<delete id="board_manage_delete">
+		delete FROM board where b_num = #{param1}
+	</delete>
 </mapper>

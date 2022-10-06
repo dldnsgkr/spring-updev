@@ -85,6 +85,13 @@ public class AdminController {
 	// 마이페이지 - 마이 알람 페이지 이동
 	@RequestMapping(value = "/admin_myalarm")
 	public String admin_myalarm(HttpServletRequest request, Model model){
+		// 세션 생성
+		HttpSession session = request.getSession();
+		// 세션에서 관리자 nick 들고오기
+		String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
+		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		ArrayList<Alarm> list = sa.admin_myalarm_select(admin_nick);
+		model.addAttribute("list", list);
 		return "admin_myalarm";
 	}
 	// 게시판관리 - 공지 게시판 관리 페이지 이동
@@ -94,7 +101,7 @@ public class AdminController {
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.board_manage_select(b_kind);
 		model.addAttribute("board", list);
-		return "notice_manage";
+		return "board_manage";
 	}
 	// 게시판관리 - 정보공유 게시판 관리 페이지 이동
 	@RequestMapping(value = "/infoshare_manage")
@@ -103,7 +110,7 @@ public class AdminController {
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.board_manage_select(b_kind);
 		model.addAttribute("board", list);
-		return "infoshare_manage";
+		return "board_manage";
 	}
 	// 게시판관리 - 지식인 게시판 관리 페이지 이동
 	@RequestMapping(value = "/intellectual_manage")
@@ -112,7 +119,7 @@ public class AdminController {
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.board_manage_select(b_kind);
 		model.addAttribute("board", list);
-		return "intellectual_manage";
+		return "board_manage";
 	}
 	// 게시판관리 - 고민상담소 게시판 관리 페이지 이동
 	@RequestMapping(value = "/counseling_manage")
@@ -121,7 +128,7 @@ public class AdminController {
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.board_manage_select(b_kind);
 		model.addAttribute("board", list);
-		return "counseling_manage";
+		return "board_manage";
 	}
 	// 게시판관리 - Q&A 게시판 관리 페이지 이동
 	@RequestMapping(value = "/qna_manage")
@@ -130,7 +137,7 @@ public class AdminController {
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.board_manage_select(b_kind);
 		model.addAttribute("board", list);
-		return "qna_manage";
+		return "board_manage";
 	}
 	// 신고 관리 - 신고 관리 페이지 이동
 	@RequestMapping(value = "/report_manage")
@@ -435,7 +442,7 @@ public class AdminController {
 		}
 		return "redirect:admin_mylist";
 	}
-	// 마이페이지 > 신고관리> 처리완료 변경
+	// 마이페이지 > 신고관리 > 처리완료 변경
 	@RequestMapping(value = "/report_manage_update", method = RequestMethod.POST)
 	public String report_manage_update(HttpServletRequest request, Model model) throws Exception{
 		String r_status = "처리완료";
@@ -468,5 +475,32 @@ public class AdminController {
 			}
 			return "redirect:admin_mylist";
 		}
+		
+		// 게시판관리 > 삭제
+		@RequestMapping(value = "/board_manage_delete", method = RequestMethod.POST)
+		public String board_manage_delete(HttpServletRequest request, Model model) throws Exception{
+			String jo = request.getParameter("jsoninfo");		
+			JSONParser jsonparse = new JSONParser();
+			String url=null;
+			try {
+				JSONObject jobj = (JSONObject)jsonparse.parse(jo);
+				int b_num=Integer.parseInt(String.valueOf(jobj.get("b_num")));
+				url =(String)jobj.get("url");
+				url = url.substring(1,url.length());
+				System.out.println(url);
+				url="redirect:"+url;
+				ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+				sa.board_manage_delete(b_num);
+				
+				
+				
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			// 없어도된다.
+			return url;
+		}
+		
 	
 }
