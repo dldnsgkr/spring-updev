@@ -50,10 +50,7 @@
          <beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
          <beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/><!--  192.168.0.55-->
          <!-- jdbc:oracle:thin:@localhost:1521:xe -->
-<<<<<<< HEAD
-=======
          <beans:property name="url" value="jdbc:oracle:thin:@192.168.0.55:1521:xe"/>
->>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
          <beans:property name="username" value="updev"/>
          <beans:property name="password" value="27678"/>
    </beans:bean>
