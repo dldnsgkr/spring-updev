@@ -48,11 +48,7 @@
    <!-- 마이바티스 설정 -->
    <beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
          <beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-
-<<<<<<< HEAD
          <beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/><!--  192.168.0.55-->
-=======
->>>>>>> e5056c00552fab4b309350513e0e3abe775d06df
          <!-- jdbc:oracle:thin:@localhost:1521:xe -->
          <beans:property name="username" value="updev"/>
          <beans:property name="password" value="27678"/>

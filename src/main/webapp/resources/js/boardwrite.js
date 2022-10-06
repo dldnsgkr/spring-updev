@@ -1,3 +1,7 @@
+
+var referrer = document.referrer;
+	
+console.log("이전 페이지 URL: "+referrer);
 function boardwrite() {
         
     var form = document.write;

@@ -16,7 +16,7 @@
 				여기는 개발자들이 서로 질문하는 곳입니다.
 			</div>
 			<div class="board_write">
-				<button class="button" type="button" name="board_write" onclick="location.href = 'write' ">글쓰기</button>
+				<button class="button" type="button" name="board_write" onclick="location.href = 'write?b_kind=지식인' ">글쓰기</button>
 			</div>
 			<table border="1">
 			<thead id="thead">

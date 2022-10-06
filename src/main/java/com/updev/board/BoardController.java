@@ -50,7 +50,6 @@ public class BoardController {
 		session.setAttribute("loginState", false);
 		session.setAttribute("member_nick", loginbefore);
 		
-		
 		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 		
  		ArrayList<Board> pmpage=sb.popmain();
@@ -138,9 +137,21 @@ public class BoardController {
 	      
 	      //글 작성 폼
 	      @RequestMapping(value = "/write")
-	      public String ko1()
+	      public String ko1(RedirectAttributes rattr,HttpServletRequest request,Model mo)
 	      {
-	         return "boardwrite";
+	    	  HttpSession session=request.getSession();
+	    	  if((Boolean) session.getAttribute("loginState"))
+				{
+	    		  String b_kind = request.getParameter("b_kind");
+	    		  session.setAttribute("b_kind", b_kind);
+	    		  return "boardwrite";
+				}
+				else
+				{
+					rattr.addAttribute("result", "loginfail");
+					return "redirect:login";
+					
+	     		}
 	      }
 	      
 	      //글 작성

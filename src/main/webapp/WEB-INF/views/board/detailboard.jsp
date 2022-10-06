@@ -10,33 +10,6 @@
 <link rel="stylesheet" href="resources/css/detailboard.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" charset="UTF-8">
-/*
-function ttt(){
-	
-	
-		var like_chk =$("#like_chk").val();
-		var b_num =$("#b_num").val();
-		var m_nick =$("#m_nick").val();
-		var sam ={"b_num":b_num,"m_nick":m_nick};
-		var sam =JSON.stringify(sam);
-		$.ajax({
-			type:"post",
-			async:false,
-			url:"goodup",
-			data:{jsoninfo:sam},
-			success:function(data,textStatus){
-				console.log(data);
-				location.href="index";
-			},
-			error:function(data,textStatus){
-				alert("전송실패!!");
-			}
-		});
-	
-		
-}
-*/
-
 $(function(){
 	var like_chk =$("#like_chk").val();
 	var a_existence =$("#a_existence").val();
@@ -152,7 +125,41 @@ $(function(){
 });
 </script>
 
+<script type="text/javascript">
+$(function() {
+	var loginstate=$("#loginstate").val();
+	$("#del").hide();
+	$("#up").hide();
+		if (loginstate == "true") {
+			$("#del").show();
+			$("#up").show();
+		} else {
+			$("#del").hide();
+			$("#up").hide();
+		}
+});
+</script>
 
+<script type="text/javascript">
+$(function() {
+	$("#del").click(function(){
+		if(confirm("정말 삭제하시겠습니까?"))
+		    alert("삭제되었습니다");
+		 }
+	});
+});
+</script>
+<script type="text/javascript">
+function del()
+{
+	var b_num = $("#b_num").val();
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+      location.href="writedelete?b_num="+b_num;
+  else
+    return false;
+}
+</script>
 </head>
 <body>
 	<div class="wrap">
@@ -198,6 +205,15 @@ $(function(){
 	</tr>
 </thead>
 </table>
+	
+	<form action="writedelete" method="post">
+	<input type="hidden" id="loginstate" value="${loginState }">
+	<input type="hidden" id="b_num" value="${list.b_num }">
+	<input type="button" value="삭제" onclick="del()">
+	</form>
+	
+	<input type="hidden" id="loginstate" value="${loginState }">
+	<input type="button" value="수정" id="up" onclick="location.href='writeupdatecheck?b_num=${list.b_num}'">
 
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
@@ -208,15 +224,8 @@ $(function(){
 	<input type="hidden" name="a_existence" id="a_existence" value="1">
 	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
 	<button type="button" id="ttt">좋아요</button>
-<<<<<<< HEAD
-	</form>&emsp;
-=======
-
 	</form>&emsp;
 
-
-	</form>
->>>>>>> e5056c00552fab4b309350513e0e3abe775d06df
 	
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
@@ -227,12 +236,8 @@ $(function(){
 	<input type="hidden" name="a_existence" id="a_existence" value="2">
 	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
 	<button type="button" id="sss">스크랩</button>
-<<<<<<< HEAD
 	</form>
-=======
-	</form>&emsp;
 
->>>>>>> e5056c00552fab4b309350513e0e3abe775d06df
 	
 <!-- 댓글 -->
 <table>
