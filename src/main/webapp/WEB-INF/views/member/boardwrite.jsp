@@ -50,7 +50,10 @@
 				   <td><input type="file" name="b_file2" id="file"></td><!-- summernote 사용 예정 -->
 				</tr>
 				</table>
-				<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>
+
+			
+			<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>
+
 			</form>
 </div>
 

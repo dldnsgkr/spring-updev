@@ -1,5 +1,5 @@
 function Board_write() {
-
+        
 console.log(1);        
 
     var form = document.write;

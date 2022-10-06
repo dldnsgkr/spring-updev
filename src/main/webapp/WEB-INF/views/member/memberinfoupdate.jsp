@@ -59,7 +59,7 @@
 					</div>	
 					<div class="update_btn">
 					<button id="update_btn" class="button button2" type="button" onclick="meminfoup()">프로필 정보 수정</button>
-					<button id="update_btn" class="button button2" type="button" onclick="location.href'myp?m_nick=${list.m_nick}'">취소</button>
+					<button id="update_btn" class="button button2" type="button" onclick="location.href='myp?3m_nick=${list.m_nick}'">취소</button>
 					</div>
 			</form>
 		</div>	
