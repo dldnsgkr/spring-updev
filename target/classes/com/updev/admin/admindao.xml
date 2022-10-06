@@ -55,4 +55,17 @@
 	<delete id="board_manage_delete">
 		delete FROM board where b_num = #{param1}
 	</delete>
+	
+	<!-- 페이징 -->
+	<select id="mylisttotal" resultType="int">
+		select count(*) from board where m_nick = '관리자'
+	</select>
+	
+	<select id="mylistpage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select * from board where m_nick = '관리자'
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
 </mapper>

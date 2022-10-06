@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.updev.board.Board;
+import com.updev.board.Criteria;
+import com.updev.board.PageDTO;
 import com.updev.board.ServiceBoard;
 import com.updev.member.Signup;
 
@@ -69,7 +71,7 @@ public class AdminController {
 	}
 	// 마이페이지 - 마이 글 페이지 이동
 	@RequestMapping(value = "/admin_mylist")
-	public String admin_mylist(HttpServletRequest request, Model model){
+	public String admin_mylist(HttpServletRequest request, Model model, PageDTO dto, Criteria cri){
 		// 세션 생성
 		HttpSession session = request.getSession();
 		// 세션에서 관리자 nick 들고오기
@@ -79,6 +81,27 @@ public class AdminController {
 		ArrayList<Board> list = sa.admin_mywrite_select(admin_nick);
 		
 		model.addAttribute("list", list);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.mylisttotal();
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+		
+
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		model.addAttribute("page1",dto);
+		model.addAttribute("page2",cri);
+		model.addAttribute("bpage1",sa.mylistpage(dto));
+	
+		
 		
 		return "admin_mylist";
 	}
@@ -502,5 +525,6 @@ public class AdminController {
 			return url;
 		}
 		
+				
 	
 }

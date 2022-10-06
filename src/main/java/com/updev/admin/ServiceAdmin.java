@@ -3,6 +3,7 @@ package com.updev.admin;
 import java.util.ArrayList;
 
 import com.updev.board.Board;
+import com.updev.board.PageDTO;
 import com.updev.member.Signup;
 
 public interface ServiceAdmin {
@@ -52,5 +53,8 @@ public interface ServiceAdmin {
 	public ArrayList<Alarm> admin_myalarm_select(String admin_nick);
 
 	public void board_manage_delete(int b_num);
-
+	
+	//ÆäÀÌÂ¡
+	public int mylisttotal();
+	public ArrayList<Board> mylistpage(PageDTO dto);
 }
