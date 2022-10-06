@@ -61,7 +61,7 @@ $('.summernote').summernote({
 				</tr>
 				</table>
 			
-			<button class="button" type="button" name="boardwrite" onclick="boardwrite()">등록</button>
+			<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>
 			</form>
 		</div>
 	</body>

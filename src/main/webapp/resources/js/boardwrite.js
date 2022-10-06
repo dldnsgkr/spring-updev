@@ -1,4 +1,4 @@
-function boardwrite() {
+function Board_write() {
         
     var form = document.write;
 
