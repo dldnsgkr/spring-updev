@@ -3,7 +3,6 @@
 table {
 	display: flex;
 	display: -webkit-box;
-	display: -ms-flexbox;
 	overflow-x: auto;
 	overflow-y: hidden;
 	border: none;
@@ -18,8 +17,7 @@ table {
 #thead {
 	color: white;
 	background-image: linear-gradient(-225deg, #9067c6 0%, #8d86c9 100%);
-	font-size: 15px;
-	text-align: left;
+	font-size: 16px;
 }
 
 tbody {
@@ -28,7 +26,7 @@ tbody {
 }
 
 th, td {
-	display: block
+	display: block;
 }
 
 .report {
@@ -39,15 +37,17 @@ th, td {
 
 .report form {
 	top: 50%;
-	width: 380px;
+	width: 580px;
 	margin: auto;
 	position: absolute;
-	left: 51%;
+	left: 50%;
 	transform: translate(-50%, -50%);
 }
 
 #r_reason {
-	border: 1px solid black;
+	border: 1px solid #FFFFFF;
+	outline: none;
+	font-size: 15px;
 }
 
 .wrap form .input {
@@ -73,16 +73,16 @@ h1 {
 }
 
 input#submit {
-	width: 90%;
-	background-color: #9067c6;
+	width: 200px;
+	background-color: #8d86c9;
 	border: 0;
-	font-size: 15px;
+	font-size: 16px;
 	color: white;
 	padding: 10px;
 	cursor: pointer;
 	border-radius: 10px;
 	transition-duration: 0.4s;
-	margin-top: 7px;
+	margin: 30px 0px 0px 175px;
 }
 
 input#submit:hover {
@@ -91,15 +91,30 @@ input#submit:hover {
 }
 
 th {
-	padding: 16px 8px;
+	padding: 45px;
 	vertical-align: middle;
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
 td {
-	font-size: 14px;
-	padding: 5px 0px 5px 8px;
+	font-size: 15px;
+	padding: 45px;
+	border: none;
 	vertical-align: middle;
-	font-family: 'Nanum Gothic', sans-serif;
 	color: #242038;
+}
+
+input[type="file"] {
+    font-size: 15px;
+}
+
+input#otherreason {
+    display: block;
+    outline: none;
+    border: 1px solid #cac4ce;
+    border-radius: 5px;
+    width: 270px;
+    padding: 10px;
+    height: 30px;
+    margin-top: 20px;
 }
