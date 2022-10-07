@@ -118,7 +118,7 @@ $('.summernote').summernote({
 				   <th>제목</th>
 				   <td><input type="text" name="b_title" id="input"></td>
 				</tr>
-				<input type="hidden" name="m_nick" value="가가">
+				
 				<tr>
 				   <th>내용</th>
 				   <td>
