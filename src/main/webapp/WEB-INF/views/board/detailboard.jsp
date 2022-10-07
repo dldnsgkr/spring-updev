@@ -128,34 +128,29 @@ $(function(){
 <script type="text/javascript">
 $(function() {
 	var loginstate=$("#loginstate").val();
-	$("#del").hide();
+	var member_nick=$("#m_nick").val();
+	var m_id=$("#m_id").val();
+	$("#de").hide();
 	$("#up").hide();
-		if (loginstate == "true") {
-			$("#del").show();
+		if (loginstate == "true" && member_nick == m_id) {
+			$("#de").show();
 			$("#up").show();
 		} else {
-			$("#del").hide();
+			$("#de").hide();
 			$("#up").hide();
 		}
 });
 </script>
 
-<script type="text/javascript">
-$(function() {
-	$("#del").click(function(){
-		if(confirm("정말 삭제하시겠습니까?"))
-		    alert("삭제되었습니다");
-		 }
-	});
-});
-</script>
+
 <script type="text/javascript">
 function del()
 {
 	var b_num = $("#b_num").val();
+	var b_kind = $("#b_kind").val();
   var x = confirm("Are you sure you want to delete?");
   if (x)
-      location.href="writedelete?b_num="+b_num;
+      location.href="writedelete?b_num="+b_num+"&b_kind="+b_kind;
   else
     return false;
 }
@@ -184,7 +179,7 @@ function del()
 		<div class="detail_button">
 			<input type="button" class="button" value="신고"
 				onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'">
-<<<<<<< HEAD
+
 <div class="wrap">
 <table>
 <thead id="thead">
@@ -210,15 +205,16 @@ function del()
 	<form action="writedelete" method="post">
 	<input type="hidden" id="loginstate" value="${loginState }">
 	<input type="hidden" id="b_num" value="${list.b_num }">
-	<input type="button" value="삭제" onclick="del()">
+	<input type="hidden" id="b_kind" value="${list.b_kind }">
+	<input type="button" value="삭제" id="de" onclick="del()">
 	</form>
 	
 	<input type="hidden" id="loginstate" value="${loginState }">
-	<input type="button" value="수정" id="up" onclick="location.href='writeupdatecheck?b_num=${list.b_num}'">
+	<input type="button" value="수정" id="up" onclick="location.href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">
 
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
-	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
+	<input type="hidden" name="m_nick" id="member_nick" value="${member_nick}">
 	<input type="hidden" name="like_chk" id="like_chk" value="${llist.like_chk }">
 	<input type="hidden" name="b_kind" id="b_kind" value="${list.b_kind }">
 	<input type="hidden" name="b_title" id="b_title" value="${list.b_title }">

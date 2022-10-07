@@ -67,7 +67,7 @@ $('.summernote').summernote({
 				   <option value="공지">공지</option>
 				   <option value="일반" selected="selected">일반</option>
 				   </select>
-					</td>
+				</td>
 				</tr>
 				<tr>
 				   <th>분류</th>

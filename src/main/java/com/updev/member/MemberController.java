@@ -82,6 +82,7 @@ public class MemberController {
 	   public ModelAndView ko6(HttpServletRequest request , RedirectAttributes rattr) 
 	   {//db에 회원가입한 아이디 비밀번호가 맞는지 확인하는곳(로그인중)
 	      //정보가 맞지 않다면 로그인창으로 보냄
+		HttpSession session = request.getSession();
 		  Date now = new Date();
 		  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		  String formatedNow = formatter.format(now);
@@ -89,8 +90,12 @@ public class MemberController {
 	      String m_id = request.getParameter("m_id");
 	      String m_pw = request.getParameter("m_pw");
 	      String auto_login = request.getParameter("auto_login");
-	      
-	      
+	      if(auto_login == null)
+	      {
+	    	  auto_login = "0";
+	      } else {
+	    	  auto_login = "1";
+	      }
 	      ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 	      Signup d = sm.loginselect(m_id, m_pw);
 	      if(d==null) {
@@ -114,9 +119,10 @@ public class MemberController {
 		          */
 	    	  if((grade.equals("회원") || grade.equals("관리자")) && result < 0)
 	    	  {//로그인한 회원에 관해 세션 정의
-	    		 HttpSession session = request.getSession();
+	    		 session.setAttribute("auto_login",auto_login);
 	 	         session.setAttribute("member", d);
 	 	         session.setAttribute("id", m_id);
+	 	         session.setAttribute("pw", m_pw);
 	 	         session.setAttribute("loginState", true);
 	 	         session.setAttribute("member_nick", d.getM_nick());
 	 	         //session.setMaxInactiveInterval(30);
@@ -145,9 +151,12 @@ public class MemberController {
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
 	         session.removeAttribute("id");
+	         session.removeAttribute("pw");
 	         session.removeAttribute("member_nick");
+	         session.removeAttribute("auto_login");
 	         session.setAttribute("loginState",false);
 	         session.setAttribute("member_nick", loginbefore);
+	         session.setAttribute("auto_login",0);
 	         
 	      return "redirect:index";
 	   }

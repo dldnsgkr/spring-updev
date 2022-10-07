@@ -17,7 +17,7 @@
 	</select>
 	
 	<update id="boardupdate">
-		update board set b_cate = #{param2}, b_kind = #{param3}, b_title = #{param4}, b_content = #{param5}, b_file1 = #{param6}, b_file2 = #{param7} where b_num = #{param1}
+		update board set b_cate = #{param2}, b_kind = #{param3}, b_title = #{param4}, m_nick = #{param5}, b_content = #{param6}, b_file1 = #{param7}, b_file2 = #{param8} where b_num = #{param1}
 	</update>
 	
 	<select id="bo1" resultType="com.updev.board.Board">

@@ -54,7 +54,8 @@ public interface ServiceAdmin {
 
 	public void board_manage_delete(int b_num);
 	
-	//ÆäÀÌÂ¡
+	public int mylisttotal();
+	public ArrayList<Board> mylistpage(PageDTO dto);
 	public int notice_manage_total();
 	public ArrayList<Board> notice_manage_page(PageDTO dto);
 	

@@ -42,13 +42,40 @@ public class BoardController {
 	SqlSession sqlsession;
 	
 	//시작페이지
+	
+	@SuppressWarnings("null")
 	@RequestMapping(value = "/")
 	public String ko1(HttpServletRequest request,Model mo)
 	{
-		String loginbefore = "unknown";
 		HttpSession session = request.getSession();
+		if(session == null)
+		{
+			String a = "0";
+			session.setAttribute("auto_login", a);
+		}
+		String auto_login = String.valueOf(session.getAttribute("auto_login"));
+		if(auto_login == null || auto_login.equals("0")) {
+			session.setAttribute("auto_login", "0");
+		} else {
+			session.setAttribute("auto_login", "1");
+		}
+		if (auto_login.equals("1"))
+		{
+			String m_id = (String)session.getAttribute("id");
+			String m_pw = (String)session.getAttribute("pw");
+			ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			Signup d = sm.loginselect(m_id, m_pw);
+			 session.setAttribute("auto_login",auto_login);
+	         session.setAttribute("member", d);
+	         session.setAttribute("id", m_id);
+	         session.setAttribute("pw", m_pw);
+	         session.setAttribute("loginState", true);
+	         session.setAttribute("member_nick", d.getM_nick());
+		} else {
+		String loginbefore = "unknown";
 		session.setAttribute("loginState", false);
 		session.setAttribute("member_nick", loginbefore);
+		}
 		
 		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 		
@@ -109,10 +136,12 @@ public class BoardController {
 	      @RequestMapping(value = "/writeupdatecheck")
 	      public String ko10(HttpServletRequest request,Model mo)
 	      {
-	            int b_num = Integer.parseInt(request.getParameter("b_num"));
-	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	    	 String b_kind = request.getParameter("b_kind");
+	         int b_num = Integer.parseInt(request.getParameter("b_num"));
+	         ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	         Board dao = ss.updatecheck(b_num);
 	         mo.addAttribute("list",dao);
+	         mo.addAttribute("b_kind",b_kind);
 	         return "boardupdate";
 	      }
 	      
@@ -126,6 +155,7 @@ public class BoardController {
 	         String b_title = mul.getParameter("b_title");
 	         String m_nick = mul.getParameter("m_nick");
 	         String b_content = mul.getParameter("b_content");
+	         System.out.println(b_content);
 	         MultipartFile f1 = mul.getFile("b_file1");
 	         MultipartFile f2 = mul.getFile("b_file2");
 	         String b_file1 = f1.getOriginalFilename();
@@ -169,16 +199,43 @@ public class BoardController {
 	            String b_file2 = f2.getOriginalFilename();
 	            ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	            ss.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
-	            return "redirect:myp";
+	            if(b_kind.equals("공지"))
+		         {
+		        	 return "redirect:noticepage";
+		         } else if(b_kind.equals("정보공유")) {
+		        	 return "redirect:sharepage";
+		         } else if(b_kind.equals("고민상담소")) {
+		        	 return "redirect:worrypage";
+		         } else if(b_kind.equals("지식인")) {
+		        	 return "redirect:questionpage";
+		         } else if(b_kind.equals("QNA")) {
+		        	 return "redirect:qnapage";
+		         } else {
+		        	 return "redirect:ajaxmywrite";
+		         }
 	         }
 	      		//글 삭제
 	         @RequestMapping(value = "/writedelete")
 		      public String ko11(HttpServletRequest request,Model mo)
 		      {
-		            int b_num = Integer.parseInt(request.getParameter("b_num"));
-		           ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+	        	 String b_kind = request.getParameter("b_kind");
+		         int b_num = Integer.parseInt(request.getParameter("b_num"));
+		         ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		         ss.delete(b_num);
-		         return "redirect:myp";
+		         if(b_kind.equals("공지"))
+		         {
+		        	 return "redirect:noticepage";
+		         } else if(b_kind.equals("정보공유")) {
+		        	 return "redirect:sharepage";
+		         } else if(b_kind.equals("고민상담소")) {
+		        	 return "redirect:worrypage";
+		         } else if(b_kind.equals("지식인")) {
+		        	 return "redirect:questionpage";
+		         } else if(b_kind.equals("QNA")) {
+		        	 return "redirect:qnapage";
+		         } else {
+		        	 return "redirect:ajaxmywrite";
+		         }
 		      }
 	         
 	         //조회수

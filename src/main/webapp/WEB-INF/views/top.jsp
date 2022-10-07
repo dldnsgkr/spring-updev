@@ -9,27 +9,36 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="resources/js/search.js"></script>
 		<link rel="stylesheet" href="resources/css/top.css" type="text/css">
-		<script>
-	var time = 300; //기준시간 작성
-	var min = ""; //분
-	var sec = ""; //초
-
-	//setInterval(함수, 시간) : 주기적인 실행
-	var x = setInterval(function() {
-		//parseInt() : 정수를 반환
-		min = parseInt(time/60); //몫을 계산
-		sec = time%60; //나머지를 계산
-
-		document.getElementById("demo").innerHTML = min + "분" + sec + "초";
-		time--;
-
-		//타임아웃 시
-		if (time < 0) {
-			clearInterval(x); //setInterval() 실행을 끝냄
-			document.getElementById("demo").innerHTML = "시간초과";
-		}
-	}, 1000);
+<!-- 시계 -->
+<script type="text/javascript">
+setInterval("dpTime()", 1000);
+function dpTime() {
+   var now = new Date();
+   hours = now.getHours();
+   min = now.getMinutes();
+   sec = now.getSeconds();
+   
+   if(hours > 12){
+      hours -= 12;
+      ampm = "오후";
+   } else {
+      ampm = "오전"
+   }
+   if(hours < 10){
+      hours = "0"+hours;
+   }
+   if(min < 10){
+      min = "0"+min;
+   }
+   if(sec < 10){
+      sec = "0"+sec;
+   }
+   
+   document.getElementById("dpTime").innerHTML = ampm + " " + hours + ":" + min + ":" + sec
+}
 </script>
+
+<!-- 시계 -->
 
 	</head>
 	<body>
@@ -101,7 +110,7 @@
 								</c:otherwise>
 							</c:choose>
 							
- 남은 시간:<div id="demo"></div>
+						<span style="font-size: 40px; color: blue; margin-left: 700px;" id="dpTime"></span>
 
 						</div>
 					</div>
