@@ -35,9 +35,13 @@
 					<td>${list.b_readcnt}</td>
 					<td><fmt:parseDate value='${list.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 						<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>
+<<<<<<< HEAD
 						
 						
 					<td><a onclick="confirmdelete(${list.b_num});">삭제</a> &emsp;
+=======
+					<td><a href='writedelete?b_num=${list.b_num}&b_kind=${list.b_kind}' onclick="confirmdelete();">삭제</a>
+>>>>>>> 219000830c9be5ac72c97eef624291724606fcf0
 					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}'">수정</a></td>
 				</tr>
 				</c:forEach>

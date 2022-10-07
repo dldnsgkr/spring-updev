@@ -30,10 +30,12 @@
 				</c:choose>
 			</div>
         <ul class="jq_tab tab_menu">
-            <li><a href="javascript:;" class="tit">마이페이지</a></li>
+            <li><a href="javascript:;" class="tit">활동내역</a></li>
+            <li><a href="javascript:;" class="tit">알림</a></li>
             <li><a href="javascript:;" class="tit">게시판 관리</a></li>
             <li><a href="javascript:;" class="tit">신고 관리</a></li>
             <li><a href="javascript:;" class="tit">회원 관리</a></li>
+            <li><a href="javascript:;" class="tit">내 정보</a></li>
         </ul>
         <div class="jq_cont tab_cont">
             <div class="cont">
@@ -41,9 +43,20 @@
                     <div class="jq_cont tab_cont">
                         <div class="cont">
                         	<ul>
-                        		<li><a onclick="admin_infoupdate()">정보수정</a></li>
-                        		<li><a onclick="admin_mylist()">마이 글</a></li>
-                        		<li><a onclick="admin_myalarm()">마이 알림</a></li>
+                        		<li><a href="">내가 쓴 글</a></li>
+                        		<li><a href="">내가 좋아요 한 글</a></li>
+                        		<li><a href="">내가 스크랩 한 글</a></li>
+                        	</ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                    <div class="jq_cont tab_cont">
+                        <div class="cont">
+                        	<ul>
+                        		<li><a href="">알림</a></li>
                         	</ul>
                         </div>
                     </div>
@@ -75,6 +88,13 @@
                 <div class="jq_tabonoff comm_tab2">
                     <div class="jq_cont tab_cont">
                         <div class="cont"><ul><li><a onclick="member_manage()">회원관리</a></li></ul></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont">
+                <div class="jq_tabonoff comm_tab2">
+                    <div class="jq_cont tab_cont">
+                        <div class="cont"><ul><li><a href="">정보수정</a></li></ul></div>
                     </div>
                 </div>
             </div>

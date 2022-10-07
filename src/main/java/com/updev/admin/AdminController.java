@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.updev.board.Board;
+import com.updev.board.Criteria;
+import com.updev.board.PageDTO;
 import com.updev.board.ServiceBoard;
 import com.updev.member.Signup;
 
@@ -69,7 +71,7 @@ public class AdminController {
 	}
 	// 마이페이지 - 마이 글 페이지 이동
 	@RequestMapping(value = "/admin_mylist")
-	public String admin_mylist(HttpServletRequest request, Model model){
+	public String admin_mylist(HttpServletRequest request, Model model, PageDTO dto, Criteria cri){
 		// 세션 생성
 		HttpSession session = request.getSession();
 		// 세션에서 관리자 nick 들고오기
@@ -79,6 +81,27 @@ public class AdminController {
 		ArrayList<Board> list = sa.admin_mywrite_select(admin_nick);
 		
 		model.addAttribute("list", list);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.mylisttotal();
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+		
+
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		model.addAttribute("page1",dto);
+		model.addAttribute("page2",cri);
+		model.addAttribute("bpage1",sa.mylistpage(dto));
+	
+		
 		
 		return "admin_mylist";
 	}
@@ -96,63 +119,189 @@ public class AdminController {
 	}
 	// 게시판관리 - 공지 게시판 관리 페이지 이동
 	@RequestMapping(value = "/notice_manage")
-	public String noticemanage(HttpServletRequest request, Model model){
-		String b_kind = "공지";
+	public String noticemanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri){
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
-		ArrayList<Board> list = sa.board_manage_select(b_kind);
-		model.addAttribute("board", list);
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.notice_manage_total();
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		mo.addAttribute("page1",dto);
+		mo.addAttribute("page2",cri);
+		mo.addAttribute("bpage1",sa.notice_manage_page(dto));
+		
 		return "board_manage";
 	}
 	// 게시판관리 - 정보공유 게시판 관리 페이지 이동
 	@RequestMapping(value = "/infoshare_manage")
-	public String infosharemanage(HttpServletRequest request, Model model){
+	public String infosharemanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri){
 		String b_kind = "정보공유";
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.board_manage_select(b_kind);
-		model.addAttribute("board", list);
+		mo.addAttribute("board", list);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.share_manage_total();
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+		
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		mo.addAttribute("page1",dto);
+		mo.addAttribute("page2",cri);
+		mo.addAttribute("bpage1",sa.share_manage_page(dto));
 		return "board_manage";
 	}
 	// 게시판관리 - 지식인 게시판 관리 페이지 이동
 	@RequestMapping(value = "/intellectual_manage")
-	public String intellectualmanage(HttpServletRequest request, Model model){
+	public String intellectualmanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri){
 		String b_kind = "지식인";
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.board_manage_select(b_kind);
-		model.addAttribute("board", list);
+		mo.addAttribute("board", list);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.question_manage_total();
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		mo.addAttribute("page1",dto);
+		mo.addAttribute("page2",cri);
+		mo.addAttribute("bpage1",sa.question_manage_page(dto));
+		
 		return "board_manage";
 	}
 	// 게시판관리 - 고민상담소 게시판 관리 페이지 이동
 	@RequestMapping(value = "/counseling_manage")
-	public String counselingmanage(HttpServletRequest request, Model model){
+	public String counselingmanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri){
 		String b_kind = "고민상담소";
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.board_manage_select(b_kind);
-		model.addAttribute("board", list);
+		mo.addAttribute("board", list);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.worry_manage_total();
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		mo.addAttribute("page1",dto);
+		mo.addAttribute("page2",cri);
+		mo.addAttribute("bpage1",sa.worry_manage_page(dto));
+		
 		return "board_manage";
 	}
 	// 게시판관리 - Q&A 게시판 관리 페이지 이동
 	@RequestMapping(value = "/qna_manage")
-	public String qnamanage(HttpServletRequest request, Model model){
+	public String qnamanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri){
 		String b_kind = "Q&A";
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.board_manage_select(b_kind);
-		model.addAttribute("board", list);
+		mo.addAttribute("board", list);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.qna_manage_total();
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		mo.addAttribute("page1",dto);
+		mo.addAttribute("page2",cri);
+		mo.addAttribute("bpage1",sa.qna_manage_page(dto));
+		
 		return "board_manage";
 	}
 	// 신고 관리 - 신고 관리 페이지 이동
 	@RequestMapping(value = "/report_manage")
-	public String reportmanage(HttpServletRequest request, Model model){
+	public String reportmanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri){
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Board> list = sa.report_manage_select();
-		model.addAttribute("board", list);
+		mo.addAttribute("board", list);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.report_manage_total();
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		mo.addAttribute("page1",dto);
+		mo.addAttribute("page2",cri);
+		mo.addAttribute("bpage1",sa.report_manage_page(dto));
+		
 		return "report_manage";
 	}
 	// 회원 관리 - 회원 관리 페이지 이동
 	@RequestMapping(value = "/member_manage")
-	public String membermanage(HttpServletRequest request, Model model){
+	public String membermanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri){
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
-		ArrayList<Board> list = sa.member_manage_select();
-		model.addAttribute("board", list);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.member_manage_total();
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		mo.addAttribute("page1",dto);
+		mo.addAttribute("page2",cri);
+		mo.addAttribute("bpage1",sa.member_manage_page(dto));
+		
 		return "member_manage";
 	}
 	
@@ -502,5 +651,6 @@ public class AdminController {
 			return url;
 		}
 		
+				
 	
 }

@@ -24,7 +24,6 @@
 					<div class="input">
 						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" onclick="idselect()" autofocus></label>
 						<input type="hidden" name="idcheck" id="idcheck" value="N">
-						
 					</div>
 					<div class="input">
 						<label><input id="pwchk" type="password" name="m_pw" placeholder="비밀번호확인" autofocus></label>

@@ -9,6 +9,37 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="resources/js/search.js"></script>
 		<link rel="stylesheet" href="resources/css/top.css" type="text/css">
+<!-- 시계 -->
+<script type="text/javascript">
+setInterval("dpTime()", 1000);
+function dpTime() {
+   var now = new Date();
+   hours = now.getHours();
+   min = now.getMinutes();
+   sec = now.getSeconds();
+   
+   if(hours > 12){
+      hours -= 12;
+      ampm = "오후";
+   } else {
+      ampm = "오전"
+   }
+   if(hours < 10){
+      hours = "0"+hours;
+   }
+   if(min < 10){
+      min = "0"+min;
+   }
+   if(sec < 10){
+      sec = "0"+sec;
+   }
+   
+   document.getElementById("dpTime").innerHTML = ampm + " " + hours + ":" + min + ":" + sec
+}
+</script>
+
+<!-- 시계 -->
+
 	</head>
 	<body>
 		<c:set var="result" value="${param.result}"/>
@@ -78,6 +109,9 @@
 									</ul>
 								</c:otherwise>
 							</c:choose>
+							
+						<span style="font-size: 40px; color: blue; margin-left: 700px;" id="dpTime"></span>
+
 						</div>
 					</div>
 					<div class="topbar">

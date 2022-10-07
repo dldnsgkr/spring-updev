@@ -66,7 +66,7 @@ body{
 .comm_tab1>.tab_menu>li {float: left;
     display: block;
     text-align: center;
-        line-height: 50px;
+        line-height: 70px;
         
     font-size: 16px;
     width: 100%;}
@@ -81,19 +81,19 @@ body{
 .comm_tab1>.tab_menu .tit {
 	display: block;
     
-        height: 100px;
+        height: 70px;
     padding: 0 30px 0;
-    line-height: 100px;
+    line-height: 70px;
     
     
     /* font-weight: bold; */
-    font-size: 18px;
+    font-size: 15px;
     color: #242038;
     cursor: pointer;
 	}
-.comm_tab1>.tab_menu .on {    position: relative;line-height: 50px;text-decoration: underline;
-    height: 100px;}
-.comm_tab1>.tab_menu .on .tit {height:50px;/* border-bottom:2px solid #4c5057; */}
+.comm_tab1>.tab_menu .on {    position: relative;text-decoration: underline;
+    height: 70px;}
+.comm_tab1>.tab_menu .on .tit {height:70px;}
 .comm_tab1>.tab_cont {    float: left;}
 .comm_tab1>.tab_cont>.cont {padding:60px;}
 .comm_tab1>.tab_cont>.cont:first-child {}

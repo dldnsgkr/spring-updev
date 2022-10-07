@@ -19,7 +19,7 @@
 			</div>
 			</div>
 			<div class="board_write">
-				<button class="button" type="button" name="board_write" onclick="location.href = 'write' ">글쓰기</button>
+				<button class="button" type="button" name="board_write" onclick="location.href = 'write?b_kind=정보공유' ">글쓰기</button>
 			</div>
 			<table border="1">
 				<thead id="thead">
@@ -36,7 +36,12 @@
 					<c:forEach items="${bpage1 }" var="a">
 					<tr>
 						<td>${a.b_num }</td>
+<<<<<<< HEAD
 						<td><a href="detail?b_num=${a.b_num }&abc=정보공유">${a.b_title }</a>
+=======
+						<td><a href="detail?b_num=${a.b_num }&su_nick=${a.m_nick}">${a.b_title }</a>
+						
+>>>>>>> 219000830c9be5ac72c97eef624291724606fcf0
 					
 						<c:if test="${a.b_replycnt ne 0}">
 							[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
@@ -57,6 +62,31 @@
 			</table>
 
 			<div id="tfoot">				
+
+			
+				<c:if test="${page1.nowPage > 10}">
+					<a href="sharepage?nowPage=${page1.startPage -1}">&#60;</a> 				
+				</c:if>
+					
+				<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
+					<c:choose>
+						<c:when test="${p==page1.nowPage}">
+							<b>${p}</b>
+						</c:when>
+						<c:when test="${p!=page1.nowPage}">
+							<a href="sharepage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				<!-- 
+				<c:if test="${page1.nowPage ne page1.realEnd && page1.endPage>0}"></c:if>
+				 -->			
+				<c:if test="${page1.next && page1.endPage>0}">
+					<a href="sharepage?nowPage=${page1.endPage +1}">&#62;</a>
+				</c:if> 
+			</div>
+
+
 						<c:if test="${page1.nowPage > 10}">
 							<a href="sharepage?nowPage=${page1.startPage -1}">&#60;</a> 				
 						</c:if>
@@ -91,5 +121,7 @@
 		<a href="sharepage?nowPage=${page1.endPage +1}">&#62;</a>
 	</c:if>   
 </div>
+
+
 	</body>
 </html>

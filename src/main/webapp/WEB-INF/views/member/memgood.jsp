@@ -1,22 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="./resources/js/.js"></script> <!-- js 주소 확인 -->
-<link rel="stylesheet" type="text/css"
-	href="./resources/css/memwrite.css">
 </head>
 <body>
-	<div class="wrapper">
-		<form id="mywriteform">
-		<div class="title"><h3>내가 좋아요한 게시물</h3></div>
-			<table>
+<table>
 				<tr>
  					<th>번호</th>
 					<th>제목</th>
@@ -37,7 +30,5 @@
 				</tr>
 				</c:forEach>
 			</table>
-		</form>
-	</div>
 </body>
 </html>
