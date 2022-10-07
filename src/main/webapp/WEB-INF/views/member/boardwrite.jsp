@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
     <%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -70,6 +70,7 @@ $('.summernote').summernote({
 				</td>
 				</tr>
 				<tr>
+		<input type="hidden" name="b_cate" value="1">
 				   <th>분류</th>
 				   <td>
 				   <select name="b_kind">
@@ -117,6 +118,7 @@ $('.summernote').summernote({
 				   <th>제목</th>
 				   <td><input type="text" name="b_title" id="input"></td>
 				</tr>
+				<input type="hidden" name="m_nick" value="가가">
 				<tr>
 				   <th>내용</th>
 				   <td>

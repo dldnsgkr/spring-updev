@@ -17,7 +17,6 @@
 					<th>추천수</th>
 					<th>조회수</th>
 					<th>작성일</th>
-					<th></th>
 				</tr>
 				<c:forEach items="${list}" var="list">
 				<tr>
@@ -28,8 +27,6 @@
 					<td>${list.b_readcnt}</td>
 					<td><fmt:parseDate value='${list.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 						<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>
-					<td><a href='writedelete?b_num=${list.b_num}' onclick="confirmdelete();">삭제</a>
-					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}'">수정</a></td>
 				</tr>
 				</c:forEach>
 			</table>

@@ -36,8 +36,12 @@
 					<c:forEach items="${bpage1 }" var="a">
 					<tr>
 						<td>${a.b_num }</td>
+<<<<<<< HEAD
+						<td><a href="detail?b_num=${a.b_num }&abc=정보공유">${a.b_title }</a>
+=======
 						<td><a href="detail?b_num=${a.b_num }&su_nick=${a.m_nick}">${a.b_title }</a>
 						
+>>>>>>> 219000830c9be5ac72c97eef624291724606fcf0
 					
 						<c:if test="${a.b_replycnt ne 0}">
 							[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]

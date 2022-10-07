@@ -126,6 +126,18 @@ $(function(){
 </script>
 
 <script type="text/javascript">
+<<<<<<< HEAD
+function del()
+{
+    var b_num = $("#b_num").val();
+    var abc = $("#abc").val();
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+      location.href="writedelete?b_num="+b_num+"&abc="+abc;
+  else
+    return false;
+}
+=======
 $(function() {
 	var loginstate=$("#loginstate").val();
 	var member_nick=$("#m_nick").val();
@@ -140,6 +152,7 @@ $(function() {
 			$("#up").hide();
 		}
 });
+>>>>>>> 219000830c9be5ac72c97eef624291724606fcf0
 </script>
 
 
@@ -261,6 +274,13 @@ function del()
 					name="like_chk" id="like_chk" value="${llist.like_chk }">
 				<button class="button" type="button" id="ttt">좋아요</button>
 			</form>
+			
+			<form action="writedelete" method="post">
+    <input type="hidden" id="loginstate" value="${loginState }">
+    <input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
+    <input type="text" id="abc" value="${abc}">
+    <input type="button" value="삭제" onclick="del()">
+    </form>
 
 			<form name="frm" method="post">
 				<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
