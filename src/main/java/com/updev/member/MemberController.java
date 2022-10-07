@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.updev.board.Alarm;
 import com.updev.board.Board;
 import com.updev.board.ServiceBoard;
 
@@ -543,6 +544,16 @@ public class MemberController {
 				mo.addAttribute("list",dao);
 			   return "memscrap";
 		   }
+		   
+		   @RequestMapping(value = "/alarm")
+	     	public String alarm(HttpServletRequest request,Model mo) {
+			   HttpSession session = request.getSession();
+			   String nick = (String)session.getAttribute("member_nick");
+			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
+				ArrayList<Alarm> dao = ss.ajaxmyalarm(nick);
+				mo.addAttribute("list",dao);
+	     		return "alarm";
+	     	}
 
 }
 	   

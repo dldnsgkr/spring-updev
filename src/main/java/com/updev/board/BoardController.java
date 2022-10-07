@@ -674,12 +674,6 @@ public class BoardController {
 	             return mav;
 	        	 
 	         }
-	         
-	         @RequestMapping(value = "/alarm")
-		     	public String alarm() {
-	        	 
-		     		return "";
-		     	}
 	        
 	         
 

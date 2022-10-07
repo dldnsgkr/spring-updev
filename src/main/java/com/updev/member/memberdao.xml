@@ -98,5 +98,9 @@
 		from board b, scrap s
 		where b.b_num=s.b_num and s.m_nick = #{param1} and s.scrap_chk = 1
 	</select>
-  	
+	
+	<select id="ajaxmyalarm" resultType="com.updev.board.Alarm">
+		select * from alarm where m_id = #{param1}
+	</select>
+	
 </mapper>
