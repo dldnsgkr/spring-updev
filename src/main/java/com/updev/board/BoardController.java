@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -130,7 +131,7 @@ public class BoardController {
 	         ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 	         ss.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
 	         
-	         return "redirect:index";
+	         return "redirect:ajaxmywrite";
 	         
 	      }
 	      
@@ -158,14 +159,36 @@ public class BoardController {
 	            return "redirect:myp";
 	         }
 	      		//글 삭제
-	         @RequestMapping(value = "/writedelete")
-		      public String ko11(HttpServletRequest request,Model mo)
-		      {
-		            int b_num = Integer.parseInt(request.getParameter("b_num"));
-		           ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		         ss.delete(b_num);
-		         return "redirect:myp";
-		      }
+	      @RequestMapping(value = "/writedelete",produces = "application/text; charset=UTF-8")
+          public String ko11(HttpServletRequest request,Model mo)
+          {
+                int b_num = Integer.parseInt(request.getParameter("b_num"));
+                String abc = request.getParameter("abc");
+                System.out.println(abc);
+                ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+                ss.delete(b_num);
+                //String referrer = request.getParameter("referrer");
+                //System.out.println(referrer+"referrer");
+                
+                //String test = referrer.substring(20,referrer.length());
+                //System.out.println(test);
+                
+                /*http://localhost:8888/updev/myp?m_nick
+               
+             
+             // 이전페이지가 멤버의 마이페이지이면 -> ajaxmywrite
+             
+             // 이전페이지가 목록페이지면 -> board 목록 페이지
+             return "redirect:ajaxmywrite";
+            */
+             if(abc.equals("정보공유")) {
+            	 
+            	 return "redirect:sharepage";
+             }else {
+            	 return "redirect:ajaxmywrite";
+             }
+          
+          }
 	         
 	         //조회수
 	         public void Readcnt(int num) {
@@ -180,6 +203,8 @@ public class BoardController {
 		     	 HttpSession session = request.getSession();
 	        	 String nick = (String)session.getAttribute("member_nick");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 String abc = request.getParameter("abc");
+	        	 
 	        	 String nowPage=request.getParameter("nowPage");
 		    	 String cntPerPage=request.getParameter("cntPerPage");
 		    		
@@ -208,6 +233,7 @@ public class BoardController {
 	        	 mo.addAttribute("list",member);
 	        	 mo.addAttribute("llist",good);
 	        	 mo.addAttribute("slist",scrap);
+	        	 mo.addAttribute("abc",abc);
 	        	 return "detailboard";
 	         }
 	         

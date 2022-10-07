@@ -7,8 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="./resources/js/ajaxmywrite.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="./resources/css/memwrite.css">
@@ -36,7 +35,9 @@
 					<td>${list.b_readcnt}</td>
 					<td><fmt:parseDate value='${list.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 						<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>
-					<td><a href='writedelete?b_num=${list.b_num}' onclick="confirmdelete();">삭제</a>
+						
+						
+					<td><a onclick="confirmdelete(${list.b_num});">삭제</a> &emsp;
 					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}'">수정</a></td>
 				</tr>
 				</c:forEach>

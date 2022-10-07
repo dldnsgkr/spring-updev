@@ -114,7 +114,6 @@ public class MemberController {
 	 	         session.setAttribute("id", m_id);
 	 	         session.setAttribute("loginState", true);
 	 	         session.setAttribute("member_nick", d.getM_nick());
-	 	         session.setMaxInactiveInterval(300);
 	 	         mav.setViewName("redirect:index");
 
 	    	  } else {

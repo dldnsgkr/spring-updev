@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="./resources/js/mypageupdateconfirm.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -39,7 +40,7 @@
    <td><input type="file" name="b_file2"></td><!-- summernote 사용 예정 -->
 </tr>
 <tr>
-   <td><input type="submit" value="수정"></td>
+   <td><input type="submit" value="수정" onclick="updateconfirm()"></td>
 </tr>
 </table>
 </form>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,6 +23,7 @@
 		<form action="writesave" method="post" enctype="multipart/form-data" name="write">
 				<table border="1">
 				<tr>
+		<input type="hidden" name="b_cate" value="1">
 				   <th>분류</th>
 				   <td>
 				   <select name="b_kind">
@@ -36,6 +37,7 @@
 				   <th>제목</th>
 				   <td><input type="text" name="b_title" id="input"></td>
 				</tr>
+				<input type="hidden" name="m_nick" value="가가">
 				<tr>
 				   <th>내용</th>
 				   <td>

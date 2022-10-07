@@ -36,7 +36,7 @@
 					<c:forEach items="${bpage1 }" var="a">
 					<tr>
 						<td>${a.b_num }</td>
-						<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a>
+						<td><a href="detail?b_num=${a.b_num }&abc=정보공유">${a.b_title }</a>
 					
 						<c:if test="${a.b_replycnt ne 0}">
 							[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
