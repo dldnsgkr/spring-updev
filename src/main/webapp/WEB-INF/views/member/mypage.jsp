@@ -56,7 +56,9 @@
                 <div class="jq_tabonoff comm_tab2">
                     <div class="jq_cont tab_cont">
                         <div class="cont">
-                            <a href="write">글쓰기(마이페이지에서 삭제 예정) </a> 
+                       
+                            <a href="write?b_kind=정보공유">글쓰기</a> 
+
                         </div>
                         
                     </div>

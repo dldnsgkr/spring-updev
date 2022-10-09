@@ -43,7 +43,9 @@
 					<td>	
 					<a onclick="del()" id="de">삭제</a>
 					</form>
-					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}'">수정</a></td>
+					
+					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">수정</a></td>
+
 				</tr>
 				</c:forEach>
 			</table>

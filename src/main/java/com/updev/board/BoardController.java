@@ -66,12 +66,14 @@ public class BoardController {
 			String m_pw = (String)session.getAttribute("pw");
 			ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			Signup d = sm.loginselect(m_id, m_pw);
+			int alarm_count = sm.alarmcount(d.getM_nick());
 			 session.setAttribute("auto_login",auto_login);
 	         session.setAttribute("member", d);
 	         session.setAttribute("id", m_id);
 	         session.setAttribute("pw", m_pw);
 	         session.setAttribute("loginState", true);
 	         session.setAttribute("member_nick", d.getM_nick());
+	  		session.setAttribute("alarm_count", alarm_count);
 		} else {
 		String loginbefore = "unknown";
 		session.setAttribute("loginState", false);
@@ -99,10 +101,14 @@ public class BoardController {
 	
 	//로고 클릭시 이동할 페이지
 	@RequestMapping(value = "/index")
-	public String index(Model mo)
+	public String index(Model mo,HttpServletRequest request)
 	{	
- 		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
- 		
+ 		HttpSession session = request.getSession();
+ 		ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+ 		String member_nick = (String)session.getAttribute("member_nick");
+ 		int alarm_count = sm.alarmcount(member_nick);
+        session.setAttribute("alarm_count", alarm_count);
+        ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
  		ArrayList<Board> pmpage=sb.popmain();
  		ArrayList<Board> smpage=sb.sharemain();
  		ArrayList<Board> qmpage=sb.questionmain();
@@ -126,9 +132,12 @@ public class BoardController {
 	   public String ko8(Model mo,HttpServletRequest request)
 	   {
 		   HttpSession session = request.getSession();
-		   String nick = (String)session.getAttribute("member_nick");
+		   ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+	 		String member_nick = (String)session.getAttribute("member_nick");
+	 		int alarm_count = sm.alarmcount(member_nick);
+	        session.setAttribute("alarm_count", alarm_count);
 		   ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		   ArrayList<Board> dto = ss.mewrite(nick);
+		   ArrayList<Board> dto = ss.mewrite(member_nick);
 		   mo.addAttribute("list",dto);
 		  return "mypage"; 
 	   }
@@ -137,6 +146,12 @@ public class BoardController {
 	      @RequestMapping(value = "/writeupdatecheck")
 	      public String ko10(HttpServletRequest request,Model mo)
 	      {
+	    	  HttpSession session = request.getSession();
+	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+		 		String member_nick = (String)session.getAttribute("member_nick");
+		 		int alarm_count = sm.alarmcount(member_nick);
+		        session.setAttribute("alarm_count", alarm_count);
+		        
 	    	 String b_kind = request.getParameter("b_kind");
 	         int b_num = Integer.parseInt(request.getParameter("b_num"));
 	         ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
@@ -150,6 +165,12 @@ public class BoardController {
 	      @RequestMapping(value = "/writeupdate")
 	      public String ko9(MultipartHttpServletRequest mul,HttpServletRequest request)
 	      {
+	    	  HttpSession session = request.getSession();
+	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+		 		String member_nick = (String)session.getAttribute("member_nick");
+		 		int alarm_count = sm.alarmcount(member_nick);
+		        session.setAttribute("alarm_count", alarm_count);
+	    	  
 	         int b_num = Integer.parseInt(mul.getParameter("b_num"));
 	         String b_cate = mul.getParameter("b_cate");
 	         String b_kind = mul.getParameter("b_kind");
@@ -176,6 +197,11 @@ public class BoardController {
 	    	  HttpSession session=request.getSession();
 	    	  if((Boolean) session.getAttribute("loginState"))
 				{
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	    		  
 	    		  String b_kind = request.getParameter("b_kind");
 	    		  session.setAttribute("b_kind", b_kind);
 	    		  return "boardwrite";
@@ -192,6 +218,12 @@ public class BoardController {
 	      @RequestMapping(method = RequestMethod.POST,value = "/writesave")
 	         public String ko2(MultipartHttpServletRequest mul,HttpServletRequest request)
 	         {
+	    	  HttpSession session = request.getSession();
+	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+		 		String member_nick = (String)session.getAttribute("member_nick");
+		 		int alarm_count = sm.alarmcount(member_nick);
+		        session.setAttribute("alarm_count", alarm_count);
+	    	  
 	            String b_cate = mul.getParameter("b_cate");
 	            String b_kind = mul.getParameter("b_kind");
 	            String b_title = mul.getParameter("b_title");
@@ -222,6 +254,12 @@ public class BoardController {
 	         @RequestMapping(value = "/writedelete")
 		      public String ko11(HttpServletRequest request,Model mo)
 		      {
+	        	 HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	        	 
 	        	 String b_kind = request.getParameter("b_kind");
 		         int b_num = Integer.parseInt(request.getParameter("b_num"));
 		         ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
@@ -249,13 +287,35 @@ public class BoardController {
 	     		ss.readcnt(num);
 	     	}
 	         
+	         //알림 읽은 여부 체크
+	         @RequestMapping(value = "/alarmcheck")
+	         public ModelAndView alarm_read_check(HttpServletRequest request)
+	         {
+	             int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 int a_num = Integer.parseInt(request.getParameter("a_num"));
+	        	 ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+	        	 sm.alarmchk(a_num);
+	        	 ModelAndView mav = new ModelAndView();
+	                 mav.addObject("b_num", b_num);
+	                 mav.setViewName("redirect:detail");
+	             
+	             
+	             return mav;
+	         }
+	         
+	         
 	         //게시물 detail
 	         @RequestMapping(value = "/detail")
 	         public String ko17(HttpServletRequest request,Model mo, PageDTO dto, Criteria cri)
 	         {
 		     	 HttpSession session = request.getSession();
-	        	 String nick = (String)session.getAttribute("member_nick");
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	        	 
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
+	        	 System.out.println(b_num);
 	        	 String su_nick = request.getParameter("su_nick");
 	        	 String nowPage=request.getParameter("nowPage");
 		    	 String cntPerPage=request.getParameter("cntPerPage");
@@ -266,9 +326,10 @@ public class BoardController {
 	        	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	        	 
 	        	 Board member = sb.boarddetail(b_num);
-	        	 Good good = sb.howgood(b_num,nick);
+	        	 Good good = sb.howgood(b_num,member_nick);
 	        	 int total = sb.replytotal(b_num);
-	        	 Scrap scrap = sb.howscrap(b_num,nick);
+	        	 Scrap scrap = sb.howscrap(b_num,member_nick);
+	        	 
 	        	 
 		    		
 	        	 if(nowPage == null && cntPerPage == null) {
@@ -298,6 +359,12 @@ public class BoardController {
 	         //댓글
 	         @RequestMapping(value = "/replysave")
 	         public ModelAndView reply(HttpServletRequest request,Model mo) {
+	        	 
+	        	 HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
 	        	 
 	        	 int b_num=Integer.parseInt(request.getParameter("b_num"));
 	        	 String m_nick=request.getParameter("m_nick");
@@ -331,6 +398,13 @@ public class BoardController {
 	        //공지페이징
 	     	@RequestMapping(value="/noticepage")
 	    	public String page1(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	     		
+	     		HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	     		
 	    		String nowPage=request.getParameter("nowPage");
 	    		String cntPerPage=request.getParameter("cntPerPage");
 	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
@@ -358,7 +432,14 @@ public class BoardController {
 	     	//정보공유 페이징
 	     	@RequestMapping(value="/sharepage")
 	    	public String page2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri, Board bdto) {
-	    		String nowPage=request.getParameter("nowPage");
+	    		
+	     		HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	     		
+	     		String nowPage=request.getParameter("nowPage");
 	    		String cntPerPage=request.getParameter("cntPerPage");
 	    		
 	    		
@@ -387,6 +468,13 @@ public class BoardController {
 	     	//지식인 페이징
 	     	@RequestMapping(value="/questionpage")
 	    	public String page3(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	     		
+	     		HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	     		
 	    		String nowPage=request.getParameter("nowPage");
 	    		String cntPerPage=request.getParameter("cntPerPage");
 	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
@@ -415,6 +503,13 @@ public class BoardController {
 	     	//고민상담소 페이징
 	     	@RequestMapping(value="/worrypage")
 	    	public String page4(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	     		
+	     		HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	     		
 	    		String nowPage=request.getParameter("nowPage");
 	    		String cntPerPage=request.getParameter("cntPerPage");
 	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
@@ -442,6 +537,13 @@ public class BoardController {
 	     	//Q&A 페이징
 	     	@RequestMapping(value="/qnapage")
 	    	public String page5(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	     		
+	     		HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	     		
 	    		String nowPage=request.getParameter("nowPage");
 	    		String cntPerPage=request.getParameter("cntPerPage");
 	    		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
@@ -649,7 +751,11 @@ public class BoardController {
 	         public ModelAndView ko21(HttpServletRequest request,Model mo)
 	         {
 		     	 HttpSession session = request.getSession();
-	        	 String nick = (String)session.getAttribute("member_nick");
+		     	
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
 	        	 int b_num = (int)session.getAttribute("b_num");
 	        	 String su_nick = (String)session.getAttribute("su_nick");
 	        	 ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
@@ -680,6 +786,13 @@ public class BoardController {
 	     	//인기글 페이징
 	     	@RequestMapping(value="/poppage")
 	     	public String page6(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri) {
+	     		
+	     		HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	     		
 	     		String nowPage=request.getParameter("nowPage");
 	     		String cntPerPage=request.getParameter("cntPerPage");
 	     		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
@@ -706,6 +819,12 @@ public class BoardController {
 	     	@RequestMapping(value = "/search")
 	     	public String search2(HttpServletRequest request, PageDTO dto, Model mo, Criteria cri)
 	     	{
+	     		HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+	     		
 	     		ArrayList<Board> list = new ArrayList<Board>();
 	     		String sname = request.getParameter("sname");
 	     		String keyword = request.getParameter("keyword");
