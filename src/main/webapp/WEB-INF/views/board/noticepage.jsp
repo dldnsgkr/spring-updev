@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/board.css" type="text/css">
@@ -65,8 +64,6 @@
 </table>
 </body>
 	<head>
-=======
->>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="resources/css/board.css" type="text/css">

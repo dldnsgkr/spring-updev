@@ -251,9 +251,6 @@ function del()
 	<td><input type="submit" value="등록"></td>
 </tr>
 </form>
-=======
-
->>>>>>> 5e4586149d17f80d7ddc4747335c9a95279a3c5b
 			
 		<!-- 댓글 -->
 		<div class="reply">
