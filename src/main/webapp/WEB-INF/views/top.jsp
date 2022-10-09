@@ -110,7 +110,7 @@ function dpTime() {
 								</c:otherwise>
 							</c:choose>
 							
-						<span style="font-size: 40px; color: blue; margin-left: 700px;" id="dpTime"></span>
+						<span style="font-size: 20px; color: #9067c6; margin-left: 700px;" id="dpTime"></span>
 
 						</div>
 					</div>

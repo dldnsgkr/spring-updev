@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="./resources/js/ajaxmywrite.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="./resources/css/memwrite.css">
+<link rel="stylesheet" type="text/css" href="./resources/css/memwrite.css">
 </head>
 <body>
 	<div class="wrapper">
@@ -37,14 +36,13 @@
 						<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>
 
 						
-					<td>	
 					<form action="writedelete" method="post">
 					<input type="hidden" id="loginstate" value="${loginState }">
 					<input type="hidden" id="b_num" value="${list.b_num }">
-					<input type="hidden" id="b_kind" value="내가쓴글">
-					<input type="button" value="삭제" id="de" onclick="del()">
+					<input type="hidden" id="b_kind" value="내가쓴글">	
+					<td>	
+					<a onclick="del()" id="de">삭제</a>
 					</form>
-
 					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}'">수정</a></td>
 				</tr>
 				</c:forEach>
