@@ -20,7 +20,7 @@
 				<c:forEach items="${list}" var="list">
 				<tr>
 					<td>${list.a_num}</td>
-					<td><a href="detail?b_num=${list.b_num}">${list.a_content}</a></td>
+					<td><a href="alarmcheck?b_num=${list.b_num}&a_num=${list.a_num}">${list.a_content}</a></td>
 					
 					
 				</tr>

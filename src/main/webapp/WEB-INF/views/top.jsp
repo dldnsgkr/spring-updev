@@ -97,7 +97,8 @@ function dpTime() {
 									<a href="admin_mypage">마이페이지</a>
 								</c:when>
 									<c:otherwise>
-									 <span>환영합니다!!${member.m_nick}님</span>&emsp;<a href="myp?m_nick=${member.m_nick }">마이페이지</a>
+									 <span>환영합니다!!${member.m_nick}님</span>&emsp;<a href="myp?m_nick=${member.m_nick }">마이페이지</a><!-- 알림 수 -->
+							${alarm_count }
 									</c:otherwise>
 									</c:choose>
 									<a href="logout">&emsp;로그아웃</a>
@@ -111,7 +112,7 @@ function dpTime() {
 							</c:choose>
 							
 						<span style="font-size: 40px; color: blue; margin-left: 700px;" id="dpTime"></span>
-
+							
 						</div>
 					</div>
 					<div class="topbar">

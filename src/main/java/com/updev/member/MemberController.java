@@ -155,6 +155,7 @@ public class MemberController {
 	         session.removeAttribute("pw");
 	         session.removeAttribute("member_nick");
 	         session.removeAttribute("auto_login");
+	         session.removeAttribute("alarm_count");
 	         session.setAttribute("loginState",false);
 	         session.setAttribute("member_nick", loginbefore);
 	         session.setAttribute("auto_login",0);
@@ -167,6 +168,12 @@ public class MemberController {
 	   @RequestMapping(value = "/proupdate")
 	   public String ko9(HttpServletRequest request)
 	   {
+		   HttpSession session = request.getSession();
+	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+		 		String member_nick = (String)session.getAttribute("member_nick");
+		 		int alarm_count = sm.alarmcount(member_nick);
+		        session.setAttribute("alarm_count", alarm_count);
+		   
 		   String up_nick = request.getParameter("up_nick");//새로 바꾼 닉네임
 		   String m_nick = request.getParameter("m_nick");//키값이 될 닉네임(기존 닉네임)
 		   String m_id = request.getParameter("m_id");
@@ -175,7 +182,7 @@ public class MemberController {
 		   String m_mail = request.getParameter("m_mail");
 		   String m_tel = request.getParameter("m_tel");
 		   String m_field = request.getParameter("m_field");
-		   ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+		   
 		   sm.profileupdate(m_nick,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
 		   sm.profileboardupdate(m_nick,up_nick);
 		   sm.balupdate(m_nick,up_nick);
@@ -410,6 +417,11 @@ public class MemberController {
 	 		HttpSession session=request.getSession();
 			if((Boolean) session.getAttribute("loginState"))
 			{
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);	
+				
 	    	 int b_num = Integer.parseInt(request.getParameter("b_num"));
 	    	 String b_title = request.getParameter("b_title");
 	    	 mo.addAttribute("b_num",b_num);
@@ -456,6 +468,11 @@ public class MemberController {
 		   public String ko8(HttpServletRequest request,Model mo)
 		   {
 			   HttpSession session = request.getSession();
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+			   
 			   String id = (String)session.getAttribute("id");
 			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
 				Signup dao = ss.profileupdatecheck(id);
@@ -505,10 +522,12 @@ public class MemberController {
 		   public String ko5(HttpServletRequest request,Model mo)
 		   {
 			   HttpSession session = request.getSession();
-			   String nick = (String)session.getAttribute("member_nick");
-			 
-			   ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-			   ArrayList<Board> dao = ss.ajaxmywrite(nick);
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+			        
+			   ArrayList<Board> dao = sm.ajaxmywrite(member_nick);
 			   mo.addAttribute("list",dao);
 			   return "memwrite";
 		   }
@@ -522,10 +541,12 @@ public class MemberController {
 
 		   {
 			   HttpSession session = request.getSession();
-			   String nick = (String)session.getAttribute("member_nick");
-			 
-			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-				ArrayList<Board> dao = ss.ajaxmygood(nick);
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+			        
+				ArrayList<Board> dao = sm.ajaxmygood(member_nick);
 				mo.addAttribute("list",dao);
 			   return "memgood";
 		   }
@@ -537,10 +558,12 @@ public class MemberController {
 		   public String ko7(HttpServletRequest request,Model mo)
 		   {
 			   HttpSession session = request.getSession();
-			   String nick = (String)session.getAttribute("member_nick");
-			 
-			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-				ArrayList<Board> dao = ss.ajaxmyscrap(nick);
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+			        
+				ArrayList<Board> dao = sm.ajaxmyscrap(member_nick);
 				mo.addAttribute("list",dao);
 			   return "memscrap";
 		   }
@@ -548,9 +571,12 @@ public class MemberController {
 		   @RequestMapping(value = "/alarm")
 	     	public String alarm(HttpServletRequest request,Model mo) {
 			   HttpSession session = request.getSession();
-			   String nick = (String)session.getAttribute("member_nick");
-			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-				ArrayList<Alarm> dao = ss.ajaxmyalarm(nick);
+		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			 		String member_nick = (String)session.getAttribute("member_nick");
+			 		int alarm_count = sm.alarmcount(member_nick);
+			        session.setAttribute("alarm_count", alarm_count);
+			        
+				ArrayList<Alarm> dao = sm.ajaxmyalarm(member_nick);
 				mo.addAttribute("list",dao);
 	     		return "alarm";
 	     	}

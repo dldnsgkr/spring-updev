@@ -70,12 +70,11 @@ $('.summernote').summernote({
 				</td>
 				</tr>
 				<tr>
-		<input type="hidden" name="b_cate" value="1">
 				   <th>분류</th>
 				   <td>
 				   <select name="b_kind">
 				   <c:choose>
-						<c:when test="${b_kind=='공지'}">
+						<c:when test="${member_nick=='관리자'}">
 							<option value="공지" selected="selected">공지</option>
 						</c:when>
 						<c:otherwise>
@@ -83,6 +82,9 @@ $('.summernote').summernote({
 						</c:otherwise>
 					</c:choose>
 				   <c:choose>
+						<c:when test="${b_kind=='정보공유'}">
+							<option value="정보공유" selected="selected">정보공유</option>
+						</c:when>
 						<c:when test="${b_kind=='정보공유'}">
 							<option value="정보공유" selected="selected">정보공유</option>
 						</c:when>

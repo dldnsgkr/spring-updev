@@ -64,4 +64,8 @@ public interface ServiceMember {
 
 	public ArrayList<Alarm> ajaxmyalarm(String nick);
 
+	public int alarmcount(String m_nick);
+
+	public void alarmchk(int a_num);
+
 }
