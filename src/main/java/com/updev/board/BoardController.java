@@ -313,16 +313,18 @@ public class BoardController {
 			 		String member_nick = (String)session.getAttribute("member_nick");
 			 		int alarm_count = sm.alarmcount(member_nick);
 			        session.setAttribute("alarm_count", alarm_count);
-	        	 
+	        	 String recieve_read = request.getParameter("receiveread");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
-	        	 System.out.println(b_num);
 	        	 String su_nick = request.getParameter("su_nick");
 	        	 String nowPage=request.getParameter("nowPage");
 		    	 String cntPerPage=request.getParameter("cntPerPage");
 		    	 
 	        	 session.setAttribute("b_num", b_num);
 	        	 session.setAttribute("su_nick", su_nick);
+	        	 if(recieve_read != null)
+	        	 {
 	        	 Readcnt(b_num);
+	        	 }
 	        	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	        	 
 	        	 Board member = sb.boarddetail(b_num);
@@ -833,6 +835,7 @@ public class BoardController {
 	     		
 	     		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	     		/*
+	     		 * 
 	     		if(sname.equals("b_title"))
 	     		{
 	     			list = sb.titlesearch(keyword);
