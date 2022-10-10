@@ -53,6 +53,147 @@ public class AdminController {
 		
 		return "admin_mypage";
 	}
+		@RequestMapping(value = "/admin_mylist")
+		public String admin_mylist(HttpServletRequest request, Model model, PageDTO dto, Criteria cri){
+			
+			// 세션 생성
+			HttpSession session = request.getSession();
+			// 세션에서 관리자 nick 들고오기
+			String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
+					
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			ArrayList<Board> list = sa.admin_mywrite_select(admin_nick);
+			
+			model.addAttribute("list", list);
+			String nowPage=request.getParameter("nowPage");
+			String cntPerPage=request.getParameter("cntPerPage");
+			int total = sa.mylisttotal();
+			
+			if(nowPage == null && cntPerPage == null) {
+				nowPage="1";
+				cntPerPage="15";
+			} else if(nowPage==null) {
+				nowPage="1";
+			} else if(cntPerPage==null) {
+				cntPerPage="15";
+			}
+			
+
+			dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+			model.addAttribute("page1",dto);
+			model.addAttribute("page2",cri);
+			model.addAttribute("bpage1",sa.mylistpage(dto));
+		
+			
+			
+			return "admin_mylist";
+		}
+		@RequestMapping(value = "/admin_mywrite_select")
+		public String admin_mywrite_select(HttpServletRequest request, Model model, PageDTO dto, Criteria cri){
+			// 세션 생성
+			HttpSession session = request.getSession();
+			// 세션에서 관리자 nick 들고오기
+			String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
+			
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			ArrayList<Board> list = sa.admin_mywrite_select(admin_nick);
+			
+			model.addAttribute("list", list);
+			
+			String nowPage=request.getParameter("nowPage");
+			String cntPerPage=request.getParameter("cntPerPage");
+			int total = sa.mylisttotal();
+			
+			if(nowPage == null && cntPerPage == null) {
+				nowPage="1";
+				cntPerPage="15";
+			} else if(nowPage==null) {
+				nowPage="1";
+			} else if(cntPerPage==null) {
+				cntPerPage="15";
+			}
+			
+			
+			dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+			model.addAttribute("page1",dto);
+			model.addAttribute("page2",cri);
+			model.addAttribute("bpage1",sa.mylistpage(dto));
+			
+			
+			
+			return "admin_mylist";
+		}
+		@RequestMapping(value = "/admin_mylike_select")
+		public String admin_mylike_select(HttpServletRequest request, Model model, PageDTO dto, Criteria cri){
+			System.out.println(1111);
+			// 세션 생성
+			HttpSession session = request.getSession();
+			// 세션에서 관리자 nick 들고오기
+			String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
+			
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			ArrayList<Board> list = sa.admin_mylike_select(admin_nick);
+			
+			model.addAttribute("list", list);
+			
+			String nowPage=request.getParameter("nowPage");
+			String cntPerPage=request.getParameter("cntPerPage");
+			int total = sa.adminliketotal(admin_nick);
+			
+			if(nowPage == null && cntPerPage == null) {
+				nowPage="1";
+				cntPerPage="15";
+			} else if(nowPage==null) {
+				nowPage="1";
+			} else if(cntPerPage==null) {
+				cntPerPage="15";
+			}
+			
+			
+			dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+			model.addAttribute("page1",dto);
+			model.addAttribute("page2",cri);
+			model.addAttribute("bpage1",sa.adminlikepage(dto));
+			
+			
+			
+			return "admin_mylist";
+		}
+		@RequestMapping(value = "/admin_myscrap_select")
+		public String admin_myscrap_select(HttpServletRequest request, Model model, PageDTO dto, Criteria cri){
+			// 세션 생성
+			HttpSession session = request.getSession();
+			// 세션에서 관리자 nick 들고오기
+			String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
+			
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			ArrayList<Board> list = sa.admin_myscrap_select(admin_nick);
+			
+			model.addAttribute("list", list);
+			
+			String nowPage=request.getParameter("nowPage");
+			String cntPerPage=request.getParameter("cntPerPage");
+			int total = sa.adminscraptotal(admin_nick);
+			
+			if(nowPage == null && cntPerPage == null) {
+				nowPage="1";
+				cntPerPage="15";
+			} else if(nowPage==null) {
+				nowPage="1";
+			} else if(cntPerPage==null) {
+				cntPerPage="15";
+			}
+			
+			
+			dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+			model.addAttribute("page1",dto);
+			model.addAttribute("page2",cri);
+			model.addAttribute("bpage1",sa.adminscrappage(dto));
+			
+			
+			
+			return "admin_mylist";
+		}
 	// 마이페이지 - 정보수정 페이지 이동
 	@RequestMapping(value = "/admin_infoupdate")
 	public String admin_infoupdate(HttpServletRequest request, Model model){
@@ -69,42 +210,7 @@ public class AdminController {
 		
 		return "admin_infoupdate";
 	}
-	// 마이페이지 - 마이 글 페이지 이동
-	@RequestMapping(value = "/admin_mylist")
-	public String admin_mylist(HttpServletRequest request, Model model, PageDTO dto, Criteria cri){
-		// 세션 생성
-		HttpSession session = request.getSession();
-		// 세션에서 관리자 nick 들고오기
-		String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
-				
-		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
-		ArrayList<Board> list = sa.admin_mywrite_select(admin_nick);
-		
-		model.addAttribute("list", list);
-		
-		String nowPage=request.getParameter("nowPage");
-		String cntPerPage=request.getParameter("cntPerPage");
-		int total = sa.mylisttotal();
-		
-		if(nowPage == null && cntPerPage == null) {
-			nowPage="1";
-			cntPerPage="15";
-		} else if(nowPage==null) {
-			nowPage="1";
-		} else if(cntPerPage==null) {
-			cntPerPage="15";
-		}
-		
-
-		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
-		model.addAttribute("page1",dto);
-		model.addAttribute("page2",cri);
-		model.addAttribute("bpage1",sa.mylistpage(dto));
 	
-		
-		
-		return "admin_mylist";
-	}
 	// 마이페이지 - 마이 알람 페이지 이동
 	@RequestMapping(value = "/admin_myalarm")
 	public String admin_myalarm(HttpServletRequest request, Model model){
@@ -344,7 +450,7 @@ public class AdminController {
 		
 		return "redirect:admin_infoupdate";
 	}
-	
+	/*
 	// 마이페이지 > 마이 글 > 내가 쓴 글 > 조회
 	@SuppressWarnings("unchecked")
 	@ResponseBody
@@ -402,7 +508,7 @@ public class AdminController {
 		String jsoninfo = total.toJSONString();
 		System.out.println(jsoninfo);
 		return jsoninfo;
-	}
+	}*/
 	// 마이페이지 > 마이 글 > 내가 좋아요 한 글 > 조회
 	@SuppressWarnings("unchecked")
 	@ResponseBody
