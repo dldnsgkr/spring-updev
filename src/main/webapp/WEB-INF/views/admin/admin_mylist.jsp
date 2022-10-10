@@ -12,14 +12,9 @@
 	<div class="infoupdate">
 		<div class="title">
 			<span></span>
-			<p>마이 글</p>
+			<p></p>
 		</div>
 		<div class="content">
-			<ul>
-				<li onclick="admin_mylist_select('admin_mywrite_select');">내가 쓴 글</li>
-				<li onclick="admin_mylist_select('admin_mylike_select');">내가 좋아요 한 글</li>
-				<li onclick="admin_mylist_select('admin_myscrap_select');">내가 스크랩 한 글</li>
-			</ul>
 			<div id="out">
 				<table border="1">
 					<tr><td>번호</td><td>종류</td><td>분류</td><td>제목</td><td>작성일</td>

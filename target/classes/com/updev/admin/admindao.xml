@@ -68,6 +68,35 @@
 		order by b_group DESC,b_step ASC)A)
 		where rn between #{start} and #{end}
 	</select>
+	
+	<select id="adminliketotal" resultType="int">
+		select count(*) from board b, good g where b.b_num=g.b_num and g.m_nick = #{param1} and g.like_chk = 1
+	</select>
+	
+	<select id="adminlikepage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
+		b.b_likecnt,b.b_readcnt,b.b_tag,b.b_file1,b.b_file2,b.b_report
+		from board b, good g
+		where b.b_num=g.b_num and g.m_nick = '관리자' and g.like_chk = 1
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	<select id="adminscraptotal" resultType="int">
+		select count(*) from board b, scrap s where b.b_num=s.b_num and s.m_nick = #{param1} and s.scrap_chk = 1
+	</select>
+	
+	<select id="adminscrappage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
+		b.b_likecnt,b.b_readcnt,b.b_tag,b.b_file1,b.b_file2,b.b_report
+		from board b, scrap s
+		where b.b_num=s.b_num and s.m_nick = '관리자' and s.scrap_chk = 1
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
 	<select id="notice_manage_total" resultType="int">
 		select count(*) from board where b_kind = '공지'
 	</select>
