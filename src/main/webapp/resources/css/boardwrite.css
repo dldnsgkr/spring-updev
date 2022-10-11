@@ -20,10 +20,9 @@ table {
 
 th{
   width: 200px;
-  color: white;
-  background-color: #9067c6;
+  color: #242038;
   font-size: 15px;
-  text-align: left !important; 
+  text-align: center !important;
   padding: 16px 37px !important;
   vertical-align: middle !important;
   font-family: 'Nanum Gothic', sans-serif !important;
@@ -35,7 +34,6 @@ th{
   vertical-align: middle !important;
   font-family: 'Nanum Gothic', sans-serif !important;
   color:#242038 !important;
-  border-bottom: 1px solid #242038 !important;
 }
 
 select{
@@ -54,7 +52,7 @@ select{
     border: none;
     width: 1000px;
     box-sizing: border-box;
-    padding-left: 40px;	
+    padding-left: 44px;	
     padding-right: 40px;	
     resize: none;
 }
@@ -75,7 +73,7 @@ a {
   border-radius: 10px;
   transition-duration: 0.4s;
   margin: 25px 0;
-  margin-left: 450px;
+  margin-left: 420px;
 }
 
 .button.button:hover {
