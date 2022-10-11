@@ -125,7 +125,6 @@ public class AdminController {
 		}
 		@RequestMapping(value = "/admin_mylike_select")
 		public String admin_mylike_select(HttpServletRequest request, Model model, PageDTO dto, Criteria cri){
-			System.out.println(1111);
 			// 세션 생성
 			HttpSession session = request.getSession();
 			// 세션에서 관리자 nick 들고오기
@@ -149,13 +148,10 @@ public class AdminController {
 				cntPerPage="15";
 			}
 			
-			
 			dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
 			model.addAttribute("page1",dto);
 			model.addAttribute("page2",cri);
 			model.addAttribute("bpage1",sa.adminlikepage(dto));
-			
-			
 			
 			return "admin_mylist";
 		}
@@ -213,14 +209,32 @@ public class AdminController {
 	
 	// 마이페이지 - 마이 알람 페이지 이동
 	@RequestMapping(value = "/admin_myalarm")
-	public String admin_myalarm(HttpServletRequest request, Model model){
-		// 세션 생성
+	public String admin_myalarm(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri){
 		HttpSession session = request.getSession();
 		// 세션에서 관리자 nick 들고오기
 		String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 		ArrayList<Alarm> list = sa.admin_myalarm_select(admin_nick);
-		model.addAttribute("list", list);
+		mo.addAttribute("list", list);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+		int total = sa.admin_myalarm_total(admin_nick);
+		System.out.println(total);
+		if(nowPage == null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="15";
+		} else if(nowPage==null) {
+			nowPage="1";
+		} else if(cntPerPage==null) {
+			cntPerPage="15";
+		}
+
+		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
+		mo.addAttribute("page1",dto);
+		mo.addAttribute("page2",cri);
+		mo.addAttribute("bpage1",sa.admin_myalarm_page(dto));
+		
 		return "admin_myalarm";
 	}
 	// 게시판관리 - 공지 게시판 관리 페이지 이동
@@ -508,7 +522,7 @@ public class AdminController {
 		String jsoninfo = total.toJSONString();
 		System.out.println(jsoninfo);
 		return jsoninfo;
-	}*/
+	}
 	// 마이페이지 > 마이 글 > 내가 좋아요 한 글 > 조회
 	@SuppressWarnings("unchecked")
 	@ResponseBody
@@ -624,7 +638,7 @@ public class AdminController {
 		String jsoninfo = total.toJSONString();
 		System.out.println(jsoninfo);
 		return jsoninfo;
-	}
+	}*/
 	// 마이페이지 > 마이 글 > 내가 쓴 글 > 수정
 	@RequestMapping(value = "/admin_mylist_update", method = RequestMethod.POST)
 	public String admin_mylist_update(MultipartHttpServletRequest mul,HttpServletRequest request) throws Exception{
@@ -676,7 +690,7 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:admin_mylist";
+		return "redirect:admin_mylike_select";
 	}
 	// 마이페이지 > 마이 글 > 내가 스크랩 한 글 > 스크랩 취소
 	@RequestMapping(value = "/admin_myscrap_cancel", method = RequestMethod.POST)
@@ -695,7 +709,7 @@ public class AdminController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return "redirect:admin_mylist";
+		return "redirect:admin_myscrap_select";
 	}
 	// 마이페이지 > 신고관리 > 처리완료 변경
 	@RequestMapping(value = "/report_manage_update", method = RequestMethod.POST)
