@@ -85,10 +85,9 @@
   
 }
 .button1 {
-	
-background-color: #9067c6;
-	
-color: white; 
+	background-color: #9067c6;
+	color: white;
+	margin-right: 0px;
 }
 .button1:hover {
   color: 242038;

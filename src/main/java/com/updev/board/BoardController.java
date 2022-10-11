@@ -52,9 +52,11 @@ public class BoardController {
 		if(session == null)
 		{
 			String a = "0";
+			System.out.println(a);
 			session.setAttribute("auto_login", a);
 		}
 		String auto_login = String.valueOf(session.getAttribute("auto_login"));
+		System.out.println(auto_login);
 		if(auto_login == null || auto_login.equals("0")) {
 			session.setAttribute("auto_login", "0");
 		} else {
