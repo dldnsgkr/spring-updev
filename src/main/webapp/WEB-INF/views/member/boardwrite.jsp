@@ -68,13 +68,7 @@ $('.summernote').summernote({
       placeholder: '내용을 입력하세요.'    //placeholder 설정
    });
 $('.note-statusbar').hide()
-
-	$("#login_form").keypress(function(e) {
-		if (e.keyCode === 13) {
-			loginChk();
-		}
-	});
-
 </script>
+
 </body>
 </html>
