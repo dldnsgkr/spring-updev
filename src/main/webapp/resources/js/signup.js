@@ -82,7 +82,7 @@ function signupChk(){
 			return false;
 		} 
 		if(!mailchk.test(vmail.value)){
-			alert("올바흔 형식이 아닙니다. 다시 한번 확인해 주세요.");
+			alert("올바른 형식이 아닙니다. 다시 한번 확인해 주세요.");
 			return false;
 		} 
 		//이메일 형식 다시 확인 

@@ -50,7 +50,7 @@
 							<option value="개인정보 노출">개인정보 노출</option>
 							<option value="etc" id="etc">기타</option>
 					</select>
-					<input type="text" id="otherreason" name="otherreason" placeholder="기타 사유를 작성해주세요."/></td>
+					<input type="text" id="otherreason" name="otherreason" placeholder="신고 사유를 40자 이내로 작성해주세요."/></td>
 					<td><input type="file" name="r_file1"></td>	
 				</tr>
 			</tbody>
