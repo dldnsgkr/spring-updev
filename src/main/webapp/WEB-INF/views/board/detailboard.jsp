@@ -7,14 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/fontello.css" type="text/css">
 <link rel="stylesheet" href="resources/css/detailboard.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" charset="UTF-8">
-$(function(){
+	$(document).ready(function(){
+		changeIMG();
+	});
+
+	$(function changeIMG(){
 	var like_chk =$("#like_chk").val();
 	var a_existence =$("#a_existence").val();
 	if(like_chk == 1) {
-			$("#ttt").html("좋아요취소");
+			$("#detail_ttt").attr("src", "./resources/images/iconmonstr-favorite-3-240.png");
 			$("#ttt").click(function(){
 				var b_num =$("#b_num").val();
 				var m_nick =$("#m_nick").val();
@@ -68,10 +73,15 @@ $(function(){
 });
 </script>
 <script type="text/javascript">
-$(function(){
+
+$(document).ready(function(){
+	changeIMG();
+});
+
+$(function changeIMG(){
 	var scrap_chk =$("#scrap_chk").val();
 	if(scrap_chk == 1) {
-			$("#sss").html("스크랩취소");
+			$("#detail_sss").attr("src", "./resources/images/iconmonstr-bookmark-3-240.png");
 			$("#sss").click(function(){
 				var b_num =$("#b_num").val();
 				var m_nick =$("#m_nick").val();
@@ -155,6 +165,7 @@ function del()
     return false;
 }
 </script>
+
 </head>
 <body>
 	<div class="wrap">
@@ -176,42 +187,21 @@ function del()
 		</table>
 		<div id="d">${list.b_content }</div>
 
-		<div class="detail_button">
-			<input type="button" class="button" value="신고"
-				onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'">
+	<div class="detail_write">
 
-<div class="wrap">
-<table>
-<thead id="thead">
-<tr>
-<th>${list.b_kind }</th>
-</tr>
-<tr>
-<th>${list.m_nick }</th><th>${list.b_wdate }</th>
-</tr>
-<tr>
-<th>${list.b_title }</th>
-</tr>
-<tr>
-<td>${list.b_content }</td>
-</tr>
-	
-	<tr>
-	<td><input type="button" value="신고" onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'"></td>
-	</tr>
-</thead>
-</table>
+	<input type="hidden" id="loginstate" value="${loginState }">
+	<input class="button" type="button" value="수정" id="up" onclick="location.href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">
 	
 	<form action="writedelete" method="post">
 	<input type="hidden" id="loginstate" value="${loginState }">
 	<input type="hidden" id="b_num" value="${list.b_num }">
 	<input type="hidden" id="b_kind" value="${list.b_kind }">
-	<input type="button" value="삭제" id="de" onclick="del()">
+	<input class="button" type="button" value="삭제" id="de" onclick="del()">
 	</form>
-	
-	<input type="hidden" id="loginstate" value="${loginState }">
-	<input type="button" value="수정" id="up" onclick="location.href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">
+	</div>
 
+	<div class="detail_button">
+	
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="member_nick" value="${member_nick}">
@@ -220,8 +210,8 @@ function del()
 	<input type="hidden" name="b_title" id="b_title" value="${list.b_title }">
 	<input type="hidden" name="a_existence" id="a_existence" value="1">
 	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
-	<button type="button" id="ttt">좋아요</button>
-	</form>&emsp;
+	<button type="button" class="detail_button" id="ttt"><img src="./resources/images/iconmonstr-favorite-4-240.png" id="detail_ttt" title="좋아요"></button>
+	</form>
 
 	
 	<form name="frm" method="post">
@@ -232,27 +222,16 @@ function del()
 	<input type="hidden" name="b_title" id="b_title" value="${list.b_title }">
 	<input type="hidden" name="a_existence" id="a_existence" value="2">
 	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
-	<button type="button" id="sss">스크랩</button>
-	</form>
+	<button type="button" class="detail_button" id="sss"><img src="./resources/images/iconmonstr-bookmark-4-240.png" id="detail_sss" title="스크랩"></button>
+	</form>	
+
+	<button	type="button" class="detail_button" value="신고" onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'">
+	<img src="./resources/images/iconmonstr-warning-filled-240.png" id="detail_img" title="신고하기"></button> 
+	
+	</div>
 
 	
 <!-- 댓글 -->
-<table>
-<form action="replysave" metod="post">
-<tr>
-	<td><input type="hidden" name="b_num" value="${list.b_num}"></td>
-	<td><input type="text" name="m_nick" value="${member_nick}" readonly></td>
-	<td><input type="hidden" name="m_id" value="${list.m_nick}"></td>
-	<td><input type="hidden" name="b_kind" id="b_kind" value="${list.b_kind }"></td>
-	<td><input type="hidden" name="b_title" id="b_title" value="${list.b_title }"></td>
-</tr>
-<tr>
-	<td colspan="2"><textarea name="re_content" rows="6" cols="60"></textarea></td>
-	<td><input type="submit" value="등록"></td>
-</tr>
-</form>
-			
-		<!-- 댓글 -->
 		<div class="reply">
 			<table>
 				<form action="replysave" method="post">
@@ -264,7 +243,7 @@ function del()
 							value="${member_nick}" readonly></td>
 					</tr>
 					<tr>
-					<td colspan="2"><textarea id="f" name="re_content" rows="6" cols="50" placeholder="댓글을 입력해 주세요."></textarea></td>
+					<td colspan="2"><textarea id="f" name="re_content" rows="6" cols="50" placeholder="댓글은 회원만 등록할 수 있습니다."></textarea></td>
 					<td><input class="button" id="reply_su" type="submit" value="등록"></td>
 					</tr>
 				</form>
