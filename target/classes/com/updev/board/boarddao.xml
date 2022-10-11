@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.updev.board.ServiceBoard">
-
+	
    <insert id="writesave">
    insert into board(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_likecnt,b_readcnt,b_group,b_step,b_indent,b_file1,b_file2,b_report,b_replycnt) values(b_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},0,0,b_seq.currval,0,0,#{param6},#{param7},0,0)
    </insert>
@@ -17,7 +17,7 @@
 	</select>
 	
 	<update id="boardupdate">
-		update board set b_cate = #{param2}, b_kind = #{param3}, b_title = #{param4}, b_content = #{param5}, b_tag = #{param6}, b_file1 = #{param7}, b_file2 = #{param8} where b_num = #{param1}
+		update board set b_cate = #{param2}, b_kind = #{param3}, b_title = #{param4}, m_nick = #{param5}, b_content = #{param6}, b_file1 = #{param7}, b_file2 = #{param8} where b_num = #{param1}
 	</update>
 	
 	<select id="bo1" resultType="com.updev.board.Board">
@@ -90,9 +90,9 @@
 		select * from good where b_num = #{param1} and m_nick = #{param2}
 	</select>
 	
-	<delete id="blikedown">
-		delete from good where b_num = #{param1} and m_nick = #{param2}
-	</delete>
+	<update id="blikedown">
+		update good set like_chk = #{param3} where b_num = #{param1} and m_nick = #{param2}
+	</update>
 	
 	<update id="likecntup">
 		update board set b_likecnt=b_likecnt+1 where b_num=#{param1}
@@ -100,6 +100,22 @@
 	
 	<update id="likecntdown">
 		update board set b_likecnt=b_likecnt-1 where b_num=#{param1}
+	</update>
+	
+	<select id="howalramexistence" resultType="com.updev.board.Alarm">
+		select * from alarm where b_num = #{param1} and m_nick = #{param2} and m_id = #{param3}
+	</select>
+	
+	<insert id="goodalarm">
+		insert into alarm values(a_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+	</insert>
+	
+	<select id="howgo" resultType="int">
+		select count(*) from good where b_num = #{param1} and m_nick = #{param2}
+	</select>
+	
+	<update id="regood">
+		update good set like_chk = 1 where b_num = #{param1} and m_nick = #{param2}
 	</update>
 	
 	<!-- 스크랩 -->
@@ -112,9 +128,17 @@
 		select * from scrap where b_num = #{param1} and m_nick = #{param2}
 	</select>
 	
+	<select id="howsc" resultType="int">
+		select count(*) from scrap where b_num = #{param1} and m_nick = #{param2}
+	</select>
+	
 	<delete id="scrapcancel">
-		delete from scrap where b_num = #{param1} and m_nick = #{param2}
+		update scrap set scrap_chk = #{param3} where b_num = #{param1} and m_nick = #{param2}
 	</delete>
+	
+	<update id="rescrap">
+		update scrap set scrap_chk = 1 where b_num = #{param1} and m_nick = #{param2}
+	</update>
 	
 	<!-- 페이징 -->
 	<select id="sharetotal" resultType="int">

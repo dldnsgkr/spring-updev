@@ -4,6 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.updev.member.ServiceMember">
 	
+	<select id="alarmcount" resultType="int">
+		select count(*) from alarm where m_id = #{param1} and alarm_chk = 1
+	</select>
+	
+	<update id="alarmchk">
+		update alarm set alarm_chk = 0 where a_num = #{param1}
+	</update>
+	
 	<!-- 회원정보 -->
 	<insert id="insert">
 		insert into member(m_num,m_id,m_pw,m_nick,m_name,m_mail,m_tel,m_field,m_grade) values(m_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
@@ -87,16 +95,20 @@
 	
 	<select id="ajaxmygood" resultType="com.updev.board.Board">
 		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
-		b.b_likecnt,b.b_readcnt,b.b_tag,b.b_file1,b.b_file2,b.b_report
+		b.b_likecnt,b.b_readcnt
 		from board b, good g
 		where b.b_num=g.b_num and g.m_nick = #{param1} and g.like_chk = 1
 	</select>
 	
 	<select id="ajaxmyscrap" resultType="com.updev.board.Board">
 		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
-		b.b_likecnt,b.b_readcnt,b.b_tag,b.b_file1,b.b_file2,b.b_report
+		b.b_likecnt,b.b_readcnt
 		from board b, scrap s
-		where b.b_num=s.b_num and s.m_nick = #{param1} and s.like_chk = 1
+		where b.b_num=s.b_num and s.m_nick = #{param1} and s.scrap_chk = 1
 	</select>
-  	
+	
+	<select id="ajaxmyalarm" resultType="com.updev.board.Alarm">
+		select * from alarm where m_id = #{param1}
+	</select>
+	
 </mapper>

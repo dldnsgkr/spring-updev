@@ -66,7 +66,9 @@
 									<a href="admin_mypage">마이페이지</a>
 								</c:when>
 									<c:otherwise>
-									 <span>환영합니다!!${member.m_nick}님</span>&emsp;<a href="myp?m_nick=${member.m_nick }">마이페이지</a>
+									<span>환영합니다!!${member.m_nick}님</span>
+									<a href="myp?m_nick=${member.m_nick}">마이페이지</a>
+									${alarm_count}
 									</c:otherwise>
 									</c:choose>
 									<a href="logout">&emsp;로그아웃</a>
@@ -78,6 +80,7 @@
 									</ul>
 								</c:otherwise>
 							</c:choose>
+						<span style="font-size: 20px; color: #9067c6; margin-left: 700px;" id="dpTime"></span>
 						</div>
 					</div>
 					<div class="topbar">
@@ -107,7 +110,34 @@
 			if (e.keyCode === 13) {
 				SearchChk();
 			}
-		});		
+		});	
+		dpTime()
+		setInterval("dpTime()", 1000);
+		function dpTime() {
+		   var now = new Date();
+		   hours = now.getHours();
+		   min = now.getMinutes();
+		   sec = now.getSeconds();
+		   
+		   if(hours > 12){
+		      hours -= 12;
+		      ampm = "오후";
+		   } else {
+		      ampm = "오전"
+		   }
+		   if(hours < 10){
+		      hours = "0"+hours;
+		   }
+		   if(min < 10){
+		      min = "0"+min;
+		   }
+		   if(sec < 10){
+		      sec = "0"+sec;
+		   }
+		   
+		   document.getElementById("dpTime").innerHTML = ampm + " " + hours + ":" + min + ":" + sec
+		}
 		</script>
+		
 	</body>
 </html>

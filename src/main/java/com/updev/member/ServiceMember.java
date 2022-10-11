@@ -2,6 +2,7 @@ package com.updev.member;
 
 import java.util.ArrayList;
 
+import com.updev.board.Alarm;
 import com.updev.board.Board;
 
 public interface ServiceMember {
@@ -60,5 +61,11 @@ public interface ServiceMember {
 	public String dateselect(String m_id, String m_pw);
 
 	public void outtimeupdate(String id);
+
+	public ArrayList<Alarm> ajaxmyalarm(String nick);
+
+	public int alarmcount(String m_nick);
+
+	public void alarmchk(int a_num);
 
 }

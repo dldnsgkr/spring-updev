@@ -7,8 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="./resources/js/.js"></script> <!-- js 주소 확인 -->
 <link rel="stylesheet" type="text/css" href="./resources/css/memwrite.css">
 </head>
@@ -24,7 +23,6 @@
 					<th>추천수</th>
 					<th>조회수</th>
 					<th>작성일</th>
-					<th></th>
 				</tr>
 				<c:forEach items="${list}" var="list">
 				<tr>
@@ -33,10 +31,8 @@
 					<td>${list.b_kind}</td>
 					<td>${list.b_likecnt}</td>
 					<td>${list.b_readcnt}</td>
-					<td><fmt:parseDate value='${list.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<td><fmt:parseDate value='${list.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/> &emsp;
 						<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>
-					<td><a href='writedelete?b_num=${list.b_num}' onclick="confirmdelete();">삭제</a>
-					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}'">수정</a></td>
 				</tr>
 				</c:forEach>
 			</table>

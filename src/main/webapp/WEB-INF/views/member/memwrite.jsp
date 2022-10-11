@@ -7,11 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="./resources/js/ajaxmywrite.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="./resources/css/memwrite.css">
+<link rel="stylesheet" type="text/css" href="./resources/css/memwrite.css">
 </head>
 <body>
 	<div class="wrapper">
@@ -36,8 +34,18 @@
 					<td>${list.b_readcnt}</td>
 					<td><fmt:parseDate value='${list.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 						<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>
-					<td><a href='writedelete?b_num=${list.b_num}' onclick="confirmdelete();">삭제</a>
-					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}'">수정</a></td>
+
+						
+					<form action="writedelete" method="post">
+					<input type="hidden" id="loginstate" value="${loginState }">
+					<input type="hidden" id="b_num" value="${list.b_num }">
+					<input type="hidden" id="b_kind" value="내가쓴글">	
+					<td>	
+					<a onclick="del()" id="de">삭제</a>
+					</form>
+					
+					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">수정</a></td>
+
 				</tr>
 				</c:forEach>
 			</table>
