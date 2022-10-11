@@ -52,6 +52,18 @@
 	<select id="admin_myalarm_select" resultType="com.updev.admin.Alarm">
 		select * from alarm where m_nick = #{param1}
 	</select>
+	
+	<select id="admin_myalarm_total" resultType="int">
+		select count(*) from alarm where m_nick = #{param1}
+	</select>
+	
+	<select id="admin_myalarm_page" resultType="com.updev.admin.Alarm">
+		select * from (
+		select rownum rn,A.* from(
+		select * from alarm where m_nick = '관리자')A)
+		where rn between #{start} and #{end}
+	</select>
+	
 	<delete id="board_manage_delete">
 		delete FROM board where b_num = #{param1}
 	</delete>
