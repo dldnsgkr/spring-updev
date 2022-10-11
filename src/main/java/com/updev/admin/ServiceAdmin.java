@@ -76,4 +76,12 @@ public interface ServiceAdmin {
 	
 	public int member_manage_total();
 	public ArrayList<Signup> member_manage_page(PageDTO dto);
+
+	public int adminliketotal(String admin_nick);
+
+	public Object adminlikepage(PageDTO dto);
+
+	public int adminscraptotal(String admin_nick);
+
+	public Object adminscrappage(PageDTO dto);
 }

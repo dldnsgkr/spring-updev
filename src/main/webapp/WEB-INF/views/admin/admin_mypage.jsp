@@ -43,9 +43,9 @@
                     <div class="jq_cont tab_cont">
                         <div class="cont">
                         	<ul>
-                        		<li><a href="">내가 쓴 글</a></li>
-                        		<li><a href="">내가 좋아요 한 글</a></li>
-                        		<li><a href="">내가 스크랩 한 글</a></li>
+                        		<li><a href="admin_mywrite_select">내가 쓴 글</a></li>
+                        		<li><a href="admin_mylike_select">내가 좋아요 한 글</a></li>
+                        		<li><a href="admin_myscrap_select">내가 스크랩 한 글</a></li>
                         	</ul>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="jq_cont tab_cont">
                         <div class="cont">
                         	<ul>
-                        		<li><a href="">알림</a></li>
+                        		<li><a href="admin_myalarm">알림</a></li>
                         	</ul>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
             <div class="cont">
                 <div class="jq_tabonoff comm_tab2">
                     <div class="jq_cont tab_cont">
-                        <div class="cont"><ul><li><a href="">정보수정</a></li></ul></div>
+                        <div class="cont"><ul><li><a href="admin_infoupdate">정보수정</a></li></ul></div>
                     </div>
                 </div>
             </div>
