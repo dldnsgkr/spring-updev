@@ -9,13 +9,6 @@ a { text-decoration: none; }
 	margin: 0 auto;
 }
 
-/*
-.wrap:after{
-	content:'';
-  display:block;
-  clear:both;
-}
-*/
 .header{
 	border-bottom: 1px solid #cac4ce;
 }
@@ -40,8 +33,6 @@ a { text-decoration: none; }
 	color: #242038;
 	font-size: 14px;
 }
-
-
 .top ul{
     height: 100%;
     float: right;
@@ -54,17 +45,14 @@ a { text-decoration: none; }
 	height: 85px;
 	float: left;
 }
-
 .logo img{
     display: block;
     height: 100%;
 }
-
 #top_search_form{
     line-height: 90px;
     position: relative;
 }
-
 .search-btn{
     width: 25px;
     height: 25px;
@@ -79,7 +67,6 @@ a { text-decoration: none; }
     right: 2%;
     transform: translateY(88%);
 }
-
 .main_search{
 	box-sizing: border-box;
     border-radius: 90px;
@@ -95,7 +82,6 @@ a { text-decoration: none; }
     margin-top: 15px;
     width: 300px;
 }
-
 #menu:hover::after {
 	content: '';
     display: block;
@@ -108,8 +94,6 @@ a { text-decoration: none; }
     left: 50%;
     background: #9067c6;
 } 
-
-
 #menu{
 	font-weight: 600;
 	margin: 0px 25px;
@@ -122,25 +106,28 @@ a { text-decoration: none; }
     margin-top: 5px;
     position: relative;
 }
-
 #menu:first-child{
 	margin-left: 50px;
 }
-
 #bottom2{
 	height: 85px;
     margin: 15px 0;
     font-size: 17px;
 }
-
-/*
-.top_logo{
-    width: 250prgb(255, 255, 255) height: 100px;
-    background-image: url(../images/updev_2.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    cursor: pointer;
-    border: 0;
-    background-color: transparent;	
+.header .wrap .top .top_login a{
+	margin-left: 10px;
+	float: left;
+	
 }
-*/
+.header .wrap .top .top_login .underline{
+	text-decoration: underline;
+	
+}
+.header .wrap .top .top_login a b{
+	margin-left: 5px;
+	
+}
+.header .wrap .top #dpTime{
+	float: left;
+    font-size: 12px;
+}

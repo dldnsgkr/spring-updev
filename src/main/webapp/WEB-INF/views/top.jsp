@@ -21,7 +21,6 @@
 				</script>
 			</c:when>
 		</c:choose>
-		
 		<c:set var="check" value="${param.check}"/>
 		<c:choose>
 			<c:when test="${check=='nodata'}">
@@ -32,7 +31,6 @@
 				</script>
 			</c:when>
 			</c:choose>
-		
 		<c:set var="finish" value="${param.finish}"/>
 		<c:choose>
 			<c:when test="${finish=='good'}">
@@ -43,7 +41,6 @@
 				</script>
 			</c:when>
 			</c:choose>
-			
 			<c:set var="gradecheck" value="${param.gradecheck}"/>
 		<c:choose>
 			<c:when test="${gradecheck=='badgrade'}">
@@ -57,30 +54,31 @@
 			<div class="header">
 				<div class="wrap">
 					<div class="top">
+						<div id="dpTime"></div>
 						<div class="top_login">
 							<c:choose>
 								<c:when test="${loginState==true}">
 								<c:choose>
 								<c:when test="${member.m_id=='admin'}">
-									<span>환영합니다! 관리자님</span>
-									<a href="admin_mypage">마이페이지</a>
+									<a>환영합니다!<b>관리자님</b></a>
+									<a>${alarm_count}</a>
+									<a class="underline" href="admin_mypage">마이페이지</a>
 								</c:when>
 									<c:otherwise>
-									<span>환영합니다!!${member.m_nick}님</span>
-									<a href="myp?m_nick=${member.m_nick}">마이페이지</a>
-									${alarm_count}
+									<a>환영합니다!<b>${member.m_nick}님</b></a>
+									<a>${alarm_count}</a>
+									<a class="underline" href="myp?m_nick=${member.m_nick}">마이페이지</a>
 									</c:otherwise>
 									</c:choose>
-									<a href="logout">&emsp;로그아웃</a>
+									<a class="underline" href="logout">로그아웃</a>
 								</c:when>
 								<c:otherwise>
 									<ul>
-										<li><a href="signup">회원가입</a></li>
-										<li><a href="login">&emsp;로그인</a></li>
+										<li><a class="underline" href="signup">회원가입</a></li>
+										<li><a class="underline" href="login">로그인</a></li>
 									</ul>
 								</c:otherwise>
 							</c:choose>
-						<span style="font-size: 20px; color: #9067c6; margin-left: 700px;" id="dpTime"></span>
 						</div>
 					</div>
 					<div class="topbar">
