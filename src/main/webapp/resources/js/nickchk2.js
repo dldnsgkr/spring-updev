@@ -1,6 +1,7 @@
 function nicktest2(){
+	
 	var up_nick =$("#up_nick").val();
-		console.log(up_nick);
+	var m_num =$("#m_num").val();
 	var sam ={"up_nick":up_nick};
 		console.log(sam);
 	var sam =JSON.stringify(sam);	

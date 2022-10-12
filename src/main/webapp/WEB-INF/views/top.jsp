@@ -68,7 +68,8 @@
 									<c:otherwise>
 									<span>환영합니다!!${member.m_nick}님</span>
 									<a href="myp?m_nick=${member.m_nick}">마이페이지</a>
-									${alarm_count}
+									<input type="hidden" id="m_id" value="${member_nick }">
+									<button type="button" id="fivealarm">최근알림</button>${alarm_count}
 									</c:otherwise>
 									</c:choose>
 									<a href="logout">&emsp;로그아웃</a>
@@ -139,6 +140,24 @@
 		   document.getElementById("dpTime").innerHTML = ampm + " " + hours + ":" + min + ":" + sec
 		}
 		</script>
-		
+		<script type="text/javascript">
+		$("fivealarm").click(function(){
+			var m_id =$("#").val();
+			var sam ={"m_id":m_id};
+			var sam =JSON.stringify(sam);
+			$.ajax({
+				type:"post",
+				async:false,
+				url:"fivealarms",
+				data:{jsoninfo:sam},
+				success:function(data,textStatus){
+					
+				},
+				error:function(data,textStatus){
+					alert("전송실패!!");
+				}
+			});
+		});
+		</script>
 	</body>
 </html>

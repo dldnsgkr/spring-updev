@@ -244,6 +244,9 @@ function del()
 					</tr>
 					<tr>
 					<td colspan="2"><textarea id="f" name="re_content" rows="6" cols="50" placeholder="댓글은 회원만 등록할 수 있습니다."></textarea></td>
+					<td><input type="hidden" name="m_id" value="${list.m_nick }"></td>
+					<td><input type="hidden" name="b_kind" value="${list.b_kind }"></td>
+					<td><input type="hidden" name="b_title" value="${list.b_title }"></td>
 					<td><input class="button" id="reply_su" type="submit" value="등록"></td>
 					</tr>
 				</form>
