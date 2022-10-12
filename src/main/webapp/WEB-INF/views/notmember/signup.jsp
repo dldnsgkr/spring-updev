@@ -17,31 +17,32 @@
 			<form action="insert" method="post" name="signup1" id="signupform">
 					<div class="title"><h1>SIGN UP</h1></div>
 					<div class="input">
-						<label><input class="m_id" id="m_id" type="text" name="m_id" placeholder="아이디" autofocus></label>
-						 <button class="button button1" type="button" onclick="idtest();">중복확인</button>
-						<div id="id_check" class="id_check">${msg}</div>
+						<label><input class="m_id" id="m_id" type="text" name="m_id" placeholder="아이디: 영소문자, 숫자로 4~12 글자까지 가능"></label>
+						 <button id="idbutton" class="button button1" type="button" onclick="idtest()">중복확인</button>
+						<div id="id_check" class="id_check"></div>
+						<div id="msg" class="msg">${msg}</div>
 					</div>
 					<div class="input">
-						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" onclick="idselect()" autofocus></label>
+						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" onclick="idselect()" ></label>
 						<input type="hidden" name="idcheck" id="idcheck" value="N">
 					</div>
 					<div class="input">
-						<label><input id="pwchk" type="password" name="m_pw" placeholder="비밀번호확인" autofocus></label>
+						<label><input id="pwchk" type="password" name="m_pw" placeholder="비밀번호확인" ></label>
 					</div>
 					<div class="input">
-						<label><input class="m_nick" id="m_nick" type="text" name="m_nick" placeholder="닉네임" autofocus></label>
+						<label><input class="m_nick" id="m_nick" type="text" name="m_nick" placeholder="닉네임: 한글로 2~10글자까지 가능" ></label>
 						<button class="button button1" type="button" onclick="nicktest();">중복확인</button>
 						<div id="nick_check" class="nick_check" >${nickmsg}</div>
 					</div>
 					<div class="input">
-						<label><input id="name" type="text" name="m_name" placeholder="이름" onclick="nickselect()" autofocus></label>
+						<label><input id="name" type="text" name="m_name" placeholder="이름" onclick="nickselect()" ></label>
 						<input type="hidden" name="nickcheck" id="nickcheck" value="N">
 					</div>
 					<div class="input">
-						<label><input id="mail" type="text" name="m_mail" placeholder="이메일 ex)abc123@gmail.com" autofocus></label>
+						<label><input id="mail" type="text" name="m_mail" placeholder="이메일 ex)abc123@gmail.com" ></label>
 					</div>
 					<div class="input">
-						<label><input id="tel" type="text" name="m_tel" placeholder="전화번호 ex)01012341234" autofocus></label>
+						<label><input id="tel" type="text" name="m_tel" placeholder="전화번호 ex)01012341234" ></label>
 					</div>	
 					<div class="input">
 						<label>
@@ -70,7 +71,7 @@
 					</div>
 					</div>
 					<div id="myagree">
-						<label>개인 정보 수집 및 이용에 동의 합니다 <input type="checkbox" id="agree1"  name="agree" autofocus></label>
+						<label>개인 정보 수집 및 이용에 동의 합니다 <input type="checkbox" id="agree1"  name="agree" ></label>
 					</div>
 					<div class="signup_btn">
 					<button id="signup_btn" class="button button2" type="button" onclick="signupChk()">회원가입</button>
