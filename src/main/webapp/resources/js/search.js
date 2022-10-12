@@ -8,8 +8,14 @@ function SearchChk() {
         return;
     }
 
+
     Sform.action = "/updev/search";
     Sform.submit();
     }
 
+	$("#login_form").keypress(function(e) {
+		if (e.keyCode === 13) {
+			loginChk();
+		}
 
+	});

@@ -49,7 +49,7 @@
 			<c:when test="${gradecheck=='badgrade'}">
 				<script type="text/javascript">
 					window.onload=function(){
-						alert("관리자에 의해 차단되었습니다");
+						alert("관리자에 의해 차단되었습니다.");
 					}
 				</script>
 			</c:when>
@@ -97,6 +97,7 @@
 								<div class="search">
 									<form action="search" method="post" id="top_search_form" name="top_search_form">
 										<input class="main_search" type="text" name="keyword" placeholder="검색">
+										<input type="text" style="display:none;"/>
 										<button class="search-btn" type="button" onclick="SearchChk()"></button>
 									</form>
 								</div>

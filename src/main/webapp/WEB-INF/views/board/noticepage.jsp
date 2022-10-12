@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/board.css" type="text/css">
 </head>
+<<<<<<< HEAD
 <body>
 <table>
 	<tr>
@@ -67,6 +68,8 @@
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="resources/css/board.css" type="text/css">
 	</head>
+=======
+>>>>>>> c1d9a0598e2025277a9f358ead8f1d40faf1b927
 	<body>
 
 	<!-- 공지 게시판 -->

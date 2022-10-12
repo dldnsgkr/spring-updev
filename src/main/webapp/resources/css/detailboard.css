@@ -76,11 +76,25 @@ td{
   background-color: #cac4ce;
 }
 
-.detail_button{
-	display: flex;
-	justify-content: center;
-}
-
 .reply{
 	border-top: 1px solid #cac4ce; 
+}
+
+#detail_img, #detail_sss, #detail_ttt{
+	width: 22px;
+}
+
+.detail_button{
+	background-color: transparent;
+	cursor: pointer;
+	border: none;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: flex-end;
+	padding-left: 20px;
+}
+
+.detail_write{
+	display: flex;
+	justify-content: center;
 }
