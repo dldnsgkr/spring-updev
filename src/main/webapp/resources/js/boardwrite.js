@@ -1,8 +1,6 @@
 var referrer = document.referrer;
 	
 console.log("이전 페이지 URL: "+referrer);
-function boardwrite() {
-        
 
 function Board_write() {
         
@@ -26,7 +24,6 @@ console.log(1);
     form.submit();
     }
 
-}
 /*
 $(document).ready(function() {
 	//여기 아래 부분

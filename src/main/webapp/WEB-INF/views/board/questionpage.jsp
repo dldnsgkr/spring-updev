@@ -18,7 +18,9 @@
 			</div>
 			</div>
 			<div class="board_write">
-				<button class="button" type="button" name="board_write" onclick="location.href = 'write?b_kind=지식인' ">글쓰기</button>
+				<button class="button" type="button" name="board_write" onclick="location.href = 'write?b_kind=지식인' ">
+					<img src="./resources/images/iconmonstr-pencil-13-240.png" title="게시글 작성" class="board_img">
+				</button>
 			</div>
 			<table border="1">
 			<thead id="thead">
