@@ -80,6 +80,7 @@ public class BoardController {
 		String loginbefore = "unknown";
 		session.setAttribute("loginState", false);
 		session.setAttribute("member_nick", loginbefore);
+		
 		}
 		
 		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);

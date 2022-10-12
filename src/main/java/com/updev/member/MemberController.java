@@ -126,7 +126,7 @@ public class MemberController {
 	 	         session.setAttribute("pw", m_pw);
 	 	         session.setAttribute("loginState", true);
 	 	         session.setAttribute("member_nick", d.getM_nick());
-
+	 	        session.setMaxInactiveInterval(3000);
 	 	         mav.setViewName("redirect:index");
 
 	    	  } else {

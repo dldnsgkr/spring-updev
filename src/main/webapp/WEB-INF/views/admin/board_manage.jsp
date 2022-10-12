@@ -25,17 +25,21 @@
 					</tr>
 					<c:forEach items="${bpage1}" var="list">
 					
-					<tr><td>${list.b_num}</td><td>${list.b_cate}</td><td>${list.b_kind}</td><td>${list.b_title}</td>
+					<tr><td>${list.b_num}</td><td>${list.b_cate}</td><td>${list.b_kind}</td>
+					<td><a href="detail?b_num=${list.b_num}">${list.b_title}</a></td>
 					<td>${list.b_wdate}</td><td>${list.b_content}</td><td>${list.b_likecnt}</td><td>${list.b_readcnt}</td>
 					<td>${list.b_file1}</td>
 					<td>${list.b_file2}</td><td>${list.b_report}</td>
 					<td><a onclick="board_manage_delete(${list.b_num},'${URL3}');">삭제</a></td>
-					<td>수정</td>
+					<td><a href="writeupdatecheck?b_num=${list.b_num}">수정</a></td>
+					<!-- 
+					<td><a onclick="ttt(${list.b_num});">삭제</a></td>
+					 -->
 					</tr>
 				
 					</c:forEach>
 				</table>
-			
+			<a href="write">글쓰기</a>
 			</div>
 		</div>
 		
