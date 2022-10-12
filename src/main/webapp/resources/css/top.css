@@ -123,6 +123,26 @@ a { text-decoration: none; }
 	text-decoration: underline;
 	
 }
+.header .wrap .top .top_login .alarm{
+	position: relative;
+	
+}
+.header .wrap .top .top_login img{
+	width: 18px;
+}
+.header .wrap .top .top_login .alarm .alarm_cnt{
+	font-size: 10px;
+    position: absolute;
+    vertical-align: middle;
+    right: -8px;
+    background-color: purple;
+    color: #fff;
+    width: 15px;
+    height: 15px;
+    border-radius: 25px;
+    text-align: center;
+	
+}
 .header .wrap .top .top_login a b{
 	margin-left: 5px;
 	

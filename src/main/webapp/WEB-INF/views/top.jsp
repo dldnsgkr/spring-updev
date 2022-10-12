@@ -61,12 +61,18 @@
 								<c:choose>
 								<c:when test="${member.m_id=='admin'}">
 									<a>환영합니다!<b>관리자님</b></a>
-									<a>${alarm_count}</a>
+									<a class="alarm">
+									<img src="./resources/images/alarm.svg">
+									<span class="alarm_cnt">${alarm_count}</span>
+									</a>
 									<a class="underline" href="admin_mypage">마이페이지</a>
 								</c:when>
 									<c:otherwise>
 									<a>환영합니다!<b>${member.m_nick}님</b></a>
-									<a>${alarm_count}</a>
+									<a class="alarm">
+									<img src="./resources/images/alarm.svg">
+									<span class="alarm_cnt">${alarm_count}</span>
+									</a>
 									<a class="underline" href="myp?m_nick=${member.m_nick}">마이페이지</a>
 									</c:otherwise>
 									</c:choose>
