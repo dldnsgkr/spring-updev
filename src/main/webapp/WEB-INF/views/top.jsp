@@ -65,7 +65,7 @@
 									<img src="./resources/images/alarm.svg">
 									<span class="alarm_cnt">${alarm_count}</span>
 									</a>
-									<a class="underline" href="admin_mypage">마이페이지</a>
+									<a class="underlinee" href="admin_mypage">마이페이지</a>
 								</c:when>
 									<c:otherwise>
 									<a>환영합니다!<b>${member.m_nick}님</b></a>
@@ -73,7 +73,7 @@
 									<img src="./resources/images/alarm.svg">
 									<span class="alarm_cnt">${alarm_count}</span>
 									</a>
-									<a class="underline" href="myp?m_nick=${member.m_nick}">마이페이지</a>
+									<a class="underlinee" href="myp?m_nick=${member.m_nick}">마이페이지</a>
 									</c:otherwise>
 									</c:choose>
 									<a class="underline" href="logout">로그아웃</a>
