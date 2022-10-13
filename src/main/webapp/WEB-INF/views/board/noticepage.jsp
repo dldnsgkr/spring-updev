@@ -120,7 +120,7 @@
 			</c:forEach>
 
 
-			<c:if test="${page1.nowPage ne page1.realEnd && page1.endPage>0}">
+			<c:if test="${page1.next && page1.endPage>0}">
 				<a href="noticepage?nowPage=${page1.endPage +1}">&#62;</a>
 			</c:if>
 		</div>

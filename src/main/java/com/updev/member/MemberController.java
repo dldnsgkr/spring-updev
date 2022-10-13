@@ -574,11 +574,11 @@ public class MemberController {
 	     	public String alarm(HttpServletRequest request,Model mo) {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+			 		String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 			        
-				ArrayList<Alarm> dao = sm.ajaxmyalarm(member_nick);
+				ArrayList<Alarm> dao = sm.ajaxmyalarm(m_id);
 				mo.addAttribute("list",dao);
 	     		return "alarm";
 	     	}

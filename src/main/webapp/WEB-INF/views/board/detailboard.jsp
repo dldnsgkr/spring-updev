@@ -239,6 +239,15 @@ function del()
 						<td><input type="hidden" name="b_num" value="${list.b_num}"></td>
 					</tr>
 					<tr>
+						<td><input type="hidden" name="m_id" value="${list.m_nick}"></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" name="b_title" value="${list.b_title}"></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" name="b_kind" value="${list.b_kind}"></td>
+					</tr>
+					<tr>
 						<td><input type="text" id="e" name="m_nick"
 							value="${member_nick}" readonly></td>
 					</tr>

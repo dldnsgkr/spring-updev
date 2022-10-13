@@ -50,8 +50,6 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		
 		String auto_login = String.valueOf(session.getAttribute("auto_login"));
-		String a = (String)session.getAttribute("member_nick");
-		System.out.println(auto_login+a);
 		if(auto_login.equals("null") || auto_login.equals("0")) {
 			session.setAttribute("auto_login", "0");
 		} else {
@@ -75,6 +73,7 @@ public class BoardController {
 		String loginbefore = "unknown";
 		session.setAttribute("loginState", false);
 		session.setAttribute("member_nick", loginbefore);
+		
 		
 		}
 		
