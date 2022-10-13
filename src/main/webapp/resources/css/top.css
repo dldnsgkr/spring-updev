@@ -120,8 +120,10 @@ a { text-decoration: none; }
 	
 }
 .header .wrap .top .top_login .underline{
-	text-decoration: underline;
 	
+}
+.header .wrap .top .top_login .underlinee{
+	margin-left: 15px;
 }
 .header .wrap .top .top_login .alarm{
 	position: relative;
