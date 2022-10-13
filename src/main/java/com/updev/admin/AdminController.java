@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -666,4 +668,98 @@ public class AdminController {
 		}
 		return "member_manage";
 	}
+	// 알람 퀵 뷰
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	@RequestMapping(value = "/alarm_quick_view", method = RequestMethod.POST,
+			produces = "application/text; charset=UTF-8")//불러오기
+	public String alarm_quick_view(HttpServletRequest request, Model model) throws Exception {
+		String jo = request.getParameter("jsoninfo");
+		JSONParser jsonparse = new JSONParser();
+		
+			JSONObject jobj = (JSONObject) jsonparse.parse(jo);
+			String m_nick = (String) jobj.get("m_nick");
+			
+			JSONArray array = new JSONArray();
+			JSONObject total = new JSONObject();
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			ArrayList<Alarm> list =	sa.alarm_quick_view(m_nick);
+			
+			for(int i=0;i<list.size();i++) {
+				JSONObject member = new JSONObject();
+				String a_content =list.get(i).getA_content();
+				member.put("a_content", a_content);
+				array.add(member);
+			}
+				total.put("members", array);
+				String jsoninfo = total.toJSONString();
+				System.out.println(jsoninfo);
+		return jsoninfo;
+	}
+	/*
+	// 내가 쓴 글 조회
+	+	@SuppressWarnings("unchecked")
+	+	@ResponseBody
+	+	@RequestMapping(value="/mywrite", method = RequestMethod.POST,
+	+			produces = "application/text; charset=UTF-8")//불러오기
+	+	public String mywrite(HttpServletRequest request,HttpServletResponse response,Model mo) throws IOException{
+	+			
+	+			HttpSession session = request.getSession();
+	+			
+	+			
+	+			String m_nick = (String)session.getAttribute("m_nick");
+	+			
+	+			System.out.println(m_nick);
+	+			JSONArray array = new JSONArray();
+	+			JSONObject total = new JSONObject();
+	+			ServiceAdmin ss= sqlsession.getMapper(ServiceAdmin.class);
+	+			ArrayList<Board> list=ss.mywrite(m_nick);
+	+			
+	+//			int b_num, String b_cate, String b_kind, String b_title, String m_nick, String b_wdate,
+	+//	         String b_content, int b_likecnt, int b_readcnt, int b_group, int b_step, int b_indent, String b_tag,
+	+//	         String b_file1, String b_file2, int b_report) {
+	+			
+	+			for(int i=0;i<list.size();i++) {
+	+				JSONObject member = new JSONObject();
+	+				int b_num =list.get(i).getB_num();
+	+				String b_cate =list.get(i).getB_cate();
+	+				String b_kind =list.get(i).getB_kind();
+	+				String b_title =list.get(i).getB_title();
+	+				String nick =list.get(i).getM_nick();
+	+				String b_wdate =list.get(i).getB_wdate();
+	+				String b_content =list.get(i).getB_content();
+	+				int b_likecnt =list.get(i).getB_likecnt();
+	+				int b_readcnt =list.get(i).getB_readcnt();
+	+				int b_group =list.get(i).getB_group();
+	+				int b_step =list.get(i).getB_step();
+	+				int b_indent =list.get(i).getB_indent();
+	+				String b_tag =list.get(i).getB_tag();
+	+				String b_file1 =list.get(i).getB_file1();
+	+				String b_file2 =list.get(i).getB_file2();
+	+				int b_report =list.get(i).getB_report();
+	+				member.put("b_num", b_num);
+	+				member.put("b_cate", b_cate);
+	+				member.put("b_kind", b_kind);
+	+				member.put("b_title", b_title);
+	+				member.put("m_nick", nick);
+	+				member.put("b_wdate", b_wdate);
+	+				member.put("b_content", b_content);
+	+				member.put("b_likecnt", b_likecnt);
+	+				member.put("b_readcnt", b_readcnt);
+	+				member.put("b_group", b_group);
+	+				member.put("b_step", b_step);
+	+				member.put("b_indent", b_indent);
+	+				member.put("b_tag", b_tag);
+	+				member.put("b_file1", b_file1);
+	+				member.put("b_file2", b_file2);
+	+				member.put("b_report", b_report);
+	+				array.add(member);				
+	+			}
+	+			total.put("members", array);
+	+			String jsoninfo = total.toJSONString();
+	+			System.out.println(jsoninfo);
+	+		return jsoninfo;
+	+	
+	+	}
+	*/
 }

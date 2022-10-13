@@ -21,6 +21,7 @@
 				</script>
 			</c:when>
 		</c:choose>
+		
 		<c:set var="check" value="${param.check}"/>
 		<c:choose>
 			<c:when test="${check=='nodata'}">
@@ -30,7 +31,8 @@
 					}
 				</script>
 			</c:when>
-			</c:choose>
+		</c:choose>
+			
 		<c:set var="finish" value="${param.finish}"/>
 		<c:choose>
 			<c:when test="${finish=='good'}">
@@ -40,8 +42,9 @@
 					}
 				</script>
 			</c:when>
-			</c:choose>
-			<c:set var="gradecheck" value="${param.gradecheck}"/>
+		</c:choose>
+		
+		<c:set var="gradecheck" value="${param.gradecheck}"/>
 		<c:choose>
 			<c:when test="${gradecheck=='badgrade'}">
 				<script type="text/javascript">
@@ -50,7 +53,8 @@
 					}
 				</script>
 			</c:when>
-			</c:choose>
+		</c:choose>
+			
 			<div class="header">
 				<div class="wrap">
 					<div class="top">
@@ -61,7 +65,7 @@
 								<c:choose>
 								<c:when test="${member.m_id=='admin'}">
 									<a>환영합니다!<b>관리자님</b></a>
-									<a class="alarm">
+									<a class="alarm" onclick="alarm_quick_view('${member.m_nick}');">
 									<img src="./resources/images/alarm.svg">
 									<span class="alarm_cnt">${alarm_count}</span>
 									</a>
@@ -69,7 +73,7 @@
 								</c:when>
 									<c:otherwise>
 									<a>환영합니다!<b>${member.m_nick}님</b></a>
-									<a class="alarm">
+									<a class="alarm" onclick="alarm_quick_view('${member.m_nick}');">
 									<img src="./resources/images/alarm.svg">
 									<span class="alarm_cnt">${alarm_count}</span>
 									</a>
@@ -85,6 +89,8 @@
 									</ul>
 								</c:otherwise>
 							</c:choose>
+						</div>
+						<div id="quick">
 						</div>
 					</div>
 					<div class="topbar">
@@ -109,6 +115,7 @@
 						</div>
 					</div>
 				</div>
+				
 							</div>
 		<script type="text/javascript">
 		$("#top_search_form").keypress(function(e) {
@@ -142,7 +149,52 @@
 		   
 		   document.getElementById("dpTime").innerHTML = ampm + " " + hours + ":" + min + ":" + sec
 		}
-		</script>
 		
+		function alarm_quick_view(m_nick) {
+			var sam ={"m_nick":m_nick};
+			var sam =JSON.stringify(sam);
+			$.ajax({
+				type:"post",
+				dataType:"json",
+				url:"alarm_quick_view",
+				data: {jsoninfo:sam},
+				success:function(data){
+					
+		            var htm = "";
+		         	//htm += "<div>"
+					//htm += "<tr><td>번호</td><td>종류</td><td>분류</td><td>제목</td>"+
+					//"<td>작성일</td><td>내용</td><td>추천수</td><td>조회수</td><td>태그</td>"+
+					//"<td>첨부파일1</td><td>첨부파일2</td><td>신고회수</td>";
+					//"</tr>"
+		         	
+		         		<c:choose>
+			         		<c:when test="${member.m_nick=='관리자'}">
+			         			htm += "<a href='admin_mypage'>전체알람</a>"
+			         		</c:when>
+			         		<c:otherwise>
+		         				htm += "<a href='alarm'>전체알람</a>"
+		         			</c:otherwise>
+					
+		         		</c:choose>
+	
+		         		htm += "<input type='button' onclick='cclose();' value='X'>"
+		            for(var i in data.members){                           
+		         		htm += "<div class='con'>"+data.members[i].a_content+"</div>"
+		            }
+		            //htm += "</table>"
+					$("#quick").addClass('on');
+		            $("#quick").css("display", "block");
+		            $("#quick").html(htm);
+		     	},     
+				error:function(data){
+					alert("실패");
+				}
+		   });
+		}
+		function cclose() {
+			$("#quick").css("display", "none");
+		}
+		
+		 </script>
 	</body>
 </html>
