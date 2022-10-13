@@ -53,7 +53,7 @@
 		</table>
 <div id="tfoot">
 			<c:if test="${page1.nowPage ne 1}">
-				<a href="noticepage?nowPage=${page1.startPage -1}">&#60;</a>
+				<a href="qnapage?nowPage=${page1.startPage -1}">&#60;</a>
 			</c:if>
 
 
@@ -63,15 +63,16 @@
 						<b>${p}</b>
 					</c:when>
 					<c:when test="${p!=page1.nowPage}">
-						<a href="noticepage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+						<a href="qnapage?nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
 					</c:when>
 				</c:choose>
 			</c:forEach>
 
 
-			<c:if test="${page1.nowPage ne page1.realEnd && page1.endPage>0}">
-				<a href="noticepage?nowPage=${page1.endPage +1}">&#62;</a>
+			<c:if test="${page1.next && page1.endPage>0}">
+				<a href="qnapage?nowPage=${page1.endPage +1}">&#62;</a>
 			</c:if>
+			
 		</div>
 	</body>
 </html>
