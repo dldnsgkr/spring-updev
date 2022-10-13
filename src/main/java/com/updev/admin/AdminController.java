@@ -1,14 +1,11 @@
 package com.updev.admin;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -17,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -77,15 +73,12 @@ public class AdminController {
 			} else if(cntPerPage==null) {
 				cntPerPage="15";
 			}
-			
 
 			dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
 			model.addAttribute("page1",dto);
 			model.addAttribute("page2",cri);
 			model.addAttribute("bpage1",sa.mylistpage(dto));
 		
-			
-			
 			return "admin_mylist";
 		}
 		@RequestMapping(value = "/admin_mywrite_select")
@@ -113,13 +106,10 @@ public class AdminController {
 				cntPerPage="15";
 			}
 			
-			
 			dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
 			model.addAttribute("page1",dto);
 			model.addAttribute("page2",cri);
 			model.addAttribute("bpage1",sa.mylistpage(dto));
-			
-			
 			
 			return "admin_mylist";
 		}
@@ -180,13 +170,10 @@ public class AdminController {
 				cntPerPage="15";
 			}
 			
-			
 			dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage));
 			model.addAttribute("page1",dto);
 			model.addAttribute("page2",cri);
 			model.addAttribute("bpage1",sa.adminscrappage(dto));
-			
-			
 			
 			return "admin_mylist";
 		}
@@ -464,181 +451,6 @@ public class AdminController {
 		
 		return "redirect:admin_infoupdate";
 	}
-	/*
-	// 마이페이지 > 마이 글 > 내가 쓴 글 > 조회
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@RequestMapping(value="/admin_mywrite_select", method = RequestMethod.POST,
-	produces = "application/text; charset=UTF-8")
-	public String admin_mywrite_select(HttpServletRequest request) throws IOException{
-		// 세션 생성
-		HttpSession session = request.getSession();
-		
-		// 세션에서 관리자 nick 들고오기
-		String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
-		
-		JSONArray array = new JSONArray();
-		JSONObject total = new JSONObject();
-		ServiceAdmin sa= sqlsession.getMapper(ServiceAdmin.class);
-		ArrayList<Board> list=sa.admin_mywrite_select(admin_nick);
-		
-		for(int i=0;i<list.size();i++) {
-			JSONObject member = new JSONObject();
-			int b_num =list.get(i).getB_num();
-			String b_cate =list.get(i).getB_cate();
-			String b_kind =list.get(i).getB_kind();
-			String b_title =list.get(i).getB_title();
-			String nick =list.get(i).getM_nick();
-			String b_wdate =list.get(i).getB_wdate();
-			String b_content =list.get(i).getB_content();
-			int b_likecnt =list.get(i).getB_likecnt();
-			int b_readcnt =list.get(i).getB_readcnt();
-			int b_group =list.get(i).getB_group();
-			int b_step =list.get(i).getB_step();
-			int b_indent =list.get(i).getB_indent();
-			String b_tag =list.get(i).getB_tag();
-			String b_file1 =list.get(i).getB_file1();
-			String b_file2 =list.get(i).getB_file2();
-			int b_report =list.get(i).getB_report();
-			member.put("b_num", b_num);
-			member.put("b_cate", b_cate);
-			member.put("b_kind", b_kind);
-			member.put("b_title", b_title);
-			member.put("m_nick", nick);
-			member.put("b_wdate", b_wdate);
-			member.put("b_content", b_content);
-			member.put("b_likecnt", b_likecnt);
-			member.put("b_readcnt", b_readcnt);
-			member.put("b_group", b_group);
-			member.put("b_step", b_step);
-			member.put("b_indent", b_indent);
-			member.put("b_tag", b_tag);
-			member.put("b_file1", b_file1);
-			member.put("b_file2", b_file2);
-			member.put("b_report", b_report);
-			array.add(member);				
-		}
-		total.put("members", array);
-		String jsoninfo = total.toJSONString();
-		System.out.println(jsoninfo);
-		return jsoninfo;
-	}
-	// 마이페이지 > 마이 글 > 내가 좋아요 한 글 > 조회
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@RequestMapping(value="/admin_mylike_select", method = RequestMethod.POST,
-	produces = "application/text; charset=UTF-8")
-	public String admin_mylike_select(HttpServletRequest request) throws IOException{
-		// 세션 생성
-		HttpSession session = request.getSession();
-		
-		// 세션에서 관리자 nick 들고오기
-		String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
-		
-		JSONArray array = new JSONArray();
-		JSONObject total = new JSONObject();
-		ServiceAdmin sa= sqlsession.getMapper(ServiceAdmin.class);
-		ArrayList<Board> list=sa.admin_mylike_select(admin_nick);
-		
-		for(int i=0;i<list.size();i++) {
-			JSONObject member = new JSONObject();
-			int b_num =list.get(i).getB_num();
-			String b_cate =list.get(i).getB_cate();
-			String b_kind =list.get(i).getB_kind();
-			String b_title =list.get(i).getB_title();
-			String nick =list.get(i).getM_nick();
-			String b_wdate =list.get(i).getB_wdate();
-			String b_content =list.get(i).getB_content();
-			int b_likecnt =list.get(i).getB_likecnt();
-			int b_readcnt =list.get(i).getB_readcnt();
-			int b_group =list.get(i).getB_group();
-			int b_step =list.get(i).getB_step();
-			int b_indent =list.get(i).getB_indent();
-			String b_tag =list.get(i).getB_tag();
-			String b_file1 =list.get(i).getB_file1();
-			String b_file2 =list.get(i).getB_file2();
-			int b_report =list.get(i).getB_report();
-			member.put("b_num", b_num);
-			member.put("b_cate", b_cate);
-			member.put("b_kind", b_kind);
-			member.put("b_title", b_title);
-			member.put("m_nick", nick);
-			member.put("b_wdate", b_wdate);
-			member.put("b_content", b_content);
-			member.put("b_likecnt", b_likecnt);
-			member.put("b_readcnt", b_readcnt);
-			member.put("b_group", b_group);
-			member.put("b_step", b_step);
-			member.put("b_indent", b_indent);
-			member.put("b_tag", b_tag);
-			member.put("b_file1", b_file1);
-			member.put("b_file2", b_file2);
-			member.put("b_report", b_report);
-			array.add(member);				
-		}
-		total.put("members", array);
-		String jsoninfo = total.toJSONString();
-		System.out.println(jsoninfo);
-		return jsoninfo;
-	}
-	// 마이페이지 > 마이 글 > 내가 스크랩 한 글 > 조회
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@RequestMapping(value="/admin_myscrap_select", method = RequestMethod.POST,
-	produces = "application/text; charset=UTF-8")
-	public String admin_myscrap_select(HttpServletRequest request) throws IOException{
-		// 세션 생성
-		HttpSession session = request.getSession();
-		
-		// 세션에서 관리자 nick 들고오기
-		String admin_nick = (String)session.getAttribute("admin_nick"); // 관리자
-		
-		JSONArray array = new JSONArray();
-		JSONObject total = new JSONObject();
-		ServiceAdmin sa= sqlsession.getMapper(ServiceAdmin.class);
-		ArrayList<Board> list=sa.admin_myscrap_select(admin_nick);
-		
-		for(int i=0;i<list.size();i++) {
-			JSONObject member = new JSONObject();
-			int b_num =list.get(i).getB_num();
-			String b_cate =list.get(i).getB_cate();
-			String b_kind =list.get(i).getB_kind();
-			String b_title =list.get(i).getB_title();
-			String nick =list.get(i).getM_nick();
-			String b_wdate =list.get(i).getB_wdate();
-			String b_content =list.get(i).getB_content();
-			int b_likecnt =list.get(i).getB_likecnt();
-			int b_readcnt =list.get(i).getB_readcnt();
-			int b_group =list.get(i).getB_group();
-			int b_step =list.get(i).getB_step();
-			int b_indent =list.get(i).getB_indent();
-			String b_tag =list.get(i).getB_tag();
-			String b_file1 =list.get(i).getB_file1();
-			String b_file2 =list.get(i).getB_file2();
-			int b_report =list.get(i).getB_report();
-			member.put("b_num", b_num);
-			member.put("b_cate", b_cate);
-			member.put("b_kind", b_kind);
-			member.put("b_title", b_title);
-			member.put("m_nick", nick);
-			member.put("b_wdate", b_wdate);
-			member.put("b_content", b_content);
-			member.put("b_likecnt", b_likecnt);
-			member.put("b_readcnt", b_readcnt);
-			member.put("b_group", b_group);
-			member.put("b_step", b_step);
-			member.put("b_indent", b_indent);
-			member.put("b_tag", b_tag);
-			member.put("b_file1", b_file1);
-			member.put("b_file2", b_file2);
-			member.put("b_report", b_report);
-			array.add(member);				
-		}
-		total.put("members", array);
-		String jsoninfo = total.toJSONString();
-		System.out.println(jsoninfo);
-		return jsoninfo;
-	}*/
 	// 마이페이지 > 마이 글 > 내가 쓴 글 > 수정
 	@RequestMapping(value = "/admin_mylist_update", method = RequestMethod.POST)
 	public String admin_mylist_update(MultipartHttpServletRequest mul,HttpServletRequest request) throws Exception{
@@ -744,7 +556,6 @@ public class AdminController {
 			}
 			return "redirect:admin_mylist";
 		}
-		
 		// 게시판관리 > 삭제
 		@RequestMapping(value = "/board_manage_delete", method = RequestMethod.POST)
 		public String board_manage_delete(HttpServletRequest request, Model model) throws Exception{
@@ -761,16 +572,10 @@ public class AdminController {
 				ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
 				sa.board_manage_delete(b_num);
 				
-				
-				
-				
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			// 없어도된다.
 			return url;
 		}
-		
-				
-	
 }

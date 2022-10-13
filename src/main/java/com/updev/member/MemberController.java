@@ -278,6 +278,8 @@ public class MemberController {
 					nickmsg=" *사용중인 닉네임입니다. 다시 입력 해주세요.";
 				}
 				
+				
+				
 				System.out.println(nickmsg);
 				model.addAttribute("nickmsg",nickmsg);
 				

@@ -14,6 +14,8 @@
 		<div class="wrapper">
 			<form name="memupinfochk" method="post" id="changeform">
 			<div class="title"><h1>EDIT PROFILE</h1></div>
+			
+			
 			<input id="m_nick" type="hidden" name="m_nick" value="${list.m_nick}">
 				<div class="input">
 						<div class="sub_title">아이디</div>
