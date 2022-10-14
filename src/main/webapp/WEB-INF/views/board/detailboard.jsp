@@ -170,13 +170,17 @@ function del()
 <script type="text/javascript">
 function reply()
 {
+	var loginstate = $("#loginstate").val();
 	var re_content = $("#f").val();
 	var b_num = $("#b_num").val();
 	var b_kind = $("#b_kind").val();
 	var m_nick = $("#e").val();
 	var b_title = $("#b_title").val();
 	var m_id = $("#m_id").val();
-	if(re_content.value!=""){
+	if(loginstate == "false"){
+		alert("로그인이 필요합니다");
+		location.href="login";
+	} else if(re_content==""){
 		alert("비밀번호 확인칸을 입력해주세요");
 		return false;
 	} else {
@@ -263,6 +267,7 @@ function reply()
 					<tr>
 					<td colspan="2"><textarea id="f" name="re_content" rows="6" cols="50" placeholder="댓글은 회원만 등록할 수 있습니다."></textarea></td>
 					<td><input type="hidden" id="m_id" name="m_id" value="${id }"></td>
+					<td><input type="hidden" id="loginstate" value="${loginState }"></td>
 					<td><input type="hidden" id="b_kind" name="b_kind" value="${list.b_kind }"></td>
 					<td><input type="hidden" id="b_title" name="b_title" value="${list.b_title }"></td>
 					<td><input class="button" id="reply_su" type="button" onclick="reply()" value="등록"></td>

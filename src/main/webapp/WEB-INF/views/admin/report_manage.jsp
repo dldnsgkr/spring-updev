@@ -7,12 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="./resources/css/admin/report_manage.css">
+<link rel="stylesheet" href="./resources/css/admin/admin_board.css" type="text/css">
 </head>
 <body>
+<div class="wrap">
 	<div class="infoupdate">
 		<div class="title">
 			<span></span>
-			<p>신고관리</p>
+			<h1>신고관리</h1>
 		</div>
 		<div class="content">
 			<div id="out">
@@ -26,6 +28,7 @@
 					</tr>
 					</c:forEach>
 				</table>
+				<div id="tfoot">
 				<c:if test="${page1.nowPage > 10}">
 					<a href="report_manage?nowPage=${page1.startPage -1}">&#60;</a> 				
 				</c:if>
@@ -48,6 +51,8 @@
 				</c:if>
 			</div>
 		</div>
+		</div>
+	</div>
 	</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="./resources/js/admin/report_manage.js"></script>

@@ -70,9 +70,11 @@ public class BoardController {
 	         session.setAttribute("member_nick", d.getM_nick());
 	  		session.setAttribute("alarm_count", alarm_count);
 		} else {
-		String loginbefore = "unknown";
+		String loginbeforenick = "unknown";
+		String loginbeforeid = "unknown";
 		session.setAttribute("loginState", false);
-		session.setAttribute("member_nick", loginbefore);
+		session.setAttribute("member_nick", loginbeforenick);
+		session.setAttribute("id", loginbeforeid);
 		
 		
 		}

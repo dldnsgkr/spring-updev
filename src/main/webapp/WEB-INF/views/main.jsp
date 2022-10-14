@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,30 +21,24 @@
 	    			<div class="cont">
 	       				<img src="./resources/images/banner1.jpg" width="1200px">
 		       			<div class="main_in1">
-		       				<div class="text_box">
 			       				개발자로 취업하자<br>
 								교육비 전액 무료<br>
 								<a href="">자세히 보기</a>
-							</div>
 		       			</div>
 	    			</div>
 	    			<div class="cont">
 	       				<img src="./resources/images/banner2.jpg" width="1200px">
 	       				<div class="main_in2">
-		       				<div class="text_box">
 			       				UPDEV 개발자 채용<br>
 								<a href="">자세히 보기</a>
-		       				</div>
 						</div>
 	    			</div>
 	    			<div class="cont">
-	         			<img src="./resources/images/banner3.jpg" width="1200px">
+	         			<img src="./resources/images/banner3_1.jpg" width="1200px">
 	         			<div class="main_in3">
-	         				<div class="text_box">
 			         			경력보다 실력<br>
 								UPDEV 개발자를 만나다.<br>
 								<a href="">자세히 보기</a>
-	         				</div>
 						</div>
 	    			</div>
 				</div>
@@ -63,38 +58,41 @@
 			</div>
 		<div class="main_board">
 			<div class="board">
-				<h3>인기게시글</h3>
-				<a href="poppage" id="alink">더보기</a>
+				<span class="main_boardtitle">인기게시글</span>
 				<table>
+				<a href="poppage" id="alink">더보기</a>
 				<c:forEach items="${popmpage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td>${a.b_kind}</td>
-					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a>
+					<td class="main_boardkind">
+					<c:set var="KindValue" value="${a.b_kind}"/>${fn:substring(KindValue,0,2) }</td>
+					<td class="main_popboardtitle"><a href="detail?b_num=${a.b_num}">
+					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a>
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if></td>
-					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
-					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
+					<td class="main_popboarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
 			</div>
 			
 			<div class="board">
-				<h3>정보공유</h3>
+				<span class="main_boardtitle">정보공유</span>
 				<table>
 				<a href="sharepage" id="alink">더보기</a>
 				<c:forEach items="${sharempage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a>
+					<td><a href="detail?b_num=${a.b_num}">
+					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a>
 					<c:if test="${a.b_replycnt ne 0}">
 						<span>[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]</span>
 					</c:if>
 					</td>
-					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
-					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
+					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
@@ -102,72 +100,76 @@
 
 			
 			<div class="board">
-				<h3>지식인</h3>
+				<span class="main_boardtitle">지식인</span>
 				<a href="questionpage" id="alink">더보기</a>
 				<table>
 				<c:forEach items="${questionmpage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<td><a href="detail?b_num=${a.b_num}">
+					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a></td>
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if>
-					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
-					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
+					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
 			</div>
 			
 			<div class="board">
-				<h3>고민상담소</h3>
+				<span class="main_boardtitle">고민상담소</span>
 				<a href="worrypage" id="alink">더보기</a>
 				<table>
 				<c:forEach items="${worrympage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<td><a href="detail?b_num=${a.b_num}">
+					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a></td>
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if>
-					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
-					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
+					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
 			</div>
 
 			<div class="board">
-				<h3>공지</h3>
+				<span class="main_boardtitle">공지</span>
 				<a href="noticepage" id="alink">더보기</a>
 				<table>
 				<c:forEach items="${noticempage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<td><a href="detail?b_num=${a.b_num}">
+					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a></td>
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if>
-					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
-					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
+					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>
 			</div>
 	
 			<div class="board">
-				<h3>Q&A</h3>
+				<span class="main_boardtitle">Q&A</span>
 				<a href="qnapage" id="alink">더보기</a>
 				<table>
 				<c:forEach items="${qnampage}" var="a" begin="0" end="7">
 				<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
-					<td><a href="detail?b_num=${a.b_num}">${a.b_title}</a></td>
+					<td><a href="detail?b_num=${a.b_num}">
+					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a></td>
 					<c:if test="${a.b_replycnt ne 0}">
 						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
 					</c:if>
-					<td><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
-					<fmt:formatDate value="${date}" pattern="yyyy.MM.dd."/></td>	
+					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
 				</tr>
 				</c:forEach>
 				</table>			

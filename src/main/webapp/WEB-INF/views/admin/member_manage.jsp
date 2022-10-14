@@ -6,14 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="./resources/css/admin/member_manage.css">
+<link rel="stylesheet" type="text/css" href="./resources/css/admin/member_manage.css">
+<link rel="stylesheet" href="./resources/css/admin/admin_board.css" type="text/css">
 </head>
 <body>
+<div class="wrap">
 	<div class="infoupdate">
 		<div class="title">
 			<span></span>
-			<p>회원관리</p>
+			<h1>회원관리</h1>
 		</div>
 		<div class="content">
 			<div id="out">
@@ -49,6 +50,7 @@
 						</tr>
 					</c:forEach>
 				</table>
+				<div id="tfoot">
 				<c:if test="${page1.nowPage > 10}">
 					<a href="member_manage?nowPage=${page1.startPage -1}">&#60;</a>
 				</c:if>
@@ -67,7 +69,9 @@
 					<a href="member_manage?nowPage=${page1.endPage +1}">&#62;</a>
 				</c:if>
 			</div>
+			</div>
 		</div>
+	</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="./resources/js/admin/member_manage.js"></script>

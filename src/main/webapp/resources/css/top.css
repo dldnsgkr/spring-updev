@@ -121,9 +121,9 @@ a { text-decoration: none; }
 	
 }
 .header .wrap .top .top_login .underline{
-	
-}
-.header .wrap .top .top_login .underlinee{
+	font-size: 13px;	
+  
+.header .wrap .top .top_login .underline{
 	margin-left: 15px;
 }
 .header .wrap .top .top_login .alarm{
@@ -155,6 +155,7 @@ a { text-decoration: none; }
 	float: left;
     font-size: 12px;
 }
+  
 #quick input{
 	float: right;
     font-size: 13px;
