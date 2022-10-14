@@ -158,14 +158,32 @@ function del()
 {
 	var b_num = $("#b_num").val();
 	var b_kind = $("#b_kind").val();
-  var x = confirm("Are you sure you want to delete?");
-  if (x)
+  var x = confirm("해당 게시글을 삭제하시겠습니까?");
+  if (x) {
       location.href="writedelete?b_num="+b_num+"&b_kind="+b_kind;
-  else
-    return false;
+	} else {
+    	return false;
+	}
 }
 </script>
 
+<script type="text/javascript">
+function reply()
+{
+	var re_content = $("#f").val();
+	var b_num = $("#b_num").val();
+	var b_kind = $("#b_kind").val();
+	var m_nick = $("#e").val();
+	var b_title = $("#b_title").val();
+	var m_id = $("#m_id").val();
+	if(re_content.value!=""){
+		alert("비밀번호 확인칸을 입력해주세요");
+		return false;
+	} else {
+		location.href="replysave?b_num="+b_num+"&b_kind="+b_kind+"&b_title="+b_title+"&m_nick="+m_nick+"&re_content="+re_content+"&m_id="+m_id;
+	}
+}
+</script>
 </head>
 <body>
 	<div class="wrap">
@@ -209,7 +227,7 @@ function del()
 	<input type="hidden" name="b_kind" id="b_kind" value="${list.b_kind }">
 	<input type="hidden" name="b_title" id="b_title" value="${list.b_title }">
 	<input type="hidden" name="a_existence" id="a_existence" value="1">
-	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
+	<input type="hidden" name="m_id" id="m_id" value="${id }">
 	<button type="button" class="detail_button" id="ttt"><img src="./resources/images/iconmonstr-favorite-4-240.png" id="detail_ttt" title="좋아요"></button>
 	</form>
 
@@ -221,7 +239,7 @@ function del()
 	<input type="hidden" name="b_kind" id="b_kind" value="${list.b_kind }">
 	<input type="hidden" name="b_title" id="b_title" value="${list.b_title }">
 	<input type="hidden" name="a_existence" id="a_existence" value="2">
-	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
+	<input type="hidden" name="m_id" id="m_id" value="${id }">
 	<button type="button" class="detail_button" id="sss"><img src="./resources/images/iconmonstr-bookmark-4-240.png" id="detail_sss" title="스크랩"></button>
 	</form>	
 
@@ -236,16 +254,7 @@ function del()
 			<table>
 				<form action="replysave" method="post">
 					<tr>
-						<td><input type="hidden" name="b_num" value="${list.b_num}"></td>
-					</tr>
-					<tr>
-						<td><input type="hidden" name="m_id" value="${list.m_nick}"></td>
-					</tr>
-					<tr>
-						<td><input type="hidden" name="b_title" value="${list.b_title}"></td>
-					</tr>
-					<tr>
-						<td><input type="hidden" name="b_kind" value="${list.b_kind}"></td>
+						<td><input type="hidden" id="b_num" name="b_num" value="${list.b_num}"></td>
 					</tr>
 					<tr>
 						<td><input type="text" id="e" name="m_nick"
@@ -253,10 +262,10 @@ function del()
 					</tr>
 					<tr>
 					<td colspan="2"><textarea id="f" name="re_content" rows="6" cols="50" placeholder="댓글은 회원만 등록할 수 있습니다."></textarea></td>
-					<td><input type="hidden" name="m_id" value="${list.m_nick }"></td>
-					<td><input type="hidden" name="b_kind" value="${list.b_kind }"></td>
-					<td><input type="hidden" name="b_title" value="${list.b_title }"></td>
-					<td><input class="button" id="reply_su" type="submit" value="등록"></td>
+					<td><input type="hidden" id="m_id" name="m_id" value="${id }"></td>
+					<td><input type="hidden" id="b_kind" name="b_kind" value="${list.b_kind }"></td>
+					<td><input type="hidden" id="b_title" name="b_title" value="${list.b_title }"></td>
+					<td><input class="button" id="reply_su" type="button" onclick="reply()" value="등록"></td>
 					</tr>
 				</form>
 

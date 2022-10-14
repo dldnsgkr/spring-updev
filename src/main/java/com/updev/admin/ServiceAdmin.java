@@ -96,4 +96,6 @@ public interface ServiceAdmin {
 	public void member_manage_usestop(String grade, int m_num);
 
 	public void member_manage_force(String grade, int m_num);
+
+	public ArrayList<Alarm> alarm_quick_view(String m_nick);
 }

@@ -170,9 +170,9 @@ public class MemberController {
 	   {
 		   HttpSession session = request.getSession();
 	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-		 		String member_nick = (String)session.getAttribute("member_nick");
-		 		int alarm_count = sm.alarmcount(member_nick);
-		        session.setAttribute("alarm_count", alarm_count);
+	    	  String id = (String)session.getAttribute("id");
+		 		int alarm_count = sm.alarmcount(id);		        
+		 		session.setAttribute("alarm_count", alarm_count);
 		   
 		   String up_nick = request.getParameter("up_nick");//새로 바꾼 닉네임
 		   String m_nick = request.getParameter("m_nick");//키값이 될 닉네임(기존 닉네임)
@@ -420,9 +420,9 @@ public class MemberController {
 			if((Boolean) session.getAttribute("loginState"))
 			{
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
-			        session.setAttribute("alarm_count", alarm_count);	
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);			        
+			 		session.setAttribute("alarm_count", alarm_count);	
 				
 	    	 int b_num = Integer.parseInt(request.getParameter("b_num"));
 	    	 String b_title = request.getParameter("b_title");
@@ -471,13 +471,11 @@ public class MemberController {
 		   {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
-			        session.setAttribute("alarm_count", alarm_count);
-			   
-			   String id = (String)session.getAttribute("id");
+			 		String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);			       
+			 		session.setAttribute("alarm_count", alarm_count);
 			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-				Signup dao = ss.profileupdatecheck(id);
+				Signup dao = ss.profileupdatecheck(m_id);
 				mo.addAttribute("list",dao);
 			   return "memberinfoupdate";
 		   }
@@ -526,9 +524,9 @@ public class MemberController {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
-			        session.setAttribute("alarm_count", alarm_count);
-			        
+			 		String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
+			 		session.setAttribute("alarm_count", alarm_count);
 			   ArrayList<Board> dao = sm.ajaxmywrite(member_nick);
 			   mo.addAttribute("list",dao);
 			   return "memwrite";
@@ -545,7 +543,8 @@ public class MemberController {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+			 		String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 			        
 				ArrayList<Board> dao = sm.ajaxmygood(member_nick);
@@ -562,7 +561,8 @@ public class MemberController {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+			 		String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 			        
 				ArrayList<Board> dao = sm.ajaxmyscrap(member_nick);
@@ -577,11 +577,8 @@ public class MemberController {
 			 		String m_id = (String)session.getAttribute("id");
 			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
-			        
+			        System.out.println(m_id);
 				ArrayList<Alarm> dao = sm.ajaxmyalarm(m_id);
-				
-				
-				
 				
 				mo.addAttribute("list",dao);
 	     		return "alarm";
