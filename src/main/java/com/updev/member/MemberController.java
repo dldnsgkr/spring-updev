@@ -579,6 +579,10 @@ public class MemberController {
 			        session.setAttribute("alarm_count", alarm_count);
 			        
 				ArrayList<Alarm> dao = sm.ajaxmyalarm(m_id);
+				
+				
+				
+				
 				mo.addAttribute("list",dao);
 	     		return "alarm";
 	     	}
