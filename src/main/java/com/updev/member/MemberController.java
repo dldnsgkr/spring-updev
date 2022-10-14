@@ -244,7 +244,7 @@ public class MemberController {
 				int s = sm.nicktest(nick);
 				
 				if (s!=0) {
-					nickmsg=" *사용중인 닉네임입니다. 다시 입력 해주세요.";
+					nickmsg=" 사용중인 닉네임입니다. 다시 입력 해주세요.";
 				}
 				
 				System.out.println(nickmsg);

@@ -20,7 +20,6 @@
         <ul class="jq_tab tab_menu">
             <li><a href="javascript:;" class="tit">활동내역</a></li>
             <li><a href="javascript:;" class="tit">알림</a></li>
-            <li><a href="javascript:;" class="tit">글쓰기 (여기서 삭제 예정)</a></li>
             <li><a href="javascript:;" class="tit">내 정보</a></li>
         </ul>
         <div class="jq_cont tab_cont">
@@ -48,19 +47,6 @@
                         <div class="cont">
                             <a href="alarm">알림</a>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!-- // 탭3 -->
-            <div class="cont">
-                <div class="jq_tabonoff comm_tab2">
-                    <div class="jq_cont tab_cont">
-                        <div class="cont">
-                       
-                            <a href="write?b_kind=정보공유">글쓰기</a> 
-
-                        </div>
-                        
                     </div>
                 </div>
             </div>
