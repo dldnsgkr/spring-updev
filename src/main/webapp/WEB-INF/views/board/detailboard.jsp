@@ -168,7 +168,7 @@ function del()
 </script>
 
 <script type="text/javascript">
-function reply()
+function reply_save()
 {
 	var loginstate = $("#loginstate").val();
 	var re_content = $("#f").val();
@@ -270,7 +270,7 @@ function reply()
 					<td><input type="hidden" id="loginstate" value="${loginState }"></td>
 					<td><input type="hidden" id="b_kind" name="b_kind" value="${list.b_kind }"></td>
 					<td><input type="hidden" id="b_title" name="b_title" value="${list.b_title }"></td>
-					<td><input class="button" id="reply_su" type="button" onclick="reply()" value="등록"></td>
+					<td><input class="button" id="reply_su" type="button" onclick="reply_save()" value="등록"></td>
 					</tr>
 				</form>
 
