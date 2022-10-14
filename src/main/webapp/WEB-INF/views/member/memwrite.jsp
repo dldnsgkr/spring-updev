@@ -28,7 +28,7 @@
 				<c:forEach items="${list}" var="list">
 				<tr>
 					<td>${list.b_num}</td>
-					<td><a href="detail?b_num=${list.b_num}">${list.b_title}</a></td>
+					<td><a href="detail?b_num=${list.b_num}&receiveread=b">${list.b_title}</a></td>
 					<td>${list.b_kind}</td>
 					<td>${list.b_likecnt}</td>
 					<td>${list.b_readcnt}</td>

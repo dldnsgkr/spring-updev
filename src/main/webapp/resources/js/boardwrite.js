@@ -4,8 +4,6 @@ console.log("이전 페이지 URL: "+referrer);
 
 function Board_write() {
         
-console.log(1);        
-
     var form = document.write;
 
     if (!form.b_title.value) {
@@ -23,6 +21,22 @@ console.log(1);
     form.action = "/updev/writesave";
     form.submit();
     }
+
+function reply_save() {
+        
+    var form = document.reply;
+
+    if (!form.re_content.value) {
+        alert("댓글을 입력해 주십시오.");
+        form.re_content.focus();
+        return;
+    }
+ 
+    form.action = "/updev/replysave";
+    form.submit();
+    }
+
+
 
 /*
 $(document).ready(function() {

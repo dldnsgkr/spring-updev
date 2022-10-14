@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/fontello.css" type="text/css">
+<script src="resources/js/boardwrite.js"></script>
 <link rel="stylesheet" href="resources/css/detailboard.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" charset="UTF-8">
@@ -158,14 +158,34 @@ function del()
 {
 	var b_num = $("#b_num").val();
 	var b_kind = $("#b_kind").val();
-  var x = confirm("Are you sure you want to delete?");
+  var x = confirm("해당 게시글을 삭제하시겠습니까?");
   if (x)
       location.href="writedelete?b_num="+b_num+"&b_kind="+b_kind;
   else
     return false;
 }
 </script>
-
+<script type="text/javascript">
+function reply_save()
+{
+	var loginstate = $("#loginstate").val();
+	var re_content = $("#f").val();
+	var b_num = $("#b_num").val();
+	var b_kind = $("#b_kind").val();
+	var m_nick = $("#e").val();
+	var b_title = $("#b_title").val();
+	var m_id = $("#m_id").val();
+	if(loginstate == "false"){
+		alert("로그인이 필요합니다.");
+		location.href="login";
+	} else if(re_content==""){
+		alert("비밀번호 확인칸을 입력해주세요.");
+		return false;
+	} else {
+		location.href="replysave?b_num="+b_num+"&b_kind="+b_kind+"&b_title="+b_title+"&m_nick="+m_nick+"&re_content="+re_content+"&m_id="+m_id;
+	}
+}
+</script>
 </head>
 <body>
 	<div class="wrap">
@@ -234,9 +254,18 @@ function del()
 <!-- 댓글 -->
 		<div class="reply">
 			<table>
-				<form action="replysave" method="post">
+				<form action="replysave" method="post" name="reply">
 					<tr>
 						<td><input type="hidden" name="b_num" value="${list.b_num}"></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" name="m_id" value="${list.m_nick}"></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" name="b_title" value="${list.b_title}"></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" name="b_kind" value="${list.b_kind}"></td>
 					</tr>
 					<tr>
 						<td><input type="text" id="e" name="m_nick"
@@ -244,40 +273,37 @@ function del()
 					</tr>
 					<tr>
 					<td colspan="2"><textarea id="f" name="re_content" rows="6" cols="50" placeholder="댓글은 회원만 등록할 수 있습니다."></textarea></td>
-					<td><input class="button" id="reply_su" type="submit" value="등록"></td>
+					<td><button class="button" type="button" id="reply_su" name="boardwrite" onclick="reply_save();">등록</button></td>
 					</tr>
 				</form>
 
 				<c:forEach items="${repage}" var="a">
 					<tr>
-						<td>${a.m_nick}</td>
+						<td width="200px">${a.m_nick}</td>
 						<td>${a.re_content}</td>
 						<td><fmt:parseDate value="${a.re_wdate}" var="reply_date" pattern="yyyy-MM-dd HH:mm:ss" /> 
 							<fmt:formatDate value="${reply_date}" pattern="yyyy.MM.dd. HH:mm" /></td>
 					</tr>
 				</c:forEach>
+			</table>
 
-
-				<tr>
-					<td colspan="3"><c:if test="${page1.nowPage > 10}">
+	<div class="tfoot">	
+			
+					<c:if test="${page1.nowPage > 10}">
 							<a href="detail?b_num=${b_num}&nowPage=${page1.startPage -1}">&#60;</a>
-						</c:if> <c:forEach begin="${page1.startPage}" end="${page1.endPage}"
-							var="p">
+						</c:if> <c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
 							<c:choose>
 								<c:when test="${p==page1.nowPage}">
 									<b>${p}</b>
 								</c:when>
 								<c:when test="${p!=page1.nowPage}">
-									<a
-										href="detail?b_num=${b_num}&nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+									<a href="detail?b_num=${b_num}&nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
 								</c:when>
 							</c:choose>
 						</c:forEach> <c:if test="${page1.next && page1.endPage>0}">
 							<a href="detail?b_num=${b_num}&nowPage=${page1.endPage +1}">&#62;</a>
-						</c:if></td>
-				</tr>
-
-			</table>
+						</c:if>
+	</div>
 		</div>
 </div>
 

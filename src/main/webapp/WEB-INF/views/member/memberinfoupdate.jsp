@@ -14,6 +14,8 @@
 		<div class="wrapper">
 			<form name="memupinfochk" method="post" id="changeform">
 			<div class="title"><h1>EDIT PROFILE</h1></div>
+			
+			
 			<input id="m_nick" type="hidden" name="m_nick" value="${list.m_nick}">
 				<div class="input">
 						<div class="sub_title">아이디</div>
@@ -31,6 +33,7 @@
 					<div class="input">
 					<div class="sub_title">닉네임</div>
 						<input class="up_nick" id="up_nick" type="text" value="${list.m_nick}" >
+						<input class="m_num" id="m_num" type="text" value="${list.m_num}" >
 						<button class="button button1" type="button" onclick="nicktest2();">중복확인</button>
 						<div id="nick_check2" class="nick_check2" >${nickmsg}</div>
 					</div>

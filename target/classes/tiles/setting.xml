@@ -142,5 +142,8 @@
 	<definition name="member_manage" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/member_manage.jsp" />
 	</definition>
+	<definition name="member_infoupdate" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/member_infoupdate.jsp" />
+	</definition>
 	
 </tiles-definitions>

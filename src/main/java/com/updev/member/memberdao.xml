@@ -108,7 +108,7 @@
 	</select>
 	
 	<select id="ajaxmyalarm" resultType="com.updev.board.Alarm">
-		select * from alarm where m_id = #{param1}
+		select * from alarm where m_id = #{param1} order by a_num DESC
 	</select>
 	
 </mapper>

@@ -28,7 +28,7 @@
 					</tr>
 				</thead>
 				<tbody id="tbody">
-					<c:forEach items="${paging }" var="a">
+					<c:forEach items="${paging}" var="a">
 					<tr>
 						<td>${a.b_num }</td>
 						<td><a href="detail?b_num=${a.b_num }">${a.b_title }</a></td>
@@ -60,7 +60,7 @@
 	</c:forEach>
 				
 	
-	<c:if test="${page1.next && page1.endPage>0}">
+	<c:if test="${page.next && page.endPage>0}">
 		<a href="search?nowPage=${page.endPage +1}&keyword=${keyword}">&#62;</a>
 	</c:if>   
 				  </div>			

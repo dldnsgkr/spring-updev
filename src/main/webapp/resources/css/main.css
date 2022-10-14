@@ -4,10 +4,29 @@
 li {list-style: none;}
 a { text-decoration: none;}
 
-h3{
+.main_boardtitle{
 	color: #242038;
 	margin: 9px 0px 9px 4px;
+	font-weight: 600;
+    font-size: 18px;
 }
+
+.main_boardkind{
+	color: #8d86c9;
+	}
+
+.main_popboarddate{
+	display: inline-block;
+	margin-left: 66px;
+	color: #242038;	
+}
+
+.main_boarddate{
+	display: inline-block;
+	margin-left: 107px;
+	color: #242038;	
+}
+
 
 #main_body{
     margin-top: 50px;
@@ -19,7 +38,6 @@ h3{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-
 }
 
 .board{
@@ -27,7 +45,7 @@ h3{
 	height: 300px;
 	border: 3px solid #8d86c9;
 	border-radius: 40px;
-	padding: 35px 30px 35px 50px;
+	padding: 40px 40px 40px 50px;
 	margin-top: 24px;
 }
 .board:last-child{
@@ -38,9 +56,14 @@ h3{
 	color: #242038;
 }
 
-a#alink{
+.main_popboardtitle a{
+    margin-left: 10px;
+}
+
+#alink{
 	float: right;
 	color:  #cac4ce;
+	margin-right: 4px;
 }
 
 .input{
@@ -155,25 +178,30 @@ button.main_login:hover{
 
 .main_in1, .main_in2, .main_in3{
 	position: absolute;
-	color: #242038;
+	
 }
 
 .main_in1{
-	top: 44px;
+	top: 62px;
     left: 2016px;
     font-size: 25px;
+    color: white;
 }
 
 .main_in2{
     top: 78px;
-    left: 17%;
+	left: 19%;
+    margin-left: 56px;
     font-size: 25px;
+    color: #242038;
+    text-align: center;
 }
 
 .main_in3{
-    top: 59px;
-    right: 69%;
+    top: 95px;
+    right: 73%;
     font-size: 25px;
+    color: #242038;
 }
 
 .text_box{
