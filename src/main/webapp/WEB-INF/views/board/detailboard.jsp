@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="resources/js/boardwrite.js"></script>
-<link rel="stylesheet" href="resources/css/fontello.css" type="text/css">
 <link rel="stylesheet" href="resources/css/detailboard.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" charset="UTF-8">
@@ -159,14 +158,34 @@ function del()
 {
 	var b_num = $("#b_num").val();
 	var b_kind = $("#b_kind").val();
-  var x = confirm("Are you sure you want to delete?");
+  var x = confirm("해당 게시글을 삭제하시겠습니까?");
   if (x)
       location.href="writedelete?b_num="+b_num+"&b_kind="+b_kind;
   else
     return false;
 }
 </script>
-
+<script type="text/javascript">
+function reply_save()
+{
+	var loginstate = $("#loginstate").val();
+	var re_content = $("#f").val();
+	var b_num = $("#b_num").val();
+	var b_kind = $("#b_kind").val();
+	var m_nick = $("#e").val();
+	var b_title = $("#b_title").val();
+	var m_id = $("#m_id").val();
+	if(loginstate == "false"){
+		alert("로그인이 필요합니다.");
+		location.href="login";
+	} else if(re_content==""){
+		alert("비밀번호 확인칸을 입력해주세요.");
+		return false;
+	} else {
+		location.href="replysave?b_num="+b_num+"&b_kind="+b_kind+"&b_title="+b_title+"&m_nick="+m_nick+"&re_content="+re_content+"&m_id="+m_id;
+	}
+}
+</script>
 </head>
 <body>
 	<div class="wrap">
