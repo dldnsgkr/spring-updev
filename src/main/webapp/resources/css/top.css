@@ -120,8 +120,7 @@ a { text-decoration: none; }
 	
 }
 .header .wrap .top .top_login .underline{
-	text-decoration: underline;
-	
+	font-size: 13px;	
 }
 .header .wrap .top .top_login .alarm{
 	position: relative;
@@ -149,5 +148,5 @@ a { text-decoration: none; }
 }
 .header .wrap .top #dpTime{
 	float: left;
-    font-size: 12px;
+    font-size: 14px;
 }

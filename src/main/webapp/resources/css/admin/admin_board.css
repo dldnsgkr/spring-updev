@@ -60,7 +60,7 @@ a {
 	cursor: pointer;
 	position: absolute;
 	bottom: 20px;
-	right: 40px;
+	right: 0px;
 }
 
 .board_write {
@@ -92,4 +92,12 @@ a {
     height: 1px;
     box-sizing: border-box;
     border-top: 5px solid #242038;
+}
+
+.title{
+	margin-bottom: 20px;
+}
+
+#mylist_title{
+	visibility: hidden;
 }

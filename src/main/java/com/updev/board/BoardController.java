@@ -57,7 +57,7 @@ public class BoardController {
 		}
 		String auto_login = String.valueOf(session.getAttribute("auto_login"));
 		System.out.println(auto_login);
-		if(auto_login == null || auto_login.equals("0")) {
+		if(auto_login.equals("null") || auto_login.equals("0")) {
 			session.setAttribute("auto_login", "0");
 		} else {
 			session.setAttribute("auto_login", "1");
