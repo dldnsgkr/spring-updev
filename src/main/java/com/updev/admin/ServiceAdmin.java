@@ -88,4 +88,14 @@ public interface ServiceAdmin {
 	public int admin_myalarm_total(String admin_nick);
 
 	public ArrayList<Board> admin_myalarm_page(PageDTO dto);
+
+	public Signup member_manage_uconfirm(int m_num);
+
+	public void member_manage_grade(String grade, String m_num);
+
+	public void member_manage_usestop(String grade, int m_num);
+
+	public void member_manage_force(String grade, int m_num);
+
+	public ArrayList<Alarm> alarm_quick_view(String m_nick);
 }

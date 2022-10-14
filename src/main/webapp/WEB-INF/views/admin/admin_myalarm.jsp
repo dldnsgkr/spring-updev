@@ -16,11 +16,10 @@
 		</div>
 		<div class="content">
 			<table border="1">
-				<tr><td>번호</td><td>내용</td><td>날짜</td></tr>
+				<tr><td>번호</td><td>내용</td></tr>
 				<c:forEach items="${bpage1}" var="list">
 				<tr><td>${list.a_num}</td>
-				<td><a href="detail?b_num=${list.b_num}">${list.a_content}</a></td>
-				<td>${list.a_adate}</td></tr>
+				<td><a href="detail?b_num=${list.b_num}">${list.a_content}</a></td></tr>
 				</c:forEach>
 			</table>
 			<div id="tfoot">

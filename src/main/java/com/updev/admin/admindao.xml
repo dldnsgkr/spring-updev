@@ -6,9 +6,18 @@
 	<select id="admin_infoupdate_select" resultType="com.updev.member.Signup">
 		SELECT * FROM member where m_id = #{param1}
 	</select>
+	<select id="member_manage_uconfirm" resultType="com.updev.member.Signup">
+		SELECT * FROM member where m_num = #{param1}
+	</select>
 	<update id="admin_infoupdate_update">
 		update member set m_pw = #{param1}, m_nick = #{param2}, m_name = #{param3}, 
 		m_mail = #{param4}, m_tel = #{param5}, m_field = #{param6} where m_id = #{param7}
+	</update>
+	<update id="member_manage_usestop">
+		update member set m_grade = #{param1}, m_jdate= SYSDATE+15 where m_num = #{param2}
+	</update>
+	<update id="member_manage_force">
+		update member set m_grade = #{param1} where m_num = #{param2}
 	</update>
 	<select id="admin_mywrite_select" resultType="com.updev.board.Board">
 		select * from board where m_nick = #{param1}
@@ -51,6 +60,9 @@
 	</delete>
 	<select id="admin_myalarm_select" resultType="com.updev.admin.Alarm">
 		select * from alarm where m_nick = #{param1}
+	</select>
+	<select id="alarm_quick_view" resultType="com.updev.admin.Alarm">
+	<![CDATA[select * from alarm where m_nick = #{param1} and ROWNUM <= 5]]>
 	</select>
 	
 	<select id="admin_myalarm_total" resultType="int">

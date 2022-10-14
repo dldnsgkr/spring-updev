@@ -44,19 +44,12 @@ public class BoardController {
 	
 	//시작페이지
 	
-	@SuppressWarnings("null")
 	@RequestMapping(value = "/")
 	public String ko1(HttpServletRequest request,Model mo)
 	{
 		HttpSession session = request.getSession();
-		if(session == null)
-		{
-			String a = "0";
-			System.out.println(a);
-			session.setAttribute("auto_login", a);
-		}
+		
 		String auto_login = String.valueOf(session.getAttribute("auto_login"));
-		System.out.println(auto_login);
 		if(auto_login.equals("null") || auto_login.equals("0")) {
 			session.setAttribute("auto_login", "0");
 		} else {
@@ -68,8 +61,8 @@ public class BoardController {
 			String m_pw = (String)session.getAttribute("pw");
 			ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			Signup d = sm.loginselect(m_id, m_pw);
-			int alarm_count = sm.alarmcount(d.getM_nick());
-			 session.setAttribute("auto_login",auto_login);
+	 		int alarm_count = sm.alarmcount(m_id);
+			session.setAttribute("auto_login",auto_login);
 	         session.setAttribute("member", d);
 	         session.setAttribute("id", m_id);
 	         session.setAttribute("pw", m_pw);
@@ -77,9 +70,13 @@ public class BoardController {
 	         session.setAttribute("member_nick", d.getM_nick());
 	  		session.setAttribute("alarm_count", alarm_count);
 		} else {
-		String loginbefore = "unknown";
+		String loginbeforenick = "unknown";
+		String loginbeforeid = "unknown";
 		session.setAttribute("loginState", false);
-		session.setAttribute("member_nick", loginbefore);
+		session.setAttribute("member_nick", loginbeforenick);
+		session.setAttribute("id", loginbeforeid);
+		
+		
 		}
 		
 		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
@@ -107,9 +104,9 @@ public class BoardController {
 	{	
  		HttpSession session = request.getSession();
  		ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
- 		String member_nick = (String)session.getAttribute("member_nick");
- 		int alarm_count = sm.alarmcount(member_nick);
-        session.setAttribute("alarm_count", alarm_count);
+ 		String m_id = (String)session.getAttribute("id");
+ 		int alarm_count = sm.alarmcount(m_id);
+ 		session.setAttribute("alarm_count", alarm_count);
         ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
  		ArrayList<Board> pmpage=sb.popmain();
  		ArrayList<Board> smpage=sb.sharemain();
@@ -136,7 +133,8 @@ public class BoardController {
 		   HttpSession session = request.getSession();
 		   ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 	 		String member_nick = (String)session.getAttribute("member_nick");
-	 		int alarm_count = sm.alarmcount(member_nick);
+	 		String m_id = (String)session.getAttribute("id");
+	 		int alarm_count = sm.alarmcount(m_id);
 	        session.setAttribute("alarm_count", alarm_count);
 		   ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		   ArrayList<Board> dto = ss.mewrite(member_nick);
@@ -150,9 +148,9 @@ public class BoardController {
 	      {
 	    	  HttpSession session = request.getSession();
 	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-		 		String member_nick = (String)session.getAttribute("member_nick");
-		 		int alarm_count = sm.alarmcount(member_nick);
-		        session.setAttribute("alarm_count", alarm_count);
+		 		String m_id = (String)session.getAttribute("id");
+		 		int alarm_count = sm.alarmcount(m_id);
+		 		session.setAttribute("alarm_count", alarm_count);
 		        
 	    	 String b_kind = request.getParameter("b_kind");
 	         int b_num = Integer.parseInt(request.getParameter("b_num"));
@@ -169,9 +167,9 @@ public class BoardController {
 	      {
 	    	  HttpSession session = request.getSession();
 	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-		 		String member_nick = (String)session.getAttribute("member_nick");
-		 		int alarm_count = sm.alarmcount(member_nick);
-		        session.setAttribute("alarm_count", alarm_count);
+	    	  String m_id = (String)session.getAttribute("id");
+		 		int alarm_count = sm.alarmcount(m_id);
+	    	  session.setAttribute("alarm_count", alarm_count);
 	    	  
 	         int b_num = Integer.parseInt(mul.getParameter("b_num"));
 	         String b_cate = mul.getParameter("b_cate");
@@ -200,8 +198,8 @@ public class BoardController {
 	    	  if((Boolean) session.getAttribute("loginState"))
 				{
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	    		  
 	    		  String b_kind = request.getParameter("b_kind");
@@ -222,8 +220,8 @@ public class BoardController {
 	         {
 	    	  HttpSession session = request.getSession();
 	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-		 		String member_nick = (String)session.getAttribute("member_nick");
-		 		int alarm_count = sm.alarmcount(member_nick);
+	    	  String m_id = (String)session.getAttribute("id");
+		 		int alarm_count = sm.alarmcount(m_id);
 		        session.setAttribute("alarm_count", alarm_count);
 	    	  
 	            String b_cate = mul.getParameter("b_cate");
@@ -258,8 +256,8 @@ public class BoardController {
 		      {
 	        	 HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	        	 
 	        	 String b_kind = request.getParameter("b_kind");
@@ -313,18 +311,21 @@ public class BoardController {
 		     	 HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+			 		String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
-	        	 
+	        	 String recieve_read = request.getParameter("receiveread");
 	        	 int b_num = Integer.parseInt(request.getParameter("b_num"));
-	        	 System.out.println(b_num);
 	        	 String su_nick = request.getParameter("su_nick");
 	        	 String nowPage=request.getParameter("nowPage");
 		    	 String cntPerPage=request.getParameter("cntPerPage");
 		    	 
 	        	 session.setAttribute("b_num", b_num);
 	        	 session.setAttribute("su_nick", su_nick);
+	        	 if(recieve_read != null)
+	        	 {
 	        	 Readcnt(b_num);
+	        	 }
 	        	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	        	 
 	        	 Board member = sb.boarddetail(b_num);
@@ -364,13 +365,14 @@ public class BoardController {
 	        	 
 	        	 HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+			 		String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	        	 
 	        	 int b_num=Integer.parseInt(request.getParameter("b_num"));
 	        	 String m_nick=request.getParameter("m_nick");
 	        	 String su_nick=request.getParameter("m_id");
+	        	 System.out.println(su_nick);
 	        	 String re_content=request.getParameter("re_content");
 	        	 String b_kind = request.getParameter("b_kind");
 	        	 String b_title = request.getParameter("b_title");
@@ -403,8 +405,8 @@ public class BoardController {
 	     		
 	     		HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	     		
 	    		String nowPage=request.getParameter("nowPage");
@@ -437,8 +439,8 @@ public class BoardController {
 	    		
 	     		HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	     		
 	     		String nowPage=request.getParameter("nowPage");
@@ -473,8 +475,8 @@ public class BoardController {
 	     		
 	     		HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	     		
 	    		String nowPage=request.getParameter("nowPage");
@@ -508,8 +510,8 @@ public class BoardController {
 	     		
 	     		HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	     		
 	    		String nowPage=request.getParameter("nowPage");
@@ -542,8 +544,8 @@ public class BoardController {
 	     		
 	     		HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	     		
 	    		String nowPage=request.getParameter("nowPage");
@@ -581,10 +583,10 @@ public class BoardController {
 	     	}
 	     	
 	     	//알림 생성
-	     	public void createalarm(int num, String m_nick, String su_nick, String a_content, int alarm_chk, int a_existence)
+	     	public void createalarm(int num, String m_nick, String m_id, String a_content, int alarm_chk, int a_existence)
 	     	{
 	     		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-	     		ss.goodalarm(num,m_nick,su_nick,a_content,alarm_chk,a_existence);
+	     		ss.goodalarm(num,m_nick,m_id,a_content,alarm_chk,a_existence);
 	     	}
 	     	
 	     	//좋아요 
@@ -755,8 +757,8 @@ public class BoardController {
 		     	 HttpSession session = request.getSession();
 		     	
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	        	 int b_num = (int)session.getAttribute("b_num");
 	        	 String su_nick = (String)session.getAttribute("su_nick");
@@ -791,8 +793,8 @@ public class BoardController {
 	     		
 	     		HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	     		
 	     		String nowPage=request.getParameter("nowPage");
@@ -823,8 +825,8 @@ public class BoardController {
 	     	{
 	     		HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		int alarm_count = sm.alarmcount(member_nick);
+		    	  String m_id = (String)session.getAttribute("id");
+			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 	     		
 	     		ArrayList<Board> list = new ArrayList<Board>();
@@ -835,6 +837,7 @@ public class BoardController {
 	     		
 	     		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	     		/*
+	     		 * 
 	     		if(sname.equals("b_title"))
 	     		{
 	     			list = sb.titlesearch(keyword);

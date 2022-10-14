@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +22,12 @@
  					<th>번호</th>
 					<th>내용</th>
 				</tr>
+				<c:set var="a" value="${fn:length(list)+1}"></c:set>
 				<c:forEach items="${list}" var="list">
+				
 				<tr>
-					<td>${list.a_num}</td>
-          
+					<td>${a=a-1}</td>
 					<td><a href="alarmcheck?b_num=${list.b_num}&a_num=${list.a_num}">${list.a_content}</a></td>
-					
-					
-
 				</tr>
 				</c:forEach>
 			</table>
