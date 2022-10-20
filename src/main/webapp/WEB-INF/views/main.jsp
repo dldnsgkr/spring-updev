@@ -69,7 +69,7 @@
 					<td class="main_popboardtitle"><a href="detail?b_num=${a.b_num}">
 					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a>
 					<c:if test="${a.b_replycnt ne 0}">
-						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+						[<c:out value="${a.b_replycnt}"/>]
 					</c:if></td>
 					<td class="main_popboarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
@@ -88,7 +88,7 @@
 					<td><a href="detail?b_num=${a.b_num}">
 					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a>
 					<c:if test="${a.b_replycnt ne 0}">
-						<span>[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]</span>
+					[<c:out value="${a.b_replycnt}"/>]
 					</c:if>
 					</td>
 					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
@@ -109,7 +109,7 @@
 					<td><a href="detail?b_num=${a.b_num}">
 					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a></td>
 					<c:if test="${a.b_replycnt ne 0}">
-						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+						[<c:out value="${a.b_replycnt}"/>]
 					</c:if>
 					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
@@ -128,7 +128,7 @@
 					<td><a href="detail?b_num=${a.b_num}">
 					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a></td>
 					<c:if test="${a.b_replycnt ne 0}">
-						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+						[<c:out value="${a.b_replycnt}"/>]
 					</c:if>
 					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
@@ -147,7 +147,7 @@
 					<td><a href="detail?b_num=${a.b_num}">
 					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a></td>
 					<c:if test="${a.b_replycnt ne 0}">
-						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+						[<c:out value="${a.b_replycnt}"/>]
 					</c:if>
 					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
@@ -166,7 +166,7 @@
 					<td><a href="detail?b_num=${a.b_num}">
 					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a></td>
 					<c:if test="${a.b_replycnt ne 0}">
-						[&nbsp;<c:out value="${a.b_replycnt}"/>&nbsp;]
+						[<c:out value="${a.b_replycnt}"/>]
 					</c:if>
 					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
