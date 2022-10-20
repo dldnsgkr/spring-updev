@@ -1,26 +1,13 @@
 function idtest(){
 	console.log(1);
-	var idchk = /^[a-z0-9]{4,12}$/;
 	var id =$("#m_id").val();
-			$("#m_id").mouseout(function() {
-				if (idchk.test($(this).val())) {
-						console.log(idchk.test($(this).val()));
-						$("#id_check").text('');
-				} else {
-					alert("이름은 영소문자와 숫자로 4~12글자까지 가능합니다")
-					$('#id_check').text("이름은 영소문자와 숫자로 4~12글자까지 가능합니다");
-					$("#idcheck").attr("value","N");
-					$('#id_check').css('color', 'red');
-				}
-			});
+	var idchk = /^[a-z0-9]{4,12}$/;
 	console.log(id);
 	
-	
 	var sam ={"id":id};
-	
 	console.log(sam);
+	
 	var sam =JSON.stringify(sam);
-		
 	
 	$.ajax({
 		type:"get",
@@ -28,25 +15,28 @@ function idtest(){
 		url:"idtest",
 		data:{jsoninfo:sam},
 		success:function(data,textStatus){
-			$("#id_check").text(data);
-			$("#idcheck").text(data);
-			if (data != 0) {
-				$("#id_check").text("사용 중인 아이디입니다. 다른 아이디를 입력 해주세요.");
-				$("#idcheck").attr("value","N");
-				$("#id_check").css("color", "red");
-				} else if(id == ""){
-				$('#id_check').text("아이디를 입력해주세요.");
-				$('#id_check').css('color', 'red');
-				} else if  (data == 0){
-				$("#id_check").text("사용 가능한 아이디입니다.");
-				$("#id_check").css("color", "green");
-				$("#idcheck").attr("value","Y");
-				
-				}
-				console.log(idcheck);
-					
-			
-		},
+						if (data != 0) {
+						$("#id_check").text("사용중인 아이디입니다.");
+						$("#id_check").css("color", "red");
+						$("#idcheck").attr("value","N");
+						} else {
+						
+						if(idchk.test(id)){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#id_check").text("사용가능한 아이디 입니다.");
+							$("#id_check").css("color", "green");
+							$("#idcheck").attr("value","Y");
+						} else if(id == ""){
+							$('#id_check').text("아이디를 입력해주세요");
+							$('#id_check').css('color', 'red');
+						} else {
+							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다");
+							$('#id_check').css('color', 'red');
+							$("#idcheck").attr("value","N");
+						}
+						console.log(idcheck);
+					}
+					},
 		error:function(data,textStatus){
 			alert("전송실패!!");
 		}

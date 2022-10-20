@@ -148,6 +148,7 @@ public class MemberController {
 		   
 		   //세션 삭제,재정의
 		   String loginbefore = "unknown";
+		   String loginbeforeid = "unknown";
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
 	         session.removeAttribute("id");
@@ -157,6 +158,7 @@ public class MemberController {
 	         session.removeAttribute("alarm_count");
 	         session.setAttribute("loginState",false);
 	         session.setAttribute("member_nick", loginbefore);
+	         session.setAttribute("id", loginbeforeid);
 	         session.setAttribute("auto_login",0);
 	         
 	      return "redirect:index";
@@ -243,7 +245,7 @@ public class MemberController {
 				int s = sm.nicktest(nick);
 				
 				if (s!=0) {
-					nickmsg=" *사용중인 닉네임입니다. 다시 입력 해주세요.";
+					nickmsg=" 사용중인 닉네임입니다. 다시 입력 해주세요.";
 				}
 				
 				System.out.println(nickmsg);
