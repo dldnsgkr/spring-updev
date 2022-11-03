@@ -30,9 +30,6 @@ import com.updev.board.Alarm;
 import com.updev.board.Board;
 import com.updev.board.ServiceBoard;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class MemberController {
 	

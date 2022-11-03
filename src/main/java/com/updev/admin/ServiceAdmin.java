@@ -8,6 +8,7 @@ import com.updev.member.Signup;
 
 public interface ServiceAdmin {
 
+	
 	public Signup infoupdate(String m_id);
 
 	public void info_update(String pw, String nick, String name, String mail, String tel, String field,
@@ -50,7 +51,7 @@ public interface ServiceAdmin {
 
 	public void report_manage_update(String r_status, int r_num);
 
-	public ArrayList<Alarm> admin_myalarm_select(String admin_nick);
+	public ArrayList<Alarm> admin_alarm_select(String admin_nick);
 
 	public void board_manage_delete(int b_num);
 	
@@ -85,9 +86,9 @@ public interface ServiceAdmin {
 
 	public ArrayList<Board> adminscrappage(PageDTO dto);
 
-	public int admin_myalarm_total(String admin_nick);
+	public int admin_alarm_total(String admin_nick);
 
-	public ArrayList<Board> admin_myalarm_page(PageDTO dto);
+	public ArrayList<Board> admin_alarm_page(PageDTO dto);
 
 	public Signup member_manage_uconfirm(int m_num);
 

@@ -31,11 +31,6 @@ import com.updev.admin.ServiceAdmin;
 import com.updev.member.ServiceMember;
 import com.updev.member.Signup;
 
-/**
- * Handles requests for the application home page.
- * 
- * 
- */
 @Controller
 public class BoardController {
 	
@@ -50,10 +45,8 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		
 		String auto_login = String.valueOf(session.getAttribute("auto_login"));
-<<<<<<< HEAD
+
 		System.out.println(auto_login);
-=======
->>>>>>> 8002ca8fe042e126efff45db4181ab4ecb61073f
 		if(auto_login.equals("null") || auto_login.equals("0")) {
 			session.setAttribute("auto_login", "0");
 		} else {

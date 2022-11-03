@@ -103,6 +103,7 @@
 	<definition name="admin_mypage" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin_mypage.jsp" />
 	</definition>
+
     <!-- 마이페이지 - 정보수정 페이지 -->
 	<definition name="admin_infoupdate" extends="baseLayout">   
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin_infoupdate.jsp" />

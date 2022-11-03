@@ -20,41 +20,17 @@
 				<div class="slider-wrap">
 	    			<div class="cont">
 	       				<img src="./resources/images/banner1.jpg" width="1200px">
-		       			<div class="main_in1">
-			       				개발자로 취업하자<br>
-								교육비 전액 무료<br>
-								<a href="">자세히 보기</a>
-		       			</div>
+		       			<div class="main_in1">개발자로 취업하자<br>교육비 전액 무료<br><a href="">자세히 보기</a></div>
 	    			</div>
 	    			<div class="cont">
 	       				<img src="./resources/images/banner2.jpg" width="1200px">
-	       				<div class="main_in2">
-			       				UPDEV 개발자 채용<br>
-								<a href="">자세히 보기</a>
-						</div>
+	       				<div class="main_in2">UPDEV 개발자 채용<br><a href="">자세히 보기</a></div>
 	    			</div>
 	    			<div class="cont">
 	         			<img src="./resources/images/banner3_1.jpg" width="1200px">
-	         			<div class="main_in3">
-			         			경력보다 실력<br>
-								UPDEV 개발자를 만나다.<br>
-								<a href="">자세히 보기</a>
-						</div>
+	         			<div class="main_in3">경력보다 실력<br>UPDEV 개발자를 만나다.<br><a href="">자세히 보기</a></div>
 	    			</div>
 				</div>
-				<!-- 
-				<div class="login">
-					<form name="login1" method="POST">
-						<input class="input" type="text" name="m_id" value="" placeholder="id">
-						<button class="main_login" type="button" onclick="loginChk()">로그인</button>
-						<input class="input" type="password" name="m_pw" value="" placeholder="pw">
-						<div class="button1">
-							<button class="button" type="button" name="sign" onclick="location.href = 'signup' ">회원가입</button>
-							<button class="button" type="button" name="find_idpw" onclick="location.href = 'findidpw' ">아이디/비밀번호분실</button>
-						</div>
-					</form>
-				</div>
-				 -->
 			</div>
 		<div class="main_board">
 			<div class="board">
@@ -77,28 +53,24 @@
 				</c:forEach>
 				</table>
 			</div>
-			
 			<div class="board">
 				<span class="main_boardtitle">정보공유</span>
 				<table>
-				<a href="sharepage" id="alink">더보기</a>
-				<c:forEach items="${sharempage}" var="a" begin="0" end="7">
-				<tr>
+					<a href="sharepage" id="alink">더보기</a>
+					<c:forEach items="${sharempage}" var="a" begin="0" end="7">
+					<tr>
 					<td><input type="hidden" value="${a.b_num}"></td>
 					<td><a href="detail?b_num=${a.b_num}">
 					<c:set var="TitleValue" value="${a.b_title}"/>${fn:substring(TitleValue,0,5) }</a>
 					<c:if test="${a.b_replycnt ne 0}">
 					[<c:out value="${a.b_replycnt}"/>]
-					</c:if>
-					</td>
+					</c:if></td>
 					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
 					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
-				</tr>
-				</c:forEach>
+					</tr>
+					</c:forEach>
 				</table>
 			</div>
-
-			
 			<div class="board">
 				<span class="main_boardtitle">지식인</span>
 				<a href="questionpage" id="alink">더보기</a>
@@ -117,7 +89,6 @@
 				</c:forEach>
 				</table>
 			</div>
-			
 			<div class="board">
 				<span class="main_boardtitle">고민상담소</span>
 				<a href="worrypage" id="alink">더보기</a>
@@ -136,7 +107,6 @@
 				</c:forEach>
 				</table>
 			</div>
-
 			<div class="board">
 				<span class="main_boardtitle">공지</span>
 				<a href="noticepage" id="alink">더보기</a>
@@ -155,7 +125,6 @@
 				</c:forEach>
 				</table>
 			</div>
-	
 			<div class="board">
 				<span class="main_boardtitle">Q&A</span>
 				<a href="qnapage" id="alink">더보기</a>
@@ -174,7 +143,6 @@
 				</c:forEach>
 				</table>			
 			</div>
-			
 			</div>				
 		</div>
 	</body>
