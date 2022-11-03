@@ -13,7 +13,7 @@
 	<body>
 		<c:set var="result" value="${param.result}"/>
 		<c:choose>
-			<c:when test="${result=='loginfail'}">
+			<c:when test="${loginresult=='loginfail'}">
 				<script type="text/javascript">
 					window.onload=function(){
 						alert("로그인 확인 해주세요!!");
@@ -65,7 +65,7 @@
 								<c:choose>
 								<c:when test="${member.m_id=='admin'}">
 									<a>환영합니다!<b>관리자님</b></a>
-									<a class="alarm" onclick="alarm_quick_view('${member.m_nick}');">
+									<a class="alarm" onclick="alarm_quick_view('${member.m_id}');">
 									<img src="./resources/images/alarm.svg">
 									<span class="alarm_cnt">${alarm_count}</span>
 									</a>
@@ -150,8 +150,8 @@
 		   document.getElementById("dpTime").innerHTML = ampm + " " + hours + ":" + min + ":" + sec
 		}
 		
-		function alarm_quick_view(m_nick) {
-			var sam ={"m_nick":m_nick};
+		function alarm_quick_view(m_id) {
+			var sam ={"m_id":m_id};
 			var sam =JSON.stringify(sam);
 			$.ajax({
 				type:"post",

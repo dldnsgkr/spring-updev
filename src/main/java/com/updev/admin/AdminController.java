@@ -678,12 +678,12 @@ public class AdminController {
 		JSONParser jsonparse = new JSONParser();
 		
 			JSONObject jobj = (JSONObject) jsonparse.parse(jo);
-			String m_nick = (String) jobj.get("m_nick");
+			String m_id = (String) jobj.get("m_id");
 			
 			JSONArray array = new JSONArray();
 			JSONObject total = new JSONObject();
 			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
-			ArrayList<Alarm> list =	sa.alarm_quick_view(m_nick);
+			ArrayList<Alarm> list =	sa.alarm_quick_view(m_id);
 			
 			for(int i=0;i<list.size();i++) {
 				JSONObject member = new JSONObject();

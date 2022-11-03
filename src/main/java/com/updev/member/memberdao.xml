@@ -17,7 +17,7 @@
 		insert into member(m_num,m_id,m_pw,m_nick,m_name,m_mail,m_tel,m_field,m_grade) values(m_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
 	</insert>
 	<!--  -->
-	<select id="loginselect" resultType="com.updev.member.Signup">
+	<select id="login" resultType="com.updev.member.Signup">
 		SELECT * FROM member WHERE m_id = #{param1} AND m_pw = #{param2}
 	</select>
 	

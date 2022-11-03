@@ -109,11 +109,11 @@ public interface ServiceBoard {
 
 	public Alarm howalramexistence(int b_num, String nick, String su_nick);
 	
-	public int howgo(int b_num, String m_nick, String su_nick);
+	public int howgo(int b_num, String m_nick);
 
 	public void regood(int b_num, String m_nick);
 
 	public void rescrap(int b_num, String m_nick);
 
-	public int howsc(int b_num, String m_nick, String su_nick);
+	public int howsc(int b_num, String m_nick);
 }

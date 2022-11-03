@@ -41,28 +41,28 @@ public class MemberController {
 	
 	// 회원가입폼으로 이동
 	@RequestMapping(value = "/signup")
-	public String member()
+	public String signupform()
 	{
 		return "signup";
 	}
 	
 	// 로그인폼으로 이동
 		@RequestMapping(value = "/login")
-		public String lo()
+		public String loginform()
 		{
 			return "login";
 		}
 
 		//아이디,비밀번호 찾기 폼으로 이동
 		@RequestMapping(value = "/findidpw")
-		public String find()
+		public String find_idpw_form()
 		{
 			return "find_idpw";
 		}
 
 		
 	//회원가입
-	@RequestMapping(value = "/insert")
+	@RequestMapping(value = "/member_insert")
 	   public String insert(HttpServletRequest request)//회원가입 저장
 	   {
 	      String m_id = request.getParameter("m_id");
@@ -80,37 +80,32 @@ public class MemberController {
 	   
 	//로그인 저장기능
 	@RequestMapping(value="/loginact", method = RequestMethod.POST)
-	   public ModelAndView ko6(HttpServletRequest request , RedirectAttributes rattr) 
+	   public ModelAndView logincheck(HttpServletRequest request , RedirectAttributes rattr) 
 	   {//db에 회원가입한 아이디 비밀번호가 맞는지 확인하는곳(로그인중)
 	      //정보가 맞지 않다면 로그인창으로 보냄
 		HttpSession session = request.getSession();
+		//오늘날짜 구하는 식
 		  Date now = new Date();
 		  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		  String formatedNow = formatter.format(now);
+		  
 	      ModelAndView mav=new ModelAndView();   
 	      String m_id = request.getParameter("m_id");
 	      String m_pw = request.getParameter("m_pw");
-	      String auto_login = request.getParameter("auto_login");
-	      if(auto_login == null)
-	      {
-	    	  auto_login = "0";
-	      } else {
-	    	  auto_login = "1";
-	      }
 	      ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-	      Signup d = sm.loginselect(m_id, m_pw);
-	      if(d==null) {
+	      Signup signup = sm.login(m_id, m_pw);
+	      if(signup==null) {
 	    	  //아이디 비밀번호가 일치한 데이터가 없다면
 	    	  rattr.addAttribute("check", "nodata");
 	    	  mav.setViewName("redirect:login");
 	      } else {
-	    	  
-	    	  String grade = d.getM_grade();
-	    	  String outtime = d.getM_outtime();
-	    	  String date1 = outtime;
-		      String date2 = formatedNow;
+	    	  String grade = signup.getM_grade();//등급
+	    	  String outtime = signup.getM_outtime();
+	    	  String date1 = outtime;//마지막 로그아웃 시간
+		      String date2 = formatedNow;//현재시간
+		      
 	    	  int result = date1.compareTo(date2);
-	    	  /*
+	    	  /* 나온 숫자에 따른 결과
 		      if(result == 0)
 		          System.out.println("동일한 날짜");
 		      else if (result < 0)
@@ -118,14 +113,19 @@ public class MemberController {
 		      else
 		          System.out.println("date1은 date2 이후 날짜");
 		          */
+	    	  
 	    	  if((grade.equals("회원") || grade.equals("관리자")) && result < 0)
 	    	  {//로그인한 회원에 관해 세션 정의
-	    		 session.setAttribute("auto_login",auto_login);
-	 	         session.setAttribute("member", d);
-	 	         session.setAttribute("id", m_id);
-	 	         session.setAttribute("pw", m_pw);
+	 	         session.setAttribute("member", signup);
+	 	         session.setAttribute("m_id", m_id);
+	 	         session.setAttribute("m_pw", m_pw);
 	 	         session.setAttribute("loginState", true);
-	 	         session.setAttribute("member_nick", d.getM_nick());
+	 	         session.setAttribute("member_nick", signup.getM_nick());
+	 	         
+	 	        String id = (String)session.getAttribute("m_id");
+		 		int alarm_count = sm.alarmcount(id);		        
+		 		session.setAttribute("alarm_count", alarm_count);
+		 		
 	 	         mav.setViewName("redirect:index");
 
 	    	  } else {
@@ -139,11 +139,11 @@ public class MemberController {
 	   
 	//로그아웃
 	   @RequestMapping(value="/logout")
-	   public String ko7(HttpServletRequest request) {
+	   public String logoutact(HttpServletRequest request) {
 
 		   HttpSession session=request.getSession();
 		   ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-		   String id = (String)session.getAttribute("id");
+		   String id = (String)session.getAttribute("m_id");
 		   sm.outtimeupdate(id);//로그아웃한 시간
 		   
 		   //세션 삭제,재정의
@@ -167,11 +167,13 @@ public class MemberController {
 	   
 	  //프로필 수정
 	   @RequestMapping(value = "/proupdate")
-	   public String ko9(HttpServletRequest request)
+	   public String profile_update(HttpServletRequest request)
 	   {
 		   HttpSession session = request.getSession();
+		   
+		   //새로 업로드 된 알림
 	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-	    	  String id = (String)session.getAttribute("id");
+	    	  String id = (String)session.getAttribute("m_id");
 		 		int alarm_count = sm.alarmcount(id);		        
 		 		session.setAttribute("alarm_count", alarm_count);
 		   
@@ -184,6 +186,7 @@ public class MemberController {
 		   String m_tel = request.getParameter("m_tel");
 		   String m_field = request.getParameter("m_field");
 		   
+		   //기존 닉네임과 다른테이블 닉네임이 동일한것들을 바꿀 닉네임으로 전부다 변경 
 		   sm.profileupdate(m_nick,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
 		   sm.profileboardupdate(m_nick,up_nick);
 		   sm.balupdate(m_nick,up_nick);
@@ -413,7 +416,7 @@ public class MemberController {
 	   
 	 //게시물 신고페이지
 	 	@RequestMapping(value = "/boardreportpage")
-	     public String ko1(HttpServletRequest request,Model mo,RedirectAttributes rattr)
+	     public String board_reportpage(HttpServletRequest request,Model mo,RedirectAttributes rattr)
 	     {
 	 		//로그인이 되어있지 않다면 로그인쪽으로 보내는 기능
 	 		//로그인이 되어있다면 신고 페이지로
@@ -421,10 +424,11 @@ public class MemberController {
 			if((Boolean) session.getAttribute("loginState"))
 			{
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-		    	  String m_id = (String)session.getAttribute("id");
+		    	  String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);			        
 			 		session.setAttribute("alarm_count", alarm_count);	
-				
+			 
+			 		//기본 자료
 	    	 int b_num = Integer.parseInt(request.getParameter("b_num"));
 	    	 String b_title = request.getParameter("b_title");
 	    	 mo.addAttribute("b_num",b_num);
@@ -433,6 +437,7 @@ public class MemberController {
 			}
 			else
 			{
+				//로그인이 안되어있다면 로그인 페이지로
 				rattr.addAttribute("result", "loginfail");
 				return "redirect:login";
 			}
@@ -440,51 +445,54 @@ public class MemberController {
 	 	
 	 	//게시물 신고
 	 	@RequestMapping(value = "/breport")
-	 	public String ko2(MultipartHttpServletRequest mul,HttpServletRequest request)
+	 	public String board_reportact(MultipartHttpServletRequest mul,HttpServletRequest request)
 	 	{
 	 		String r_status = "처리전";
-	 		String a = mul.getParameter("r_reason");//기타 제외 데이터
-	 		String b = mul.getParameter("otherreason");//기타 기입데이터
+	 		String r__reason = mul.getParameter("r_reason");//기타 제외 데이터
+	 		String otherreason = mul.getParameter("otherreason");//기타 기입데이터
 	 		String r_reason = "";
 	 		MultipartFile f = mul.getFile("r_file1");
 	        String r_file1 = f.getOriginalFilename();
 	        
 	        //기타를 선택했다면 b객체에 있는 기타 작성데이터를 r_reason 객체에 넣는다
-	        if(a.equals("etc"))
+	        if(r__reason.equals("etc"))
 	        {
-	        	r_reason = b;
+	        	r_reason = otherreason;
 	        	
 	        	
 	        } else {
-	        	r_reason = a;
+	        	r_reason = r__reason;
 	        }
+	        
 	 		int b_num = Integer.parseInt(request.getParameter("b_num"));
 	 		 ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-	    	 ss.reportinsert(r_status,r_reason,r_file1,b_num);
+	    	 ss.reportinsert(r_status,r_reason,r_file1,b_num);//신고내용 접수 insert
 	    	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
-	    	 sb.reportboardupdate(b_num);
+	    	 sb.reportboardupdate(b_num);//게시글 신고횟수
 	 		return "redirect:index";
 	 	}
 	 	
 	 	//프로필 수정 체크
 		   @RequestMapping(value = "/proupdatecheck")
-		   public String ko8(HttpServletRequest request,Model mo)
+		   public String profile(HttpServletRequest request,Model mo)
 		   {
 			   HttpSession session = request.getSession();
+			   
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String m_id = (String)session.getAttribute("id");
+			 		String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);			       
 			 		session.setAttribute("alarm_count", alarm_count);
-			   	ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-				Signup dao = ss.profileupdatecheck(m_id);
-				mo.addAttribute("list",dao);
+			 		
+			 		//수정데이터
+				Signup signup = sm.profileupdatecheck(m_id);
+				mo.addAttribute("list",signup);
 			   return "memberinfoupdate";
 		   }
 	   
 	 	//프로필 수정 ajax
 	 	@ResponseBody
 		@RequestMapping( value = "/myinfoupdate", method = RequestMethod.GET)
-		public String jjoinsave(HttpServletRequest request, RedirectAttributes rattr) throws IOException
+		public String profile_update_ajax(HttpServletRequest request, RedirectAttributes rattr) throws IOException
 		{
 			String jo=request.getParameter("jsoninfo");
 			JSONParser jsonparse = new JSONParser();
@@ -504,6 +512,7 @@ public class MemberController {
 				System.out.println(m_field);
 				ServiceMember ss=sqlsession.getMapper(ServiceMember.class);
 				
+				//기존 닉네임과 다른테이블 닉네임이 동일한것들을 바꿀 닉네임으로 전부다 변경 
 				ss.profileupdate(m_nick,m_id,m_pw,m_name,m_mail,m_tel,m_field,up_nick);
 				ss.profileboardupdate(m_nick,up_nick);
 				ss.balupdate(m_nick,up_nick);
@@ -520,12 +529,12 @@ public class MemberController {
 		}
 	 	//내가 쓴 글 
 		   @RequestMapping(value = "/ajaxmywrite")
-		   public String ko5(HttpServletRequest request,Model mo)
+		   public String mywrite_ajax(HttpServletRequest request,Model mo)
 		   {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		String m_id = (String)session.getAttribute("id");
+			 		String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);
 			 		session.setAttribute("alarm_count", alarm_count);
 			   ArrayList<Board> dao = sm.ajaxmywrite(member_nick);
@@ -538,13 +547,13 @@ public class MemberController {
 
 		 //내가 좋아요한 글
 		   @RequestMapping(value = "/ajaxmygood")
-		   public String ko6(HttpServletRequest request,Model mo)
+		   public String my_like_ajax(HttpServletRequest request,Model mo)
 
 		   {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		String m_id = (String)session.getAttribute("id");
+			 		String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 			        
@@ -557,12 +566,12 @@ public class MemberController {
 		   
 		 //내가 스크랩 글 
 		   @RequestMapping(value = "/ajaxmyscrap")
-		   public String ko7(HttpServletRequest request,Model mo)
+		   public String my_scrap_ajax(HttpServletRequest request,Model mo)
 		   {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			 		String member_nick = (String)session.getAttribute("member_nick");
-			 		String m_id = (String)session.getAttribute("id");
+			 		String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 			        
@@ -571,11 +580,12 @@ public class MemberController {
 			   return "memscrap";
 		   }
 		   
+		   //나의 알림
 		   @RequestMapping(value = "/alarm")
-	     	public String alarm(HttpServletRequest request,Model mo) {
+	     	public String my_alarm_ajax(HttpServletRequest request,Model mo) {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-			 		String m_id = (String)session.getAttribute("id");
+			 		String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 			        System.out.println(m_id);
