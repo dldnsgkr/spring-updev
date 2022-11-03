@@ -58,7 +58,7 @@
 	<delete id="member_manage_delete">
 		delete FROM member where m_num = #{param1}
 	</delete>
-	<select id="admin_myalarm_select" resultType="com.updev.admin.Alarm">
+	<select id="admin_alarm_select" resultType="com.updev.admin.Alarm">
 		select * from alarm where m_nick = #{param1}
 	</select>
 	<select id="alarm_quick_view" resultType="com.updev.admin.Alarm">
