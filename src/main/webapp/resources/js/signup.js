@@ -8,8 +8,8 @@ function signupChk(){
 	var namechk = /^[가-힣]{2,10}$/;
 	var telchk = /^[0-9]{10,11}$/;
 
-	var dup = document.getElementById("idcheck");
-	var nickdup = document.getElementById("nickcheck");
+	var id_dup = document.getElementById("idcheck");
+	var nickname_dup = document.getElementById("nickcheck");
 	const vid = document.getElementById("m_id");
 	const vpw = document.getElementById("pw");
 	const vpwchk = document.getElementById("pwchk");
@@ -29,7 +29,7 @@ function signupChk(){
 			alert("아이디는 4~12 글자 사이로 영문자, 숫자로 입력해주세요");
 			return false;
 		}
-		if(dup.value == "N"){			   
+		if(id_dup.value == "N"){			   
 			alert("아이디 중복체크 해주세요 from 유효성");			      
 			return false;			      
 		}
@@ -63,7 +63,7 @@ function signupChk(){
 			alert("닉네임은 한글로 2~10글자 사이어야 합니다.");
 			return false;
 		} 
-		if(nickdup.value == "N"){			   
+		if(nickname_dup.value == "N"){			   
 			alert("사용중인 아이디입니다. 다른 아이디를 입력해주세요. from 유효성");			      
 			return false;			      
 		}
