@@ -1,4 +1,4 @@
-function meminfoup(){
+function member_info_update_check(){
 	
 	var form =document.memupinfochk;
 	console.log(1);

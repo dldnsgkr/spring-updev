@@ -16,35 +16,34 @@
 		<div class="wrapper">
 			<form action="insert" method="post" name="signup1" id="signupform">
 					<div class="title"><h1>SIGN UP</h1></div>
-					<div class="input">
+					<div class="signup_input">
 						<label><input class="m_id" id="m_id" type="text" name="m_id" placeholder="아이디: 영소문자, 숫자로 4~12 글자까지 가능"></label>
-						 <button id="idbutton" class="button button1" type="button" onclick="idtest()">중복확인</button>
-						<div id="id_check" class="id_check"></div>
-						<div id="msg" class="msg">${msg}</div>
+						 <button id="id_duplicate_button" class="button button1" type="button" onclick="id_duplicate_test()">중복확인</button>
+						<div id="id_status_alert" class="id_status_alert" >${id_availability}</div>
 					</div>
-					<div class="input">
-						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" onclick="idselect()" ></label>
-						<input type="hidden" name="idcheck" id="idcheck" value="N">
+					<div class="signup_input">
+						<label><input id="pw" type="password" name="m_pw" placeholder="비밀번호" onclick="id_duplicate_check_alert()" ></label>
+						<input type="hidden" name="id_status_value" id="id_status_value" value="N">
 					</div>
-					<div class="input">
+					<div class="signup_input">
 						<label><input id="pwchk" type="password" name="m_pw" placeholder="비밀번호확인" ></label>
 					</div>
-					<div class="input">
+					<div class="signup_input">
 						<label><input class="m_nick" id="m_nick" type="text" name="m_nick" placeholder="닉네임: 한글로 2~10글자까지 가능" ></label>
-						<button class="button button1" type="button" onclick="nicktest();">중복확인</button>
-						<div id="nick_check" class="nick_check" >${nickmsg}</div>
+						<button class="button button1" type="button" onclick="nickname_duplicate_test();">중복확인</button>
+						<div id="nickname_status_alert" class="nickname_status_alert" >${nickname_availability}</div>
 					</div>
-					<div class="input">
-						<label><input id="name" type="text" name="m_name" placeholder="이름" onclick="nickselect()" ></label>
-						<input type="hidden" name="nickcheck" id="nickcheck" value="N">
+					<div class="signup_input">
+						<label><input id="name" type="text" name="m_name" placeholder="이름" onclick="nickname_duplicate_check_alert()" ></label>
+						<input type="hidden" name="nickname_status" id="nickname_status" value="N">
 					</div>
-					<div class="input">
+					<div class="signup_input">
 						<label><input id="mail" type="text" name="m_mail" placeholder="이메일 ex)abc123@gmail.com" ></label>
 					</div>
-					<div class="input">
+					<div class="signup_input">
 						<label><input id="tel" type="text" name="m_tel" placeholder="전화번호 ex)01012341234" ></label>
 					</div>	
-					<div class="input">
+					<div class="signup_input">
 						<label>
 							<select id="field" name="m_field">
 								<option value="">분야</option>
@@ -55,11 +54,11 @@
 							</select>
 						</label>
 					</div>	
-					<div class="input2">
+					<div class="signup_status">
 						<input type="hidden" name="m_grade" value="회원">
 					</div>
 					<div class="terms">	
-					<div class="myterms" style="border: 1px solid #242038; height:70px; overflow-y: scroll;">
+					<div class="terms_description" style="border: 1px solid #242038; height:70px; overflow-y: scroll;">
 						<p>
 						UPDEV(이하 업데브)는 귀하의 개인정보를 중요시하며, 『정보통신망 이용촉진 및 정보보호 등에 관한 법률』, 『개인정보 보호법』, 『통신비밀보호법』, 『전기통신사업법』 등
 						정보통신 서비스 제공자가 준수하여야 할 관련 법령상의 개인정보보호 규정을 준수하고 있습니다. 당사는 본 개인정보취급방침을 통하여 귀하가 회사에 제공하는 개인정보가
@@ -70,7 +69,7 @@
 						</p>
 					</div>
 					</div>
-					<div id="myagree">
+					<div id="agreement">
 						<label>개인 정보 수집 및 이용에 동의 합니다 <input type="checkbox" id="agree1"  name="agree" ></label>
 					</div>
 					<div class="signup_btn">
