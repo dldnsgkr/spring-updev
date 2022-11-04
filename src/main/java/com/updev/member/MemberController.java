@@ -60,7 +60,7 @@ public class MemberController {
 		
 	//회원가입
 	@RequestMapping(value = "/insert")
-	   public String insert(HttpServletRequest request)//회원가입 저장
+	   public String member_insert(HttpServletRequest request)//회원가입 저장
 	   {
 	      String m_id = request.getParameter("m_id");
 	      String m_pw = request.getParameter("m_pw");
