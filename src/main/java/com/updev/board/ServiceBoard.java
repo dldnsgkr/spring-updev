@@ -10,13 +10,13 @@ public interface ServiceBoard {
 	public void writesave(String b_cate, String b_kind, String b_title, String m_nick, String b_content, String b_file1,
 			String b_file2);
 
-	public ArrayList<Board> mewrite(String a);
+	public ArrayList<Board> mywrite(String a);
 
 	public Signup myinfo(String m_nick);
 
 	public void boardupdate(int b_num, String b_cate, String b_kind, String b_title, String m_nick, String b_content, String b_file1, String b_file2);
 
-	public Board updatecheck(int b_num);
+	public Board board_update_check(int b_num);
 
 	public ArrayList<Board> bo1(String a1);
 
@@ -28,7 +28,7 @@ public interface ServiceBoard {
 
 	public ArrayList<Board> bo5(String e1);
 
-	public void delete(int b_num);
+	public void boarddelete(int b_num);
 
 	public ArrayList<Board> noticeboardtable(String notice);
 
@@ -42,7 +42,7 @@ public interface ServiceBoard {
 	
 	public Board boarddetail(int b_num);
 	
-	public void reportboardupdate(int b_num);
+	public void report_board_update(int b_num);
 	
 	public void replysave(int b_num, String m_nick, String re_content);
 	
@@ -77,11 +77,11 @@ public interface ServiceBoard {
 
 	public void readcnt(int num);
 
-	public Good howgood(int b_num, String nick);
+	public Good how_many_good(int b_num, String nick);
 
-	public void blikeup(int b_num, String m_nick, int chk);
+	public void likeup(int b_num, String m_nick, int chk);
 
-	public void blikedown(int b_num, String m_nick, int like_chk);
+	public void likedown(int b_num, String m_nick, int like_chk);
 
 	public void likecntup(int num);
 
@@ -91,7 +91,7 @@ public interface ServiceBoard {
 
 	public void scrapcancel(int b_num, String m_nick, int scrap_chk);
 
-	public Scrap howscrap(int b_num, String nick);
+	public Scrap how_many_scrap(int b_num, String nick);
 	
 	public ArrayList<Board> popmain();
 	
@@ -105,15 +105,17 @@ public interface ServiceBoard {
 	
 	public ArrayList<Board> qnamain();
 
-	public void goodalarm(int num, String m_nick, String su_nick, String a_content, int alarm_chk, int a_existence);
+	public void makealarm(int num, String m_nick, String su_nick, String a_content, int alarm_chk, int a_existence);
 
 	public Alarm howalramexistence(int b_num, String nick, String su_nick);
 	
-	public int howgo(int b_num, String m_nick);
+	public int are_you_chkgood(int b_num, String m_nick);
 
 	public void regood(int b_num, String m_nick);
 
 	public void rescrap(int b_num, String m_nick);
 
-	public int howsc(int b_num, String m_nick);
+	public int are_you_chkcrap(int b_num, String m_nick);
+
+	public Signup boarddetailid(String board_nick);
 }

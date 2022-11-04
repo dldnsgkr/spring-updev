@@ -8,11 +8,11 @@
    insert into board(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_likecnt,b_readcnt,b_group,b_step,b_indent,b_file1,b_file2,b_report,b_replycnt) values(b_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},0,0,b_seq.currval,0,0,#{param6},#{param7},0,0)
    </insert>
 
-	<select id="mewrite" resultType="com.updev.board.Board">
+	<select id="mywrite" resultType="com.updev.board.Board">
 		SELECT * FROM board where m_nick = #{param1}
 	</select>
 	
-	<select id="updatecheck" resultType="com.updev.board.Board">
+	<select id="board_update_check" resultType="com.updev.board.Board">
 		SELECT * FROM board where b_num = #{param1}
 	</select>
 	
@@ -20,27 +20,7 @@
 		update board set b_cate = #{param2}, b_kind = #{param3}, b_title = #{param4}, m_nick = #{param5}, b_content = #{param6}, b_file1 = #{param7}, b_file2 = #{param8} where b_num = #{param1}
 	</update>
 	
-	<select id="bo1" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="bo2" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="bo3" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="bo4" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<select id="bo5" resultType="com.updev.board.Board">
-		select * from board where b_kind = #{param1}
-	</select>
-	
-	<delete id="delete">
+	<delete id="boarddelete">
 		delete from board where b_num = #{param1}
 	</delete>
 	
@@ -52,7 +32,7 @@
 		update board set b_readcnt=b_readcnt+1 where b_num=#{param1}
 	</update>
 	
-	<update id="reportboardupdate">
+	<update id="report_board_update">
 		update board set b_report=b_report+1 where b_num=#{param1}
 	</update>
 	
@@ -82,15 +62,15 @@
 	</update>
 	
 	<!-- 좋아요 -->
-	<insert id="blikeup">
+	<insert id="likeup">
 		insert into good(g_num,b_num,m_nick,like_chk) values(g_seq.nextval,#{param1},#{param2},#{param3})
 	</insert>
 	
-	<select id="howgood" resultType="com.updev.board.Good">
+	<select id="how_many_good" resultType="com.updev.board.Good">
 		select * from good where b_num = #{param1} and m_nick = #{param2}
 	</select>
 	
-	<update id="blikedown">
+	<update id="likedown">
 		update good set like_chk = #{param3} where b_num = #{param1} and m_nick = #{param2}
 	</update>
 	
@@ -106,12 +86,16 @@
 		select * from alarm where b_num = #{param1} and m_nick = #{param2} and m_id = #{param3}
 	</select>
 	
-	<insert id="goodalarm">
+	<insert id="makealarm">
 		insert into alarm values(a_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
 	</insert>
 	
-	<select id="howgo" resultType="int">
+	<select id="are_you_chkgood" resultType="int">
 		select count(*) from good where b_num = #{param1} and m_nick = #{param2}
+	</select>
+	
+	<select id="boarddetailid" resultType="com.updev.member.Signup">
+		select * from member where m_nick = #{param1}
 	</select>
 	
 	<update id="regood">
@@ -124,11 +108,11 @@
 		insert into scrap(s_num,b_num,m_nick,scrap_chk) values(s_seq.nextval,#{param1},#{param2},#{param3})
 	</insert>
 	
-	<select id="howscrap" resultType="com.updev.board.Scrap">
+	<select id="how_many_scrap" resultType="com.updev.board.Scrap">
 		select * from scrap where b_num = #{param1} and m_nick = #{param2}
 	</select>
 	
-	<select id="howsc" resultType="int">
+	<select id="are_you_chkcrap" resultType="int">
 		select count(*) from scrap where b_num = #{param1} and m_nick = #{param2}
 	</select>
 	

@@ -209,9 +209,11 @@ function reply_save()
 
 	<div class="detail_write">
 
+	<!-- 수정 -->
 	<input type="hidden" id="loginstate" value="${loginState }">
 	<input class="button" type="button" value="수정" id="up" onclick="location.href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">
 	
+	<!-- 삭제 -->
 	<form action="writedelete" method="post">
 	<input type="hidden" id="loginstate" value="${loginState }">
 	<input type="hidden" id="b_num" value="${list.b_num }">
@@ -222,6 +224,7 @@ function reply_save()
 
 	<div class="detail_button">
 	
+	<!-- 좋아요 -->
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="member_nick" value="${member_nick}">
@@ -229,11 +232,11 @@ function reply_save()
 	<input type="hidden" name="b_kind" id="b_kind" value="${list.b_kind }">
 	<input type="hidden" name="b_title" id="b_title" value="${list.b_title }">
 	<input type="hidden" name="a_existence" id="a_existence" value="1">
-	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
+	<input type="hidden" name="m_id" id="m_id" value="${signup.m_id }">
 	<button type="button" class="detail_button" id="ttt"><img src="./resources/images/iconmonstr-favorite-4-240.png" id="detail_ttt" title="좋아요"></button>
 	</form>
 
-	
+	<!-- 스크랩 -->
 	<form name="frm" method="post">
 	<input type="hidden" name="b_num" id="b_num" value="${list.b_num }">
 	<input type="hidden" name="m_nick" id="m_nick" value="${member_nick}">
@@ -241,10 +244,11 @@ function reply_save()
 	<input type="hidden" name="b_kind" id="b_kind" value="${list.b_kind }">
 	<input type="hidden" name="b_title" id="b_title" value="${list.b_title }">
 	<input type="hidden" name="a_existence" id="a_existence" value="2">
-	<input type="hidden" name="m_id" id="m_id" value="${list.m_nick }">
+	<input type="hidden" name="m_id" id="m_id" value="${signup.m_id }">
 	<button type="button" class="detail_button" id="sss"><img src="./resources/images/iconmonstr-bookmark-4-240.png" id="detail_sss" title="스크랩"></button>
 	</form>	
 
+	<!-- 신고 -->
 	<button	type="button" class="detail_button" value="신고" onclick="location.href='boardreportpage?b_num=${list.b_num}&b_title=${list.b_title }'">
 	<img src="./resources/images/iconmonstr-warning-filled-240.png" id="detail_img" title="신고하기"></button> 
 	
@@ -259,7 +263,7 @@ function reply_save()
 						<td><input type="hidden" name="b_num" value="${list.b_num}"></td>
 					</tr>
 					<tr>
-						<td><input type="hidden" name="m_id" value="${list.m_nick}"></td>
+						<td><input type="hidden" name="m_id" value="${signup.m_id}"></td>
 					</tr>
 					<tr>
 						<td><input type="hidden" name="b_title" value="${list.b_title}"></td>
@@ -273,15 +277,11 @@ function reply_save()
 					</tr>
 					<tr>
 					<td colspan="2"><textarea id="f" name="re_content" rows="6" cols="50" placeholder="댓글은 회원만 등록할 수 있습니다."></textarea></td>
-<<<<<<< HEAD
-					<td><input type="hidden" id="m_id" name="m_id" value="${id }"></td>
+					<td><input type="hidden" id="m_id" name="m_id" value="${signup.m_id }"></td>
 					<td><input type="hidden" id="loginstate" value="${loginState }"></td>
 					<td><input type="hidden" id="b_kind" name="b_kind" value="${list.b_kind }"></td>
 					<td><input type="hidden" id="b_title" name="b_title" value="${list.b_title }"></td>
-					<td><input class="button" id="reply_su" type="button" onclick="reply_save()" value="등록"></td>
-=======
 					<td><button class="button" type="button" id="reply_su" name="boardwrite" onclick="reply_save();">등록</button></td>
->>>>>>> 8002ca8fe042e126efff45db4181ab4ecb61073f
 					</tr>
 				</form>
 

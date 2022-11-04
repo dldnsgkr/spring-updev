@@ -60,6 +60,7 @@
 					<div class="top">
 						<div id="dpTime"></div>
 						<div class="top_login">
+						<!-- 관리자로 로그인한 경우,회원으로 로그인한 경우, 기본 -->
 							<c:choose>
 								<c:when test="${loginState==true}">
 								<c:choose>
@@ -73,7 +74,7 @@
 								</c:when>
 									<c:otherwise>
 									<a>환영합니다!<b>${member.m_nick}님</b></a>
-									<a class="alarm" onclick="alarm_quick_view('${member.m_nick}');">
+									<a class="alarm" onclick="alarm_quick_view('${member.m_id}');">
 									<img src="./resources/images/alarm.svg">
 									<span class="alarm_cnt">${alarm_count}</span>
 									</a>
@@ -118,6 +119,7 @@
 				
 							</div>
 		<script type="text/javascript">
+		//시계
 		$("#top_search_form").keypress(function(e) {
 			if (e.keyCode === 13) {
 				SearchChk();
@@ -150,6 +152,7 @@
 		   document.getElementById("dpTime").innerHTML = ampm + " " + hours + ":" + min + ":" + sec
 		}
 		
+		//빠른 알림 보기
 		function alarm_quick_view(m_id) {
 			var sam ={"m_id":m_id};
 			var sam =JSON.stringify(sam);
@@ -191,6 +194,7 @@
 				}
 		   });
 		}
+		//빠른 알림 닫기
 		function cclose() {
 			$("#quick").css("display", "none");
 		}

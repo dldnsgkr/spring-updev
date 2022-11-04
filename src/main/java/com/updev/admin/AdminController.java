@@ -28,63 +28,73 @@ import com.updev.member.Signup;
 @Controller
 public class AdminController {
 
-	@Autowired
+	@Autowired // 주입
 	SqlSession sqlsession;
 
-	/* 페이지 이동 */
 	// 관리자 마이페이지 이동
 	@RequestMapping(value = "/admin_mypage")
 	public String admin_mypage(HttpServletRequest request) {
+		
 		// 세션 생성
 		HttpSession session = request.getSession();
-		// 세션에서 관리자 id 들고오기
-		String admin_id = (String) session.getAttribute("id"); // admin
+		
+		// MemberController의 /loginact에서 세션 id 들고오기
+		String admin_id = (String)session.getAttribute("id"); // admin
 
-		// 관리자 id로 세션 세팅 - 관리자 페이지 내에서만 사용할거라서
+		// 관리자 id로 세션 세팅 - 관리자 페이지 내에서만 사용
 		session.setAttribute("admin_id", admin_id); // admin
 
-		// 세션에서 관리자 nick 들고오기
+		// MemberController의 /loginact에서 세션 nick 들고오기
 		String admin_nick = (String) session.getAttribute("member_nick"); // 관리자
 
-		// 관리자 nick로 세션 세팅 - 관리자 페이지 내에서만 사용할거라서
+		// 관리자 nick로 세션 세팅 - 관리자 페이지 내에서만 사용
 		session.setAttribute("admin_nick", admin_nick); // 관리자
 
 		return "admin_mypage";
 	}
-
+	
+	// 관리자 마이페이지 - 활동내역 - 내가 (?) 글 이동
 	@RequestMapping(value = "/admin_mylist")
 	public String admin_mylist(HttpServletRequest request, Model model, PageDTO dto, Criteria cri) {
 
 		// 세션 생성
 		HttpSession session = request.getSession();
-		// 세션에서 관리자 nick 들고오기
+		
+		// MemberController의 /loginact에서 세션 nick 들고오기
 		String admin_nick = (String) session.getAttribute("admin_nick"); // 관리자
-
+		
+		// 서비스 연결
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+		
+		// ArrayList <Board형태로> list에 내가 쓴 글들(관리자)을 저장
 		ArrayList<Board> list = sa.admin_mywrite_select(admin_nick);
 
+		// list라는 이름으로 방금 list를 보냄
 		model.addAttribute("list", list);
-		String nowPage = request.getParameter("nowPage");
-		String cntPerPage = request.getParameter("cntPerPage");
-		int total = sa.mylisttotal();
+		
+		String nowPage = request.getParameter("nowPage"); // 현재페이지
+		String cntPerPage = request.getParameter("cntPerPage"); // ?
+		int total = sa.mylisttotal(); // 전체 내가 쓴 글의 갯수?
 
-		if (nowPage == null && cntPerPage == null) {
-			nowPage = "1";
-			cntPerPage = "15";
-		} else if (nowPage == null) {
-			nowPage = "1";
-		} else if (cntPerPage == null) {
-			cntPerPage = "15";
+		if (nowPage == null && cntPerPage == null) { // 만약 현재페이지와 ?페이지가 null이라면
+			nowPage = "1";                           // 	현재페이지는 1이고, 
+			cntPerPage = "15";                       // 	?페이지는 15다.
+		} else if (nowPage == null) {                // 아니면 현재페이지가 null이라면
+			nowPage = "1";							 // 	현재페이지는 1이다.					
+		} else if (cntPerPage == null) {             // 아니면 ? 페이지가 null이라면
+			cntPerPage = "15";                       // 	?페이지는 15다.
 		}
 
+		// 페이지dto의 객체 생성자 초기화 해서 저장(?, 전체 글 갯수, 현재페이지, ?페이지)
 		dto = new PageDTO(cri, total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		model.addAttribute("page1", dto);
-		model.addAttribute("page2", cri);
-		model.addAttribute("bpage1", sa.mylistpage(dto));
+		model.addAttribute("page1", dto); // page1에 dto 보낸다
+		model.addAttribute("page2", cri); // page2에 cri 보낸다
+		model.addAttribute("bpage1", sa.mylistpage(dto)); // bpage1에 ?를 보낸다.
 
 		return "admin_mylist";
 	}
-
+	
+	// 관리자 마이페이지 - 활동내역 - 내가 쓴 글 이동
 	@RequestMapping(value = "/admin_mywrite_select")
 	public String admin_mywrite_select(HttpServletRequest request, Model model, PageDTO dto, Criteria cri) {
 		// 세션 생성
@@ -118,6 +128,7 @@ public class AdminController {
 		return "admin_mylist";
 	}
 
+	// 관리자 마이페이지 - 활동내역 - 내가 좋아요 한 글 이동
 	@RequestMapping(value = "/admin_mylike_select")
 	public String admin_mylike_select(HttpServletRequest request, Model model, PageDTO dto, Criteria cri) {
 		// 세션 생성
@@ -151,6 +162,7 @@ public class AdminController {
 		return "admin_mylist";
 	}
 
+	// 관리자 마이페이지 - 활동내역 - 내가 스크랩 한 글 이동
 	@RequestMapping(value = "/admin_myscrap_select")
 	public String admin_myscrap_select(HttpServletRequest request, Model model, PageDTO dto, Criteria cri) {
 		// 세션 생성
@@ -184,36 +196,19 @@ public class AdminController {
 		return "admin_mylist";
 	}
 
-	// 마이페이지 - 정보수정 페이지 이동
-	@RequestMapping(value = "/admin_infoupdate")
-	public String admin_infoupdate(HttpServletRequest request, Model model) {
-		// 세션 생성
-		HttpSession session = request.getSession();
-		// 세션에서 관리자 id 들고오기
-		String admin_id = (String) session.getAttribute("admin_id"); // admin
-
-		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
-
-		Signup s = sa.admin_infoupdate_select(admin_id);
-
-		model.addAttribute("admin", s);
-
-		return "admin_infoupdate";
-	}
-
-	// 마이페이지 - 마이 알람 페이지 이동
-	@RequestMapping(value = "/admin_myalarm")
-	public String admin_myalarm(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
+	// 관리자 마이페이지 - 알림 - 알림 페이지 이동
+	@RequestMapping(value = "/admin_alarm")
+	public String admin_alarm(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
 		HttpSession session = request.getSession();
 		// 세션에서 관리자 nick 들고오기
 		String admin_nick = (String) session.getAttribute("admin_nick"); // 관리자
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
-		ArrayList<Alarm> list = sa.admin_myalarm_select(admin_nick);
+		ArrayList<Alarm> list = sa.admin_alarm_select(admin_nick);
 		mo.addAttribute("list", list);
 
 		String nowPage = request.getParameter("nowPage");
 		String cntPerPage = request.getParameter("cntPerPage");
-		int total = sa.admin_myalarm_total(admin_nick);
+		int total = sa.admin_alarm_total(admin_nick);
 		System.out.println(total);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
@@ -227,12 +222,12 @@ public class AdminController {
 		dto = new PageDTO(cri, total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		mo.addAttribute("page1", dto);
 		mo.addAttribute("page2", cri);
-		mo.addAttribute("bpage1", sa.admin_myalarm_page(dto));
+		mo.addAttribute("bpage1", sa.admin_alarm_page(dto));
 
-		return "admin_myalarm";
+		return "admin_alarm";
 	}
-
-	// 게시판관리 - 공지 게시판 관리 페이지 이동
+	
+	// 관리자 마이페이지 - 게시판관리 - 공지 페이지 이동
 	@RequestMapping(value = "/notice_manage")
 	public String noticemanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
@@ -256,8 +251,8 @@ public class AdminController {
 
 		return "board_manage";
 	}
-
-	// 게시판관리 - 정보공유 게시판 관리 페이지 이동
+	
+	// 관리자 마이페이지 - 게시판관리 - 정보공유 페이지 이동
 	@RequestMapping(value = "/infoshare_manage")
 	public String infosharemanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
 		String b_kind = "정보공유";
@@ -285,7 +280,7 @@ public class AdminController {
 		return "board_manage";
 	}
 
-	// 게시판관리 - 지식인 게시판 관리 페이지 이동
+	// 관리자 마이페이지 - 게시판관리 - 지식인 페이지 이동
 	@RequestMapping(value = "/intellectual_manage")
 	public String intellectualmanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
 		String b_kind = "지식인";
@@ -314,7 +309,7 @@ public class AdminController {
 		return "board_manage";
 	}
 
-	// 게시판관리 - 고민상담소 게시판 관리 페이지 이동
+	// 관리자 마이페이지 - 게시판관리 - 고민상담소 페이지 이동
 	@RequestMapping(value = "/counseling_manage")
 	public String counselingmanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
 		String b_kind = "고민상담소";
@@ -343,7 +338,7 @@ public class AdminController {
 		return "board_manage";
 	}
 
-	// 게시판관리 - Q&A 게시판 관리 페이지 이동
+	// 관리자 마이페이지 - 게시판관리 - Q&A 페이지 이동
 	@RequestMapping(value = "/qna_manage")
 	public String qnamanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
 		String b_kind = "Q&A";
@@ -372,7 +367,7 @@ public class AdminController {
 		return "board_manage";
 	}
 
-	// 신고 관리 - 신고 관리 페이지 이동
+	// 관리자 마이페이지 - 신고관리 - 신고관리 페이지 이동
 	@RequestMapping(value = "/report_manage")
 	public String reportmanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
@@ -400,7 +395,7 @@ public class AdminController {
 		return "report_manage";
 	}
 
-	// 회원 관리 - 회원 관리 페이지 이동
+	// 관리자 마이페이지 - 회원관리 - 회원관리 페이지 이동
 	@RequestMapping(value = "/member_manage")
 	public String membermanage(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
@@ -425,8 +420,42 @@ public class AdminController {
 
 		return "member_manage";
 	}
+	
+	// 관리자 마이페이지 > 활동내역 > 내가 쓴 글 > 글 수정 페이지 이동
+	@RequestMapping(value = "/admin_mylist_update", method = RequestMethod.POST)
+	public String admin_mylist_update(MultipartHttpServletRequest mul, HttpServletRequest request) throws Exception {
+		int b_num = Integer.parseInt(mul.getParameter("b_num"));
+		String b_cate = mul.getParameter("b_cate");
+		String b_kind = mul.getParameter("b_kind");
+		String b_title = mul.getParameter("b_title");
+		String m_nick = mul.getParameter("m_nick");
+		String b_content = mul.getParameter("b_content");
+		MultipartFile f1 = mul.getFile("b_file1");
+		MultipartFile f2 = mul.getFile("b_file2");
+		String b_file1 = f1.getOriginalFilename();
+		String b_file2 = f2.getOriginalFilename();
+		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
+		ss.boardupdate(b_num, b_cate, b_kind, b_title, m_nick, b_content, b_file1, b_file2);
+		return "redirect:admin_mylist";
+	}
 
-	/* 기능 */
+	// 관리자 마이페이지 > 활동내역 > 내가 쓴 글 > 삭제
+	@RequestMapping(value = "/admin_mylist_delete", method = RequestMethod.POST)
+	public String admin_mylist_delete(HttpServletRequest request, Model model) throws Exception {
+		String jo = request.getParameter("jsoninfo");
+		JSONParser jsonparse = new JSONParser();
+		try {
+			JSONObject jobj = (JSONObject) jsonparse.parse(jo);
+			int b_num = Integer.parseInt(String.valueOf(jobj.get("b_num")));
+			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+			sa.admin_mylist_delete(b_num);
+			System.out.println(111);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return "redirect:admin_mylist";
+	}
+	
 	// 마이페이지 > 정보 수정 > 수정
 	@RequestMapping(value = "/admin_infoupdate_update", method = RequestMethod.POST)
 	public String admin_info_update(HttpServletRequest request) throws Exception {
@@ -465,6 +494,10 @@ public class AdminController {
 
 		return "redirect:admin_infoupdate";
 	}
+	
+	/* 페이지 기능 */
+	
+	
 	@RequestMapping(value = "/mmember_info_update", method = RequestMethod.POST)
 	public String member_info_update(HttpServletRequest request) throws Exception {
 		
@@ -491,40 +524,7 @@ public class AdminController {
 		return "member_manage";
 	}
 
-	// 마이페이지 > 마이 글 > 내가 쓴 글 > 수정
-	@RequestMapping(value = "/admin_mylist_update", method = RequestMethod.POST)
-	public String admin_mylist_update(MultipartHttpServletRequest mul, HttpServletRequest request) throws Exception {
-		int b_num = Integer.parseInt(mul.getParameter("b_num"));
-		String b_cate = mul.getParameter("b_cate");
-		String b_kind = mul.getParameter("b_kind");
-		String b_title = mul.getParameter("b_title");
-		String m_nick = mul.getParameter("m_nick");
-		String b_content = mul.getParameter("b_content");
-		MultipartFile f1 = mul.getFile("b_file1");
-		MultipartFile f2 = mul.getFile("b_file2");
-		String b_file1 = f1.getOriginalFilename();
-
-		String b_file2 = f2.getOriginalFilename();
-		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		ss.boardupdate(b_num, b_cate, b_kind, b_title, m_nick, b_content, b_file1, b_file2);
-		return "redirect:admin_mylist";
-	}
-
-	// 마이페이지 > 마이 글 > 내가 쓴 글 > 삭제
-	@RequestMapping(value = "/admin_mylist_delete", method = RequestMethod.POST)
-	public String admin_mylist_delete(HttpServletRequest request, Model model) throws Exception {
-		String jo = request.getParameter("jsoninfo");
-		JSONParser jsonparse = new JSONParser();
-		try {
-			JSONObject jobj = (JSONObject) jsonparse.parse(jo);
-			int b_num = Integer.parseInt(String.valueOf(jobj.get("b_num")));
-			ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
-			sa.admin_mylist_delete(b_num);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return "redirect:admin_mylist";
-	}
+	
 
 	// 마이페이지 > 마이 글 > 내가 좋아요 한 글 > 좋아요 취소
 	@RequestMapping(value = "/admin_mylike_cancel", method = RequestMethod.POST)
@@ -601,7 +601,22 @@ public class AdminController {
 		}
 		return "redirect:admin_mylist";
 	}
+	// 마이페이지 - 정보수정 페이지 이동
+			@RequestMapping(value = "/admin_infoupdate")
+			public String admin_infoupdate(HttpServletRequest request, Model model) {
+				// 세션 생성
+				HttpSession session = request.getSession();
+				// 세션에서 관리자 id 들고오기
+				String admin_id = (String) session.getAttribute("admin_id"); // admin
 
+				ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+
+				Signup s = sa.admin_infoupdate_select(admin_id);
+
+				model.addAttribute("admin", s);
+
+				return "admin_infoupdate";
+			}
 	// 마이페이지 > 회원관리 > 수정 > 확인
 //	redirect : 매핑명
 //	"jsp명"
@@ -696,70 +711,5 @@ public class AdminController {
 				System.out.println(jsoninfo);
 		return jsoninfo;
 	}
-	/*
-	// 내가 쓴 글 조회
-	+	@SuppressWarnings("unchecked")
-	+	@ResponseBody
-	+	@RequestMapping(value="/mywrite", method = RequestMethod.POST,
-	+			produces = "application/text; charset=UTF-8")//불러오기
-	+	public String mywrite(HttpServletRequest request,HttpServletResponse response,Model mo) throws IOException{
-	+			
-	+			HttpSession session = request.getSession();
-	+			
-	+			
-	+			String m_nick = (String)session.getAttribute("m_nick");
-	+			
-	+			System.out.println(m_nick);
-	+			JSONArray array = new JSONArray();
-	+			JSONObject total = new JSONObject();
-	+			ServiceAdmin ss= sqlsession.getMapper(ServiceAdmin.class);
-	+			ArrayList<Board> list=ss.mywrite(m_nick);
-	+			
-	+//			int b_num, String b_cate, String b_kind, String b_title, String m_nick, String b_wdate,
-	+//	         String b_content, int b_likecnt, int b_readcnt, int b_group, int b_step, int b_indent, String b_tag,
-	+//	         String b_file1, String b_file2, int b_report) {
-	+			
-	+			for(int i=0;i<list.size();i++) {
-	+				JSONObject member = new JSONObject();
-	+				int b_num =list.get(i).getB_num();
-	+				String b_cate =list.get(i).getB_cate();
-	+				String b_kind =list.get(i).getB_kind();
-	+				String b_title =list.get(i).getB_title();
-	+				String nick =list.get(i).getM_nick();
-	+				String b_wdate =list.get(i).getB_wdate();
-	+				String b_content =list.get(i).getB_content();
-	+				int b_likecnt =list.get(i).getB_likecnt();
-	+				int b_readcnt =list.get(i).getB_readcnt();
-	+				int b_group =list.get(i).getB_group();
-	+				int b_step =list.get(i).getB_step();
-	+				int b_indent =list.get(i).getB_indent();
-	+				String b_tag =list.get(i).getB_tag();
-	+				String b_file1 =list.get(i).getB_file1();
-	+				String b_file2 =list.get(i).getB_file2();
-	+				int b_report =list.get(i).getB_report();
-	+				member.put("b_num", b_num);
-	+				member.put("b_cate", b_cate);
-	+				member.put("b_kind", b_kind);
-	+				member.put("b_title", b_title);
-	+				member.put("m_nick", nick);
-	+				member.put("b_wdate", b_wdate);
-	+				member.put("b_content", b_content);
-	+				member.put("b_likecnt", b_likecnt);
-	+				member.put("b_readcnt", b_readcnt);
-	+				member.put("b_group", b_group);
-	+				member.put("b_step", b_step);
-	+				member.put("b_indent", b_indent);
-	+				member.put("b_tag", b_tag);
-	+				member.put("b_file1", b_file1);
-	+				member.put("b_file2", b_file2);
-	+				member.put("b_report", b_report);
-	+				array.add(member);				
-	+			}
-	+			total.put("members", array);
-	+			String jsoninfo = total.toJSONString();
-	+			System.out.println(jsoninfo);
-	+		return jsoninfo;
-	+	
-	+	}
-	*/
 }
+	

@@ -7,14 +7,14 @@ import com.updev.board.Board;
 
 public interface ServiceMember {
 
-	public void insert(String m_id, String m_pw, String m_nick, String m_name, String m_mail, String m_tel,
+	public void member_info_insert(String m_id, String m_pw, String m_nick, String m_name, String m_mail, String m_tel,
 			String m_field, String m_jdate);
 
-	public Signup login(String id, String pw);
+	public Signup login_checking(String id, String pw);
 
 	public void profileupdate(String m_nick, String m_id, String m_pw, String m_name, String m_mail, String m_tel, String m_field, String up_nick);
 
-	public Signup profileupdatecheck(String m_nick);
+	public Signup profile_update_check(String m_nick);
 
 	public int idtest(String id);
 
@@ -22,10 +22,6 @@ public interface ServiceMember {
 
 	public void profileboardupdate(String m_nick, String up_nick);
  
-	public void balupdate(String m_nick, String up_nick);
-
-	public void suupdate(String m_nick, String up_nick);
-
 	public void profilereportupdate(String m_nick, String up_nick);
 
 	public void albalupdate(String m_nick, String up_nick);
@@ -48,7 +44,7 @@ public interface ServiceMember {
 	
 	public int nickCheck2(String up_nick);
 
-	public void reportinsert(String r_status, String r_reason, String r_file1, int b_num);
+	public void report_insert(String r_status, String r_reason, String r_file1, int b_num);
 
 	public ArrayList<Board> ajaxmywrite(String nick);
 
@@ -60,7 +56,7 @@ public interface ServiceMember {
 
 	public String dateselect(String m_id, String m_pw);
 
-	public void outtimeupdate(String id);
+	public void outtime_update(String id);
 
 	public ArrayList<Alarm> ajaxmyalarm(String nick);
 

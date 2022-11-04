@@ -33,7 +33,6 @@
 					<div class="input">
 					<div class="sub_title">닉네임</div>
 						<input class="up_nick" id="up_nick" type="text" value="${list.m_nick}" >
-						<input class="m_num" id="m_num" type="text" value="${list.m_num}" >
 						<button class="button button1" type="button" onclick="nicktest2();">중복확인</button>
 						<div id="nick_check2" class="nick_check2" >${nickmsg}</div>
 					</div>

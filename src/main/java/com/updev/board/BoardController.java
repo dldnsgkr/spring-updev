@@ -31,11 +31,6 @@ import com.updev.admin.ServiceAdmin;
 import com.updev.member.ServiceMember;
 import com.updev.member.Signup;
 
-/**
- * Handles requests for the application home page.
- * 
- * 
- */
 @Controller
 public class BoardController {
 	
@@ -52,6 +47,7 @@ public class BoardController {
 		//비회원의 기본정보
 		String login_before_nick = "unknown";
 		String login_before_id = "unknown";
+		
 		session.setAttribute("loginState", false);
 		session.setAttribute("member_nick", login_before_nick);
 		session.setAttribute("m_id", login_before_id);
@@ -120,7 +116,7 @@ public class BoardController {
 		   
 	       String member_nick = (String)session.getAttribute("member_nick");
 		   ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
-		   ArrayList<Board> board = sb.mewrite(member_nick);
+		   ArrayList<Board> board = sb.mywrite(member_nick);
 		   mo.addAttribute("list",board);
 		   
 		  return "mypage"; 
@@ -143,7 +139,7 @@ public class BoardController {
 	    	 //넘겨받은 계시글 고유번호로 수정할 글을 찾음
 	         int b_num = Integer.parseInt(request.getParameter("b_num"));
 	         ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
-	         Board board = sb.updatecheck(b_num);
+	         Board board = sb.board_update_check(b_num);
 	         mo.addAttribute("list",board);
 	         mo.addAttribute("b_kind",b_kind);
 	         
@@ -260,7 +256,7 @@ public class BoardController {
 	        	 String b_kind = request.getParameter("b_kind");
 		         int b_num = Integer.parseInt(request.getParameter("b_num"));
 		         ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
-		         sb.delete(b_num);
+		         sb.boarddelete(b_num);
 		         
 		       //글 삭제가 끝나면 작성한 글의 b_kind에 맞는 페이지로 간다
 		         if(b_kind.equals("공지"))
@@ -338,14 +334,18 @@ public class BoardController {
 	        	 //detail 번호에 맞는 게시글을 가져온다
 	        	 Board board = sb.boarddetail(b_num);
 	        	 
+	        	 //
+	        	 String board_nick = board.getM_nick();
+	        	 Signup signup = sb.boarddetailid(board_nick);
+	        	 
 	        	 //해당 로그인한 사람이 해당게시글에 좋아요를 눌렀는지 확인
-	        	 Good good = sb.howgood(b_num,member_nick);
+	        	 Good good = sb.how_many_good(b_num,member_nick);
 	        	 
 	        	 
 	        	 int total = sb.replytotal(b_num);
 	        	 
 	        	//해당 로그인한 사람이 해당게시글에 좋아요를 눌렀는지 확인
-	        	 Scrap scrap = sb.howscrap(b_num,member_nick);
+	        	 Scrap scrap = sb.how_many_scrap(b_num,member_nick);
 	        	 
 	        	 
 		    		
@@ -365,6 +365,7 @@ public class BoardController {
 	        	 mo.addAttribute("list",board);
 	        	 mo.addAttribute("llist",good);
 	        	 mo.addAttribute("slist",scrap);
+	        	 mo.addAttribute("signup",signup);
 	        	 return "detailboard";
 	         }
 	         
@@ -599,7 +600,7 @@ public class BoardController {
 	     	public void createalarm(int num, String m_nick, String m_id, String a_content, int alarm_chk, int a_existence)
 	     	{
 	     		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
-	     		sb.goodalarm(num,m_nick,m_id,a_content,alarm_chk,a_existence);
+	     		sb.makealarm(num,m_nick,m_id,a_content,alarm_chk,a_existence);
 	     	}
 	     	
 	     	//좋아요 
@@ -628,14 +629,14 @@ public class BoardController {
 				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 				
 				//해당 게시글에 로그인한 사람이 좋아요를 누른 기록이있는지 count
-				int a = sb.howgo(b_num,m_nick);
+				int a = sb.are_you_chkgood(b_num,m_nick);
 				if(a == 1)
 				{
 					//만약 이미 데이터베이스에 해당 조건에 맞는 데이터가 있다면 like_chk를 1로 바꾼다
 					sb.regood(b_num, m_nick);
 				} else {
 					//새로 데이터베이스에 insert한다
-					sb.blikeup(b_num,m_nick,chk);
+					sb.likeup(b_num,m_nick,chk);
 					createalarm(b_num,m_nick,m_id,a_content,alarm_chk,a_existence);
 				}
 				//좋아요수 1증가
@@ -680,7 +681,7 @@ public class BoardController {
 				ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 				
 				//기존에 있는 데이터에 like_chk를 0으로 수정한다
-				sb.blikedown(b_num,m_nick,like_chk);
+				sb.likedown(b_num,m_nick,like_chk);
 				
 				//좋아요수 1감소
 				likecntdown(b_num);
@@ -723,7 +724,7 @@ public class BoardController {
 					ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 					
 					//해당 게시글에 로그인한 사람이 스크랩을 누른 기록이있는지 count
-					int a = sb.howsc(b_num,m_nick);
+					int a = sb.are_you_chkcrap(b_num,m_nick);
 					if(a == 1)
 					{
 						//만약 이미 데이터베이스에 해당 조건에 맞는 데이터가 있다면 crap_chk를 1로 바꾼다
