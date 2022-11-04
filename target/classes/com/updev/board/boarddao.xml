@@ -20,6 +20,26 @@
 		update board set b_cate = #{param2}, b_kind = #{param3}, b_title = #{param4}, m_nick = #{param5}, b_content = #{param6}, b_file1 = #{param7}, b_file2 = #{param8} where b_num = #{param1}
 	</update>
 	
+	<select id="bo1" resultType="com.updev.board.Board">
+		select * from board where b_kind = #{param1}
+	</select>
+	
+	<select id="bo2" resultType="com.updev.board.Board">
+		select * from board where b_kind = #{param1}
+	</select>
+	
+	<select id="bo3" resultType="com.updev.board.Board">
+		select * from board where b_kind = #{param1}
+	</select>
+	
+	<select id="bo4" resultType="com.updev.board.Board">
+		select * from board where b_kind = #{param1}
+	</select>
+	
+	<select id="bo5" resultType="com.updev.board.Board">
+		select * from board where b_kind = #{param1}
+	</select>
+	
 	<delete id="boarddelete">
 		delete from board where b_num = #{param1}
 	</delete>
