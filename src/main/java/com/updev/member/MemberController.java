@@ -7,7 +7,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -60,7 +62,7 @@ public class MemberController {
 		
 	//회원가입
 	@RequestMapping(value = "/insert")
-	   public String insert(HttpServletRequest request)//회원가입 저장
+	   public String member_insert(HttpServletRequest request)//회원가입 저장
 	   {
 	      String m_id = request.getParameter("m_id");
 	      String m_pw = request.getParameter("m_pw");
@@ -77,7 +79,7 @@ public class MemberController {
 	   
 	//로그인 저장기능
 	@RequestMapping(value="/loginact", method = RequestMethod.POST)
-	   public ModelAndView logincheck(HttpServletRequest request , RedirectAttributes rattr) 
+	   public ModelAndView logincheck(HttpServletRequest request , RedirectAttributes rattr, HttpServletResponse response) 
 	   {//db에 회원가입한 아이디 비밀번호가 맞는지 확인하는곳(로그인중)
 	      //정보가 맞지 않다면 로그인창으로 보냄
 		HttpSession session = request.getSession();
@@ -89,6 +91,7 @@ public class MemberController {
 	      ModelAndView mav=new ModelAndView();   
 	      String m_id = request.getParameter("m_id");
 	      String m_pw = request.getParameter("m_pw");
+	      String autologin = request.getParameter("autologin");
 	      ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 	      Signup signup = sm.login_checking(m_id, m_pw);
 	      if(signup==null) {
@@ -123,8 +126,14 @@ public class MemberController {
 		 		int alarm_count = sm.alarmcount(id);		        
 		 		session.setAttribute("alarm_count", alarm_count);
 		 		
-	 	         mav.setViewName("redirect:index");
-
+		 		if(autologin != null) {
+		 		Cookie cookie = new Cookie("m_id",id);
+		 		cookie.setDomain("localhost");
+		 		cookie.setPath("/");
+		 		cookie.setMaxAge(60*60*24*7);
+		 		response.addCookie(cookie);
+		 		}
+		 		mav.setViewName("redirect:index");
 	    	  } else {
 	    		  rattr.addAttribute("gradecheck", "badgrade");
 		    	  mav.setViewName("redirect:index");
@@ -135,13 +144,19 @@ public class MemberController {
 	   }
 	   
 	//로그아웃
-	   @RequestMapping(value="/logout")
-	   public String logoutact(HttpServletRequest request) {
+	   @RequestMapping(value="/logout",method=RequestMethod.GET)
+	   public String logoutact(HttpServletRequest request,HttpServletResponse response) {
 
 		   HttpSession session=request.getSession();
 		   ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 		   String id = (String)session.getAttribute("m_id");
 		   sm.outtime_update(id);//로그아웃한 시간
+		   
+		   Cookie cookie = new Cookie("m_id", null);  // 쿠키 값을 null로 설정
+		   cookie.setMaxAge(0);  // 남은 만료시간을 0으로 설정
+		   cookie.setPath("/");
+		   response.addCookie(cookie);
+		   
 		   
 		   //세션 삭제,재정의
 		   String loginbefore = "unknown";
