@@ -282,7 +282,7 @@ public class BoardController {
 		        	 return "redirect:worrypage";
 		         } else if(b_kind.equals("지식인")) {
 		        	 return "redirect:questionpage";
-		         } else if(b_kind.equals("QNA")) {
+		         } else if(b_kind.equals("Q&A")) {
 		        	 return "redirect:qnapage";
 		         } else {
 		        	 return "redirect:ajaxmywrite";
@@ -313,7 +313,7 @@ public class BoardController {
 		        	 return "redirect:worrypage";
 		         } else if(b_kind.equals("지식인")) {
 		        	 return "redirect:questionpage";
-		         } else if(b_kind.equals("QNA")) {
+		         } else if(b_kind.equals("Q&A")) {
 		        	 return "redirect:qnapage";
 		         } else {
 		        	 return "redirect:ajaxmywrite";

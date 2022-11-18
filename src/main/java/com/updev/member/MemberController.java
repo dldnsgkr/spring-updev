@@ -61,8 +61,8 @@ public class MemberController {
 
 		
 	//회원가입
-	@RequestMapping(value = "/insert")
-	   public String member_insert(HttpServletRequest request)//회원가입 저장
+	@RequestMapping(value = "/member_info_insert")
+	   public String member_info_insert(HttpServletRequest request)//회원가입 저장
 	   {
 	      String m_id = request.getParameter("m_id");
 	      String m_pw = request.getParameter("m_pw");
@@ -144,7 +144,7 @@ public class MemberController {
 	   }
 	   
 	//로그아웃
-	   @RequestMapping(value="/logout",method=RequestMethod.GET)
+	   @RequestMapping(value="/logout")
 	   public String logoutact(HttpServletRequest request,HttpServletResponse response) {
 
 		   HttpSession session=request.getSession();

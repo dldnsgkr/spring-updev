@@ -18,7 +18,7 @@
 			</div>
 			</div>
 			<div class="board_write">
-				<button class="button" type="button" name="board_write" onclick="location.href = 'write?b_kind=QNA'">
+				<button class="button" type="button" name="board_write" onclick="location.href = 'write?b_kind=Q&A'">
 					<img src="./resources/images/iconmonstr-pencil-13-240.png" title="게시글 작성" class="board_img">
 				</button>
 			</div>

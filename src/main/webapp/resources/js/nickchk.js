@@ -1,4 +1,5 @@
 function nickname_duplicate_test(){
+	
 	var nick =$("#m_nick").val();
 	var nickchk = /^[가-힣]{2,10}$/;
 		console.log(nick);
@@ -24,7 +25,7 @@ function nickname_duplicate_test(){
 							// 0 : 닉네임 길이 / 문자열 검사
 							$("#nickname_status_alert").text("사용가능한 닉네임 입니다.");
 							$("#nickname_status_alert").css("color", "green");
-							$("#nickname_status").attr("value","Y");
+							$("#nickname_status_value").attr("value","Y");
 						} else if(nick == ""){
 							
 							$('#nickname_status_alert').text("닉네임를 입력해주세요");
@@ -32,8 +33,10 @@ function nickname_duplicate_test(){
 						} else {
 							$('#nickname_status_alert').text("닉네임은 한글로 2~10글자까지만 가능합니다");
 							$('#nickname_status_alert').css('color', 'red');
-							$("#nickname_status").attr("value","N");
+							$("#nickname_status_value").attr("value","N");
 						}
+						console.log(nickname_status_alert);
+						console.log(nickname_status_value);
 						}
 				},
 		error:function(data,textStatus){
@@ -42,7 +45,7 @@ function nickname_duplicate_test(){
 	}); 
 }
 function nickname_duplicate_check_alert(){
-	var dup =$("#nickname_status").val();
+	var dup =$("#nickname_status_value").val();
 	if (dup == "N"){
 	alert ("닉네임 형식을 확인하시고 꼭 중복 확인 버튼을 눌러주세요");
 	}
