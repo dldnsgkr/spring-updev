@@ -15,7 +15,7 @@ function nickname_duplicate_test(){
 		data:{jsoninfo:sam},
 		success:function(data,textStatus){
 			if (data != 0) {
-				$("#nick_check").text("사용중인 닉네임입니다.");
+				$("#nickname_status_alert").text("사용중인 닉네임입니다.");
 						$("#nickname_status_alert").css("color", "red");
 						$("#nickname_status").attr("value","N");
 						} else {

@@ -30,7 +30,7 @@
 					</div>
 					<div class="signup_input">
 						<label><input class="m_nick" id="m_nick" type="text" name="m_nick" placeholder="닉네임: 한글로 2~10글자까지 가능" ></label>
-						<button class="button button1" type="button" onclick="nickname_duplicate_test();">중복확인</button>
+						<button class="button button1" type="button" onclick="nickname_duplicate_test()">중복확인</button>
 						<div id="nickname_status_alert" class="nickname_status_alert" >${nickname_availability}</div>
 					</div>
 					<div class="signup_input">
