@@ -59,14 +59,14 @@
 	margin-left: 155px;
 	margin-top: 5px;
 }
-.myterms{
+.terms_description{
 	margin: 5px;
 	border-radius: 10px / 10px;
 	font-size: 14px;
 	width: 308px;
 	text-align: center;
 }
-.input2{
+.signup_status{
 	margin: 5px;
 }
 .button {
@@ -94,7 +94,7 @@
   color: 242038;
   background-color: #cac4ce;
 }
-.id_check{
+.id_status_alert{
 	color: red;
 	margin-left: 50px;
 }
@@ -112,10 +112,7 @@
   color: 242038;
   background-color: #cac4ce;
 }
-#myid{
-	position: relative;
-}
-#myagree{
+#agreement{
 	font-size: 13px;
 	float: left;
 	margin-left: 160px;

@@ -12,44 +12,47 @@
 </head>
 <body>
 		<div class="wrapper">
-			<form name="memupinfochk" method="post" id="changeform">
+			<form name="memupinfochk" method="post" id="member_info_update_form">
 			<div class="title"><h1>EDIT PROFILE</h1></div>
 			
 			
 			<input id="m_nick" type="hidden" name="m_nick" value="${list.m_nick}">
-				<div class="input">
+				<div class="update_info_input">
 						<div class="sub_title">아이디</div>
 						<input class="m_id" id="m_id" type="text" name="m_id" value="${list.m_id }" readonly>
 						<div class="warning">*아이디는 변경이 불가능합니다</div>
 				</div>
-					<div class="input">
+					<div class="update_info_input">
 						<div class="sub_title">비밀번호</div>
 						<input id="m_pw" type="password" name="m_pw" value="${list.m_pw}">
 					</div>
-					<div class="input">
+					<div class="update_info_input">
 						<div class="sub_title">비밀번호 확인</div>
 						<input id="m_pwchk" type="password" name="m_pw" value="${list.m_pw}">
 					</div>
-					<div class="input">
+					<div class="update_info_input">
 					<div class="sub_title">닉네임</div>
-						<input class="up_nick" id="up_nick" type="text" value="${list.m_nick}" >
-						<button class="button button1" type="button" onclick="nicktest2();">중복확인</button>
-						<div id="nick_check2" class="nick_check2" >${nickmsg}</div>
+						<input class="up_nick" id="up_nick" type="text" value="${list.m_nick}" readonly>
+						<!--  <button class="button button1" type="button" onclick="nicktest2();">중복확인</button>
+						<div id="nick_check2" class="nick_check2" >${nickmsg}</div> --> 
+						<div class="warning">*닉네임은 변경이 불가능합니다</div>
+						
 					</div>
-					<div class="input">
+					<div class="update_info_input">
 						<div class="sub_title">이름</div>
-						<input id="m_name" type="text" name="m_name" value="${list.m_name }" onclick="nickselect2()" >
-						<input type="hidden" name="nickcheck2" id="nickcheck2" value="N">
+						<input id="m_name" type="text" name="m_name" value="${list.m_name }">
+						<!-- onclick="mypage_nickname_duplicate_check_alert()" >
+						<input type="hidden" name="nickcheck2" id="nickcheck2" value="N"> --> 
 					</div>
-					<div class="input">
+					<div class="update_info_input">
 						<div class="sub_title">이메일</div>
 						<input id="m_mail" type="text" name="m_mail" value="${list.m_mail }" >
 					</div>
-					<div class="input">
+					<div class="update_info_input">
 						<div class="sub_title">전화번호</div>
 						<input id="m_tel" type="text" name="m_tel" value="${list.m_tel }" >
 					</div>	
-					<div class="input">
+					<div class="update_info_input">
 						<div class="sub_title">분야</div>
 							<select id="m_field" name="m_field">
 								<option value="">분야</option>
@@ -60,7 +63,7 @@
 							</select>
 					</div>	
 					<div class="update_btn">
-					<button id="update_btn" class="button button2" type="button" onclick="meminfoup()">프로필 정보 수정</button>
+					<button id="update_btn" class="button button2" type="button" onclick="member_info_update_check()">프로필 정보 수정</button>
 					<button id="update_btn" class="button button2" type="button" onclick="location.href='myp?3m_nick=${list.m_nick}'">취소</button>
 					</div>
 			</form>
