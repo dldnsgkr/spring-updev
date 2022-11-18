@@ -16,7 +16,7 @@ public interface ServiceMember {
 
 	public Signup profile_update_check(String m_nick);
 
-	public int idtest(String id);
+	public int id_duplicate_test(String id);
 
 	public int idCheck(String m_id);
 
@@ -36,7 +36,7 @@ public interface ServiceMember {
 
 	public void update_pw(String pw, String npw);
 
-	public int nicktest(String nick);
+	public int nickname_duplicate_test(String nick);
 
 	public int nickCheck(String m_nick);
 	
