@@ -8,8 +8,8 @@ function signupChk(){
 	var namechk = /^[가-힣]{2,10}$/;
 	var telchk = /^[0-9]{10,11}$/;
 
-	var id_dup = document.getElementById("idcheck");
-	var nickname_dup = document.getElementById("nickcheck");
+	var id_dup = document.getElementById("id_status_value");
+	var nickname_dup = document.getElementById("nickname_status_value");
 	const vid = document.getElementById("m_id");
 	const vpw = document.getElementById("pw");
 	const vpwchk = document.getElementById("pwchk");
@@ -64,7 +64,7 @@ function signupChk(){
 			return false;
 		} 
 		if(nickname_dup.value == "N"){			   
-			alert("사용중인 아이디입니다. 다른 아이디를 입력해주세요. from 유효성");			      
+			alert("닉네임 중복체크 해주세요 from 유효성");			      
 			return false;			      
 		}
 		//이름 유효성
@@ -106,7 +106,7 @@ function signupChk(){
 			return false;
 		} 
 		 
-		form.action = "/updev/insert";
+		form.action = "/updev/member_info_insert";
 		form.submit();
 }
 

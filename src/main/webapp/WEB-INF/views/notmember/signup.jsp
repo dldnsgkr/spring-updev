@@ -35,7 +35,7 @@
 					</div>
 					<div class="signup_input">
 						<label><input id="name" type="text" name="m_name" placeholder="이름" onclick="nickname_duplicate_check_alert()" ></label>
-						<input type="hidden" name="nickname_status" id="nickname_status" value="N">
+						<input type="hidden" name="nickname_status_value" id="nickname_status_value" value="N">
 					</div>
 					<div class="signup_input">
 						<label><input id="mail" type="text" name="m_mail" placeholder="이메일 ex)abc123@gmail.com" ></label>
@@ -74,7 +74,7 @@
 					</div>
 					<div class="signup_btn">
 					<button id="signup_btn" class="button button2" type="button" onclick="signupChk()">회원가입</button>
-					<button id="signup_btn" class="button button2" type="button" onclick="location.href = '/updev' ">취소</button>
+					<button id="signup_btn" class="button button2" type="button" onclick="location.href = '/updev/index' ">취소</button>
 					</div>
 			</form>
 		</div>
