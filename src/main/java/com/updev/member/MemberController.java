@@ -210,6 +210,8 @@ public class MemberController {
 				
 				int s = sm.id_duplicate_test(id);
 				
+				ftfhuhghhuhhuhjubhjubhjubhjubhjubhjub
+				
 				if (s!=0) {
 					id_availability="사용중인 아이디 입니다. 다시 입력 해주세요.";
 				}
