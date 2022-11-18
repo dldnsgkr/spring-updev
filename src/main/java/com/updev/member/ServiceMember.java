@@ -64,4 +64,6 @@ public interface ServiceMember {
 
 	public void alarmchk(int a_num);
 
+	public Signup login_cookie(String cookie_m_id);
+
 }

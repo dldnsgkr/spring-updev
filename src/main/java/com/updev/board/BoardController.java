@@ -2,6 +2,7 @@ package com.updev.board;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,10 +42,53 @@ public class BoardController {
 	//시작페이지
 	
 	@RequestMapping(value = "/")
-	public String mainpage(HttpServletRequest request,Model mo)
-	{
+	public String mainpage(HttpServletRequest request,Model mo,
+			@CookieValue(value="m_id" , required=false) String cookie_m_id) {
 		HttpSession session = request.getSession();
 		
+		if(cookie_m_id != null) {
+			ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			
+			Date now = new Date();
+			  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			  String formatedNow = formatter.format(now);
+			
+		      Signup signup = sm.login_cookie(cookie_m_id);
+		      String grade = signup.getM_grade();//등급
+	    	  String outtime = signup.getM_outtime();
+	    	  String date1 = outtime;//마지막 로그아웃 시간
+		      String date2 = formatedNow;//현재시간
+		      
+	    	  int result = date1.compareTo(date2);
+		      if((grade.equals("회원") || grade.equals("관리자")) && result < 0)
+	    	  {//로그인한 회원에 관해 세션 정의
+	 	        session.setAttribute("member", signup);
+	 	        session.setAttribute("m_id", signup.getM_id());
+	 	        session.setAttribute("m_pw", signup.getM_pw());
+	 	        session.setAttribute("loginState", true);
+	 	        session.setAttribute("member_nick", signup.getM_nick());
+	 	        
+	 	        String id = (String)session.getAttribute("m_id");
+		 		int alarm_count = sm.alarmcount(id);		        
+		 		session.setAttribute("alarm_count", alarm_count);
+	    	  }
+		      ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				
+		 		ArrayList<Board> popmypage=sb.popmain();
+		 		ArrayList<Board> sharemypage=sb.sharemain();
+		 		ArrayList<Board> questionmypage=sb.questionmain();
+		 		ArrayList<Board> worrymypage=sb.worrymain();
+		 		ArrayList<Board> noticemypage=sb.noticemain();
+		 		ArrayList<Board> qnamypage=sb.qnamain();
+		 		
+		 		mo.addAttribute("popmpage",popmypage);
+		 		mo.addAttribute("sharempage",sharemypage);
+		 		mo.addAttribute("questionmpage",questionmypage);
+		 		mo.addAttribute("worrympage",worrymypage);
+		 		mo.addAttribute("noticempage",noticemypage);
+		 		mo.addAttribute("qnampage",qnamypage);
+		      return "main";
+		}
 		//비회원의 기본정보
 		String login_before_nick = "unknown";
 		String login_before_id = "unknown";
