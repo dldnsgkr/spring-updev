@@ -89,11 +89,11 @@ $(function(){
 						</c:otherwise>
 					</c:choose>
 				   <c:choose>
-						<c:when test="${b_kind=='QNA'}">
-							<option value="QNA" selected="selected">Q&A</option>
+						<c:when test="${b_kind=='Q&A'}">
+							<option value="Q&A" selected="selected">Q&A</option>
 						</c:when>
 						<c:otherwise>
-							<option value="QNA">Q&A</option>
+							<option value="Q&A">Q&A</option>
 						</c:otherwise>
 					</c:choose>
 				   </select></td>

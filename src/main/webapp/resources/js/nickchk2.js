@@ -8,7 +8,7 @@ function nicktest2(){
 	var nickchk = /^[가-힣]{2,10}$/;
 	
 	$.ajax({
-		type:"post",
+		type:"get",
 		async:false,
 		url:"nicktest2",
 		data:{jsoninfo:sam},

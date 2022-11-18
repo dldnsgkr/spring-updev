@@ -17,7 +17,7 @@ function member_info_update_check(){
 	var mnamechk = /^[가-힣]{2,10}$/;
 	var mtelchk = /^[0-9]{10,11}$/;
 
-	var mnickdup = document.getElementById("nickcheck2");
+	var mnickdup = document.getElementById("nickname_status_mypage");
 	const mid = document.getElementById("m_id");
 	const mpw = document.getElementById("m_pw");
 	const pwchk = document.getElementById("m_pwchk");
@@ -50,7 +50,7 @@ function member_info_update_check(){
 			return false;
 		}
 		//닉네임 유효성
-		if(mupnick.value==""){
+		/*if(mupnick.value==""){
 			alert("닉네임을 입력해주세요");
 			return false;
 		}  
@@ -61,7 +61,7 @@ function member_info_update_check(){
 		if(mnickdup.value == "N"){			   
 			alert("사용중인 닉네임입니다. 다른 아이디를 입력해주세요. from 유효성");			      
 			return false;			      
-		}
+		}*/
 		//이름 유효성
 		if(mname.value==""){
 			alert("이름을 입력해주세요");

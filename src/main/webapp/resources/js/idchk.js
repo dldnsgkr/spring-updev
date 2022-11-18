@@ -33,7 +33,8 @@ function id_duplicate_test(){
 							$('#id_status_alert').css('color', 'red');
 							$("#id_status_value").attr("value","N");
 						}
-						console.log(idcheck);
+						console.log(id_status_alert);
+						console.log(id_status_value);
 					}
 					},
 		error:function(data,textStatus){

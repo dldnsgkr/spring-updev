@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="resources/css/top.css" type="text/css">
 	</head>
 	<body>
-		<c:set var="result" value="${param.result}"/>
+		<c:set var="loginresult" value="${param.loginresult}"/>
 		<c:choose>
 			<c:when test="${loginresult=='loginfail'}">
 				<script type="text/javascript">

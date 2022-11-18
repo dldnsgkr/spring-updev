@@ -282,7 +282,7 @@ public class BoardController {
 		        	 return "redirect:worrypage";
 		         } else if(b_kind.equals("지식인")) {
 		        	 return "redirect:questionpage";
-		         } else if(b_kind.equals("QNA")) {
+		         } else if(b_kind.equals("Q&A")) {
 		        	 return "redirect:qnapage";
 		         } else {
 		        	 return "redirect:ajaxmywrite";
@@ -313,7 +313,7 @@ public class BoardController {
 		        	 return "redirect:worrypage";
 		         } else if(b_kind.equals("지식인")) {
 		        	 return "redirect:questionpage";
-		         } else if(b_kind.equals("QNA")) {
+		         } else if(b_kind.equals("Q&A")) {
 		        	 return "redirect:qnapage";
 		         } else {
 		        	 return "redirect:ajaxmywrite";
@@ -424,6 +424,8 @@ public class BoardController {
 	         public ModelAndView reply(HttpServletRequest request,Model mo) {
 	        	 
 	        	 HttpSession session = request.getSession();
+	        	 ModelAndView mav = new ModelAndView();
+	        	 
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			 		String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);
@@ -445,7 +447,7 @@ public class BoardController {
 	        	 
 	        	 Replycnt(b_num);
 	        	 
-	        	 ModelAndView mav = new ModelAndView();
+	        	 
 	             
 	             if(b_num == 0) {
 	                 mav.setViewName("redirect:index");
@@ -453,7 +455,7 @@ public class BoardController {
 	                 mav.addObject("b_num", b_num);
 	                 mav.setViewName("redirect:detail");
 	             }
-	             
+					
 	             return mav;
 	         }
 	         
