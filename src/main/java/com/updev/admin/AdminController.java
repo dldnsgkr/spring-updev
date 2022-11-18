@@ -39,7 +39,7 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		
 		// MemberController의 /loginact에서 세션 id 들고오기
-		String admin_id = (String)session.getAttribute("id"); // admin
+		String admin_id = (String)session.getAttribute("m_id"); // admin
 
 		// 관리자 id로 세션 세팅 - 관리자 페이지 내에서만 사용
 		session.setAttribute("admin_id", admin_id); // admin
