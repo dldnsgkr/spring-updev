@@ -1,5 +1,4 @@
 function id_duplicate_test(){
-	console.log(1);
 	var id =$("#m_id").val();
 	var idchk = /^[a-z0-9]{4,12}$/;
 	console.log(id);
@@ -12,7 +11,7 @@ function id_duplicate_test(){
 	$.ajax({
 		type:"get",
 		async:false,
-		url:"idtest",
+		url:"id_duplicate_test",
 		data:{jsoninfo:sam},
 		success:function(data,textStatus){
 						if (data != 0) {

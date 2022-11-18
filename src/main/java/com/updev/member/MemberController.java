@@ -209,7 +209,7 @@ public class MemberController {
 	   }
 	   
 	   //회원가입 아이디 중복검사
-	   @RequestMapping(value = "/idtest", method = RequestMethod.GET, 
+	   @RequestMapping(value = "/id_duplicate_test", method = RequestMethod.GET, 
 			   produces = "application/text; charset=utf8")
 	   @ResponseBody
 		public String test(HttpServletRequest request, Model model) throws UnsupportedEncodingException{
@@ -223,7 +223,7 @@ public class MemberController {
 				
 				ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 				
-				int s = sm.idtest(id);
+				int s = sm.id_duplicate_test(id);
 				
 				if (s!=0) {
 					id_availability="사용중인 아이디 입니다. 다시 입력 해주세요.";
@@ -241,7 +241,7 @@ public class MemberController {
 	   }
 				
 	   //회원가입 닉네임 중복검사 
-	   @RequestMapping(value="/nicktest", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	   @RequestMapping(value="/nickname_duplicate_test", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
 	   @ResponseBody
 	   public String nicktest(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
 		   request.setCharacterEncoding("utf-8");
@@ -254,7 +254,7 @@ public class MemberController {
 				
 				ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 				
-				int s = sm.nicktest(nick);
+				int s = sm.nickname_duplicate_test(nick);
 				
 				if (s!=0) {
 					nickname__availability=" 사용중인 닉네임입니다. 다시 입력 해주세요.";
