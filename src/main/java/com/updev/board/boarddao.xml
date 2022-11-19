@@ -5,7 +5,7 @@
 <mapper namespace="com.updev.board.ServiceBoard">
 	
    <insert id="writesave">
-   insert into board(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_likecnt,b_readcnt,b_group,b_step,b_indent,b_file1,b_file2,b_report,b_replycnt) values(b_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},0,0,b_seq.currval,0,0,#{param6},#{param7},0,0)
+   insert into board(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_likecnt,b_readcnt,b_group,b_step,b_indent,b_report,b_replycnt) values(b_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},0,0,b_seq.currval,0,0,0,0)
    </insert>
 
 	<select id="mywrite" resultType="com.updev.board.Board">
@@ -17,7 +17,7 @@
 	</select>
 	
 	<update id="boardupdate">
-		update board set b_cate = #{param2}, b_kind = #{param3}, b_title = #{param4}, m_nick = #{param5}, b_content = #{param6}, b_file1 = #{param7}, b_file2 = #{param8} where b_num = #{param1}
+		update board set b_cate = #{param2}, b_kind = #{param3}, b_title = #{param4}, m_nick = #{param5}, b_content = #{param6} where b_num = #{param1}
 	</update>
 	
 	<delete id="boarddelete">
@@ -32,7 +32,7 @@
 		update board set b_readcnt=b_readcnt+1 where b_num=#{param1}
 	</update>
 	
-	<update id="reportboardupdate">
+	<update id="report_board_update">
 		update board set b_report=b_report+1 where b_num=#{param1}
 	</update>
 	
@@ -197,14 +197,16 @@
 		where rn between #{start} and #{end}
 	</select>
 	
+	<!-- or b_content like '%'||#{keyword}||'%' -->
 	<select id="searchcnt" resultType="int">
-		select count(*) from board where b_title like '%'||#{keyword}||'%' or b_content like '%'||#{keyword}||'%'
+		select count(*) from board where b_title like '%'||#{keyword}||'%'
 	</select>
 	
+	<!--  or b_content like '%'||#{keyword}||'%' -->
 	<select id="tsearchpage" resultType="com.updev.board.Board">
 		select * from (
 		select rownum rn,A.* from(
-		select * from board where b_title like '%'||#{keyword}||'%' or b_content like '%'||#{keyword}||'%'
+		select * from board where b_title like '%'||#{keyword}||'%'
 		order by b_group DESC,b_step ASC)A)
 		where rn between #{start} and #{end}
 	</select>

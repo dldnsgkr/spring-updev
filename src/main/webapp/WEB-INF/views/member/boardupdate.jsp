@@ -110,15 +110,7 @@
 						<td><textarea class="summernote" name="b_content">${list.b_content }</textarea></td>
 						<!-- summernote -->
 					</tr>
-					<tr>
-						<th>첨부파일1</th>
-						<td><input type="file" name="b_file1" id="file"></td>
-						<!-- summernote 사용 예정 -->
-					</tr>
-					<tr>
-						<th>첨부파일2</th>
-						<td><input type="file" name="b_file2" id="file"></td>
-						<!-- summernote 사용 예정 -->
+					
 				</table>
 						<input type="submit" class="button" value="수정" onclick="updateconfirm()">
 			</form>

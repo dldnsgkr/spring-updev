@@ -108,14 +108,7 @@ $(function(){
 				   <td>
  				<textarea class="summernote" name="b_content"></textarea>
  				</tr>
- 			 	<tr>
-				   <th>첨부파일1</th>
-				   <td><input type="file" name="b_file1" id="file"></td><!-- summernote 사용 예정 -->
-				</tr>
-				<tr>
-				   <th>첨부파일2</th>
-				   <td><input type="file" name="b_file2" id="file"></td><!-- summernote 사용 예정 -->
-				</tr>
+ 			 	
 				</table>
 			<input type="hidden" name="m_nick" id="m_nick" value="${member_nick }">
 				<button class="button" type="button" name="boardwrite" onclick="Board_write();">등록</button>

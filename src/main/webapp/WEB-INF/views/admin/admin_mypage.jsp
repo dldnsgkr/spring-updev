@@ -56,7 +56,7 @@
                     <div class="jq_cont tab_cont">
                         <div class="cont">
                         	<ul>
-                        		<li><a href="admin_myalarm">알림</a></li>
+                        		<li><a href="admin_alarm">알림</a></li>
                         	</ul>
                         </div>
                     </div>

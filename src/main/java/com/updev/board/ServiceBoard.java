@@ -7,14 +7,13 @@ import com.updev.member.Signup;
 
 public interface ServiceBoard {
 
-	public void writesave(String b_cate, String b_kind, String b_title, String m_nick, String b_content, String b_file1,
-			String b_file2);
+	public void writesave(String b_cate, String b_kind, String b_title, String m_nick, String b_content);
 
 	public ArrayList<Board> mywrite(String a);
 
 	public Signup myinfo(String m_nick);
 
-	public void boardupdate(int b_num, String b_cate, String b_kind, String b_title, String m_nick, String b_content, String b_file1, String b_file2);
+	public void boardupdate(int b_num, String b_cate, String b_kind, String b_title, String m_nick, String b_content);
 
 	public Board board_update_check(int b_num);
 

@@ -138,11 +138,11 @@ $(function changeIMG(){
 <script type="text/javascript">
 $(function() {
 	var loginstate=$("#loginstate").val();
-	var member_nick=$("#m_nick").val();
-	var m_id=$("#m_id").val();
+	var member_nick=$("#member_nick").val();
+	var m_nick=$("#detail_m_nick").val();
 	$("#de").hide();
 	$("#up").hide();
-		if (loginstate == "true" && member_nick == m_id) {
+		if (loginstate == "true" && member_nick == m_nick) {
 			$("#de").show();
 			$("#up").show();
 		} else {
@@ -211,6 +211,7 @@ function reply_save()
 
 	<!-- 수정 -->
 	<input type="hidden" id="loginstate" value="${loginState }">
+	<input type="hidden" id="detail_m_nick" value="${signup.m_nick }">
 	<input class="button" type="button" value="수정" id="up" onclick="location.href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">
 	
 	<!-- 삭제 -->

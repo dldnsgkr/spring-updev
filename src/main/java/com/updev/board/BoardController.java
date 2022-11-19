@@ -209,12 +209,8 @@ public class BoardController {
 	         String b_title = mul.getParameter("b_title");
 	         String m_nick = mul.getParameter("m_nick");
 	         String b_content = mul.getParameter("b_content");
-	         MultipartFile file1 = mul.getFile("b_file1");
-	         MultipartFile file2 = mul.getFile("b_file2");
-	         String b_file1 = file1.getOriginalFilename();
-	         String b_file2 = file2.getOriginalFilename();
 	         ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
-	         sb.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
+	         sb.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content);
 
 	         
 	         return "redirect:ajaxmywrite";
@@ -265,12 +261,9 @@ public class BoardController {
 	            String b_title = mul.getParameter("b_title");
 	            String m_nick = mul.getParameter("m_nick");
 	            String b_content = mul.getParameter("b_content");
-	            MultipartFile file1 = mul.getFile("b_file1");
-	            MultipartFile file2 = mul.getFile("b_file2");
-	            String b_file1 = file1.getOriginalFilename();
-	            String b_file2 = file2.getOriginalFilename();
+	            
 	            ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
-	            sb.writesave(b_cate,b_kind,b_title,m_nick,b_content,b_file1,b_file2);
+	            sb.writesave(b_cate,b_kind,b_title,m_nick,b_content);
 	            
 	            //글 작성이 끝나면 작성한 글의 b_kind에 맞는 페이지로 간다
 	            if(b_kind.equals("공지"))
@@ -348,7 +341,7 @@ public class BoardController {
 	         
 	         //게시물 detail
 	         @RequestMapping(value = "/detail")
-	         public String detailporm(HttpServletRequest request,Model mo, PageDTO dto, Criteria cri)
+	         public String detailporm(HttpServletRequest request,Model mo, PageDTO dto, Criteria cri,RedirectAttributes rattr)
 	         {
 		     	 HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
@@ -379,6 +372,10 @@ public class BoardController {
 	        	 //detail 번호에 맞는 게시글을 가져온다
 	        	 Board board = sb.boarddetail(b_num);
 	        	 
+	        	 if(board == null) {
+	        		 rattr.addAttribute("noneboard", "noneboard");
+						return "redirect:alarm";
+	        	 } 
 	        	 //
 	        	 String board_nick = board.getM_nick();
 	        	 Signup signup = sb.boarddetailid(board_nick);

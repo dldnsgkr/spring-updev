@@ -113,8 +113,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin_mylist.jsp" />
 	</definition>
     <!-- 마이페이지 - 마이 알림 페이지 -->
-	<definition name="admin_myalarm" extends="baseLayout">   
-		<put-attribute name="body" value="/WEB-INF/views/admin/admin_myalarm.jsp" />
+	<definition name="admin_alarm" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_alarm.jsp" />
 	</definition>
 	<!-- 게시판 관리 - 모든 게시판 관리 페이지 -->
 	<definition name="board_manage" extends="baseLayout">   

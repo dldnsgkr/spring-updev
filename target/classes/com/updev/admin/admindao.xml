@@ -65,11 +65,11 @@
 	<![CDATA[select * from alarm where m_id = #{param1} and ROWNUM <= 5 order by a_num desc]]>
 	</select>
 	
-	<select id="admin_myalarm_total" resultType="int">
+	<select id="admin_alarm_total" resultType="int">
 		select count(*) from alarm where m_nick = #{param1}
 	</select>
 	
-	<select id="admin_myalarm_page" resultType="com.updev.admin.Alarm">
+	<select id="admin_alarm_page" resultType="com.updev.admin.Alarm">
 		select * from (
 		select rownum rn,A.* from(
 		select * from alarm where m_nick = '관리자')A)

@@ -7,7 +7,7 @@
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="resources/css/signup.css" type="text/css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script type="text/javascript" src="./resources/js/signup.js"></script>
+		<script type="text/javascript" src="./resources/js/signup.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="./resources/js/idchk.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="./resources/js/nickchk.js" charset="UTF-8"></script>
 	</head>

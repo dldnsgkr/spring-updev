@@ -54,6 +54,17 @@
 				</script>
 			</c:when>
 		</c:choose>
+		
+		<c:set var="alarmcheck" value="${param.noneboard}"/>
+		<c:choose>
+			<c:when test="${alarmcheck=='noneboard'}">
+				<script type="text/javascript">
+					window.onload=function(){
+						alert("작성자가 삭제한 글입니다!!");
+					}
+				</script>
+			</c:when>
+		</c:choose>
 			
 			<div class="header">
 				<div class="wrap">
