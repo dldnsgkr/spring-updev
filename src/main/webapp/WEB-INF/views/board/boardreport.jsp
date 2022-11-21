@@ -4,9 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="resources/css/boardreport.css"
+<link rel="stylesheet" href="resources/css/boardwrite.css"
 	type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="resources/summernote/summernote-lite.js"></script>
+  		<script src="resources/summernote/summernote-ko-KR.js"></script>
+  		<link rel="stylesheet" href="resources/summernote/summernote-lite.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		
+		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+		<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+
+
 <script>
 	$(function() {
 		//입력박스 숨어있다가
@@ -28,7 +41,7 @@
 	<!-- 신고 게시판 -->
 	<div class="report">
 		<form action="breport" method="post" enctype="multipart/form-data">
-			<h1>REPORT</h1>
+			<div class="title">REPORT</div>
 			<input type="hidden" name="b_num" value="${b_num }">
 			<table>
 			<thead id="thead">
@@ -58,5 +71,17 @@
 			<input type="submit" id="submit" value="신고하기">
 		</form>
 	</div>
+	<script>
+$('.summernote').summernote({
+	width: 995,
+     height: 230,                 // 에디터 높이
+      minHeight: null,             // 최소 높이
+      maxHeight: null,             // 최대 높이
+      focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+      lang: "ko-KR",                    // 한글 설정
+      placeholder: '내용을 입력하세요.'    //placeholder 설정
+   });
+$('.note-statusbar').hide()
+</script>
 </body>
 </html>

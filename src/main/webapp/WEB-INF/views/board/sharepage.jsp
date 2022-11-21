@@ -13,6 +13,7 @@
 	<body>
 	<!-- 정보공유 게시판 -->
 		<div class="wrap">
+		<form id="boardform">
 				<div class="boardpage_top">
 			<div class="board_notic">
 				여기는 개발자들의 지식을 공유하는 곳입니다.
@@ -58,7 +59,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-
+			</form>
 			<div id="tfoot">				
 			<c:if test="${page1.nowPage ne 1}">
 				<a href="sharepage?nowPage=${page1.startPage -1}">&#60;</a>

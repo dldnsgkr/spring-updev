@@ -30,6 +30,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.updev.board.Alarm;
 import com.updev.board.Board;
+import com.updev.board.Criteria;
+import com.updev.board.PageDTO;
 import com.updev.board.ServiceBoard;
 
 @Controller
@@ -534,7 +536,7 @@ public class MemberController {
 		}
 	 	//내가 쓴 글 
 		   @RequestMapping(value = "/ajaxmywrite")
-		   public String mywrite_ajax(HttpServletRequest request,Model mo)
+		   public String mywrite_ajax(HttpServletRequest request,Model mo,PageDTO dto,Criteria cri)
 		   {
 			   HttpSession session = request.getSession();
 			   
@@ -542,10 +544,29 @@ public class MemberController {
 			 		String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);
 			 		session.setAttribute("alarm_count", alarm_count);
-			 		
-			 		String member_nick = (String)session.getAttribute("member_nick");
-			   ArrayList<Board> dao = sm.ajaxmywrite(member_nick);
-			   mo.addAttribute("list",dao);
+			 		String nowPage=request.getParameter("nowPage");
+		    		String cntPerPage=request.getParameter("cntPerPage");
+		    		//String m_nick=request.getParameter("m_nick");
+		    		String member_nick = (String)session.getAttribute("member_nick");
+		    		int total = sm.mytotal(member_nick);
+		    		String keyword = request.getParameter("keyword");
+		    		
+			 		if(nowPage == null && cntPerPage == null) {
+		    			nowPage="1";
+		    			cntPerPage="15";
+		    		} else if(nowPage==null) {
+		    			nowPage="1";
+		    		} else if(cntPerPage==null) {
+		    			cntPerPage="15";
+		    		}
+		    		
+			   //ArrayList<Board> dao = sm.ajaxmywrite(member_nick);
+			   //mo.addAttribute("list",dao);
+			   
+			   dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),member_nick,keyword);
+	    		mo.addAttribute("page1",dto);
+	    		mo.addAttribute("page2",cri);
+	    		mo.addAttribute("bpage1",sm.mypage(dto));
 			   return "memwrite";
 		   }
 		   
@@ -554,7 +575,7 @@ public class MemberController {
 
 		 //내가 좋아요한 글
 		   @RequestMapping(value = "/ajaxmygood")
-		   public String my_like_ajax(HttpServletRequest request,Model mo)
+		   public String my_like_ajax(HttpServletRequest request,Model mo,PageDTO dto,Criteria cri)
 
 		   {
 			   HttpSession session = request.getSession();
@@ -562,10 +583,29 @@ public class MemberController {
 			 		String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
-			        
+			        String nowPage=request.getParameter("nowPage");
+		    		String cntPerPage=request.getParameter("cntPerPage");
 			        String member_nick = (String)session.getAttribute("member_nick");
+			        String keyword = request.getParameter("keyword");
+			        
+			        int total=sm.goodtotal(member_nick);
+			        
+			 		if(nowPage == null && cntPerPage == null) {
+		    			nowPage="1";
+		    			cntPerPage="15";
+		    		} else if(nowPage==null) {
+		    			nowPage="1";
+		    		} else if(cntPerPage==null) {
+		    			cntPerPage="15";
+		    		} 
+			        
 				ArrayList<Board> dao = sm.ajaxmygood(member_nick);
 				mo.addAttribute("list",dao);
+				
+				dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),member_nick,keyword);
+	    		mo.addAttribute("page1",dto);
+	    		mo.addAttribute("page2",cri);
+	    		mo.addAttribute("bpage1",sm.mypage(dto));
 			   return "memgood";
 		   }
 		   
@@ -573,7 +613,7 @@ public class MemberController {
 		   
 		 //내가 스크랩 글 
 		   @RequestMapping(value = "/ajaxmyscrap")
-		   public String my_scrap_ajax(HttpServletRequest request,Model mo)
+		   public String my_scrap_ajax(HttpServletRequest request,Model mo,PageDTO dto,Criteria cri)
 		   {
 			   HttpSession session = request.getSession();
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
@@ -581,9 +621,27 @@ public class MemberController {
 			 		int alarm_count = sm.alarmcount(m_id);
 			        session.setAttribute("alarm_count", alarm_count);
 			        
+			        String nowPage=request.getParameter("nowPage");
+		    		String cntPerPage=request.getParameter("cntPerPage");
 			        String member_nick = (String)session.getAttribute("member_nick");
+			        String keyword = request.getParameter("keyword");
+			        
+			        int total=sm.scraptotal(member_nick);
+			        
+			 		if(nowPage == null && cntPerPage == null) {
+		    			nowPage="1";
+		    			cntPerPage="15";
+		    		} else if(nowPage==null) {
+		    			nowPage="1";
+		    		} else if(cntPerPage==null) {
+		    			cntPerPage="15";
+		    		} 
 				ArrayList<Board> dao = sm.ajaxmyscrap(member_nick);
 				mo.addAttribute("list",dao);
+				dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),member_nick,keyword);
+	    		mo.addAttribute("page1",dto);
+	    		mo.addAttribute("page2",cri);
+	    		mo.addAttribute("bpage1",sm.mypage(dto));
 			   return "memscrap";
 		   }
 		   

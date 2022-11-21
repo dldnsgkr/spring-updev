@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.updev.board.Alarm;
 import com.updev.board.Board;
+import com.updev.board.PageDTO;
 
 public interface ServiceMember {
 
@@ -65,5 +66,13 @@ public interface ServiceMember {
 	public void alarmchk(int a_num);
 
 	public Signup login_cookie(String cookie_m_id);
+	
+	public int mytotal(String nick);
+	public ArrayList<Board> mypage(PageDTO dto);
+	
+	public int goodtotal(String nick);
+	public ArrayList<Board> goodpage(PageDTO dto);
 
+	public int scraptotal(String nick);
+	public ArrayList<Board> scrappage(PageDTO dto);
 }
