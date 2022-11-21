@@ -343,7 +343,7 @@ public class BoardController {
 	        	 int a_num = Integer.parseInt(request.getParameter("a_num"));
 	        	 ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 	        	 sm.alarmchk(a_num);
-	        	 
+	        	 System.out.println("여기찍힘");
 	        	 //b_num을 detail로 갈떄 같이 보내줘야 하기때문에 ModelAndView를 사용
 	        	 ModelAndView mav = new ModelAndView();
 	                 mav.addObject("b_num", b_num);
@@ -389,7 +389,12 @@ public class BoardController {
 	        	 
 	        	 if(board == null) {
 	        		 rattr.addAttribute("noneboard", "noneboard");
-						return "redirect:alarm";
+	        		 if(m_id.equals("admin")) {
+	        			 return "redirect:admin_alarm";
+	        		 }else {
+	        			 return "redirect:alarm";
+	        		 }
+	        		 
 	        	 } 
 	        	 //
 	        	 String board_nick = board.getM_nick();

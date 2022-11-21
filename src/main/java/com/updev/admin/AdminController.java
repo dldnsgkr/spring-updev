@@ -200,15 +200,17 @@ public class AdminController {
 	@RequestMapping(value = "/admin_alarm")
 	public String admin_alarm(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
 		HttpSession session = request.getSession();
+		
 		// 세션에서 관리자 nick 들고오기
 		String admin_nick = (String) session.getAttribute("admin_nick"); // 관리자
+		String admin_id = (String) session.getAttribute("admin_id"); // admin
 		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
-		ArrayList<Alarm> list = sa.admin_alarm_select(admin_nick);
+		ArrayList<Alarm> list = sa.admin_alarm_select(admin_id);
 		mo.addAttribute("list", list);
 
 		String nowPage = request.getParameter("nowPage");
 		String cntPerPage = request.getParameter("cntPerPage");
-		int total = sa.admin_alarm_total(admin_nick);
+		int total = sa.admin_alarm_total(admin_id);
 		System.out.println(total);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
@@ -430,7 +432,6 @@ public class AdminController {
 		String b_title = mul.getParameter("b_title");
 		String m_nick = mul.getParameter("m_nick");
 		String b_content = mul.getParameter("b_content");
-		
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
 		ss.boardupdate(b_num, b_cate, b_kind, b_title, m_nick, b_content);
 		return "redirect:admin_mylist";
@@ -700,7 +701,11 @@ public class AdminController {
 			for(int i=0;i<list.size();i++) {
 				JSONObject member = new JSONObject();
 				String a_content =list.get(i).getA_content();
+				int a_num =list.get(i).getA_num();
+				int b_num = list.get(i).getB_num();
 				member.put("a_content", a_content);
+				member.put("b_num", b_num);
+				member.put("a_num", a_num);
 				array.add(member);
 			}
 				total.put("members", array);

@@ -161,7 +161,7 @@ public class MemberController {
 		   //세션 삭제,재정의
 		   String loginbefore = "unknown";
 		   String loginbeforeid = "unknown";
-		   /*
+		   
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
 	         session.removeAttribute("m_id");
@@ -169,8 +169,9 @@ public class MemberController {
 	         session.removeAttribute("member_nick");
 	         session.removeAttribute("auto_login");
 	         session.removeAttribute("alarm_count");
-	         */
-		   session.invalidate();
+	         
+		   	 
+		   	 
 	         session.setAttribute("loginState",false);
 	         session.setAttribute("member_nick", loginbefore);
 	         session.setAttribute("m_id", loginbeforeid);
