@@ -12,14 +12,26 @@
 	<div class="wrap">
 		<div class="title">
 			<span></span>
-			<h1>마이 알림</h1>
+			<h1>알림</h1>
 		</div>
 		<div class="content">
 			<table border="1">
 				<tr><td>번호</td><td>내용</td></tr>
 				<c:forEach items="${bpage1}" var="list">
-				<tr><td>${list.a_num}</td>
-				<td><a href="detail?b_num=${list.b_num}">${list.a_content}</a></td></tr>
+					<tr>
+						<td>${list.a_num}</td>
+						<td>
+						<c:choose>
+								<c:when test="${list.alarm_chk==1}">
+									<b>[읽지않음]</b>
+								</c:when>
+								<c:otherwise>
+									<span>[읽음]</span>
+								</c:otherwise>
+							</c:choose>
+							<a href="alarmcheck?b_num=${list.b_num}&a_num=${list.a_num}">${list.a_content}</a>
+						</td>
+					</tr>
 				</c:forEach>
 			</table>
 			<div id="tfoot">
