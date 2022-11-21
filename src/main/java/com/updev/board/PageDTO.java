@@ -9,6 +9,7 @@ public class PageDTO {
 	public String sname; // 검색타입 (글제목, 글쓴이 등등)
 	public String keyword; // 키워드
 	public int b_num, b_replycnt;
+	public String m_nick;
 	
 	
 	
@@ -40,34 +41,7 @@ public class PageDTO {
 	    
 	}
 	
-	public PageDTO(Criteria cri, int total, int nowPage, int cntPerPage, String keyword) {
-		this.cri = cri;
-		this.total = total;
-		
-		//화면에 보여질 마지막 페이지
-		this.endPage = (int)(Math.ceil(cri.getPageNum() / 10.0)) * 10;
-		//화면에 보여질 시작 페이지
-		this.startPage = this.endPage -9;
-		//전체 마지막 페이지
-		this.realEnd = (int) (Math.ceil(total * 1.0) / cri.getAmount());
-		//화면에 보일 마지막 페이지가 유효한지 체크
-		if(this.realEnd < this.endPage) {
-			this.endPage = this.realEnd;
-		}
-		
-		//이전, 다음 버튼 표출 여부 결정
-		this.prev = this.startPage > 1;
-		this.next = this.endPage < this.realEnd;
-		
-		setKeyword(keyword);
-		setNowPage(nowPage);
-	    setCntPerPage(cntPerPage);
-	    setTotal(total);
-	    calcLastPage(getTotal(), getCntPerPage());
-	    calcStartEndPage(getNowPage(), cntPage);
-	    calcStartEnd(getNowPage(), getCntPerPage());   
-	    
-	}
+
 	
 	public PageDTO(Criteria cri, int total, int nowPage, int cntPerPage, int b_num) {
 		this.cri = cri;
@@ -99,6 +73,36 @@ public class PageDTO {
 		
 	}
 	
+	public PageDTO(Criteria cri, int total, int nowPage, int cntPerPage, String m_nick, String keyword) {
+		this.cri = cri;
+		this.total = total;
+		this.m_nick = m_nick;
+		
+		//화면에 보여질 마지막 페이지
+		this.endPage = (int)(Math.ceil(cri.getPageNum() / 10.0)) * 10;
+		//화면에 보여질 시작 페이지
+		this.startPage = this.endPage -9;
+		//전체 마지막 페이지
+		this.realEnd = (int) (Math.ceil(total * 1.0) / cri.getAmount());
+		//화면에 보일 마지막 페이지가 유효한지 체크
+		if(this.realEnd < this.endPage) {
+			this.endPage = this.realEnd;
+		}
+		
+		//이전, 다음 버튼 표출 여부 결정
+		this.prev = this.startPage > 1;
+		this.next = this.endPage < this.realEnd;
+		
+		setKeyword(keyword);
+		setM_nick(m_nick);
+		setNowPage(nowPage);
+		setCntPerPage(cntPerPage);
+		setTotal(total);
+		calcLastPage(getTotal(), getCntPerPage());
+		calcStartEndPage(getNowPage(), cntPage);
+		calcStartEnd(getNowPage(), getCntPerPage());   
+		
+	}
 	
    public int getCntPage() {
       return cntPage;
@@ -263,6 +267,14 @@ public class PageDTO {
 
 	public void setB_replycnt(int b_replycnt) {
 		this.b_replycnt = b_replycnt;
+	}
+
+	public String getM_nick() {
+		return m_nick;
+	}
+
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
 	}
    
 }

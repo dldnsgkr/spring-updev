@@ -41,5 +41,25 @@
 			</table>
 		</form>
 	</div>
+			<div id="tfoot">				
+			<c:if test="${page1.nowPage > 10}">
+				<a href="ajaxmygood?m_nick=${member_nick}&nowPage=${page1.startPage -1}">&#60;</a>
+			</c:if>
+
+			<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
+				<c:choose>
+					<c:when test="${p==page1.nowPage}">
+						<b>${p}</b>
+					</c:when>
+					<c:when test="${p!=page1.nowPage}">
+						<a href="ajaxmygood?m_nick=${member_nick}&nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+
+			<c:if test="${page1.next && page1.endPage>0}">
+				<a href="ajaxmygood?m_nick=${member_nick}&nowPage=${page1.endPage +1}">&#62;</a>
+			</c:if>
+		</div> 
 </body>
 </html>

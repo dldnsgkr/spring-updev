@@ -1,5 +1,11 @@
 @charset "UTF-8";
-
+.title{
+	padding-top: 50px;
+	font-size: medium;
+	color: #242038;
+	margin-right: 150px;
+	
+}
 table {
 	display: flex;
 	display: -webkit-box;
