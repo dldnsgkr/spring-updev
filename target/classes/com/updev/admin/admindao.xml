@@ -59,20 +59,20 @@
 		delete FROM member where m_num = #{param1}
 	</delete>
 	<select id="admin_alarm_select" resultType="com.updev.admin.Alarm">
-		select * from alarm where m_nick = #{param1}
+		select * from alarm where m_id = #{param1}
 	</select>
 	<select id="alarm_quick_view" resultType="com.updev.admin.Alarm">
-	<![CDATA[select * from alarm where m_id = #{param1} and ROWNUM <= 5 order by a_num desc]]>
+	<![CDATA[select * from alarm where m_id = #{param1} and ROWNUM <= 5 and alarm_chk = 1 order by a_num desc]]>
 	</select>
 	
 	<select id="admin_alarm_total" resultType="int">
-		select count(*) from alarm where m_nick = #{param1}
+		select count(*) from alarm where m_id = #{param1}
 	</select>
 	
 	<select id="admin_alarm_page" resultType="com.updev.admin.Alarm">
 		select * from (
 		select rownum rn,A.* from(
-		select * from alarm where m_nick = '관리자')A)
+		select * from alarm where m_id = 'admin')A)
 		where rn between #{start} and #{end}
 	</select>
 	

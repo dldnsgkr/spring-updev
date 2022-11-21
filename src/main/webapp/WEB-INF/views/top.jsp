@@ -85,7 +85,9 @@
 								</c:when>
 									<c:otherwise>
 									<a>환영합니다!<b>${member.m_nick}님</b></a>
+									
 									<a class="alarm" onclick="alarm_quick_view('${member.m_id}');">
+									
 									<img src="./resources/images/alarm.svg">
 									<span class="alarm_cnt">${alarm_count}</span>
 									</a>
@@ -173,6 +175,7 @@
 				url:"alarm_quick_view",
 				data: {jsoninfo:sam},
 				success:function(data){
+					console.log(data);
 					
 		            var htm = "";
 		         	//htm += "<div>"
@@ -183,7 +186,7 @@
 		         	
 		         		<c:choose>
 			         		<c:when test="${member.m_nick=='관리자'}">
-			         			htm += "<a href='admin_mypage'>전체알람</a>"
+			         			htm += "<a href='admin_alarm'>전체알람</a>"
 			         		</c:when>
 			         		<c:otherwise>
 		         				htm += "<a href='alarm'>전체알람</a>"
@@ -192,8 +195,10 @@
 		         		</c:choose>
 	
 		         		htm += "<input type='button' onclick='cclose();' value='X'>"
-		            for(var i in data.members){                           
-		         		htm += "<div class='con'>"+data.members[i].a_content+"</div>"
+		            for(var i in data.members){    
+		            	
+		         		htm += "<div class='con'><a href='alarmcheck?b_num="+data.members[i].b_num+"&a_num="+data.members[i].a_num+
+		         				"'>"+data.members[i].a_content+"</a></div>"
 		            }
 		            //htm += "</table>"
 					$("#quick").addClass('on');
