@@ -4,16 +4,16 @@ public class Alarm {
 	
 	int a_num,b_num;
 	String m_nick,m_id,a_content;
-	int alram_chk,a_existence;
+	int alarm_chk,a_existence;
 	public Alarm() {}
-	public Alarm(int a_num, int b_num, String m_nick, String m_id, String a_content, int alram_chk, int a_existence) {
+	public Alarm(int a_num, int b_num, String m_nick, String m_id, String a_content, int alarm_chk, int a_existence) {
 		super();
 		this.a_num = a_num;
 		this.b_num = b_num;
 		this.m_nick = m_nick;
 		this.m_id = m_id;
 		this.a_content = a_content;
-		this.alram_chk = alram_chk;
+		this.alarm_chk = alarm_chk;
 		this.a_existence = a_existence;
 	}
 	public int getA_num() {
@@ -46,11 +46,11 @@ public class Alarm {
 	public void setA_content(String a_content) {
 		this.a_content = a_content;
 	}
-	public int getAlram_chk() {
-		return alram_chk;
+	public int getAlarm_chk() {
+		return alarm_chk;
 	}
-	public void setAlram_chk(int alram_chk) {
-		this.alram_chk = alram_chk;
+	public void setAlarm_chk(int alarm_chk) {
+		this.alarm_chk = alarm_chk;
 	}
 	public int getA_existence() {
 		return a_existence;

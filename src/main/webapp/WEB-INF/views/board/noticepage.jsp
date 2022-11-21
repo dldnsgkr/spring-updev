@@ -16,6 +16,13 @@
 		<div class="boardpage_top">
 			<div class="board_notic">여기는 UPDEV의 공지를 올리는 곳입니다.</div>
 		</div>
+		<div class="board_write">
+			<c:if test="${m_id == 'admin'}">
+				<button class="button" type="button" name="board_write" onclick="location.href = 'write?b_kind=공지&b_cate=공지'">
+					<img src="./resources/images/iconmonstr-pencil-13-240.png" title="게시글 작성" class="board_img">
+				</button>
+			</c:if>
+			</div>
 		<table border="1">
 			<thead id="thead">
 				<tr>

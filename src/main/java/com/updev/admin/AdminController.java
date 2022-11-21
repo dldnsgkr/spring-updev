@@ -430,12 +430,9 @@ public class AdminController {
 		String b_title = mul.getParameter("b_title");
 		String m_nick = mul.getParameter("m_nick");
 		String b_content = mul.getParameter("b_content");
-		MultipartFile f1 = mul.getFile("b_file1");
-		MultipartFile f2 = mul.getFile("b_file2");
-		String b_file1 = f1.getOriginalFilename();
-		String b_file2 = f2.getOriginalFilename();
+		
 		ServiceBoard ss = sqlsession.getMapper(ServiceBoard.class);
-		ss.boardupdate(b_num, b_cate, b_kind, b_title, m_nick, b_content, b_file1, b_file2);
+		ss.boardupdate(b_num, b_cate, b_kind, b_title, m_nick, b_content);
 		return "redirect:admin_mylist";
 	}
 

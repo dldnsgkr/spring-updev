@@ -66,4 +66,6 @@ public interface ServiceMember {
 
 	public Signup login_cookie(String cookie_m_id);
 
+	public Signup find_idandpw_use_email(String email);
+
 }

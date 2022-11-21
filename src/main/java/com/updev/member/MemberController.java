@@ -161,6 +161,7 @@ public class MemberController {
 		   //세션 삭제,재정의
 		   String loginbefore = "unknown";
 		   String loginbeforeid = "unknown";
+		   /*
 	         session.removeAttribute("member");
 	         session.removeAttribute("loginState");
 	         session.removeAttribute("m_id");
@@ -168,6 +169,8 @@ public class MemberController {
 	         session.removeAttribute("member_nick");
 	         session.removeAttribute("auto_login");
 	         session.removeAttribute("alarm_count");
+	         */
+		   session.invalidate();
 	         session.setAttribute("loginState",false);
 	         session.setAttribute("member_nick", loginbefore);
 	         session.setAttribute("m_id", loginbeforeid);
@@ -337,6 +340,8 @@ public class MemberController {
 	         produces = "application/text; charset=UTF-8")
 	   public String find_pw(HttpServletRequest request, Model model) throws UnsupportedEncodingException
 	   {
+		   HttpSession session = request.getSession();
+		   ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 		   int c= 0;
 		   //String mpw =null;
 		   String jsoninfo = request.getParameter("jsoninfo");	
@@ -348,13 +353,14 @@ public class MemberController {
 				String name=(String) jobj.get("name");
 				String mail=(String) jobj.get("mail");
 				
-				ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+				
 				
 				c = sm.find_pw(name, mail);
 				
 		   	}catch (Exception e) {
 		   	}
 				if (c==1) {
+					
 					return "있음";
 				}else {
 					return "없음";
@@ -397,7 +403,6 @@ public class MemberController {
 	   @RequestMapping(value = "/update_pw", method = RequestMethod.POST)
 	   public void update_pw(HttpServletRequest request)
 	   {
-   
 		   String jsoninfo = request.getParameter("jsoninfo");		
 		   JSONParser jsonparse = new JSONParser();
 		   
@@ -447,7 +452,7 @@ public class MemberController {
 			else
 			{
 				//로그인이 안되어있다면 로그인 페이지로
-				rattr.addAttribute("result", "loginfail");
+				rattr.addAttribute("loginresult", "loginfail");
 				return "redirect:login";
 			}
 	     }

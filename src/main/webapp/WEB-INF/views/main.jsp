@@ -42,14 +42,15 @@
 					<td><input type="hidden" value="${a.b_num}"></td>
 					<td class="main_boardkind">
 					<c:set var="KindValue" value="${a.b_kind}"/>${fn:substring(KindValue,0,2) }</td>
-					<td class="main_popboardtitle"><c:set var="TitleValue" value="${a.b_title}"/>
+					<td class="main_popboardtitle">
+					<c:set var="TitleValue" value="${a.b_title}"/>
 					<c:choose>
-					<c:when test="${fn:length(TitleValue) gt 5}">
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }.....</a>
-					</c:when>
-					<c:otherwise>
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
-					</c:otherwise>
+						<c:when test="${fn:length(TitleValue) gt 5}">
+							<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }.....</a>
+						</c:when>
+						<c:otherwise>
+							<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }</a>
+						</c:otherwise>
 					</c:choose>
 					<c:if test="${a.b_replycnt ne 0}">
 						[<c:out value="${a.b_replycnt}"/>]
@@ -71,10 +72,10 @@
 					<c:set var="TitleValue" value="${a.b_title}"/>
 					<c:choose>
 					<c:when test="${fn:length(TitleValue) gt 5}">
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }.....</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }.....</a>
 					</c:when>
 					<c:otherwise>
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }</a>
 					</c:otherwise>
 					</c:choose>
 					<c:if test="${a.b_replycnt ne 0}">
@@ -97,10 +98,10 @@
 					<c:set var="TitleValue" value="${a.b_title}"/>
 					<c:choose>
 					<c:when test="${fn:length(TitleValue) gt 5}">
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }.....</a>
 					</c:when>
 					<c:otherwise>
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }</a>
 					</c:otherwise>
 					</c:choose>
 					<c:if test="${a.b_replycnt ne 0}">
@@ -123,10 +124,10 @@
 					<c:set var="TitleValue" value="${a.b_title}"/>
 					<c:choose>
 					<c:when test="${fn:length(TitleValue) gt 5}">
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }.....</a>
 					</c:when>
 					<c:otherwise>
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }</a>
 					</c:otherwise>
 					</c:choose>
 					<c:if test="${a.b_replycnt ne 0}">
@@ -149,10 +150,10 @@
 					<c:set var="TitleValue" value="${a.b_title}"/>
 					<c:choose>
 					<c:when test="${fn:length(TitleValue) gt 5}">
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }.....</a>
 					</c:when>
 					<c:otherwise>
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }</a>
 					</c:otherwise>
 					</c:choose>
 					<c:if test="${a.b_replycnt ne 0}">
@@ -175,10 +176,10 @@
 					<c:set var="TitleValue" value="${a.b_title}"/>
 					<c:choose>
 					<c:when test="${fn:length(TitleValue) gt 5}">
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }.....</a>
 					</c:when>
 					<c:otherwise>
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }</a>
 					</c:otherwise>
 					</c:choose>
 					<c:if test="${a.b_replycnt ne 0}">

@@ -49,8 +49,16 @@ $(function(){
 					<th>종류</th>
 					<td>
 					<select name="b_cate">
-				   <option value="공지">공지</option>
+					<c:choose>
+					<c:when test="${b_cate == '공지'}">
+				   <option value="공지" selected="selected">공지</option>
+				   <option value="일반" >일반</option>
+				   </c:when>
+				   <c:otherwise>
+				   <option value="공지" >공지</option>
 				   <option value="일반" selected="selected">일반</option>
+				   </c:otherwise>
+				   </c:choose>
 				   </select>
 				</td>
 				</tr>
@@ -59,7 +67,7 @@ $(function(){
 				   <td>
 				   <select name="b_kind">
 				   <c:choose>
-						<c:when test="${member_nick=='관리자'}">
+						<c:when test="${m_id == 'admin'}">
 							<option value="공지" selected="selected">공지</option>
 						</c:when>
 						<c:otherwise>
@@ -89,11 +97,11 @@ $(function(){
 						</c:otherwise>
 					</c:choose>
 				   <c:choose>
-						<c:when test="${b_kind=='Q&A'}">
-							<option value="Q&A" selected="selected">Q&A</option>
+						<c:when test="${b_kind=='QNA'}">
+							<option value="QNA" selected="selected">Q&A</option>
 						</c:when>
 						<c:otherwise>
-							<option value="Q&A">Q&A</option>
+							<option value="QNA">Q&A</option>
 						</c:otherwise>
 					</c:choose>
 				   </select></td>

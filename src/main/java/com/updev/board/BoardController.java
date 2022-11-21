@@ -167,7 +167,7 @@ public class BoardController {
 		  return "mypage"; 
 	   }
 	   
-	 //글 수정 작성
+	 //글 수정 작성 폼
 	      @RequestMapping(value = "/writeupdatecheck")
 	      public String updatecheck_mywriteporm(HttpServletRequest request,Model mo)
 	      {
@@ -213,7 +213,20 @@ public class BoardController {
 	         sb.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content);
 
 	         
-	         return "redirect:ajaxmywrite";
+	         if(b_kind.equals("공지"))
+	         {
+	        	 return "redirect:noticepage";
+	         } else if(b_kind.equals("정보공유")) {
+	        	 return "redirect:sharepage";
+	         } else if(b_kind.equals("고민상담소")) {
+	        	 return "redirect:worrypage";
+	         } else if(b_kind.equals("지식인")) {
+	        	 return "redirect:questionpage";
+	         } else if(b_kind.equals("QNA")) {
+	        	 return "redirect:qnapage";
+	         } else {
+	        	 return "redirect:ajaxmywrite";
+	         }
 
 	      }
 	      
@@ -233,6 +246,8 @@ public class BoardController {
 			      //글쓰려 하는 게시글의 b_kind를 받아 맞게 뿌려줌
 	    		  String b_kind = request.getParameter("b_kind");
 	    		  session.setAttribute("b_kind", b_kind);
+	    		  String b_cate = request.getParameter("b_cate");
+	    		  session.setAttribute("b_cate", b_cate);
 	    		  return "boardwrite";
 				}
 				else
@@ -275,7 +290,7 @@ public class BoardController {
 		        	 return "redirect:worrypage";
 		         } else if(b_kind.equals("지식인")) {
 		        	 return "redirect:questionpage";
-		         } else if(b_kind.equals("Q&A")) {
+		         } else if(b_kind.equals("QNA")) {
 		        	 return "redirect:qnapage";
 		         } else {
 		        	 return "redirect:ajaxmywrite";
@@ -306,7 +321,7 @@ public class BoardController {
 		        	 return "redirect:worrypage";
 		         } else if(b_kind.equals("지식인")) {
 		        	 return "redirect:questionpage";
-		         } else if(b_kind.equals("Q&A")) {
+		         } else if(b_kind.equals("QNA")) {
 		        	 return "redirect:qnapage";
 		         } else {
 		        	 return "redirect:ajaxmywrite";

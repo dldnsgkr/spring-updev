@@ -20,7 +20,7 @@
 	<insert id="member_info_insert">
 		insert into member(m_num,m_id,m_pw,m_nick,m_name,m_mail,m_tel,m_field,m_grade) values(m_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
 	</insert>
-	<!--  -->
+	<!-- 로그인 -->
 	<select id="login_checking" resultType="com.updev.member.Signup">
 		SELECT * FROM member WHERE m_id = #{param1} AND m_pw = #{param2}
 	</select>
@@ -31,6 +31,10 @@
 	
 	<select id="profile_update_check" resultType="com.updev.member.Signup">
 		SELECT * FROM member WHERE m_id = #{param1}
+	</select>
+	
+	<select id="find_idandpw_use_email" resultType="com.updev.member.Signup">
+		SELECT * FROM member WHERE m_mail = #{param1}
 	</select>
 	
 	<update id="profileupdate">
@@ -86,7 +90,7 @@
 	</insert>
 	
 	<select id="ajaxmywrite" resultType="com.updev.board.Board">
-		select * from board where m_nick = #{param1}
+		select * from board where m_nick = #{param1} order by b_num DESC
 	</select>
 	
 	<select id="ajaxmygood" resultType="com.updev.board.Board">
@@ -94,6 +98,7 @@
 		b.b_likecnt,b.b_readcnt
 		from board b, good g
 		where b.b_num=g.b_num and g.m_nick = #{param1} and g.like_chk = 1
+		order by b.b_num DESC
 	</select>
 	
 	<select id="ajaxmyscrap" resultType="com.updev.board.Board">
@@ -101,6 +106,7 @@
 		b.b_likecnt,b.b_readcnt
 		from board b, scrap s
 		where b.b_num=s.b_num and s.m_nick = #{param1} and s.scrap_chk = 1
+		order by b.b_num DESC
 	</select>
 	
 	<select id="ajaxmyalarm" resultType="com.updev.board.Alarm">

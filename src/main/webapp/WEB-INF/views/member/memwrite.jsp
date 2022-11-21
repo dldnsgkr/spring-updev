@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,18 @@
 				<c:forEach items="${list}" var="list">
 				<tr>
 					<td>${list.b_num}</td>
-					<td><a href="detail?b_num=${list.b_num}&receiveread=b">${list.b_title}</a></td>
+					<td>
+					<c:set var="TitleValue" value="${list.b_title}"/>
+					<c:choose>
+						<c:when test="${fn:length(TitleValue) gt 25}">
+							<a href="detail?b_num=${list.b_num}&receiveread=a">${fn:substring(TitleValue,0,25).trim() }.....</a>
+						</c:when>
+						<c:otherwise>
+							<a href="detail?b_num=${list.b_num}&receiveread=a">${fn:substring(TitleValue,0,25).trim() }</a>
+						</c:otherwise>
+					</c:choose>
+					
+					</td>
 					<td>${list.b_kind}</td>
 					<td>${list.b_likecnt}</td>
 					<td>${list.b_readcnt}</td>
@@ -41,10 +53,9 @@
 					<input type="hidden" id="b_num" value="${list.b_num }">
 					<input type="hidden" id="b_kind" value="내가쓴글">	
 					<td>	
-					<a onclick="del()" id="de">삭제</a>
+					<a href="javascript:del();" id="de">삭제</a>
 					</form>
-					
-					<a onclick="location.href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">수정</a></td>
+					<a href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">수정</a></td>
 
 				</tr>
 				</c:forEach>
