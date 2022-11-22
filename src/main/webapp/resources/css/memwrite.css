@@ -22,6 +22,10 @@
 	margin-top: 50px;
 	margin-bottom: 50px;
 }
+#tfoot {
+	text-align: center;
+	margin: 40px 0;
+}
 th{
 	height: 15px;
 }

@@ -46,7 +46,7 @@ $(function(){
 		<form action="writesave" method="post" enctype="multipart/form-data" name="write">
 				<table border="1">
 				<tr id="b_cate">
-					<th>종류</th>
+					<th>종류</th>	
 					<td>
 					<select name="b_cate">
 					<c:choose>

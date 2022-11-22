@@ -14,7 +14,7 @@
 		m_mail = #{param4}, m_tel = #{param5}, m_field = #{param6} where m_id = #{param7}
 	</update>
 	<update id="member_manage_usestop">
-		update member set m_grade = #{param1}, m_jdate= SYSDATE+15 where m_num = #{param2}
+		update member set m_grade = #{param1}, m_outtime= SYSDATE+15 where m_num = #{param2}
 	</update>
 	<update id="member_manage_force">
 		update member set m_grade = #{param1} where m_num = #{param2}
@@ -204,4 +204,19 @@
 		order by m_num DESC)A)
 		where rn between #{start} and #{end}
 	</select>
+	
+	<!-- or b_content like '%'||#{keyword}||'%' -->
+	<select id="report_search" resultType="int">
+		select count(*) from report where b_num like '%'||#{keyword}||'%'
+	</select>
+	
+	<!--  or b_content like '%'||#{keyword}||'%' -->
+	<select id="report_searchpage" resultType="com.updev.admin.Report">
+		select * from (
+		select rownum rn,A.* from(
+		select * from report where b_num like '%'||#{keyword}||'%'
+		order by r_num DESC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
 </mapper>

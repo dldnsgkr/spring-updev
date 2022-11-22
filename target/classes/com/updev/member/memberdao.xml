@@ -16,6 +16,10 @@
 		update alarm set alarm_chk = 0 where a_num = #{param1}
 	</update>
 	
+	<update id="gradechange">
+		update member set m_grade = #{param1}, m_outtime= SYSDATE where m_id = #{param2}
+	</update>
+	
 	<!-- 회원정보 --> 
 	<insert id="member_info_insert">
 		insert into member(m_num,m_id,m_pw,m_nick,m_name,m_mail,m_tel,m_field,m_grade) values(m_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
@@ -113,4 +117,47 @@
 		select * from alarm where m_id = #{param1} order by a_num DESC
 	</select>
 	
+	<select id="mypage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select * from board where m_nick = #{m_nick}
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<select id="mytotal" resultType="int">
+		select count(*) from board where m_nick = #{param1}
+	</select>
+	
+	<select id="goodpage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
+		b.b_likecnt,b.b_readcnt
+		from board b, good g
+		where b.b_num=g.b_num and g.m_nick = #{m_nick} and g.like_chk = 1
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<select id="goodtotal" resultType="int">
+		select count(*) from board b, good g
+		where b.b_num=g.b_num and g.m_nick = #{param1} and g.like_chk = 1
+	</select>
+	
+		<select id="scrappage" resultType="com.updev.board.Board">
+		select * from (
+		select rownum rn,A.* from(
+		select b.b_num,b.b_cate,b.b_kind,b.b_title,b.b_wdate ,b.b_content,
+		b.b_likecnt,b.b_readcnt
+		from board b, scrap s
+		where b.b_num=s.b_num and s.m_nick = #{m_nick} and s.scrap_chk = 1
+		order by b_group DESC,b_step ASC)A)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<select id="scraptotal" resultType="int">
+		select count(*) from board b, scrap s
+		where b.b_num=s.b_num and s.m_nick = #{m_nick} and s.scrap_chk = 1
+	</select>
 </mapper>

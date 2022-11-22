@@ -26,7 +26,7 @@
 					<th>작성일</th>
 					<th></th>
 				</tr>
-				<c:forEach items="${list}" var="list">
+				<c:forEach items="${bpage1}" var="list">
 				<tr>
 					<td>${list.b_num}</td>
 					<td>
@@ -54,13 +54,36 @@
 					<input type="hidden" id="b_kind" value="내가쓴글">	
 					<td>	
 					<a href="javascript:del();" id="de">삭제</a>
-					</form>
-					<a href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">수정</a></td>
+
+               		</form>
+               		<a href='writeupdatecheck?b_num=${list.b_num}&b_kind=${list.b_kind }'">수정</a></td>
+
 
 				</tr>
 				</c:forEach>
 			</table>
 		</form>
 	</div>
+				<div id="tfoot">				
+			<c:if test="${page1.nowPage > 10}">
+				<a href="ajaxmywrite?m_nick=${member_nick}&nowPage=${page1.startPage -1}">&#60;</a>
+			</c:if>
+
+
+			<c:forEach begin="${page1.startPage}" end="${page1.endPage}" var="p">
+				<c:choose>
+					<c:when test="${p==page1.nowPage}">
+						<b>${p}</b>
+					</c:when>
+					<c:when test="${p!=page1.nowPage}">
+						<a href="ajaxmywrite?m_nick=${member_nick}&nowPage=${p}&cntPerPage=${page1.cntPerPage}">${p}</a>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+
+			<c:if test="${page1.next && page1.endPage>0}">
+				<a href="ajaxmywrite?m_nick=${member_nick}&nowPage=${page1.endPage +1}">&#62;</a>
+			</c:if>
+		</div> 
 </body>
 </html>

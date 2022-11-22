@@ -44,21 +44,20 @@
 <body>
 	<div class="wrap">
 		<div class="container">
-			<form action="writeupdate" method="post"
-				enctype="multipart/form-data" name="write">
-				<input type="hidden" name="b_num" value="${list.b_num }"> <input
+			<form method="post" enctype="multipart/form-data" name="board_update_write">
+				<input type="hidden" name="b_num" id="b_num" value="${list.b_num }"> <input
 					type="hidden" id="m_nick" name="m_nick" value="${list.m_nick }">
 				<table border="1">
 					<tr id="b_cate">
 						<th>종류</th>
-						<td><select name="b_cate">
+						<td><select name="b_cate" id="b_cate">
 								<option value="공지">공지</option>
 								<option value="일반" selected="selected">일반</option>
 						</select></td>
 					</tr>
 					<tr>
 						<th>분류</th>
-						<td><select name="b_kind">
+						<td><select name="b_kind" id="b_kind">
 								<c:choose>
 									<c:when test="${b_kind=='공지'}">
 										<option value="공지" selected="selected">공지</option>
@@ -128,6 +127,7 @@
 					placeholder : '내용을 입력하세요.' //placeholder 설정
 				});
 				$('.note-statusbar').hide()
+				
 			</script>
 </body>
 </html>

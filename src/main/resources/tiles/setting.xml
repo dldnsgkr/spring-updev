@@ -147,4 +147,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/admin/member_infoupdate.jsp" />
 	</definition>
 	
+	<definition name="report_search" extends="baseLayout">   
+		<put-attribute name="body" value="/WEB-INF/views/admin/report_search.jsp" />
+	</definition>
+	
 </tiles-definitions>

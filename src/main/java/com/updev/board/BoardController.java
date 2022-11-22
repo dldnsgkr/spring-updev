@@ -927,7 +927,7 @@ public class BoardController {
 	     		String keyword = request.getParameter("keyword");
 	     		String nowPage=request.getParameter("nowPage");
 	     		String cntPerPage=request.getParameter("cntPerPage");
-	     		
+	     		String m_nick=request.getParameter("m_nick");
 	     		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	     		/*
 	     		 * 
@@ -952,7 +952,7 @@ public class BoardController {
 	     		}
 	     		
 	     		
-	     		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),keyword);
+	     		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),m_nick,keyword);
 	     		mo.addAttribute("page",dto);
 	     		mo.addAttribute("page2",cri);
 	     		mo.addAttribute("keyword", keyword);

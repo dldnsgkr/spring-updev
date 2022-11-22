@@ -62,6 +62,32 @@
 				</table>
 			</div>
 			<div class="board">
+				<span class="main_boardtitle">공지</span>
+				<a href="noticepage" id="alink">더보기</a>
+				<table>
+				<c:forEach items="${noticempage}" var="a" begin="0" end="7">
+				<tr>
+					<td><input type="hidden" value="${a.b_num}"></td>
+					<td>
+					<c:set var="TitleValue" value="${a.b_title}"/>
+					<c:choose>
+					<c:when test="${fn:length(TitleValue) gt 5}">
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					</c:when>
+					<c:otherwise>
+					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5) }</a>
+					</c:otherwise>
+					</c:choose>
+					<c:if test="${a.b_replycnt ne 0}">
+						[<c:out value="${a.b_replycnt}"/>]
+					</c:if></td>
+					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
+					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
+				</tr>
+				</c:forEach>
+				</table>
+			</div>
+			<div class="board">
 				<span class="main_boardtitle">정보공유</span>
 				<table>
 					<a href="sharepage" id="alink">더보기</a>
@@ -139,33 +165,9 @@
 				</c:forEach>
 				</table>
 			</div>
+			
 			<div class="board">
-				<span class="main_boardtitle">공지</span>
-				<a href="noticepage" id="alink">더보기</a>
-				<table>
-				<c:forEach items="${noticempage}" var="a" begin="0" end="7">
-				<tr>
-					<td><input type="hidden" value="${a.b_num}"></td>
-					<td>
-					<c:set var="TitleValue" value="${a.b_title}"/>
-					<c:choose>
-					<c:when test="${fn:length(TitleValue) gt 5}">
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }.....</a>
-					</c:when>
-					<c:otherwise>
-					<a href="detail?b_num=${a.b_num}&receiveread=a">${fn:substring(TitleValue,0,5).trim() }</a>
-					</c:otherwise>
-					</c:choose>
-					<c:if test="${a.b_replycnt ne 0}">
-						[<c:out value="${a.b_replycnt}"/>]
-					</c:if></td>
-					<td class="main_boarddate"><fmt:parseDate value='${a.b_wdate}' var='date' pattern='yyyy-MM-dd HH:mm:ss'/>
-					<fmt:formatDate value="${date}" pattern="yy.MM.dd."/></td>	
-				</tr>
-				</c:forEach>
-				</table>
-			</div>
-			<div class="board">
+
 				<span class="main_boardtitle">Q&A</span>
 				<a href="qnapage" id="alink">더보기</a>
 				<table>

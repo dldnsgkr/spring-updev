@@ -23,6 +23,7 @@ import com.updev.board.Board;
 import com.updev.board.Criteria;
 import com.updev.board.PageDTO;
 import com.updev.board.ServiceBoard;
+import com.updev.member.ServiceMember;
 import com.updev.member.Signup;
 
 @Controller
@@ -713,5 +714,56 @@ public class AdminController {
 				System.out.println(jsoninfo);
 		return jsoninfo;
 	}
+	
+	// 신고 검색
+		@RequestMapping(value = "/reportsearch")
+		public String reportsearch(HttpServletRequest request, Model mo, PageDTO dto, Criteria cri) {
+			HttpSession session = request.getSession();
+	    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+	    	  String m_id = (String)session.getAttribute("m_id");
+		 		int alarm_count = sm.alarmcount(m_id);
+		        session.setAttribute("alarm_count", alarm_count);
+   		
+   		ArrayList<Board> list = new ArrayList<Board>();
+   		String sname = request.getParameter("sname");
+   		String keyword = request.getParameter("keyword_report");
+   		String nowPage=request.getParameter("nowPage");
+   		String cntPerPage=request.getParameter("cntPerPage");
+   		String m_nick=request.getParameter("m_nick");
+   		ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+   		/*
+   		 * 
+   		if(sname.equals("b_title"))
+   		{
+   			list = sb.titlesearch(keyword);
+   		} else {
+   			list = sb.contentsearch(keyword);
+   		}
+   		mo.addAttribute("list",list);
+   		 */
+   		ServiceAdmin sa = sqlsession.getMapper(ServiceAdmin.class);
+   		int total = sa.report_search(keyword);
+   		System.out.println(keyword);
+   		System.out.println(total);
+   		if(nowPage == null && cntPerPage == null) {
+   			nowPage="1";
+   			cntPerPage="15";
+   		} else if(nowPage==null) {
+   			nowPage="1";
+   		} else if(cntPerPage==null) {
+   			cntPerPage="15";
+   		}
+   		
+   		
+   		dto=new PageDTO(cri,total,Integer.parseInt(nowPage),Integer.parseInt(cntPerPage),m_nick,keyword);
+   		mo.addAttribute("page",dto);
+   		mo.addAttribute("page2",cri);
+   		mo.addAttribute("keyword", keyword);
+   		mo.addAttribute("paging",sa.report_searchpage(dto));
+   		//ArrayList<Report> report = sa.report_searchpage(dto);
+   		//System.out.println(report);
+   		
+   		return "report_search";
+		}
 }
 	
