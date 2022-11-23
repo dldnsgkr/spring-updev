@@ -51,6 +51,12 @@ public class MemberController {
 		@RequestMapping(value = "/login")
 		public String loginform()
 		{
+			ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			
+			 
+	   		  String a = "회원";
+	   		String b = "이용정지";
+	   		  sm.gradechange(a,b);
 			return "login";
 		}
 
@@ -115,12 +121,6 @@ public class MemberController {
 		      else
 		          System.out.println("date1은 date2 이후 날짜");
 		          */
-	    	  if(grade.equals("이용정지") && result < 0)
-	    	  {
-	    		  String a = "회원";
-	    		  
-	    		  sm.gradechange(a,m_id);
-	    	  }
 	    	  
 	    	  if((grade.equals("회원") || grade.equals("관리자")) && result < 0)
 	    	  {//로그인한 회원에 관해 세션 정의

@@ -17,7 +17,7 @@
 	</update>
 	
 	<update id="gradechange">
-		update member set m_grade = #{param1}, m_outtime= SYSDATE where m_id = #{param2}
+		update member set m_grade = #{param1} where <![CDATA[ m_outtime < SYSDATE ]]> and m_grade = #{param2}
 	</update>
 	
 	<!-- 회원정보 --> 

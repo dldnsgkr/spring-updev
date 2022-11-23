@@ -46,8 +46,14 @@ public class BoardController {
 			@CookieValue(value="m_id" , required=false) String cookie_m_id) {
 		HttpSession session = request.getSession();
 		
+		ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+   		  String a = "회원";
+   		String b = "이용정지";
+   		  sm.gradechange(a,b);
+   	  
+		
 		if(cookie_m_id != null) {
-			ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+			
 			
 			Date now = new Date();
 			  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -122,6 +128,10 @@ public class BoardController {
 	{	
  		HttpSession session = request.getSession();
  		ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+ 		
+ 		String a = "회원";
+   		String b = "이용정지";
+   		  sm.gradechange(a,b);
  		
  		//로그인을 한경우 신규 알림이 페이지 혹은 기능을 동작할때 매번 count된다
  		String m_id = (String)session.getAttribute("m_id");

@@ -80,6 +80,6 @@ public interface ServiceMember {
 	public int scraptotal(String nick);
 	public ArrayList<Board> scrappage(PageDTO dto);
 
-	public void gradechange(String a, String m_id);
+	public void gradechange(String a, String b);
 
 }
