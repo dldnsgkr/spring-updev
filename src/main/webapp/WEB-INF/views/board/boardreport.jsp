@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="resources/css/boardwrite.css"
-	type="text/css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="resources/summernote/summernote-lite.js"></script>
+<link rel="stylesheet" href="resources/css/boardreport.css" type="text/css">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="resources/js/reportconfirm.js"></script>
+				
+		<script src="resources/summernote/summernote-lite.js"></script>
   		<script src="resources/summernote/summernote-ko-KR.js"></script>
   		<link rel="stylesheet" href="resources/summernote/summernote-lite.css">
 
@@ -23,14 +25,13 @@
 <script>
 	$(function() {
 		//입력박스 숨어있다가
-		$("#otherreason").hide();
+		$(".note-editor.note-frame.panel.panel-default").css("display","none");
 		$("#r_reason").change(function() {
 			//기타를 선택하면 등장
 			if ($("#r_reason").val() == "etc") {
-				$("#otherreason").show();
-				alert("기타사유를 작성해주세요.");
+				$(".note-editor.note-frame.panel.panel-default").css("display","block");
 			} else {
-				$("#otherreason").hide();
+				$(".note-editor.note-frame.panel.panel-default").css("display","none");
 			}
 		})
 	});
@@ -40,21 +41,22 @@
 <body>
 	<!-- 신고 게시판 -->
 	<div class="report">
-		<form action="breport" method="post" enctype="multipart/form-data">
-			<div class="title">REPORT</div>
-			<input type="hidden" name="b_num" value="${b_num }">
+		<form method="post" enctype="multipart/form-data" name="reportform">
+			<div class="title"><h1>REPORT</h1></div>
+			<input type="hidden" id="b_num" name="b_num" value="${b_num }">
 			<table>
 			<thead id="thead">
 				<tr>
 					<th>게시글 제목</th>
 					<th id="reportid">신고사유</th>
-					<th>첨부파일</th>
+					<th>이유</th>
 				</tr>
 			</thead>
 			<tbody id="tbody">
 				<tr>
-					<td>${b_title }</td>
+					<td><div id="b_title">${b_title}</div></td>
 					<td><select name="r_reason" id="r_reason">
+							<option value="">신고사유</option>
 							<option value="원치않는 상업성 콘텐츠 또는 스팸,도배">원치않는 상업성 콘텐츠 또는 스팸,도배</option>
 							<option value="포르노 또는 음란물">포르노 또는 음란물</option>
 							<option value="증오심 표현 또는 혐오적인 발언 및 욕설">증오심 표현 또는 혐오적인 발언 및 욕설</option>
@@ -63,12 +65,11 @@
 							<option value="개인정보 노출">개인정보 노출</option>
 							<option value="etc" id="etc">기타</option>
 					</select>
-					<input type="text" id="otherreason" name="otherreason" placeholder="신고 사유를 40자 이내로 작성해주세요."/></td>
-					<td><input type="file" name="r_file1"></td>	
+					<td><textarea class="summernote" id="otherreason" name="otherreason" placeholder="신고 사유를 40자 이내로 작성해주세요."></textarea> </td>
 				</tr>
 			</tbody>
 			</table>
-			<input type="submit" id="submit" value="신고하기">
+			<div><input type="submit" id="submit" value="신고하기" onclick="report_confirm();"></div>
 		</form>
 	</div>
 	<script>
