@@ -7,22 +7,22 @@
    <insert id="writesave">
    insert into board(b_num,b_cate,b_kind,b_title,m_nick,b_content,b_likecnt,b_readcnt,b_group,b_step,b_indent,b_report,b_replycnt) values(b_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},0,0,b_seq.currval,0,0,0,0)
    </insert>
-
-	<select id="mywrite" resultType="com.updev.board.Board">
-		SELECT * FROM board where m_nick = #{param1}
-	</select>
-	
-	<select id="board_update_check" resultType="com.updev.board.Board">
+   
+   <select id="board_update_check" resultType="com.updev.board.Board">
 		SELECT * FROM board where b_num = #{param1}
 	</select>
-	
-	<update id="boardupdate">
+   
+   <update id="boardupdate">
 		update board set b_cate = #{param2}, b_kind = #{param3}, b_title = #{param4}, m_nick = #{param5}, b_content = #{param6} where b_num = #{param1}
 	</update>
 	
 	<delete id="boarddelete">
 		delete from board where b_num = #{param1}
 	</delete>
+
+	<select id="mywrite" resultType="com.updev.board.Board">
+		SELECT * FROM board where m_nick = #{param1}
+	</select>
 	
 	<select id="boarddetail" resultType="com.updev.board.Board">
 		select * from board where b_num = #{param1}

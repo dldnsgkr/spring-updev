@@ -99,4 +99,8 @@ public interface ServiceAdmin {
 	public void member_manage_force(String grade, int m_num);
 
 	public ArrayList<Alarm> alarm_quick_view(String m_nick);
+
+	public int report_search(String keyword);
+
+	public ArrayList<Report> report_searchpage(PageDTO dto);
 }

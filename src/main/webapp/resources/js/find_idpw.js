@@ -164,7 +164,8 @@ function PwUpD() {
 							url:"update_pw",
 							data:{jsoninfo:sam},
 							success:function(data, textStatus){
-								alert("비밀번호가 변경되었습니다.");				
+								alert("비밀번호가 변경되었습니다.");
+									
 							},
 							error:function(data, textStatus){
 								alert("전송실패!!");
@@ -181,5 +182,6 @@ function PwUpD() {
 								alert("전송실패!!");
 							}
 						});
+						
     }
         

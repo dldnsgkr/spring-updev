@@ -73,6 +73,13 @@ public interface ServiceMember {
 	public int goodtotal(String nick);
 	public ArrayList<Board> goodpage(PageDTO dto);
 
+
+	public Signup find_idandpw_use_email(String email);
+
+
 	public int scraptotal(String nick);
 	public ArrayList<Board> scrappage(PageDTO dto);
+
+	public void gradechange(String a, String b);
+
 }

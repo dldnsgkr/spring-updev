@@ -46,5 +46,15 @@ function updateconfirm(){
 	}
  
 
+<<<<<<< HEAD
 
  
+=======
+	var result = confirm("이대로 수정하시겠습니까?");
+		if(result){
+			location.href="writeupdatecheckb_num="+b_num+"&b_kind="+b_kind;
+		}else{
+			return false;
+		}
+}
+>>>>>>> 7e8b4176da32d2a1687bd0e336a19a5b251887cb
