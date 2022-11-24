@@ -90,7 +90,7 @@
   	</update>
   	
   	<insert id="report_insert">
-		insert into report(r_num,r_status,r_reason,r_file1,b_num) values(r_seq.nextval,#{param1},#{param2},#{param3},#{param4})
+		insert into report(r_num,r_status,r_reason,b_num) values(r_seq.nextval,#{param1},#{param2},#{param3})
 	</insert>
 	
 	<select id="ajaxmywrite" resultType="com.updev.board.Board">

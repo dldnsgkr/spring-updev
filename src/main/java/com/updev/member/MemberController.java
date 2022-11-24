@@ -474,8 +474,6 @@ public class MemberController {
 	 		String r__reason = mul.getParameter("r_reason");//기타 제외 데이터
 	 		String otherreason = mul.getParameter("otherreason");//기타 기입데이터
 	 		String r_reason = "";
-	 		MultipartFile f = mul.getFile("r_file1");
-	        String r_file1 = f.getOriginalFilename();
 	        
 	        //기타를 선택했다면 b객체에 있는 기타 작성데이터를 r_reason 객체에 넣는다
 	        if(r__reason.equals("etc"))
@@ -487,7 +485,7 @@ public class MemberController {
 	        
 	 		int b_num = Integer.parseInt(request.getParameter("b_num"));
 	 		 ServiceMember ss = sqlsession.getMapper(ServiceMember.class);
-	    	 ss.report_insert(r_status,r_reason,r_file1,b_num);//신고내용 접수 insert
+	    	 ss.report_insert(r_status,r_reason,b_num);//신고내용 접수 insert
 	    	 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	    	 sb.report_board_update(b_num);//게시글 신고횟수
 	 		return "redirect:index";
@@ -551,7 +549,7 @@ public class MemberController {
 		   public String mywrite_ajax(HttpServletRequest request,Model mo,PageDTO dto,Criteria cri)
 		   {
 			   HttpSession session = request.getSession();
-			   
+			   System.out.println(11111);
 		    	  ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
 			 		String m_id = (String)session.getAttribute("m_id");
 			 		int alarm_count = sm.alarmcount(m_id);

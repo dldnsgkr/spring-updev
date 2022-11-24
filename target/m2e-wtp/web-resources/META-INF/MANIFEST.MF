@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
+Built-By: yutnj
+=======
 Built-By: leedn
+>>>>>>> 7e8b4176da32d2a1687bd0e336a19a5b251887cb
 Build-Jdk: 15.0.2
 Created-By: Maven Integration for Eclipse
 

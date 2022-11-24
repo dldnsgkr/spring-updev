@@ -95,7 +95,8 @@ function member_info_update_check(){
 			alert("분야를 선택해주세요.");
 			return false;
 		} 
-		
+		var ask_update = confirm("정말 수정하시겠습니까?");
+		if(ask_update){
 		var sam ={"m_id":m_id,"m_pw":m_pw,"m_nick":m_nick,"up_nick":up_nick,"m_name":m_name,"m_mail":m_mail,"m_tel":m_tel,"m_field":m_field};
 		console.log(sam);
 		console.log(sam.tel);
@@ -116,5 +117,5 @@ function member_info_update_check(){
 		 
 		form.action = "/updev/logout";
 		form.submit();
-	
+	}
 }
