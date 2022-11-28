@@ -1,29 +1,52 @@
 @charset "UTF-8";
+
+.modal-backdrop.in {
+    display: none;
+}
+
+
 .title{
-	padding-top: 50px;
+	padding-top: 0px;
 	font-size: medium;
 	color: #242038;
-	margin-right: 150px;
-	
+	margin-left: -163px;
+	padding-bottom: 13px;
+}
+
+.report {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 table {
 	display: flex;
 	display: -webkit-box;
 	overflow-x: auto;
 	overflow-y: hidden;
-	border: none;
+	border: 1px;
 	box-shadow: 0 2px 5px #cac4ce;
 	border-collapse: collapse;
 	border-radius: 5px;
 	overflow: hidden;
-	margin-left: auto;
-	margin-right: auto;
+	padding-top: 10px;
+	border: 1px #cac4ce solid;
+	width: 1120px;
+	border: 1px #cac4ce solid;
+	margin-left: -165px;
+}
+#b_title{
+	padding: 0px 5px;
+}
+#reportid{
+	padding-left: 0px;
 }
 
-#thead {
-	color: white;
-	background-image: linear-gradient(-225deg, #9067c6 0%, #8d86c9 100%);
-	font-size: 16px;
+#thead { width: 200px;
+  color: #242038;
+  font-size: 15px;
+  text-align: center !important;
+  padding: 16px 37px !important;
+  vertical-align: middle !important;
+  font-family: 'Nanum Gothic', sans-serif !important;
 }
 
 tbody {
@@ -43,7 +66,7 @@ th, td {
 
 .report form {
 	top: 50%;
-	width: 580px;
+	width: 779px;
 	margin: auto;
 	position: absolute;
 	left: 50%;
@@ -52,8 +75,9 @@ th, td {
 
 #r_reason {
 	border: 1px solid #FFFFFF;
-	outline: none;
 	font-size: 15px;
+	margin: 0px;
+	padding:0px;
 }
 
 .wrap form .input {
@@ -63,7 +87,7 @@ th, td {
 }
 
 h1 {
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 }
 
 .input {
@@ -78,8 +102,8 @@ h1 {
 	color: #242038;
 }
 
-input#submit {
-	width: 200px;
+#submit {
+	width: 190px;
 	background-color: #8d86c9;
 	border: 0;
 	font-size: 16px;
@@ -88,31 +112,31 @@ input#submit {
 	cursor: pointer;
 	border-radius: 10px;
 	transition-duration: 0.4s;
-	margin: 30px 0px 0px 175px;
+	margin: 25px 0px 0px 296px;
 }
-
-input#submit:hover {
+h1 {
+	margin-top: 0px !important; 
+}
+#submit:hover {
 	color: 242038;
 	background-color: #cac4ce;
 }
 
 th {
-	padding: 45px;
 	vertical-align: middle;
 	font-family: 'Nanum Gothic', sans-serif;
+	text-align: center !important;
+	padding: 11px 15px !important;
 }
 
 td {
 	font-size: 15px;
-	padding: 45px;
-	border: none;
 	vertical-align: middle;
 	color: #242038;
+	padding: 10px 0px !important;
+	vertical-align: middle !important;
 }
 
-input[type="file"] {
-    font-size: 15px;
-}
 
 input#otherreason {
     display: block;

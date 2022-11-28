@@ -29,13 +29,13 @@
 	$(function() {
 		var member_nick = $("#m_nick").val();
 		$("#notice").hide();
-		$("#b_cate").hide();
+		$("#cate").hide();
 		if (member_nick == "관리자") {
 			$("#notice").show();
-			$("#b_cate").show();
+			$("#cate").show();
 		} else {
 			$("#notice").hide();
-			$("#b_cate").hide();
+			$("#cate").hide();
 
 		}
 	});
@@ -44,11 +44,11 @@
 <body>
 	<div class="wrap">
 		<div class="container">
-			<form method="post" enctype="multipart/form-data" name="board_update_write">
-				<input type="hidden" name="b_num" id="b_num" value="${list.b_num }"> <input
-					type="hidden" id="m_nick" name="m_nick" value="${list.m_nick }">
+			<form method="get" enctype="multipart/form-data" name="board_update_write">
+				<input type="hidden" id="b_num" name="b_num" value="${list.b_num }"> 
+				<input type="hidden" id="m_nick" name="m_nick" value="${list.m_nick }">
 				<table border="1">
-					<tr id="b_cate">
+					<tr id="cate">
 						<th>종류</th>
 						<td><select name="b_cate" id="b_cate">
 								<option value="공지">공지</option>
@@ -102,11 +102,11 @@
 					</tr>
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="b_title" id="input" value="${list.b_title }"></td>
+						<td><input type="text" name="b_title" id="b_title" value="${list.b_title }"></td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea class="summernote" name="b_content">${list.b_content }</textarea></td>
+						<td><textarea class="summernote" name="b_content" id="b_content">${list.b_content }</textarea></td>
 						<!-- summernote -->
 					</tr>
 					

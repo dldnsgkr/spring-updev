@@ -1,5 +1,6 @@
 package com.updev.board;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -47,6 +49,8 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		
 		ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+		
+		//관리자의 차단 기간이 다 지난 후에도 이용정지일떄 자동으로 회원 등급으로 전환 시켜주는 메소드 
    		  String a = "회원";
    		String b = "이용정지";
    		  sm.gradechange(a,b);
@@ -190,8 +194,7 @@ public class BoardController {
 		 		
 		     //수정하려는 글에 b_kind를 매번 맞게 뿌려주기 위함
 	    	 String b_kind = request.getParameter("b_kind");
-	    	 
-	    	 //넘겨받은 계시글 고유번호로 수정할 글을 찾음
+	    	 	    	 //넘겨받은 계시글 고유번호로 수정할 글을 찾음
 	         int b_num = Integer.parseInt(request.getParameter("b_num"));
 	         ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	         Board board = sb.board_update_check(b_num);
@@ -203,27 +206,63 @@ public class BoardController {
 	      
 	      //글수정
 	      @RequestMapping(value = "/writeupdate")
-	      public String update_mywrite(MultipartHttpServletRequest mul,HttpServletRequest request)
+	      public String update_mywrite(HttpServletRequest request) throws UnsupportedEncodingException
 	      {
-	    	 HttpSession session = request.getSession();
+	    	  HttpSession session = request.getSession();
 	    	  
-	    	 ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
-	    	 String m_id = (String)session.getAttribute("m_id");
-	    	 int alarm_count = sm.alarmcount(m_id);
-	    	 session.setAttribute("alarm_count", alarm_count);
-	    	 
+		    	 ServiceMember sm = sqlsession.getMapper(ServiceMember.class);
+		    	 String m_id = (String)session.getAttribute("m_id");
+		    	 
+		    	
+		    	 int alarm_count = sm.alarmcount(m_id);
+		    	 session.setAttribute("alarm_count", alarm_count);
+	    	  request.setCharacterEncoding("UTF-8");
+			   String jsoninfo=request.getParameter("jsoninfo");
+			   JSONParser jsonparse = new JSONParser();	   
+//
+			   
+					JSONObject jobj;
+					try {
+						jobj = (JSONObject)jsonparse.parse(jsoninfo);
+						int b_num = Integer.parseInt(String.valueOf(jobj.get("b_num")));
+						String b_cate=(String) jobj.get("b_cate");
+						System.out.println(b_cate);
+						String b_kind=(String) jobj.get("b_kind");
+						String b_title=(String) jobj.get("b_title");
+						String m_nick=(String) jobj.get("m_nick");
+						String b_content=(String) jobj.get("b_content");
+						
+						System.out.println(b_num);
+						 ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
+				         sb.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content);
+					} catch (org.json.simple.parser.ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+					
+				
+			   //
+			   
 	    	 //파일 수정도 있기에 multipart사용
+	    	 /*
 	         int b_num = Integer.parseInt(mul.getParameter("b_num"));
+	         System.out.println(b_num);
 	         String b_cate = mul.getParameter("b_cate");
 	         String b_kind = mul.getParameter("b_kind");
 	         String b_title = mul.getParameter("b_title");
 	         String m_nick = mul.getParameter("m_nick");
 	         String b_content = mul.getParameter("b_content");
+	    	 
 	         ServiceBoard sb = sqlsession.getMapper(ServiceBoard.class);
 	         sb.boardupdate(b_num,b_cate,b_kind,b_title,m_nick,b_content);
+<<<<<<< HEAD
+	          */
+	         return "redirect:ajaxmywrite";
 
 	         
-	         if(b_kind.equals("공지"))
+	         /*if(b_kind.equals("공지"))
 	         {
 	        	 return "redirect:noticepage";
 	         } else if(b_kind.equals("정보공유")) {
@@ -236,7 +275,7 @@ public class BoardController {
 	        	 return "redirect:qnapage";
 	         } else {
 	        	 return "redirect:ajaxmywrite";
-	         }
+	         }*/
 
 	      }
 	      
@@ -337,7 +376,6 @@ public class BoardController {
 		        	 return "redirect:ajaxmywrite";
 		         }
 		      }
-
 	         
 	         //조회수
 	         public void Readcnt(int num) {
@@ -345,7 +383,7 @@ public class BoardController {
 	     		sb.readcnt(num);
 	     	}
 	         
-	         //알림 읽은 여부 체크
+	         //알림 읽은 여부 체크 (mypage알림 혹은 퀵뷰알림에서 클릭했을때 지나가는 곳)
 	         @RequestMapping(value = "/alarmcheck")
 	         public ModelAndView alarm_read_check(HttpServletRequest request)
 	         {
@@ -725,6 +763,9 @@ public class BoardController {
 				else
 				{//로그인을 하지않았다면 로그인창으로
 					rattr.addAttribute("result", "loginfail");
+					
+					
+					
 					return "redirect:login";
 				}
 	     	}

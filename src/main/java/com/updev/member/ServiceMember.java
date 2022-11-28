@@ -45,7 +45,7 @@ public interface ServiceMember {
 	
 	public int nickCheck2(String up_nick);
 
-	public void report_insert(String r_status, String r_reason, String r_file1, int b_num);
+	public void report_insert(String r_status, String r_reason, int b_num);
 
 	public ArrayList<Board> ajaxmywrite(String nick);
 
